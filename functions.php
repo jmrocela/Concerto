@@ -34,8 +34,6 @@ else {
 
 	// We invoke the Concerto Framework
 	require CONCERTO_LIBS . 'concerto.php';
-	require CONCERTO_LIBS . 'hooks.php';
-	require CONCERTO_LIBS . 'functions.php';
 
 }
 
