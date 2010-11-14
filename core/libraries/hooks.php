@@ -9,11 +9,17 @@
  */
 
 // Actions
+add_action('concerto_head', 'concerto_head');
+add_action('concerto_title', 'concerto_title');
+add_action('concerto_head', 'concerto_syndication');
+add_action('concerto_head', 'concerto_comment_syndication');
 add_action('concerto_head', 'wp_head');
+
 add_action('concerto_start', 'concerto_default_start');
 add_action('concerto_before_header', 'concerto_default_before_header');
 add_action('concerto_header', 'concerto_default_header');
 add_action('concerto_after_header', 'concerto_default_after_header');
+add_action('concerto_after_header', 'concerto_access');
 
 add_action('concerto_branding', 'concerto_default_branding_site_title');
 add_action('concerto_branding', 'concerto_default_branding_site_description');

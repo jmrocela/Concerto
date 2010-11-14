@@ -16,14 +16,13 @@ class Concerto {
 		define('CONCERTO_CONFIG_LAYOUT', (get_option('concerto_design_layout') == 'wrapped') ? 'wrapped': 'fullwidth'); // Determine the Layout of the Theme
 		
 		// We add the Hooks to Wordpress
-		require CONCERTO_HTML . 'html.php';
+		require CONCERTO_LIBS . 'theme.php';
 		require CONCERTO_LIBS . 'hooks.php';
 	
 		// We require the pages
 		require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . 'head.php';
 		require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . CONCERTO_CONFIG_LAYOUT . '.php';
 		require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . 'foot.php';
-		
 	}
 
 }

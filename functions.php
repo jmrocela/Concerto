@@ -20,6 +20,9 @@ define('CONCERTO_ADM', CONCERTO_CORE . 'admin' . _DS);
 define('CONCERTO_MODS', CONCERTO_CORE . 'modules' . _DS);
 define('CONCERTO_HTML', CONCERTO_CORE . 'html' . _DS);
 
+// We give what Wordpress needs from user
+add_theme_support('menus');
+
 // We determine what context the user wishes to do. In this case, the user is trying to access
 // the script via the Administration Views...
 if (is_admin()) {

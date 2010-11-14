@@ -12,3 +12,83 @@
  * It is always advised that you edit style.css on your respective stage under the /stage folder.
  *
  */
+ 
+/**
+ * Reset default browser CSS. Based on work by Eric Meyer: http://meyerweb.com/eric/tools/css/reset/index.html
+ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	background: transparent;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+}
+body {
+	line-height: 1;
+}
+h1, h2, h3, h4, h5, h6 {
+	clear: both;
+	font-weight: normal;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote {
+	quotes: none;
+}
+blockquote:before, blockquote:after {
+	content: '';
+	content: none;
+}
+del {
+	text-decoration: line-through;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+a img {
+	border: none;
+}
+
+/**
+ * ------------------------------------------------------------------
+ */
+body { font-family: arial, serif; color: #666666; font-size: 12px; line-height: 18px; }
+
+.container { width: 960px; margin: 0 AUTO; }
+
+#header { border-bottom: 1px solid #dddddd; background: #fdfdfd; }
+
+#branding { padding: 40px 0; }
+#branding h1#site-title { font-size: 40px; font-weight: bold; line-height: 150%; }
+#branding h1#site-title span a { text-decoration: none; color: #000000; text-decoration: none; }
+#branding p#site-description { font-size: 14px; }
+
+#access { margin-bottom: -1px; }
+#access .menu { width: 960px; margin: 0 AUTO; }
+#access ul li { float: left; margin-right: -1px;}
+#access ul li a { display: block; padding: 5px 20px; text-decoration: none; color: #000000; border: 1px solid transparent; border-bottom: 0; }
+#access ul li.current_page_item a { background: #ffffff; border: 1px solid #dddddd; border-bottom: 0; }
+#access ul li ul.children { position: absolute; display: none; }
+#access ul:after { content: ""; clear: both; display: block; }
+
+#main { padding: 60px 0; }
+
+#footer { padding: 20px 0; font-size: 11px; border-top: 1px solid #dddddd; background: #fdfdfd; }
+#footer #site-info { float: left; }
+#footer #site-generator { float: right; }
+#footer #wp-footer { clear: both; }
+
+/* CONTENT */
+.entry-title { font-size: 24px; font-weight: bold; line-height: 28px; }
+.entry-content { font-family: georgia, arial, serif; line-height: 18px; margin: 20px 0; }
