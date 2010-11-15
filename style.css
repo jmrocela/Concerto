@@ -51,6 +51,9 @@ blockquote:before, blockquote:after {
 del {
 	text-decoration: line-through;
 }
+a:focus {
+	outline: 0;
+}
 /* tables still need 'cellspacing="0"' in the markup */
 table {
 	border-collapse: collapse;
@@ -59,36 +62,62 @@ table {
 a img {
 	border: none;
 }
+/* HTML5 elements must be rendered as Block */
+header, footer, aside, nav, article {  
+	display: block;  
+}  
+
 
 /**
  * ------------------------------------------------------------------
  */
-body { font-family: arial, serif; color: #666666; font-size: 12px; line-height: 18px; }
+body { font-family: arial, serif; color: #000000; font-size: 12px; line-height: 18px; }
+a { color: #245cba; }
+a:visited { color: #8024ba; }
+a:hover { text-decoration: none; }
+p { margin-bottom: 20px; }
 
-.container { width: 960px; margin: 0 AUTO; }
+.container { width: 940px; margin: 0 AUTO; padding: 10px; }
 
 #header { border-bottom: 1px solid #dddddd; background: #fdfdfd; }
 
 #branding { padding: 40px 0; }
 #branding h1#site-title { font-size: 40px; font-weight: bold; line-height: 150%; }
 #branding h1#site-title span a { text-decoration: none; color: #000000; text-decoration: none; }
-#branding p#site-description { font-size: 14px; }
+#branding h1#site-title span a:hover { color: #245cba; }
+#branding p#site-description { font-size: 14px; color: #666666; }
 
 #access { margin-bottom: -1px; }
-#access .menu { width: 960px; margin: 0 AUTO; }
+#access .menu { width: 940px; margin: 0 AUTO; padding: 0 10px; }
 #access ul li { float: left; margin-right: -1px;}
-#access ul li a { display: block; padding: 5px 20px; text-decoration: none; color: #000000; border: 1px solid transparent; border-bottom: 0; }
-#access ul li.current_page_item a { background: #ffffff; border: 1px solid #dddddd; border-bottom: 0; }
+#access ul li a { display: block; padding: 5px 20px; text-decoration: none; color: #000000; border: 1px solid transparent; }
+#access ul li.current_page_item a, #access ul li.current_page_item a:hover { background: #ffffff; border: 1px solid #dddddd; border-bottom: 1px solid transparent; text-decoration: none; }
+#access ul li a:hover { text-decoration: underline; }
 #access ul li ul.children { position: absolute; display: none; }
 #access ul:after { content: ""; clear: both; display: block; }
 
-#main { padding: 60px 0; }
+#content .container { padding: 60px 0; background-image: url('core/images/graydot.jpg'); background-attachment: scroll; background-repeat: repeat-y; background-position: 66%; }
+#content .container:after { content: ""; display: block; clear: both; }
+#posts { display: block; width: 600px; float: left; }
+#sidebars { display: block; width: 300px; float: right; }
 
-#footer { padding: 20px 0; font-size: 11px; border-top: 1px solid #dddddd; background: #fdfdfd; }
+#footer { padding: 20px 0; font-size: 11px; border-top: 1px solid #dddddd; background: #fdfdfd; color: #666666; }
 #footer #site-info { float: left; }
 #footer #site-generator { float: right; }
 #footer #wp-footer { clear: both; }
 
 /* CONTENT */
-.entry-title { font-size: 24px; font-weight: bold; line-height: 28px; }
-.entry-content { font-family: georgia, arial, serif; line-height: 18px; margin: 20px 0; }
+.post { margin-bottom: 60px; }
+.entry-title, .entry-title a { font-size: 28px; color: #000000; font-weight: bold; line-height: 28px; text-decoration: none; }
+.entry-title a:hover { color: #245cba; }
+.entry-content { font-family: georgia, arial, serif; font-size: 15px; line-height: 22px; margin: 20px 0; }
+
+img.size-full { width: inherit; }
+
+/* SIDEBAR */
+#sidebars { font-family: georgia, arial, serif; font-size: 15px; line-height: 22px; }
+#sidebars ul { margin: 0 10px; }
+#sidebars ul { list-style-type: none; }
+#sidebars ul h2 { font-size: 20px; font-style: italic; margin-bottom: 10px; }
+#sidebars ul li.widget { margin-bottom: 40px; }
+#sidebars ul li.widget ul { margin-left: 20px; list-style-type: disc; }
