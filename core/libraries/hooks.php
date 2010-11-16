@@ -25,6 +25,7 @@ add_action('concerto_branding', 'concerto_default_branding_site_title');
 add_action('concerto_branding', 'concerto_default_branding_site_description');
 add_action('concerto_access', 'concerto_default_access');
 
+//add_action('concerto_header_content', 'concerto_default_banner');
 add_action('concerto_content', 'concerto_default_content');
 add_action('concerto_sidebars', 'concerto_default_sidebars');
 

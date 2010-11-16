@@ -127,6 +127,21 @@ function concerto_default_access() {
 }
 
 /**
+ * The Big Banner
+ */
+function concerto_default_banner() {
+	if (is_home() && is_front_page()) {
+	?>
+	<div id="banner">
+		<div class="container">
+			<div style="background:#c0c0c0;height:300px;"></div>
+		</div>
+	</div>
+	<?php
+	}
+}
+
+/**
  * Default Content
  */
 function concerto_default_content() {

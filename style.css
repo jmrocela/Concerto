@@ -81,7 +81,7 @@ p { margin-bottom: 20px; }
 
 #header { border-bottom: 1px solid #dddddd; background: #fdfdfd; }
 
-#branding { padding: 40px 0; }
+#branding { padding: 60px 0 30px; }
 #branding h1#site-title { font-size: 40px; font-weight: bold; line-height: 150%; }
 #branding h1#site-title span a { text-decoration: none; color: #000000; text-decoration: none; }
 #branding h1#site-title span a:hover { color: #245cba; }
@@ -96,9 +96,9 @@ p { margin-bottom: 20px; }
 #access ul li ul.children { position: absolute; display: none; }
 #access ul:after { content: ""; clear: both; display: block; }
 
-#content .container { padding: 60px 0; background-image: url('core/images/graydot.jpg'); background-attachment: scroll; background-repeat: repeat-y; background-position: 66%; }
-#content .container:after { content: ""; display: block; clear: both; }
-#posts { display: block; width: 600px; float: left; }
+#main .container { padding: 60px 0; background-image: url('core/images/graydot.jpg'); background-attachment: scroll; background-repeat: repeat-y; background-position: 66%; }
+#main .container:after { content: ""; display: block; clear: both; }
+#content { display: block; width: 580px; float: left; }
 #sidebars { display: block; width: 300px; float: right; }
 
 #footer { padding: 20px 0; font-size: 11px; border-top: 1px solid #dddddd; background: #fdfdfd; color: #666666; }
@@ -106,10 +106,17 @@ p { margin-bottom: 20px; }
 #footer #site-generator { float: right; }
 #footer #wp-footer { clear: both; }
 
+/**
+ * ------------------------------------------------------------------
+ */
+ 
 /* CONTENT */
 .post { margin-bottom: 60px; }
-.entry-title, .entry-title a { font-size: 28px; color: #000000; font-weight: bold; line-height: 28px; text-decoration: none; }
+.entry-title, .entry-title a { font-size: 28px; color: #000000; font-weight: bold; line-height: 30px; text-decoration: none; margin-bottom: 10px; }
 .entry-title a:hover { color: #245cba; }
+.entry-meta { font-family: georgia, arial, serif; color: #666666; font-size: 13px; font-style: italic; line-height: 18px; }
+.entry-meta a { color: #666666; text-decoration: none; }
+.entry-meta a:hover { color: #245cba; }
 .entry-content { font-family: georgia, arial, serif; font-size: 15px; line-height: 22px; margin: 20px 0; }
 
 img.size-full { width: inherit; }
@@ -121,3 +128,69 @@ img.size-full { width: inherit; }
 #sidebars ul h2 { font-size: 20px; font-style: italic; margin-bottom: 10px; }
 #sidebars ul li.widget { margin-bottom: 40px; }
 #sidebars ul li.widget ul { margin-left: 20px; list-style-type: disc; }
+
+
+
+
+/**
+ * ----------------------- FORMATTING -------------------------
+ */
+#content .entry-content h1, #content .entry-content h2, #content h3, #content h4, #content h5, #content h6 { margin: 20px 0 10px; font-weight: bold; line-height: 100%; }
+#content .entry-content h1 { font-size: 28px; font-family: arial, sans-serif; }
+#content .entry-content h2 { font-size: 25px; font-family: arial, sans-serif; }
+#content h3 { font-size: 20px; font-weight: normal; }
+#content h4 { font-size: 16px; font-family: arial, sans-serif; }
+#content h5, #content h6 { font-size: 14px; font-weight: normal; font-style: italic; }
+
+#content sup { font-size: 11px; vertical-align: top; }
+#content sub { font-size: 11px; vertical-align: bottom; }
+#content code { background: #f8f8f8; }
+#content q { font-style: italic; }
+#content abbr { border-bottom:1px dotted #333333; cursor: help; }
+#content pre, #content address { margin: 10px 0 20px; }
+#content blockquote { font-style: italic; color: #999999; text-align: center; margin: 10px 20px; font-size: 120%; }
+#content cite { color: #000000; font-style: italic; }
+#content blockquote cite { display: block; text-align: right; }
+#content blockquote cite:before { content: "- "; }
+
+/**
+ * Tables
+ */
+#content table { width: 100%; margin: 20px 0; border: 1px solid #dddddd; }
+#content table td, #content table th { text-align: left; border-bottom: 1px solid #dddddd; padding: 5px 15px; font-size: 80%; }
+
+/**
+ * Lists
+ */
+#content ul, #content ol { margin: 0 20px; }
+#content ul { list-style-type: square; }
+#content ol { list-style-type: decimal; }
+#content ol ol { list-style-type: upper-alpha; }
+#content ol ol ol { list-style-type: lower-alpha; }
+
+#content dl { margin: 20px 0; }
+#content dt { margin: 5px 0; }
+#content dd { margin: 5px 20px; }
+
+/**
+ * Images. Wordpress TwentyTen theme
+ */
+#content img { margin: 0; height: auto; max-width: 580px; width: auto; }
+#content .attachment img { max-width: 580px; }
+#content .alignleft, #content img.alignleft { display: inline; float: left; margin-right: 24px; margin-top: 4px; }
+#content .alignright, #content img.alignright { display: inline; float: right; margin-left: 24px; margin-top: 4px; }
+#content .aligncenter, #content img.aligncenter { clear: both; display: block; margin: 10px auto; }
+#content img.alignleft, #content img.alignright, #content img.aligncenter {	margin-bottom: 12px; }
+#content .wp-caption { background: #f1f1f1; line-height: 18px; margin-bottom: 20px; padding: 4px; text-align: center; }
+#content .wp-caption img { margin: 5px 5px 0; }
+#content .wp-caption p.wp-caption-text { color: #888; font-size: 12px; margin: 5px; }
+#content .wp-smiley { margin: 0; }
+#content .gallery { margin: 0 auto 18px; }
+#content .gallery .gallery-item { float: left; margin-top: 0; text-align: center; width: 33%; }
+#content .gallery img {	border: 2px solid #cfcfcf; }
+#content .gallery .gallery-caption { color: #888; font-size: 12px; margin: 0 0 12px; }
+#content .gallery dl { margin: 0; }
+#content .gallery img { border: 10px solid #f1f1f1; }
+#content .gallery br+br { display: none; }
+#content .attachment img { display: block; margin: 0 auto; }
+#content .size-medium { width: 97.5%; }

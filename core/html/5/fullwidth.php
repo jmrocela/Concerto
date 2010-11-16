@@ -5,12 +5,14 @@
 		</div>
 		<?php do_action('concerto_after_header'); ?>
 	</header>
-	<div id="content">
+	<?php do_action('concerto_header_content'); ?>
+	<div id="main">
 		<div class="container">
 			<?php do_action('concerto_content'); ?>
 			<?php do_action('concerto_sidebars'); ?>
 		</div>
 	</div>
+	<?php do_action('concerto_content_footer'); ?>
 	<footer id="footer">
 		<?php do_action('concerto_before_footer'); ?>
 		<div class="container">
