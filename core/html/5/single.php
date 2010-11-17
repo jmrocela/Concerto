@@ -3,7 +3,7 @@
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-		<h1 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
+		<h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 
 		<div class="entry-meta">
 			<?php
@@ -25,7 +25,7 @@
 
 		<div class="entry-content">
 			<?php the_content(); ?>
-			<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'twentyten' ), 'after' => '</div>' ) ); ?>
+			<?php wp_link_pages( array( 'before' => '<div class="page-link">Pages: ', 'after' => '</div>' ) ); ?>
 		</div><!-- .entry-content -->
 
 <?php if ( get_the_author_meta( 'description' ) ) : // If a user has filled out their description, show a bio on their entries  ?>
@@ -46,12 +46,36 @@
 <?php endif; ?>
 
 		<div class="entry-utility">
-			<?php edit_post_link( __( 'Edit', 'twentyten' ), '<span class="edit-link">', '</span>' ); ?>
+			<?php if ( count( get_the_category() ) ) : ?>
+				<span class="cat-links">
+					<?php printf( __( '<span class="%1$s">Posted in</span> %2$s', 'twentyten' ), 'entry-utility-prep entry-utility-prep-cat-links', get_the_category_list( ', ' ) ); ?>
+				</span>
+				<span class="meta-sep">|</span>
+			<?php endif; ?>
+			<?php
+				$tags_list = get_the_tag_list( '', ', ' );
+				if ( $tags_list ):
+			?>
+				<span class="tag-links">
+					<?php printf( __( '<span class="%1$s">Tagged</span> %2$s', 'twentyten' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list ); ?>
+				</span>
+				<span class="meta-sep">|</span>
+			<?php endif; ?>
+			<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'twentyten' ), __( '1 Comment', 'twentyten' ), __( '% Comments', 'twentyten' ) ); ?></span>
+			<?php edit_post_link( __( 'Edit', 'twentyten' ), '<span class="meta-sep">|</span> <span class="edit-link">', '</span>' ); ?>
 		</div><!-- .entry-utility -->
 	</article><!-- #post-## -->
 
 	<?php comments_template( '', true ); ?>
 
 <?php endwhile; // end of the loop. ?>
+
+<?php global $wp_query;
+if ($wp_query->max_num_pages > 1) : ?>
+	<div id="nav-below" class="navigation">
+		<div class="nav-previous"><?php next_posts_link('<span class="meta-nav">&larr;</span> Older posts'); ?></div>
+		<div class="nav-next"><?php previous_posts_link('Newer posts <span class="meta-nav">&rarr;</span>'); ?></div>
+	</div><!-- #nav-below -->
+<?php endif; ?>
 
 </section><!-- #content -->
