@@ -8,11 +8,6 @@
  * you are doing). This file serves as the Base Class for setting up administration pages.
  */
 
-/**
- * Include the Theme Files
- */
-require CONCERTO_FUNCS . 'document.php';
-require CONCERTO_FUNCS . 'loop.php';
-require CONCERTO_FUNCS . 'helper.php';
+// Filters
 
 ?>

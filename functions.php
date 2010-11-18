@@ -16,6 +16,7 @@ define('CONCERTO_ROOT', dirname(__FILE__) . _DS);
 define('CONCERTO_STAGES', CONCERTO_ROOT . 'stages' . _DS);
 define('CONCERTO_CORE', CONCERTO_ROOT . 'core' . _DS);
 define('CONCERTO_LIBS', CONCERTO_CORE . 'libraries' . _DS);
+define('CONCERTO_FUNCS', CONCERTO_LIBS . 'functions' . _DS);
 define('CONCERTO_ADM', CONCERTO_CORE . 'admin' . _DS);
 define('CONCERTO_MODS', CONCERTO_CORE . 'modules' . _DS);
 define('CONCERTO_HTML', CONCERTO_CORE . 'html' . _DS);

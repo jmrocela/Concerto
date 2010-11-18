@@ -17,7 +17,8 @@ class Concerto {
 		
 		// We add the Hooks to Wordpress
 		require CONCERTO_LIBS . 'theme.php';
-		require CONCERTO_LIBS . 'hooks.php';
+		require CONCERTO_LIBS . 'actions.php';
+		require CONCERTO_LIBS . 'filters.php';
 	
 		// We require the pages
 		require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . 'head.php';

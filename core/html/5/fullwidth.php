@@ -9,7 +9,6 @@
 	<div id="main">
 		<div class="container">
 			<?php do_action('concerto_content'); ?>
-			<?php do_action('concerto_sidebars'); ?>
 		</div>
 	</div>
 	<?php do_action('concerto_content_footer'); ?>

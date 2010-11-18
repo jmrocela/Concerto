@@ -145,16 +145,218 @@ function concerto_default_banner() {
  * Default Content
  */
 function concerto_default_content() {
-	$page = 'index';
-	if (is_home() && is_front_page()) {
-		$page = 'index';
-	} else if (is_single()) {
-		$page = 'single';
-	} else if (is_page()) {
-		$page = 'page';
-	}
-	require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . $page . '.php';
+	require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . 'index.php';
 }
+
+/**
+ * Markup inside the Content section and just above the loop
+ */
+function concerto_default_before_content () {}
+
+/**
+ * The Loop
+ */
+function concerto_default_loop () {
+	// Find a clean way to integrate the loop to the class and
+	// how it should be implemented on this metho
+	if ( have_posts() ) while ( have_posts() ) : the_post();
+	?>
+	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+		<h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+
+		<div class="entry-meta">
+			<?php
+			printf( __( '<span class="%1$s">Posted on</span> %2$s <span class="meta-sep">by</span> %3$s', 'twentyten' ),
+				'meta-prep meta-prep-author',
+				sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><span class="entry-date">%3$s</span></a>',
+					get_permalink(),
+					esc_attr( get_the_time() ),
+					get_the_date()
+				),
+				sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s">%3$s</a></span>',
+					get_author_posts_url( get_the_author_meta( 'ID' ) ),
+					sprintf( esc_attr__( 'View all posts by %s', 'twentyten' ), get_the_author() ),
+					get_the_author()
+				)
+			);
+			?>
+		</div>
+
+		<div class="entry-content">
+			<?php the_content(); ?>
+			<?php wp_link_pages( array( 'before' => '<div class="page-link"><strong>Pages: </strong>', 'after' => '</div>' ) ); ?>
+		</div>
+
+		<?php if ( get_the_author_meta( 'description' ) ) : // If a user has filled out their description, show a bio on their entries  ?>
+		<div id="entry-author-info">
+			<div id="author-avatar">
+				<?php echo get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'twentyten_author_bio_avatar_size', 60 ) ); ?>
+			</div><!-- #author-avatar -->
+			<div id="author-description">
+				<h2><?php printf( esc_attr__( 'About %s', 'twentyten' ), get_the_author() ); ?></h2>
+				<?php the_author_meta( 'description' ); ?>
+				<div id="author-link">
+					<a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>">
+						<?php printf( __( 'View all posts by %s <span class="meta-nav">&rarr;</span>', 'twentyten' ), get_the_author() ); ?>
+					</a>
+				</div><!-- #author-link	-->
+			</div><!-- #author-description -->
+		</div><!-- #entry-author-info -->
+		<?php endif; ?>
+
+		<div class="entry-utility">
+			<?php if ( count( get_the_category() ) ) : ?>
+				<span class="cat-links">
+					<?php printf( __( '<span class="%1$s">Posted in</span> %2$s', 'twentyten' ), 'entry-utility-prep entry-utility-prep-cat-links', get_the_category_list( ', ' ) ); ?>
+				</span>
+				<span class="meta-sep">|</span>
+			<?php endif; ?>
+			<?php
+				$tags_list = get_the_tag_list( '', ', ' );
+				if ( $tags_list ):
+			?>
+				<span class="tag-links">
+					<?php printf( __( '<span class="%1$s">Tagged</span> %2$s', 'twentyten' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list ); ?>
+				</span>
+				<span class="meta-sep">|</span>
+			<?php endif; ?>
+			<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'twentyten' ), __( '1 Comment', 'twentyten' ), __( '% Comments', 'twentyten' ) ); ?></span>
+			<?php edit_post_link( __( 'Edit', 'twentyten' ), '<span class="meta-sep">|</span> <span class="edit-link">', '</span>' ); ?>
+		</div>
+	</article>
+	<?php
+	comments_template( '', true );
+	endwhile;
+}
+
+/**
+ * 404 Page
+ */
+function concerto_default_404 () {}
+
+/**
+ * Search Form
+ */
+function concerto_default_search () {}
+
+/**
+ * Custom Page
+ */
+function concerto_default_custom_page () {}
+
+/**
+ * Markup inside the article, before the title
+ */
+function concerto_default_before_article () {}
+
+/**
+ * Article Title
+ */
+function concerto_default_article_title () {}
+
+/**
+ * Article Meta
+ */
+function concerto_default_article_meta () {}
+
+/**
+ * Article Content
+ */
+function concerto_default_article_content () {}
+
+/**
+ * Article Utility <div>
+ */
+function concerto_default_article_utility () {}
+
+/**
+ * Markup inside the article, after the utility <div>
+ */
+function concerto_default_after_article () {}
+
+/**
+ * Markup inside the Content section and just below the loop
+ */
+function concerto_default_after_content () {}
+
+/**
+ * Article Navigation
+ */
+function concerto_default_article_navigation () {
+	global $wp_query;
+	if (is_single()) {
+		if ($wp_query->max_num_pages > 1) {
+		?>
+			<div id="nav-below" class="navigation">
+				<div class="nav-previous"><?php next_posts_link('<span class="meta-nav">&larr;</span> Older posts'); ?></div>
+				<div class="nav-next"><?php previous_posts_link('Newer posts <span class="meta-nav">&rarr;</span>'); ?></div>
+			</div>
+		<?php
+		}
+	} else {
+		echo numbered_page_nav();
+	}
+}
+
+/**
+ * Markup just outside and before the commentlist
+ */
+function concerto_default_before_commentlist () {}
+
+/**
+ * Markup inside the comment container, before the Comment title
+ */
+function concerto_default_before_comment () {}
+
+/**
+ * Comment vcard
+ */
+function concerto_default_comment_vcard () {}
+
+/**
+ * Comment metadata
+ */
+function concerto_default_comment_metadata () {}
+
+/**
+ * Comment body
+ */
+function concerto_default_comment_body () {}
+
+/**
+ * Markup inside the comment container, after the Comment body
+ */
+function concerto_default_after_comment () {}
+
+/**
+ * Markup just outside and after the commentlist
+ */
+function concerto_default_after_commentlist () {}
+
+/**
+ * Markup inside the respond <div>, before the respond title
+ */
+function concerto_default_before_respond () {}
+
+/**
+ * Respond Title
+ */
+function concerto_default_respond_title () {}
+
+/**
+ * Respond Actions
+ */
+function concerto_default_respond_actions () {}
+
+/**
+ * Respond Form
+ */
+function concerto_default_respond_form () {}
+
+/**
+ * Markup inside the respond <div>, after the Respond form
+ */
+function concerto_default_after_respond () {}
 
 /**
  * Default Sidebars
@@ -162,6 +364,32 @@ function concerto_default_content() {
 function concerto_default_sidebars() {
 	require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . 'sidebar.php';
 }
+
+/**
+ * Markup inside the Sidebars section and before the first widget
+ */
+function concerto_default_before_sidebars () {}
+
+/**
+ * Markup inside the widget, before the widget title
+ */
+function concerto_default_before_widget () {}
+
+/**
+ * Widget Title
+ */
+function concerto_default_widget_title () {}
+
+/**
+ * Markup inside the widget, after the widget content
+ */
+function concerto_default_after_widget () {}
+
+/**
+ * Markup inside the Sidebars section and after the last widget
+ */
+function concerto_default_after_sidebars () {}
+
 
 /**
  * Content before the Footer area

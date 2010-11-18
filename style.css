@@ -16,57 +16,19 @@
 /**
  * Reset default browser CSS. Based on work by Eric Meyer: http://meyerweb.com/eric/tools/css/reset/index.html
  */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-	background: transparent;
-	border: 0;
-	margin: 0;
-	padding: 0;
-	vertical-align: baseline;
-}
-body {
-	line-height: 1;
-}
-h1, h2, h3, h4, h5, h6 {
-	clear: both;
-	font-weight: normal;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote {
-	quotes: none;
-}
-blockquote:before, blockquote:after {
-	content: '';
-	content: none;
-}
-del {
-	text-decoration: line-through;
-}
-a:focus {
-	outline: 0;
-}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { background: transparent; border: 0; margin: 0;padding: 0; vertical-align: baseline; }
+body { line-height: 1; cursor: default; }
+h1, h2, h3, h4, h5, h6 { clear: both; font-weight: normal; }
+ol, ul { list-style: none; }
+blockquote { quotes: none; }
+blockquote:before, blockquote:after { content: ''; content: none; }
+del { text-decoration: line-through; }
+a:focus { outline: 0; }
 /* tables still need 'cellspacing="0"' in the markup */
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-a img {
-	border: none;
-}
+table { border-collapse: collapse; border-spacing: 0; }
+a img { border: none; }
 /* HTML5 elements must be rendered as Block */
-header, footer, aside, nav, article {  
-	display: block;  
-}  
-
+header, footer, aside, nav, article { display: block; }  
 
 /**
  * ------------------------------------------------------------------
@@ -158,11 +120,16 @@ img.size-full { width: inherit; }
 #content .entry-content label { color: #666666; }
 #content .entry-content hr { border: 0; border-top: 1px solid #dddddd; height: 1px; }
 
+#content .navigation { font-family: georgia, arial, serif; }
 #content .navigation  a { color: #666666; font-style: italic; font-size: 13px; font-family: georgia, arial, serif; text-decoration: none; }
 #content .navigation  a:hover { text-decoration: underline; }
 #content .navigation .nav-previous { float: left; }
 #content .navigation .nav-next { float: right; }
 #content .navigation:after { display: block; content: ""; clear: both; }
+#content .page-nav-intro { float: right; padding: 3px 0; }
+#content .current-page-number { background: #fdfdfd; }
+#content .current-page-number, #content .page-number { float: left; }
+#content .current-page-number, #content .page-number a { display: block; padding: 3px 8px; border: 1px solid #dddddd; margin-right: 5px; }
 
 /**
  * Tables
@@ -208,128 +175,38 @@ img.size-full { width: inherit; }
 
 /**
  * Comments. Wordpress TwentyTen theme
- *//* =Comments
--------------------------------------------------------------- */
-#comments {
-	clear: both;
-}
-#comments .navigation {
-	padding: 0 0 18px 0;
-}
-h3#comments-title,
-h3#reply-title {
-	color: #000;
-	font-size: 20px;
-	font-weight: bold;
-	margin-bottom: 0;
-}
-h3#comments-title {
-	padding: 24px 0;
-}
-.commentlist {
-	list-style: none;
-	margin: 0;
-	font-family: georgia, arial, serif; 
-}
-.commentlist li.comment {
-	border-bottom: 1px solid #e7e7e7;
-	line-height: 24px;
-	margin: 0 0 24px 0;
-	padding: 0 0 0 56px;
-	position: relative;
-}
-.commentlist li:last-child {
-	border-bottom: none;
-	margin-bottom: 0;
-}
-#comments .comment-body ul,
-#comments .comment-body ol {
-	margin-bottom: 18px;
-}
-#comments .comment-body p:last-child {
-	margin-bottom: 6px;
-}
-#comments .comment-body blockquote p:last-child {
-	margin-bottom: 24px;
-}
-.commentlist ol {
-	list-style: decimal;
-}
-.commentlist .avatar {
-	position: absolute;
-	top: 4px;
-	left: 0;
-}
-.comment-author {
-}
-.comment-author cite {
-	color: #000;
-	font-style: normal;
-	font-weight: bold;
-}
-.comment-author .says {
-	font-style: italic;
-}
-.comment-meta {
-	font-size: 12px;
-	margin: 0 0 18px 0;
-}
-.comment-meta a:link,
-.comment-meta a:visited {
-	color: #888;
-	text-decoration: none;
-}
-.comment-meta a:active,
-.comment-meta a:hover {
-	color: #ff4b33;
-}
-.commentlist .even {
-}
-.commentlist .bypostauthor {
-}
-.reply {
-	font-size: 12px;
-	padding: 0 0 24px 0;
-}
-.reply a,
-a.comment-edit-link {
-	color: #888;
-}
-.reply a:hover,
-a.comment-edit-link:hover {
-	color: #ff4b33;
-}
-.commentlist .children {
-	list-style: none;
-	margin: 0;
-}
-.commentlist .children li {
-	border: none;
-	margin: 0;
-}
-.nopassword,
-.nocomments {
-	display: none;
-}
-#comments .pingback {
-	border-bottom: 1px solid #e7e7e7;
-	margin-bottom: 18px;
-	padding-bottom: 18px;
-}
-.commentlist li.comment+li.pingback {
-	margin-top: -6px;
-}
-#comments .pingback p {
-	color: #888;
-	display: block;
-	font-size: 12px;
-	line-height: 18px;
-	margin: 0;
-}
-#comments .pingback .url {
-	font-size: 13px;
-	font-style: italic;
-}
+ * OMIT unnecessary definitions
+ */
+#comments { clear: both; font-family: georgia, arial, serif; }
+#comments .navigation { padding: 0 0 18px 0; }
+h3#comments-title, h3#reply-title {	color: #000; font-size: 20px; font-weight: bold; margin-bottom: 0; }
+h3#comments-title { padding: 24px 0; }
+.commentlist { list-style: none; margin: 0; font-family: georgia, arial, serif; }
+.commentlist li.comment { border-bottom: 1px solid #e7e7e7; line-height: 24px; margin: 0 0 24px 0; padding: 0 0 0 56px; position: relative; }
+.commentlist li:last-child { border-bottom: none; margin-bottom: 0; }
+#comments .comment-body ul, #comments .comment-body ol { margin-bottom: 18px; }
+#comments .comment-body p:last-child {	margin-bottom: 6px; }
+#comments .comment-body blockquote p:last-child { margin-bottom: 24px; }
+.commentlist ol { list-style: decimal; }
+.commentlist .avatar { position: absolute; top: 4px; left: 0; }
+.comment-author { }
+.comment-author cite { color: #000; font-style: normal; font-weight: bold; }
+.comment-author .says { font-style: italic; }
+.comment-meta { font-size: 12px; margin: 0 0 18px 0; }
+.comment-meta a:link, .comment-meta a:visited { color: #888; text-decoration: none; }
+.comment-meta a:active, .comment-meta a:hover { color: #ff4b33; }
+.commentlist .even { }
+.commentlist .bypostauthor { }
+.reply { font-size: 12px; padding: 0 0 24px 0; }
+.reply a, a.comment-edit-link { color: #888; }
+.reply a:hover, a.comment-edit-link:hover { color: #ff4b33; }
+.commentlist .children { list-style: none; margin: 0; }
+.commentlist .children li { border: none; margin: 0; }
+.nopassword, .nocomments { display: none; }
+#comments .pingback { border-bottom: 1px solid #e7e7e7; margin-bottom: 18px; padding-bottom: 18px; }
+.commentlist li.comment+li.pingback { margin-top: -6px; }
+#comments .pingback p {	color: #888; display: block; font-size: 12px; line-height: 18px; margin: 0; }
+#comments .pingback .url { font-size: 13px; font-style: italic; }
 
 /* Comments form */
 #respond { margin: 24px 0; overflow: hidden; position: relative; font-family: georgia, arial, serif; }
