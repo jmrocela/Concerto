@@ -79,7 +79,7 @@ p { margin-bottom: 20px; }
 .entry-meta { font-family: georgia, arial, serif; color: #666666; font-size: 13px; font-style: italic; line-height: 18px; }
 .entry-meta a { color: #666666; text-decoration: none; }
 .entry-meta a:hover { color: #245cba; }
-.entry-content { font-family: georgia, arial, serif; font-size: 15px; line-height: 22px; margin: 20px 0; }
+.entry-content { display: block; font-family: georgia, arial, serif; font-size: 15px; line-height: 22px; margin: 20px 0; }
 .entry-utility, .entry-utility a { clear: both; font-family: georgia, arial, serif; color: #666666; font-size: 13px; font-style: italic; text-decoration: none; }
 .entry-utility a:hover { color: #245cba; }
 

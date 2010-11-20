@@ -12,7 +12,16 @@
  * Include the Theme Files
  */
 require CONCERTO_FUNCS . 'document.php';
-require CONCERTO_FUNCS . 'loop.php';
 require CONCERTO_FUNCS . 'helper.php';
+require CONCERTO_FUNCS . 'loop.php';
+require CONCERTO_FUNCS . 'article.php';
+require CONCERTO_FUNCS . 'comments.php';
+	
+/**
+ * Include the Page Files
+ */
+require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . 'head.php';
+require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . CONCERTO_CONFIG_LAYOUT . '.php';
+require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . 'foot.php';
 
 ?>

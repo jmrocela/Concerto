@@ -29,11 +29,17 @@ add_action('concerto_access', 'concerto_default_access');
 add_action('concerto_content', 'concerto_default_content');
 add_action('concerto_before_content', 'concerto_default_before_content');
 add_action('concerto_loop', 'concerto_default_loop');
-add_action('concerto_after_article', 'concerto_default_after_article');
-add_action('concerto_article_comments', 'concerto_default_article_comments');
 add_action('concerto_after_content', 'concerto_default_after_content');
 add_action('concerto_after_content', 'concerto_default_article_navigation');
 add_action('concerto_sidebars', 'concerto_default_sidebars');
+
+add_action('concerto_after_article', 'concerto_default_after_article');
+add_action('concerto_article_title', 'concerto_default_article_title');
+add_action('concerto_article_meta', 'concerto_default_article_meta');
+add_action('concerto_article_content', 'concerto_default_article_content');
+add_action('concerto_article_content', 'concerto_default_article_pages');
+add_action('concerto_article_utility', 'concerto_default_article_utility');
+add_action('concerto_article_comments', 'concerto_default_article_comments');
 
 add_action('concerto_before_footer', 'concerto_default_before_footer');
 add_action('concerto_footer', 'concerto_default_footer');
