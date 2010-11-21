@@ -26,4 +26,3 @@
 		</footer>
 		<?php do_action('concerto_after_comment'); ?>
 	</article>
-</li>

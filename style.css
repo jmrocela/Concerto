@@ -204,7 +204,8 @@ h3#comments-title { padding: 24px 0; }
 .reply { font-size: 11px; padding: 0 20px 24px 0; text-align: right; font-style: italic; }
 .reply a, a.comment-edit-link { color: #888; }
 .reply a:hover, a.comment-edit-link:hover { color: #ff4b33; }
-.commentlist .children { list-style: none; margin: 0; }
+.commentlist .children { list-style: none; margin: 0; padding-left: 50px; }
+.commentlist .children .odd { background:none; }
 .commentlist .children li { border: none; margin: 0; }
 .nopassword, .nocomments { display: none; }
 #comments .pingback { border-bottom: 1px solid #e7e7e7; margin-bottom: 18px; padding-bottom: 18px; }

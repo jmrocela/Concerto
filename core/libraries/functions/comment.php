@@ -37,8 +37,7 @@ function concerto_default_comment_vcard () {
 function concerto_default_comment_metadata () {
 	?>
 	<a href="<?php echo esc_url(get_comment_link($comment->comment_ID)); ?>">
-	<?php
-	printf('%1$s at %2$s', get_comment_date(),  get_comment_time()); ?></a><?php edit_comment_link('(Edit)', ' ');
+	<?php printf('%1$s at %2$s', get_comment_date(),  get_comment_time()); ?></a><?php edit_comment_link('(Edit)', ' ');
 }
 
 /**
