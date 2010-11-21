@@ -145,7 +145,7 @@ function concerto_default_banner() {
  * Default Content
  */
 function concerto_default_content() {
-	require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . 'index.php';
+	require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . 'content.php';
 }
 
 /**

@@ -58,9 +58,11 @@ p { margin-bottom: 20px; }
 #access ul li ul.children { position: absolute; display: none; }
 #access ul:after { content: ""; clear: both; display: block; }
 
-#main .container { padding: 60px 0; background-image: url('core/images/graydot.jpg'); background-attachment: scroll; background-repeat: repeat-y; background-position: 66%; }
+#main .container { padding: 60px 0; }
+.normal-page #main .container { background-image: url('core/images/graydot.jpg'); background-attachment: scroll; background-repeat: repeat-y; background-position: 66%; }
 #main .container:after { content: ""; display: block; clear: both; }
-#content { display: block; width: 580px; float: left; }
+.normal-page #content { display: block; width: 580px; float: left; }
+.custom-page #content { display: block; width: 100%; }
 #sidebars { display: block; width: 300px; float: right; }
 
 #footer { padding: 20px 0; font-size: 11px; border-top: 1px solid #dddddd; background: #fdfdfd; color: #666666; }
@@ -220,11 +222,12 @@ h3#reply-title { margin: 18px 0; }
 #comments-list #respond { margin: 0 0 18px 0; }
 #comments-list ul #respond { margin: 0; }
 #cancel-comment-reply-link { font-size: 12px; font-weight: normal; line-height: 18px; }
+#respond .logged-in-as { margin-bottom: 10px; }
 #respond .required { color: #ff4b33; font-weight: bold; }
 #respond label { color: #888; font-size: 16px; }
-#respond input { margin: 10px 0; width: 98%; }
-#respond input[type=submit] { margin: 5px 0; width: 99.2%; }
-#respond textarea {	width: 98%; }
+#respond input { margin: 10px 0; width: 99%; }
+#respond input[type=submit] { margin: 5px 0; width: 100%; }
+#respond textarea {	width: 99%; }
 #respond .form-allowed-tags { color: #888; font-size: 12px; line-height: 18px; }
 #respond .form-allowed-tags code { font-size: 11px; }
 #respond .form-submit {	margin: 12px 0; }

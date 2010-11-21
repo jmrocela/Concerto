@@ -2,6 +2,9 @@
 
 /**
  * Article Pagination method
+ * URL: http://www.artofblog.com/thesis-page-navigation/
+ * Author: Adam Baird
+ * Author URL: http://www.adambaird.net/
  */
 function numbered_page_nav($prelabel = '', $nxtlabel = '', $pages_to_show = 6, $always_show = false) {
 	global $request, $posts_per_page, $wpdb, $paged;
