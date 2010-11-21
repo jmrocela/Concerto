@@ -149,102 +149,11 @@ function concerto_default_content() {
 }
 
 /**
- * Markup just outside and before the commentlist
- */
-function concerto_default_before_commentlist () {}
-
-/**
- * Markup inside the comment container, before the Comment title
- */
-function concerto_default_before_comment () {}
-
-/**
- * Comment vcard
- */
-function concerto_default_comment_vcard () {}
-
-/**
- * Comment metadata
- */
-function concerto_default_comment_metadata () {}
-
-/**
- * Comment body
- */
-function concerto_default_comment_body () {}
-
-/**
- * Markup inside the comment container, after the Comment body
- */
-function concerto_default_after_comment () {}
-
-/**
- * Markup just outside and after the commentlist
- */
-function concerto_default_after_commentlist () {}
-
-/**
- * Comment Pingback
- */
-function concerto_default_comment_pingback () {}
-
-/**
- * Markup inside the respond <div>, before the respond title
- */
-function concerto_default_before_respond () {}
-
-/**
- * Respond Title
- */
-function concerto_default_respond_title () {}
-
-/**
- * Respond Actions
- */
-function concerto_default_respond_actions () {}
-
-/**
- * Respond Form
- */
-function concerto_default_respond_form () {}
-
-/**
- * Markup inside the respond <div>, after the Respond form
- */
-function concerto_default_after_respond () {}
-
-/**
  * Default Sidebars
  */
 function concerto_default_sidebars() {
 	require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . 'sidebar.php';
 }
-
-/**
- * Markup inside the Sidebars section and before the first widget
- */
-function concerto_default_before_sidebars () {}
-
-/**
- * Markup inside the widget, before the widget title
- */
-function concerto_default_before_widget () {}
-
-/**
- * Widget Title
- */
-function concerto_default_widget_title () {}
-
-/**
- * Markup inside the widget, after the widget content
- */
-function concerto_default_after_widget () {}
-
-/**
- * Markup inside the Sidebars section and after the last widget
- */
-function concerto_default_after_sidebars () {}
-
 
 /**
  * Content before the Footer area

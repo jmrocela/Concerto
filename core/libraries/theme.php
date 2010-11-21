@@ -16,6 +16,8 @@ require CONCERTO_FUNCS . 'helper.php';
 require CONCERTO_FUNCS . 'loop.php';
 require CONCERTO_FUNCS . 'article.php';
 require CONCERTO_FUNCS . 'comments.php';
+require CONCERTO_FUNCS . 'comment.php';
+require CONCERTO_FUNCS . 'widgets.php';
 	
 /**
  * Include the Page Files
