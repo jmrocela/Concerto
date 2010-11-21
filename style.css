@@ -177,13 +177,14 @@ img.size-full { width: inherit; }
  * Comments. Wordpress TwentyTen theme
  * OMIT unnecessary definitions
  */
-#comments { clear: both; font-family: georgia, arial, serif; }
+#comments { clear: both; font-family: georgia, arial, serif; display: block; }
 #comments .navigation { padding: 0 0 18px 0; }
-h3#comments-title, h3#reply-title {	color: #000; font-size: 20px; font-weight: normal; margin-bottom: 0; border-bottom: 1px solid #e7e7e7; }
+h3#comments-title, h3#reply-title {	color: #000; font-size: 20px; font-weight: normal; margin-bottom: 0; }
 h3#comments-title { padding: 24px 0; }
-.commentlist { list-style: none; margin: 0; font-family: georgia, arial, serif; }
+.commentlist { list-style: none; margin: 0; font-family: georgia, arial, serif; border-top: 1px solid #e7e7e7; border-bottom: 1px solid #e7e7e7; }
 .commentlist li.comment { border-bottom: 1px solid #e7e7e7; line-height: 24px; margin: 0; padding: 20px 0 0 56px; position: relative; list-style-type: none; }
 .commentlist li:last-child { border-bottom: none; margin-bottom: 0; }
+#comments .comment-body { display: block; }
 #comments .comment-body ul, #comments .comment-body ol { margin-bottom: 18px; }
 #comments .comment-body p:last-child {	margin-bottom: 6px; }
 #comments .comment-body blockquote p:last-child { margin-bottom: 24px; }

@@ -33,6 +33,14 @@ add_action('concerto_after_content', 'concerto_default_after_content');
 add_action('concerto_after_content', 'concerto_default_article_navigation');
 add_action('concerto_sidebars', 'concerto_default_sidebars');
 
+add_action('concerto_before_footer', 'concerto_default_before_footer');
+add_action('concerto_footer', 'concerto_default_footer');
+add_action('concerto_after_footer', 'concerto_default_after_footer');
+add_action('concerto_end', 'concerto_default_end');
+
+/**
+ * Article Hooks
+ */
 add_action('concerto_after_article', 'concerto_default_after_article');
 add_action('concerto_article_title', 'concerto_default_article_title');
 add_action('concerto_article_meta', 'concerto_default_article_meta');
@@ -41,9 +49,31 @@ add_action('concerto_article_content', 'concerto_default_article_pages');
 add_action('concerto_article_utility', 'concerto_default_article_utility');
 add_action('concerto_article_comments', 'concerto_default_article_comments');
 
-add_action('concerto_before_footer', 'concerto_default_before_footer');
-add_action('concerto_footer', 'concerto_default_footer');
-add_action('concerto_after_footer', 'concerto_default_after_footer');
-add_action('concerto_end', 'concerto_default_end');
+/**
+ * Comment Hooks
+ */
+add_action('concerto_before_commentlist', 'concerto_default_before_commentlist');
+add_action('concerto_commentlist', 'concerto_default_commentlist');
+add_action('concerto_before_comment', 'concerto_default_before_comment');
+add_action('concerto_comment_vcard', 'concerto_default_comment_vcard');
+add_action('concerto_comment_metadata', 'concerto_default_comment_metadata');
+add_action('concerto_comment_body', 'concerto_default_comment_body');
+add_action('concerto_after_comment', 'concerto_default_after_comment');
+add_action('concerto_after_commentlist', 'concerto_default_after_commentlist');
+
+/**
+ * Respond Form Hooks
+ */
+add_action('comment_form_before', 'concerto_default_before_respond');
+add_action('comment_form_must_log_in_after', 'concerto_default_respond_after_login');
+add_action('comment_form_top', 'concerto_default_respond_top');
+add_action('comment_form_logged_in_after', 'concerto_default_respond_after_loggedin');
+add_action('comment_notes_before', 'concerto_default_respond_before_notes');
+add_action('comment_form_before_fields', 'concerto_default_respond_before_fields');
+add_action('comment_form_after_fields', 'concerto_default_respond_after_fields');
+add_action('comment_notes_after', 'concerto_default_respond_after_notes');
+add_action('comment_form', 'concerto_default_respond_form');
+add_action('comment_form_after', 'concerto_default_after_respond');
+add_action('comment_form_comments_closed', 'concerto_default_respond_closed');
 
 ?>

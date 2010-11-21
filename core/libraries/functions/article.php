@@ -84,7 +84,7 @@ function concerto_default_article_pages () {
  * Article Comments
  */
 function concerto_default_article_comments () {
-	comments_template('/core/html/' . CONCERTO_CONFIG_HTML . '/comments.php', true);
+	new ConcertoComments();
 }
 
 /**
