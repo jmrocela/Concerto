@@ -63,7 +63,7 @@ p { margin-bottom: 20px; }
 #main .container:after { content: ""; display: block; clear: both; }
 .normal-page #content { display: block; width: 580px; float: left; }
 .custom-page #content { display: block; width: 100%; }
-#sidebars { display: block; width: 300px; float: right; }
+.sidebars { display: block; width: 300px; float: right; }
 
 #footer { padding: 20px 0; font-size: 11px; border-top: 1px solid #dddddd; background: #fdfdfd; color: #666666; }
 #footer #site-info { float: left; }
@@ -88,13 +88,13 @@ p { margin-bottom: 20px; }
 img.size-full { width: inherit; }
 
 /* SIDEBAR */
-#sidebars { font-family: georgia, arial, serif; font-size: 15px; line-height: 22px; }
-#sidebars ul { margin: 0 10px; }
-#sidebars ul { list-style-type: none; }
-#sidebars ul h2 { font-size: 20px; font-style: italic; margin-bottom: 10px; }
-#sidebars ul li.widget { margin-bottom: 40px; }
-#sidebars ul li.widget ul { margin-left: 20px; list-style-type: disc; }
-#sidebars a:hover { color: #ff4b33; }
+.sidebars { font-family: georgia, arial, serif; font-size: 15px; line-height: 22px; }
+.sidebars ul { margin: 0 10px; }
+.sidebars ul { list-style-type: none; }
+.sidebars ul h2 { font-size: 20px; font-style: italic; margin-bottom: 10px; }
+.sidebars ul li.widget { margin-bottom: 40px; }
+.sidebars ul li.widget ul { margin-left: 20px; list-style-type: disc; }
+.sidebars a:hover { color: #ff4b33; }
 
 
 /**
@@ -204,7 +204,7 @@ h3#comments-title { padding: 24px 0; }
 .reply { font-size: 11px; padding: 0 20px 24px 0; text-align: right; font-style: italic; }
 .reply a, a.comment-edit-link { color: #888; }
 .reply a:hover, a.comment-edit-link:hover { color: #ff4b33; }
-.commentlist .children { list-style: none; margin: 0; padding-left: 50px; }
+.commentlist .children { list-style: none; margin: 0; }
 .commentlist .children .odd { background:none; }
 .commentlist .children li { border: none; margin: 0; }
 .nopassword, .nocomments { display: none; }
@@ -237,6 +237,7 @@ h3#reply-title { margin: 18px 0; }
 /**
  * Widgets. TwentyTen theme
  */
+.widget_concerto_default { background: #FAF7EB; padding: 10px; border: 2px solid #DBD4B4; }
 .widget_search { padding: 5px; border: 1px solid #dddddd; margin-bottom: 0; }
 .widget_search #s {	width: 71%; }
 .widget_search label { display: none; }

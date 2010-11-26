@@ -24,6 +24,7 @@ define('CONCERTO_HTML', CONCERTO_CORE . 'html' . _DS);
 // We give what Wordpress needs from us
 add_theme_support('menus');
 register_sidebar(array('name' => 'Main Sidebar'));
+register_sidebar(array('name' => 'Second Sidebar'));
 
 // We determine what context the user wishes to do. In this case, the user is trying to access
 // the script via the Administration Views...

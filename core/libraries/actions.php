@@ -32,7 +32,6 @@ add_action('concerto_loop', 'concerto_default_loop');
 add_action('concerto_custom_page', 'concerto_default_custom_page');
 add_action('concerto_after_content', 'concerto_default_after_content');
 add_action('concerto_after_content', 'concerto_default_article_navigation');
-add_action('concerto_sidebars', 'concerto_default_sidebars');
 
 add_action('concerto_before_footer', 'concerto_default_before_footer');
 add_action('concerto_footer', 'concerto_default_footer');
@@ -49,6 +48,17 @@ add_action('concerto_article_content', 'concerto_default_article_content');
 add_action('concerto_article_content', 'concerto_default_article_pages');
 add_action('concerto_article_utility', 'concerto_default_article_utility');
 add_action('concerto_article_comments', 'concerto_default_article_comments');
+
+/**
+ * Sidebars
+ */
+add_action('concerto_sidebars', 'concerto_default_sidebars');
+add_action('concerto_before_sidebars', 'concerto_default_before_sidebars');
+add_action('concerto_before_sidebar_1', 'concerto_default_before_sidebar_1');
+add_action('concerto_before_sidebar_2', 'concerto_default_before_sidebar_2');
+add_action('concerto_after_sidebar_2', 'concerto_default_after_sidebar_2');
+add_action('concerto_after_sidebar_1', 'concerto_default_after_sidebar_1');
+add_action('concerto_after_sidebars', 'concerto_default_after_sidebars');
 
 /**
  * Comment Hooks
