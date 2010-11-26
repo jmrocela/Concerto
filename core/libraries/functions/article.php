@@ -3,41 +3,41 @@
 /**
  * Markup inside the Content section and just above the loop
  */
-function concerto_default_before_content () {}
+function concerto_hook_default_before_content () {}
 
 /**
  * The Loop
  */
-function concerto_default_loop () {
+function concerto_hook_default_loop () {
 	new ConcertoLoop();
 }
 
 /**
  * 404 Page
  */
-function concerto_default_404 () {}
+function concerto_hook_default_404 () {}
 
 /**
  * Search Form
  */
-function concerto_default_search () {}
+function concerto_hook_default_search () {}
 
 /**
  * Custom Page
  */
-function concerto_default_custom_page () {
+function concerto_hook_default_custom_page () {
 	echo 'asd';
 }
 
 /**
  * Markup inside the article, before the title
  */
-function concerto_default_before_article () {}
+function concerto_hook_default_before_article () {}
 
 /**
  * Article Title
  */
-function concerto_default_article_title () {
+function concerto_hook_default_article_title () {
 	if (!is_single()) {
 	?>
 		<h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
@@ -52,35 +52,35 @@ function concerto_default_article_title () {
 /**
  * Article Meta
  */
-function concerto_default_article_meta () {
+function concerto_hook_default_article_meta () {
 	printf('<span class="%1$s">Posted on</span> %2$s <span class="meta-sep">by</span> %3$s', 'meta-prep meta-prep-author', sprintf('<a href="%1$s" title="%2$s" rel="bookmark"><span class="entry-date">%3$s</span></a>', get_permalink(), esc_attr(get_the_time()), get_the_date()), sprintf('<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s">%3$s</a></span>', get_author_posts_url(get_the_author_meta('ID')), sprintf(esc_attr__('View all posts by %s'), get_the_author()), get_the_author()));
 }
 
 /**
  * Article Content
  */
-function concerto_default_article_content () {
+function concerto_hook_default_article_content () {
 	the_content();
 }
 
 /**
  * Article Content
  */
-function concerto_default_article_pages () {
+function concerto_hook_default_article_pages () {
 	wp_link_pages(array('before' => '<div class="page-link"><strong>Pages: </strong>', 'after' => '</div>'));
 }
 
 /**
  * Article Comments
  */
-function concerto_default_article_comments () {
+function concerto_hook_default_article_comments () {
 	new ConcertoComments();
 }
 
 /**
  * Article Utility <div>
  */
-function concerto_default_article_utility () {
+function concerto_hook_default_article_utility () {
 	if (get_the_author_meta('description')) {
 	?>
 	<div id="entry-author-info">
@@ -124,7 +124,7 @@ function concerto_default_article_utility () {
 /**
  * Markup inside the article, after the utility <div>
  */
-function concerto_default_after_article () {
+function concerto_hook_default_after_article () {
 	if (is_single()) {
 		?>
 			<div id="nav-below" class="navigation">
@@ -138,12 +138,12 @@ function concerto_default_after_article () {
 /**
  * Markup inside the Content section and just below the loop
  */
-function concerto_default_after_content () {}
+function concerto_hook_default_after_content () {}
 
 /**
  * Article Navigation
  */
-function concerto_default_article_navigation () {
+function concerto_hook_default_article_navigation () {
 	if (!is_single()) {
 		echo numbered_page_nav();
 	}

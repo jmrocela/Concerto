@@ -13,10 +13,10 @@
 /**
  * HTML that goes onto the <head> tag
  */
-function concerto_head() {
+function concerto_hook_head() {
 ?>
 	<meta charset="<?php bloginfo('charset'); ?>" />
-	<title><?php do_action('concerto_title'); ?></title>
+	<title><?php do_action('concerto_hook_title'); ?></title>
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 	<!-- Concerto Theme Styles -->
@@ -30,7 +30,7 @@ function concerto_head() {
 /**
  * The Default page title of the theme
  */
-function concerto_title() {
+function concerto_hook_title() {
 	if (get_option('concerto_general_title')) {
 		echo get_option('concerto_general_title');
 	} else {
@@ -47,7 +47,7 @@ function concerto_title() {
 /**
  * Syndication link in the <head> tag
  */
-function concerto_syndication() {
+function concerto_hook_syndication() {
 	if (get_option('concerto_general_syndication_url')) {
 	?>
 		<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> &raquo; Feed" href="<?php echo get_option('concerto_general_syndication_url'); ?>" />
@@ -62,7 +62,7 @@ function concerto_syndication() {
 /**
  * Comment Syndication link in the <head> tag
  */
-function concerto_comment_syndication() {
+function concerto_hook_comment_syndication() {
 ?>
 	<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> &raquo; Comments Feed" href="<?php bloginfo('comments_rss2_url'); ?>" />
 <?php
@@ -71,36 +71,36 @@ function concerto_comment_syndication() {
 /**
  * Content right after the opening <body> tag
  */
-function concerto_default_start() {}
+function concerto_hook_default_start() {}
 
 /**
  * Content before the Header area
  */
-function concerto_default_before_header() {}
+function concerto_hook_default_before_header() {}
 
 /**
  * Default Header Content
  */
-function concerto_default_header() {
+function concerto_hook_default_header() {
 	require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . 'header.php';
 }
 
 /**
  * Content after the Header area
  */
-function concerto_default_after_header() {}
+function concerto_hook_default_after_header() {}
 
 /**
  * Menu wrapper after the header area.
  */
-function concerto_access() {
+function concerto_hook_access() {
 	require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . 'access.php';
 }
 
 /**
  * Default Branding Mark up: Site Heading
  */
-function concerto_default_branding_site_title() {
+function concerto_hook_default_branding_site_title() {
 ?>
 	<h1 id="site-title"><span><a href="<?php bloginfo('url'); ?>" title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a></span></h1>
 <?php
@@ -109,7 +109,7 @@ function concerto_default_branding_site_title() {
 /**
  * Default Branding Mark up: Site Description
  */
-function concerto_default_branding_site_description() {
+function concerto_hook_default_branding_site_description() {
 ?>
 	<p id="site-description"><?php bloginfo('description'); ?></p>
 <?php
@@ -118,7 +118,7 @@ function concerto_default_branding_site_description() {
 /**
  * Default Menu
  */
-function concerto_default_access() {
+function concerto_hook_default_access() {
 	if (get_option('concerto_general_menu') == 'default') {
 	
 	} else {
@@ -129,7 +129,7 @@ function concerto_default_access() {
 /**
  * The Big Banner
  */
-function concerto_default_banner() {
+function concerto_hook_default_banner() {
 	if (is_home() && is_front_page()) {
 	?>
 	<div id="banner">
@@ -144,37 +144,37 @@ function concerto_default_banner() {
 /**
  * Default Content
  */
-function concerto_default_content() {
+function concerto_hook_default_content() {
 	require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . 'content.php';
 }
 
 /**
  * Default Sidebars
  */
-function concerto_default_sidebars() {
+function concerto_hook_default_sidebars() {
 	require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . 'sidebar.php';
 }
 
 /**
  * Content before the Footer area
  */
-function concerto_default_before_footer() {}
+function concerto_hook_default_before_footer() {}
 
 /**
  * Default Footer Content
  */
-function concerto_default_footer() {
+function concerto_hook_default_footer() {
 	require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . 'footer.php';
 }
 
 /**
  * Content after the Footer area
  */
-function concerto_default_after_footer() {}
+function concerto_hook_default_after_footer() {}
 
 /**
  * Content right before the closing <body> tag
  */
-function concerto_default_end() {}
+function concerto_hook_default_end() {}
 
 ?>
