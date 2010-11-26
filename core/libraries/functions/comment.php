@@ -5,6 +5,7 @@
  */
 function concerto_hook_default_before_commentlist () {
 	concerto_default_common_comment_navigation();
+	concerto_default_commentlist_title();
 }
 
 /**
@@ -13,7 +14,7 @@ function concerto_hook_default_before_commentlist () {
 function concerto_hook_default_commentlist () {
 	?>
 	<ol class="commentlist">
-		<?php wp_list_comments(array('callback' => array('ConcertoComments', 'commentlist'))); ?>
+		<?php wp_list_comments(array('callback' => array('ConcertoComments', 'commentlist'), 'type' => 'comment')); ?>
 	</ol>
 	<?php
 }
@@ -56,6 +57,7 @@ function concerto_hook_default_after_comment () {}
  * Markup just outside and after the commentlist
  */
 function concerto_hook_default_after_commentlist () {
+	concerto_default_comment_pings();
 	concerto_default_common_comment_navigation();
 }
 
@@ -70,13 +72,31 @@ function concerto_default_common_comment_navigation () {
 	}
 }
 
+function concerto_default_commentlist_title () {
+	?>
+	<h3 id="comments-title"><?php printf(_n('One Response to %2$s', '%1$s Responses to %2$s', ConcertoComments::commentCount()), number_format_i18n(ConcertoComments::commentCount()), '<em>' . get_the_title() . '</em>'); ?></h3>
+	<?php
+}
+
+/**
+ * Displays the list of Trackbacks and Pingbacks
+ */
+function concerto_default_comment_pings () {
+	if (ConcertoComments::pingCount()) {
+	?>
+	<h3><?php printf(_n('One Trackback', '%1$s Trackbacks', ConcertoComments::pingCount()), number_format_i18n(ConcertoComments::pingCount()), '<em>' . get_the_title() . '</em>'); ?></h3>
+	<ol class="pinglist">
+		<?php wp_list_comments(array('callback' => array('ConcertoComments', 'pinglist'), 'type' => 'pings')); ?>
+	</ol>
+	<?php
+	}
+}
+
 /**
  * Comment Pingback
  */
-function concerto_hook_default_comment_pingback () {
-	?>
-	<p>Pingback: <?php comment_author_link(); ?><?php edit_comment_link('(Edit)', ' ' ); ?></p>
-	<?php
+function concerto_hook_default_pinglist () {
+	comment_author_link(); ?> <?php edit_comment_link('(Edit)', ' ' );
 }
 
 /**

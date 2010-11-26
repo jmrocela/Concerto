@@ -143,14 +143,15 @@ img.size-full { width: inherit; }
  * Lists
  */
 #content .entry-content ul, #content .entry-content ol { margin: 0 20px; }
-#content ul { list-style-type: square; }
-#content ol { list-style-type: decimal; }
-#content ol ol { list-style-type: upper-alpha; }
-#content ol ol ol { list-style-type: lower-alpha; }
+#content .entry-content ul { list-style-type: square; }
+#content .entry-content ol { list-style-type: decimal; }
+#content .entry-content ol ol { list-style-type: upper-alpha; }
+#content .entry-content ol ol ol { list-style-type: lower-alpha; }
+#content .entry-content ol ol ol ol { list-style-type: lower-roman; }
 
-#content dl { margin: 20px 0; }
-#content dt { margin: 5px 0; }
-#content dd { margin: 5px 20px; }
+#content .entry-content dl { margin: 20px 0; }
+#content .entry-content dt { margin: 5px 0; }
+#content .entry-content dd { margin: 5px 20px; }
 
 /**
  * Images. Wordpress TwentyTen theme
@@ -199,7 +200,7 @@ h3#comments-title { padding: 24px 0; }
 .comment-meta { font-size: 12px; margin: 0 0 18px 0; }
 .comment-meta a:link, .comment-meta a:visited { color: #888; text-decoration: none; }
 .comment-meta a:active, .comment-meta a:hover { color: #ff4b33; }
-.commentlist .odd { background: #fafafa; }
+.commentlist .thread-odd { background: #fafafa; }
 .commentlist .bypostauthor { }
 .reply { font-size: 11px; padding: 0 20px 24px 0; text-align: right; font-style: italic; }
 .reply a, a.comment-edit-link { color: #888; }
@@ -208,10 +209,12 @@ h3#comments-title { padding: 24px 0; }
 .commentlist .children .odd { background:none; }
 .commentlist .children li { border: none; margin: 0; }
 .nopassword, .nocomments { display: none; }
-#comments .pingback { border-bottom: 1px solid #e7e7e7; margin-bottom: 18px; padding-bottom: 18px; }
+#comments .pingback { margin-bottom: 2px; margin-left: 20px; padding-bottom: 2px; list-style-type: decimal; }
 .commentlist li.comment+li.pingback { margin-top: -6px; }
 #comments .pingback p {	color: #888; display: block; font-size: 12px; line-height: 18px; margin: 0; }
 #comments .pingback .url { font-size: 13px; font-style: italic; }
+/* Pinglist */
+.pinglist { margin: 20px 0 0; clear: both; border-bottom: 1px solid #E7E7E7; padding-bottom: 20px; }
 
 /* Comments form */
 #respond { margin: 24px 0; overflow: hidden; position: relative; font-family: georgia, arial, serif; }

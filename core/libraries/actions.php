@@ -65,6 +65,7 @@ add_action('concerto_hook_after_sidebars', 'concerto_hook_default_after_sidebars
  */
 add_action('concerto_hook_before_commentlist', 'concerto_hook_default_before_commentlist');
 add_action('concerto_hook_commentlist', 'concerto_hook_default_commentlist');
+add_action('concerto_hook_comment_pingback', 'concerto_hook_default_pinglist');
 add_action('concerto_hook_before_comment', 'concerto_hook_default_before_comment');
 add_action('concerto_hook_comment_vcard', 'concerto_hook_default_comment_vcard');
 add_action('concerto_hook_comment_metadata', 'concerto_hook_default_comment_metadata');

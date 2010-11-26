@@ -11,8 +11,8 @@
 /**
  * Include the Theme Files
  */
+require CONCERTO_FUNCS . 'helpers.php';
 require CONCERTO_FUNCS . 'document.php';
-require CONCERTO_FUNCS . 'helper.php';
 require CONCERTO_FUNCS . 'loop.php';
 require CONCERTO_FUNCS . 'article.php';
 require CONCERTO_FUNCS . 'comments.php';
