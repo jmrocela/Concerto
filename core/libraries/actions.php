@@ -46,6 +46,8 @@ add_action('concerto_hook_article_title', 'concerto_hook_default_article_title')
 add_action('concerto_hook_article_meta', 'concerto_hook_default_article_meta');
 add_action('concerto_hook_article_content', 'concerto_hook_default_article_content');
 add_action('concerto_hook_article_content', 'concerto_hook_default_article_pages');
+add_action('concerto_hook_article_excerpt', 'concerto_hook_default_article_excerpt');
+add_action('concerto_hook_article_excerpt', 'concerto_hook_default_article_pages');
 add_action('concerto_hook_article_utility', 'concerto_hook_default_article_utility');
 add_action('concerto_hook_article_comments', 'concerto_hook_default_article_comments');
 

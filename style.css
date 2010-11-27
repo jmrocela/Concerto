@@ -75,15 +75,17 @@ p { margin-bottom: 20px; }
  */
  
 /* CONTENT */
-.post { margin-bottom: 30px; padding-bottom: 30px; clear: both; } /* border-bottom: 1px solid #dddddd; */
+.post, .page { margin-bottom: 30px; padding-bottom: 30px; clear: both; } /* border-bottom: 1px solid #dddddd; */
 .entry-title, .entry-title a { font-size: 28px; color: #000000; font-weight: bold; line-height: 30px; text-decoration: none; margin-bottom: 10px; }
 .entry-title a:hover { color: #245cba; }
 .entry-meta { font-family: georgia, arial, serif; color: #666666; font-size: 13px; font-style: italic; line-height: 18px; }
 .entry-meta a { color: #666666; text-decoration: none; }
 .entry-meta a:hover { color: #245cba; }
 .entry-content { display: block; font-family: georgia, arial, serif; font-size: 15px; line-height: 22px; margin: 20px 0; }
+.entry-content:after { display: block; clear: both; content: ""; }
 .entry-utility, .entry-utility a { clear: both; font-family: georgia, arial, serif; color: #666666; font-size: 13px; font-style: italic; text-decoration: none; }
 .entry-utility a:hover { color: #245cba; }
+.archive .entry-content p:last-child, .archive .entry-content, .category .entry-content p:last-child, .category .entry-content, .tags .entry-content p:last-child, .tags .entry-content, .search .entry-content p:last-child, .search .entry-content { display: block; margin-bottom: 0; }
 
 img.size-full { width: inherit; }
 

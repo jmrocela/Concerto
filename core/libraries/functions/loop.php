@@ -12,6 +12,16 @@ class ConcertoLoop {
 					the_post();
 					if (is_single()) {
 						$this->single();
+					} else if (is_page()) {
+						$this->page();
+					} else if (is_search()) {
+						$this->search();
+					}  else if (is_archive()) {
+						$this->archive();
+					}  else if (is_category()) {
+						$this->category();
+					}  else if (is_tag()) {
+						$this->tag();
 					} else {
 						$this->index();
 					}
@@ -21,7 +31,32 @@ class ConcertoLoop {
 	}
 	
 	public function article($context = null) {
-		require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . 'article.php';
+		$article = 'index';
+		switch ($context) {
+			case "single":
+				$article = 'single';
+			break;
+			case "page":
+				$article = 'page';
+			break;
+			case "search":
+				$article = 'search';
+			break;
+			case "archive":
+				$article = 'archive';
+			break;
+			case "category":
+				$article = 'category';
+			break;
+			case "tag":
+				$article = 'tag';
+			break;
+			case "index":
+			default;
+				$article = 'index';
+			break;
+		}
+		require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . $article . '.php';
 	}
 	
 	public function custompage() {
@@ -35,16 +70,26 @@ class ConcertoLoop {
 	public function single() {
 		$this->article('single');
 	}
-
-	public function home() {}
-	public function frontpage() {}
-	public function feed() {}
-	public function page() {}
-	public function archive() {}
-	public function category() {}
-	public function search() {}
-	public function tag() {}
-	public function notfound() {}
+	
+	public function page() {
+		$this->article('page');
+	}
+	
+	public function search() {
+		$this->article('search');
+	}
+	
+	public function archive() {
+		$this->article('archive');
+	}
+	
+	public function category() {
+		$this->article('category');
+	}
+	
+	public function tag() {
+		$this->article('tag');
+	}
 	
 }
 

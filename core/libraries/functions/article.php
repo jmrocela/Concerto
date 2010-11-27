@@ -66,6 +66,13 @@ function concerto_hook_default_article_content () {
 /**
  * Article Content
  */
+function concerto_hook_default_article_excerpt () {
+	the_excerpt();
+}
+
+/**
+ * Article Content
+ */
 function concerto_hook_default_article_pages () {
 	wp_link_pages(array('before' => '<div class="page-link"><strong>Pages: </strong>', 'after' => '</div>'));
 }
