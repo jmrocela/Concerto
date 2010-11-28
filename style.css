@@ -49,14 +49,20 @@ p { margin-bottom: 20px; }
 #branding h1#site-title span a:hover { color: #245cba; }
 #branding p#site-description { font-size: 14px; color: #666666; }
 
-#access { margin-bottom: -1px; }
+#access { margin-bottom: -1px; display: block; }
 #access .menu { width: 940px; margin: 0 AUTO; padding: 0 10px; }
-#access ul li { float: left; margin-right: -1px;}
-#access ul li a { display: block; padding: 5px 20px; text-decoration: none; color: #000000; border: 1px solid transparent; }
-#access ul li.current_page_item a, #access ul li.current_page_item a:hover { background: #ffffff; border: 1px solid #dddddd; border-bottom: 1px solid transparent; text-decoration: none; }
-#access ul li a:hover { text-decoration: underline; }
-#access ul li ul.children { position: absolute; display: none; }
+#access ul li { float: left; margin-right: 2px;}
+#access ul li a { display: block; padding: 5px 20px; color: #000000; border: 1px solid transparent; background: #ffffff; border: 1px solid #eeeeee; border-bottom: 1px solid #dddddd; text-decoration: none; }
+#access ul li.current_page_item a, #access ul li.current_page_item a:hover { border: 1px solid #dddddd; border-bottom: 1px solid transparent; }
+#access ul li a:hover { border: 1px solid #dddddd; text-decoration: underline; }
 #access ul:after { content: ""; clear: both; display: block; }
+
+#access ul li a.active { border: 1px solid #dddddd; }
+#access ul li ul.children { position: absolute; display: none; border: 1px solid #dddddd; border-top: 0; margin-top: -1px; }
+#access ul li ul.children li { clear: both; margin: 0; }
+#access ul li ul.children li a { border: 0; padding: 10px 25px; border-top: 1px solid #dddddd; }
+#access ul li ul.children li a:hover { border: 0; border-top: 1px solid #dddddd; }
+#access ul li:hover ul.children { display: block; }
 
 #main .container { padding: 60px 0; }
 .normal-page #main .container { background-image: url('core/images/graydot.jpg'); background-attachment: scroll; background-repeat: repeat-y; background-position: 66%; }

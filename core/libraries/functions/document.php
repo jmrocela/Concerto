@@ -15,16 +15,14 @@
  */
 function concerto_hook_head() {
 ?>
-	<meta charset="<?php bloginfo('charset'); ?>" />
-	<title><?php do_action('concerto_hook_title'); ?></title>
-	<link rel="profile" href="http://gmpg.org/xfn/11" />
-	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 	<!-- Concerto Theme Styles -->
 	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_url'); ?>" />
 	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/core/html/css.php" />
 	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/core/html/fixes.css" />
 	<!-- Concerto Theme Styles -->
 <?php
+	wp_enqueue_script('jquery');
+	wp_enqueue_script('concerto-base', get_bloginfo('stylesheet_directory') . '/core/scripts/concerto.js');
 }
 
 /**
@@ -132,11 +130,11 @@ function concerto_hook_default_access() {
 function concerto_hook_default_banner() {
 	if (is_home() && is_front_page()) {
 	?>
-	<div id="banner">
+	<section id="banner">
 		<div class="container">
 			<div style="background:#c0c0c0;height:300px;"></div>
 		</div>
-	</div>
+	</section>
 	<?php
 	}
 }
