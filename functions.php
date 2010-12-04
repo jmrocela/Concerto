@@ -26,24 +26,6 @@ add_theme_support('menus');
 register_sidebar(array('name' => 'Main Sidebar'));
 register_sidebar(array('name' => 'Second Sidebar'));
 
-/*!
- * -- Development Purposes --
- * define theme configurations
- */
-$config = array(
-				'general' => array(
-							'title' => '',
-							'syndication_url' => 'http://projects/concerto/comments/feed',
-							'menu' => 'default',
-						),
-				'design' => array(
-							'html' => '5',
-							'layout' => 'fullwidth',
-							'columns' => '3',
-						),
-			);
-update_option('concerto_options', $config);
-
 // We determine what context the user wishes to do. In this case, the user is trying to access
 // the script via the Administration Views...
 if (is_admin()) {
