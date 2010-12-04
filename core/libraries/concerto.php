@@ -21,6 +21,11 @@ class Concerto {
 		require CONCERTO_LIBS . 'filters.php';
 		require CONCERTO_LIBS . 'theme.php';
 	}
+	
+	public static function config($namespace, $name) {
+		$options = get_option('concerto_options');
+		return (isset($options[$namespace][$name])) ? $options[$namespace][$name]: null;
+	}
 
 }
 

@@ -1,4 +1,4 @@
-<?php if (get_option('concerto_options_columns') == 2 || true) { ?>
+<?php if (Concerto::config('design','columns') >=  2) { ?>
 <section class="sidebars concerto_sidebar_main">
 <?php do_action('concerto_hook_before_sidebars'); ?>
 <?php do_action('concerto_hook_before_sidebar_1'); ?>
@@ -15,7 +15,7 @@
 </section>
 <?php } ?>
 
-<?php if (get_option('concerto_options_columns') == 3) { ?>
+<?php if (Concerto::config('design','columns') == 3) { ?>
 <section class="sidebars concerto_sidebar_secondary">
 <?php do_action('concerto_hook_before_sidebars'); ?>
 <?php do_action('concerto_hook_before_sidebar_2'); ?>

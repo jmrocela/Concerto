@@ -21,7 +21,7 @@ body { line-height: 1; cursor: default; }
 h1, h2, h3, h4, h5, h6 { clear: both; font-weight: normal; }
 ol, ul { list-style: none; }
 blockquote { quotes: none; }
-blockquote:before, blockquote:after { content: ''; content: none; }
+blockquote:before, blockquote:after { content: ""; content: ""; }
 del { text-decoration: line-through; }
 a:focus { outline: 0; }
 /* tables still need 'cellspacing="0"' in the markup */
@@ -33,20 +33,18 @@ header, footer, aside, nav, article { display: block; }
 /**
  * ------------------------------------------------------------------
  */
-body { font-family: arial, serif; color: #000000; font-size: 12px; line-height: 18px; }
+body { font-family: arial, serif; background: #ffffff; color: #000000; font-size: 12px; line-height: 18px; }
 a { color: #245cba; }
 a:visited { color: #8024ba; }
 a:hover { text-decoration: none; }
 p { margin-bottom: 20px; }
 
-.container { width: 940px; margin: 0 AUTO; padding: 10px; }
-
 #header { border-bottom: 1px solid #dddddd; background: #fdfdfd; }
 
 #branding { padding: 60px 0 30px; }
 #branding h1#site-title { font-size: 40px; font-weight: bold; line-height: 150%; }
-#branding h1#site-title span a { text-decoration: none; color: #000000; text-decoration: none; }
-#branding h1#site-title span a:hover { color: #245cba; }
+#branding h1#site-title a { text-decoration: none; color: #000000; }
+#branding h1#site-title a:hover { color: #245cba; }
 #branding p#site-description { font-size: 14px; color: #666666; }
 
 #access { margin-bottom: -1px; display: block; }
@@ -165,7 +163,7 @@ img.size-full { width: inherit; }
 /**
  * Images. Wordpress TwentyTen theme
  */
-#content .entry-content img { margin: 0; height: auto; max-width: 580px; width: auto; }
+#content .entry-content img { margin: 0; height: auto; max-width: 580px; }
 #content .entry-content .attachment img { max-width: 580px; }
 #content .alignleft, #content .entry-content img.alignleft { display: inline; float: left; margin-right: 24px; margin-top: 4px; }
 #content .alignright, #content .entry-content img.alignright { display: inline; float: right; margin-left: 24px; margin-top: 4px; }

@@ -29,8 +29,8 @@ function concerto_hook_head() {
  * The Default page title of the theme
  */
 function concerto_hook_title() {
-	if (get_option('concerto_general_title')) {
-		echo get_option('concerto_general_title');
+	if (Concerto::config('general','title')) {
+		echo Concerto::config('general','title');
 	} else {
 		if (is_front_page() && is_home()) {
 			bloginfo('name');
@@ -46,7 +46,7 @@ function concerto_hook_title() {
  * Syndication link in the <head> tag
  */
 function concerto_hook_syndication() {
-	if (get_option('concerto_general_syndication_url')) {
+	if (Concerto::config('general','syndication_url')) {
 	?>
 		<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> &raquo; Feed" href="<?php echo get_option('concerto_general_syndication_url'); ?>" />
 	<?php
@@ -117,10 +117,10 @@ function concerto_hook_default_branding_site_description() {
  * Default Menu
  */
 function concerto_hook_default_access() {
-	if (get_option('concerto_general_menu') == 'default') {
-	
-	} else {
+	if (Concerto::config('general','menu') == 'default') {
 		wp_nav_menu(array('container' => 'nav', 'show_home' => true));
+	} else {
+
 	}
 }
 
