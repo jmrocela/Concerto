@@ -29,17 +29,16 @@ function concerto_hook_head() {
  * The Default page title of the theme
  */
 function concerto_hook_title() {
-	if (Concerto::config('general','title')) {
-		echo Concerto::config('general','title');
+	if (is_front_page() && is_home()) {
+		bloginfo('name');
+		echo ' | ' ;
+		bloginfo('description');
 	} else {
-		if (is_front_page() && is_home()) {
-			bloginfo('name');
-			echo ' | ' ;
-			bloginfo('description');
-		} else {
-			wp_title('');
-		}
+		wp_title('');
 	}
+	# NOTE:
+	# have Titles from specific post if specified.
+	# if (get_post_meta($post->ID, 'concerto_custom_post_title')) >>> as title
 }
 
 /**

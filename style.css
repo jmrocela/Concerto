@@ -63,6 +63,7 @@ p { margin-bottom: 20px; }
 
 #access ul li ul.children li ul.children { top: 0; display: none; left: 100%; margin-top: 0; width: 100%; }
 
+.container { width: 940px; margin: 0 AUTO; padding: 60px 10px; }
 #main .container { padding: 60px 0; }
 .normal-page #main .container { background-image: url('core/images/graydot.jpg'); background-attachment: scroll; background-repeat: repeat-y; background-position: 66%; }
 #main .container:after { content: ""; display: block; clear: both; }

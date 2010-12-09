@@ -20,11 +20,19 @@ class Concerto {
 		require CONCERTO_LIBS . 'actions.php';
 		require CONCERTO_LIBS . 'filters.php';
 		require CONCERTO_LIBS . 'theme.php';
+		require CONCERTO_LIBS . 'defaults.php';
 	}
 	
 	public static function config($namespace, $name) {
 		$options = get_option('concerto_options');
 		return (isset($options[$namespace][$name])) ? $options[$namespace][$name]: null;
+	}
+	
+	public static function updateconfig($namespace, $name, $value) {
+		$options = get_option('concerto_options');
+		$options[$namespace][$name] = $value;
+		update_options('concerto_options', $options);
+		return true;
 	}
 
 }

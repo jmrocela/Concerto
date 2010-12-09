@@ -58,7 +58,7 @@ function admin_general() {
 					<div>
 						<h4><label><input type="checkbox" name="concerto_options[general][navigation_use_pages]" <?php echo (get_option('navigation_use_pages')) ? 'checked': ''; ?>/> <?php _e('Pages', 'concerto'); ?></label></h4>
 						<p><?php _e('You can sort the Pages you would like to include in your Navigation Menu here', 'concerto'); ?></p>
-						<ul style="border:1px solid #c0c0c0;background:#ffffff;height:200px;">
+						<ul style="border:1px solid #c0c0c0;background:#ffffff;height:200px;overflow:auto;">
 							<?php
 								$pages = get_pages();
 								foreach ($pages as $page) {
@@ -70,7 +70,7 @@ function admin_general() {
 					<div>
 						<h4><label><input type="checkbox" name="concerto_options[general][navigation_use_categories]" <?php echo (get_option('navigation_use_categories')) ? 'checked': ''; ?>/> <?php _e('Categories', 'concerto'); ?></label></h4>
 						<p><?php _e('Sort the Categories you would want to show up on your Navigation Menu', 'concerto'); ?></p>
-						<ul style="border:1px solid #c0c0c0;background:#ffffff;height:200px;">
+						<ul style="border:1px solid #c0c0c0;background:#ffffff;height:200px;overflow:auto;">
 							<?php
 								$categories = get_categories();
 								foreach ($categories as $category) {

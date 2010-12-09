@@ -15,9 +15,7 @@ $width = array(
 		'container' => 960,
 		'container-padding' => 10,
 		'container-sidebar-divide' => 66,
-		
 		'content' => 580,
-		
 		'sidebar1' => 300,
 		'sidebr2' => 0
 	);
