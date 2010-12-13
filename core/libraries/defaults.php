@@ -31,9 +31,10 @@ update_option('concerto_options',
 							'layout_columns_order' => 1,
 							'layout_columns_width' => array(
 														'content' => 580,
-														'sidebar' => 300,
-														'sidebar' => 0,
+														'sidebar1' => 300,
+														'sidebar2' => 0,
 													),
+							'article-padding' => 10,
 							'page_padding' => 10,
 							'divide_factor' => 8.7878, // makes the divider appear between the main content and the sidebars
 							
@@ -62,9 +63,6 @@ update_option('concerto_options',
 											'readmore_text' => '',
 											'posts_navigations' => true,
 										),
-							'comments' => array(
-											'is_closed_show_message' => true,
-										),
 							'archive_display' => 'excerpts',
 							
 							'fonts' => array(
@@ -84,12 +82,14 @@ update_option('concerto_options',
 											'content' => 15,
 											'content-title' => 28,
 											'content-meta' => 13,
+											'sidebar' => 'inherit-content',
 											'h1' => 28,
 											'h2' => 25,
 											'h3' => 20,
 											'h4' => 16,
 											'h5' => 14,
-											'h6' => 12
+											'h6' => 12,
+											'footer' => 11
 										),
 							'colors' => array(
 											'background' => array(
@@ -116,7 +116,7 @@ update_option('concerto_options',
 																'comment' => 'transparent',
 																'comment-top' => 'transparent',
 																'comment-bottom' => '#e7e7e7',
-																'commentlist-top' => '#e7e7e7'
+																'commentlist-top' => '#e7e7e7',
 															),
 											'fonts' => array(
 																'site' => '#000000',
@@ -128,7 +128,8 @@ update_option('concerto_options',
 																'footer' => '#666666',
 																'link' => '#245cba',
 																'link-hover' => '#ff4b33',
-																'byline', => '#666666',
+																'visited' => '#8024ba',
+																'byline' => '#666666',
 																'content-link' => '#245cba',
 																'content-link-hover' => '#ff4b33',
 																'meta' => '#666666',
@@ -153,7 +154,8 @@ update_option('concerto_options',
 											'commentlist-top' => 1
 										),
 							'comments' => array(
-											'position' = '{}', //serialized [comments, trackbacks, respond]
+											'is_closed_show_message' => true,
+											'position' => '{}', //serialized [comments, trackbacks, respond]
 											'display' => array(
 															'number' => '',
 															'avatar' => '',

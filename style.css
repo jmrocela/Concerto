@@ -41,7 +41,7 @@ p { margin-bottom: 20px; }
 
 #header { border-bottom: 1px solid #dddddd; background: #fdfdfd; }
 
-#branding { padding: 60px 0 30px; }
+#branding { padding: 60px 10px 30px; }
 #branding h1#site-title { font-size: 40px; font-weight: bold; line-height: 150%; }
 #branding h1#site-title a { text-decoration: none; color: #000000; }
 #branding h1#site-title a:hover { color: #245cba; }
@@ -61,13 +61,14 @@ p { margin-bottom: 20px; }
 #access ul li ul.children li a { display: block; border: 0; padding: 10px 25px; border-top: 1px solid #dddddd; }
 #access ul li ul.children li a:hover { border: 0; border-top: 1px solid #dddddd; }
 
+#access ul li ul.children li:first-child a { border-top: 1px solid transparent; }
 #access ul li ul.children li ul.children { top: 0; display: none; left: 100%; margin-top: 0; width: 100%; }
 
-.container { width: 940px; margin: 0 AUTO; padding: 60px 10px; }
+.container { width: 960px; margin: 0 AUTO; padding: 10px; }
 #main .container { padding: 60px 0; }
 .normal-page #main .container { background-image: url('core/images/graydot.jpg'); background-attachment: scroll; background-repeat: repeat-y; background-position: 66%; }
 #main .container:after { content: ""; display: block; clear: both; }
-.normal-page #content { display: block; width: 580px; float: left; }
+.normal-page #content { display: block; width: 600px; float: left; }
 .custom-page #content { display: block; width: 100%; }
 .sidebars { display: block; width: 300px; float: right; }
 
@@ -81,7 +82,8 @@ p { margin-bottom: 20px; }
  */
  
 /* CONTENT */
-.post, .page { margin-bottom: 30px; padding-bottom: 30px; clear: both; } /* border-bottom: 1px solid #dddddd; */
+.post, .page { margin-bottom: 30px; clear: both; } /* border-bottom: 1px solid #dddddd; */
+.type-post,.type-page { padding:10px 10px 30px; }
 .entry-title, .entry-title a { font-size: 28px; color: #000000; font-weight: bold; line-height: 30px; text-decoration: none; margin-bottom: 10px; }
 .entry-title a:hover { color: #245cba; }
 .entry-meta { font-family: georgia, arial, serif; color: #666666; font-size: 13px; font-style: italic; line-height: 18px; }
@@ -130,7 +132,7 @@ img.size-full { width: inherit; }
 #content .entry-content label { color: #666666; }
 #content .entry-content hr { border: 0; border-top: 1px solid #dddddd; height: 1px; }
 
-#content .navigation { font-family: georgia, arial, serif; }
+#content .navigation { font-family: georgia, arial, serif; padding: 0 10px; }
 #content .navigation  a { color: #666666; font-style: italic; font-size: 13px; font-family: georgia, arial, serif; text-decoration: none; }
 #content .navigation  a:hover { text-decoration: underline; }
 #content .navigation .nav-previous { float: right; }
@@ -164,8 +166,8 @@ img.size-full { width: inherit; }
 /**
  * Images. Wordpress TwentyTen theme
  */
-#content .entry-content img { margin: 0; height: auto; max-width: 580px; }
-#content .entry-content .attachment img { max-width: 580px; }
+#content .entry-content img { margin: 0; height: auto; max-width: 600px; }
+#content .entry-content .attachment img { max-width: 600px; }
 #content .alignleft, #content .entry-content img.alignleft { display: inline; float: left; margin-right: 24px; margin-top: 4px; }
 #content .alignright, #content .entry-content img.alignright { display: inline; float: right; margin-left: 24px; margin-top: 4px; }
 #content .aligncenter, #content .entry-content img.aligncenter { clear: both; display: block; margin: 10px auto; }
@@ -188,7 +190,7 @@ img.size-full { width: inherit; }
  * Comments. Wordpress TwentyTen theme
  * OMIT unnecessary definitions
  */
-#comments { clear: both; font-family: georgia, arial, serif; display: block; }
+#comments { clear: both; font-family: georgia, arial, serif; display: block; padding: 0 10px; }
 #comments .navigation { padding: 0 0 18px 0; }
 h3#comments-title, h3#reply-title {	color: #000; font-size: 20px; font-weight: normal; margin-bottom: 0; }
 h3#comments-title { padding: 24px 0; }
