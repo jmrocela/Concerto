@@ -115,10 +115,11 @@ img.size-full { width: inherit; }
 #content .entry-content h2 { font-size: 25px; font-family: arial, sans-serif; }
 #content h3 { font-size: 20px; font-weight: normal; }
 #content h4 { font-size: 16px; font-family: arial, sans-serif; }
-#content h5, #content h6 { font-size: 14px; font-weight: normal; font-style: italic; }
+#content h5 { font-size: 14px; font-weight: normal; font-style: italic; }
+#content h6 { font-size: 14px; font-weight: normal; font-style: italic; }
 
-#content sup { font-size: 11px; vertical-align: top; }
-#content sub { font-size: 11px; vertical-align: bottom; }
+#content sup { font-size: 70%; vertical-align: top; }
+#content sub { font-size: 70%; vertical-align: bottom; }
 #content code { background: #f8f8f8; font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace; }
 #content q { font-style: italic; }
 #content abbr { border-bottom:1px dotted #333333; cursor: help; }
@@ -166,8 +167,10 @@ img.size-full { width: inherit; }
 /**
  * Images. Wordpress TwentyTen theme
  */
-#content .entry-content img { margin: 0; height: auto; max-width: 600px; }
-#content .entry-content .attachment img { max-width: 600px; }
+.normal-page #content .entry-content img { margin: 0; height: auto; max-width: 580px; }
+.normal-page #content .entry-content .attachment img { max-width: 580px; }
+.custom-page #content .entry-content img{margin: 0; height: auto; max-width:100%;}
+.custom-page #content .entry-content .attachment img{max-width:100%;}
 #content .alignleft, #content .entry-content img.alignleft { display: inline; float: left; margin-right: 24px; margin-top: 4px; }
 #content .alignright, #content .entry-content img.alignright { display: inline; float: right; margin-left: 24px; margin-top: 4px; }
 #content .aligncenter, #content .entry-content img.aligncenter { clear: both; display: block; margin: 10px auto; }
@@ -243,7 +246,7 @@ h3#reply-title { margin: 18px 0; }
 #respond input[type=submit] { margin: 5px 0; width: 100%; }
 #respond textarea {	width: 99%; }
 #respond .form-allowed-tags { color: #888; font-size: 12px; line-height: 18px; }
-#respond .form-allowed-tags code { font-size: 11px; }
+#respond .form-allowed-tags code { font-size: 70%; }
 #respond .form-submit {	margin: 12px 0; }
 #respond .form-submit input { font-size: 14px; width: auto; }
 
@@ -258,7 +261,7 @@ h3#reply-title { margin: 18px 0; }
 #calendar_wrap { padding-left: 1px; }
 #wp-calendar { width: 100%; }
 #wp-calendar caption { color: #222;	font-size: 14px; font-weight: bold;	padding: 8px; text-align: center; }
-#wp-calendar thead { font-size: 11px; }
+#wp-calendar thead { font-size: 70%; }
 #wp-calendar thead th { padding: 5px 0; }
 #wp-calendar tbody { color: #aaa; }
 #wp-calendar tbody td { border: 1px solid #fff; padding: 3px 0 2px; text-align: center; background: #fafafa; }
@@ -269,7 +272,7 @@ h3#reply-title { margin: 18px 0; }
 .widget_rss a.rsswidget { }
 .widget_rss a.rsswidget:hover {  }
 .widget_rss .widget-title img { width: 11px; height: 11px; }
-.widget_rss .rss-date { font-size: 11px; font-family: arial, sans-serif; margin: 10px 0; color: #666666; }
+.widget_rss .rss-date { font-size: 70%; font-family: arial, sans-serif; margin: 10px 0; color: #666666; }
 .widget_rss .rssSummary { font-size: 12px; margin: 10px 0; color: #666666; }
 .widget_rss cite:before { content: "-"; }
 .widget_rss cite { font-size: 12px; }
