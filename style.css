@@ -64,6 +64,7 @@ p { margin-bottom: 20px; }
 #access ul li ul.children li { clear: both; margin: 0; width: 100%; }
 #access ul li ul.children li a { display: block; border: 0; padding: 10px 25px; border-top: 1px solid #dddddd; }
 #access ul li ul.children li a:hover { border: 0; border-top: 1px solid #dddddd; }
+#access ul li ul.children li:first-child a:hover { border-top: 1px solid transparent; }
 
 #access ul li ul.children li:first-child a { border-top: 1px solid transparent; }
 #access ul li ul.children li ul.children { top: 0; display: none; left: 100%; margin-top: 0; width: 100%; }

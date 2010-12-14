@@ -24,8 +24,8 @@ update_option('concerto_options',
 							'language' => 'adm_en_us'
 						),
 			'design' => array(
-							'html_version' => 5,
-							'page_structure' => 'fullwidth',
+							'html_version' => 4,
+							'page_structure' => 'wrapped',
 							'paginate' => true,
 							'layout_columns' => 2,
 							'layout_columns_order' => 1,
