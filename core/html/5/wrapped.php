@@ -7,6 +7,7 @@
 	<?php do_action('concerto_hook_header_content'); ?>
 	<div id="main">
 		<?php do_action('concerto_hook_content'); ?>
+		<div class="clear"></div>
 	</div>
 	<?php do_action('concerto_hook_content_footer'); ?>
 	<footer id="footer">

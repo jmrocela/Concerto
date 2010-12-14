@@ -17,8 +17,8 @@ function concerto_hook_head() {
 ?>
 	<!-- Concerto Theme Styles -->
 	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_url'); ?>" />
-	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/core/html/css.php" />
-	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/core/html/fixes.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/core/html/css.php?v=<?php echo time(); ?>" />
+	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/core/html/fixes.css?v=<?php echo time(); ?>" />
 	<!-- Concerto Theme Styles -->
 <?php
 	wp_enqueue_script('jquery');

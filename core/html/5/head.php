@@ -10,4 +10,4 @@
 <?php $custom = (CONCERTO_CONFIG_CUSTOM == 'custom') ? 'custom-page': 'normal-page'; ?>
 <body <?php body_class(array('concerto', $custom)); ?>>
 <?php do_action('concerto_hook_start'); ?>
-<div id="wrapper" class="<?php echo (Concerto::config('design','layout') == 'fixed') ? 'fixed': 'fullwidth'; ?>">
+<div id="wrapper" class="<?php echo (Concerto::config('design', 'page_structure') == 'wrapped') ? 'wrapped': 'fullwidth'; ?>">

@@ -24,8 +24,7 @@ $comments = Concerto::config('design','comments');
 
 // Width Assignments
 $width = array(
-		'container' => ($layout_columns_widths['content'] + $layout_columns_widths['sidebar1'] + $layout_columns_widths['sidebar2']) + (Concerto::config('design','page_padding') * 4) + 40,
-		'container-sidebar-divide' => floor($layout_columns_widths['content'] / Concerto::config('design','divide_factor')),
+		'container' => ($layout_columns_widths['content'] + $layout_columns_widths['sidebar1'] + $layout_columns_widths['sidebar2']) + (Concerto::config('design','page_padding') * 4) + 20,
 		'content' => $layout_columns_widths['content'],
 		'sidebar1' => $layout_columns_widths['sidebar1'],
 		'sidebr2' => $layout_columns_widths['sidebar2']
@@ -51,6 +50,8 @@ foreach ($sizes as $element => $size) {
 
 // Border Assignments [header,footer,article,comment]
 
+
+if (true) {
 // Display as a CSS file
 header('Content-type: text/css');
 ?>
@@ -72,12 +73,15 @@ body{font-family:<?php echo $fonts['body']; ?>;background:<?php echo $colors['ba
 #access ul li ul.children{border:<?php echo $borders['menu']; ?>px solid <?php echo $colors['borders']['menu-active']; ?>;margin-top:-<?php echo $borders['menu']; ?>px;}
 #access ul li ul.children li a{border-top:<?php echo $borders['menu']; ?>px solid <?php echo $colors['borders']['menu-active']; ?>;}
 #access ul li ul.children li a:hover{border-top:<?php echo $borders['menu']; ?>px solid <?php echo $colors['borders']['menu-active']; ?>;}
-.container { width: <?php echo $width['container']; ?>px; margin: 0 AUTO; padding: <?php echo Concerto::config('design','page_padding'); ?>px; }
-.normal-page #main .container {background-position:<?php echo $width['container-sidebar-divide']; ?>%;}
-.normal-page #content {width:<?php echo $width['content']; ?>px;}
+.container {width:<?php echo $width['container']; ?>px; margin: 0 AUTO; padding: <?php echo Concerto::config('design','page_padding'); ?>px; }
+.normal-page #main .container {background:<?php echo $colors['background']['main']; ?>; }
+.normal-page #content {width:<?php echo $width['content']; ?>px;border-right:<?php echo $borders['container']; ?>px solid <?php echo $colors['borders']['common']; ?>;}
 .custom-page #content{padding:<?php echo Concerto::config('design','page_padding'); ?>px;}
 #footer{font-size:<?php echo $sizes['footer']; ?>px;border-top:<?php echo $borders['footer-top']; ?>px solid <?php echo $colors['borders']['common']; ?>;background:<?php echo $colors['background']['footer']; ?>;color:<?php echo $colors['fonts']['footer']; ?>;}
-.sidebars{width:<?php echo $width['sidebar1'] + $width['sidebar2']; ?>px;font-family:<?php echo $fonts['sidebar']; ?>;font-size:<?php echo $sizes['sidebar']; ?>px;line-height:<?php echo $sizes['sidebar'] + 7; ?>px;}
+.sidebars{border-left:<?php echo $borders['container']; ?>px solid <?php echo $colors['borders']['common']; ?>;width:<?php echo $width['sidebar1'] + $width['sidebar2']; ?>px;font-family:<?php echo $fonts['sidebar']; ?>;font-size:<?php echo $sizes['sidebar']; ?>px;line-height:<?php echo $sizes['sidebar'] + 7; ?>px;}
+.wrapped #header, .wrapped #footer{border-width: <?php echo $borders['container']; ?>px;}
+.wrapped #access .menu{width:<?php echo $width['container']; ?>px;}
+.wrapped #main{background:<?php echo $colors['background']['main']; ?>;border-left:<?php echo $borders['container']; ?>px solid <?php echo $colors['borders']['common']; ?>;border-right:<?php echo $borders['container']; ?>px solid <?php echo $colors['borders']['common']; ?>;}
 .post,.page{margin-bottom:<?php echo Concerto::config('design','page_padding') + 20; ?>px;}
 .type-post,.type-page{padding:<?php echo Concerto::config('design','page_padding'); ?>px <?php echo Concerto::config('design','page_padding'); ?>px <?php echo Concerto::config('design','page_padding') + 20; ?>px;}
 .entry-title,.entry-title a{font-family:<?php echo $fonts['content-title']; ?>;font-size:<?php echo $sizes['content-title']; ?>px;color:<?php echo $colors['fonts']['content-title']; ?>;line-height:<?php echo $sizes['content-title'] + 2; ?>px;}
@@ -112,3 +116,6 @@ h3#comments-title,h3#reply-title{color:<?php echo $colors['fonts']['site']; ?>;f
 #respond .form-allowed-tags{color:<?php echo $colors['fonts']['respond']; ?>;}
 .widget_search{border:1px solid <?php echo $colors['borders']['common']; ?>;}
 .comment-meta a:active,.comment-meta a:hover,.reply a:hover,a.comment-edit-link:hover{color:<?php echo $colors['fonts']['content-link-hover']; ?>;}
+<?php
+	}
+?>

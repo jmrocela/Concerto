@@ -30,13 +30,12 @@ update_option('concerto_options',
 							'layout_columns' => 2,
 							'layout_columns_order' => 1,
 							'layout_columns_width' => array(
-														'content' => 580,
+														'content' => 600,
 														'sidebar1' => 300,
 														'sidebar2' => 0,
 													),
 							'article-padding' => 10,
 							'page_padding' => 10,
-							'divide_factor' => 8.7878, // makes the divider appear between the main content and the sidebars
 							
 							'header' => array(
 											'title' => true,
@@ -95,9 +94,10 @@ update_option('concerto_options',
 											'background' => array(
 																'site' => '#ffffff',
 																'container' => '#ffffff',
-																'header' => '#fdfdfd',
+																'header' => 'none',
+																'main' => '#ffffff',
 																'content' => '#ffffff',
-																'footer' => '#fdfdfd',
+																'footer' => 'none',
 																'menu' => '#ffffff',
 																'menu-active' => '#ffffff',
 																'menu-hover' => '#ffffff',
@@ -138,7 +138,7 @@ update_option('concerto_options',
 															)
 										),
 							'borders' => array(
-											'container' => 0,
+											'container' => 1,
 											'header' => 0,
 											'header-top' => 0,
 											'header-bottom' => 1,
