@@ -5,7 +5,7 @@ do_action('concerto_hook_before_article');
 	<div>
 		<?php do_action('concerto_hook_article_title'); ?>
 		<div class="entry-meta">
-			<?php do_action('concerto_hook_article_meta'); ?>
+			<?php do_action('concerto_hook_article_byline'); ?>
 		</div>
 	</div>
 	<div class="entry-content">
@@ -13,7 +13,7 @@ do_action('concerto_hook_before_article');
 	</div>
 	<div>
 		<div class="entry-utility">
-			<?php do_action('concerto_hook_article_utility'); ?>
+			<?php do_action('concerto_hook_article_meta'); ?>
 		</div>
 	</div>
 </div>
