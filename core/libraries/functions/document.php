@@ -30,13 +30,12 @@ function concerto_hook_head() {
  */
 function concerto_hook_title() {
 	if (is_front_page() && is_home()) {
-		bloginfo('name');
-		echo ' | ' ;
-		bloginfo('description');
+		$title = get_bloginfo('name') . ' | ' . get_bloginfo('description');
 	} else {
-		wp_title('');
+		$title = wp_title('', false);
 	}
-	# NOTE:
+	echo apply_filters('concerto_title', $title);
+	# NOTE: AS FILTER?
 	# have Titles from specific post if specified.
 	# if (get_post_meta($post->ID, 'concerto_custom_post_title')) >>> as title
 }
@@ -127,6 +126,7 @@ function concerto_hook_default_access() {
  * The Big Banner
  */
 function concerto_hook_default_banner() {
+	#CHECK HTML VERSION
 	if (is_home() && is_front_page()) {
 	?>
 	<section id="banner">
@@ -160,8 +160,28 @@ function concerto_hook_default_before_footer() {}
 /**
  * Default Footer Content
  */
+function concerto_hook_default_footer_siteinfo() {
+?>
+<div id="site-info">
+	Copyright <?php echo date("Y"); ?> <a href="<?php bloginfo('url'); ?>" title="<?php bloginfo('name'); ?>" rel="home"><?php bloginfo('name'); ?></a>
+</div>
+<?php
+}
+
+function concerto_hook_default_footer_sitegenerator() {
+?>
+<div id="site-generator">
+	Powered by <a href="http://themeconcert.com/concerto">the Concerto Theme</a> from ThemeConcert
+</div>
+<?php
+}
+
 function concerto_hook_default_footer() {
-	require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . 'footer.php';
+?>
+<div id="wp-footer">
+	<?php wp_footer(); ?>
+</div>
+<?php
 }
 
 /**

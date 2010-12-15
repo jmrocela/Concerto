@@ -73,8 +73,10 @@ function concerto_default_common_comment_navigation () {
 }
 
 function concerto_default_commentlist_title () {
+	$comments_title = array('One Response to %2$s', '%1$s Responses to %2$s');
+	$comments_title = apply_filters('concerto_commentlist_title', $comments_title);
 	?>
-	<h3 id="comments-title"><?php printf(_n('One Response to %2$s', '%1$s Responses to %2$s', ConcertoComments::commentCount()), number_format_i18n(ConcertoComments::commentCount()), '<em>' . get_the_title() . '</em>'); ?></h3>
+	<h3 id="comments-title"><?php printf(_n($comments_title[0], $comments_title[1], ConcertoComments::commentCount()), number_format_i18n(ConcertoComments::commentCount()), '<em>' . get_the_title() . '</em>'); ?></h3>
 	<?php
 }
 
@@ -82,9 +84,11 @@ function concerto_default_commentlist_title () {
  * Displays the list of Trackbacks and Pingbacks
  */
 function concerto_default_comment_pings () {
+	$comments_pings = array('One Trackback', '%1$s Trackbacks');
+	$comments_pings = apply_filters('concerto_comment_pings_title', $comments_pings);
 	if (ConcertoComments::pingCount()) {
 	?>
-	<h3><?php printf(_n('One Trackback', '%1$s Trackbacks', ConcertoComments::pingCount()), number_format_i18n(ConcertoComments::pingCount()), '<em>' . get_the_title() . '</em>'); ?></h3>
+	<h3><?php printf(_n($comments_pings[0], $comments_pings[1], ConcertoComments::pingCount()), number_format_i18n(ConcertoComments::pingCount())); ?></h3>
 	<ol class="pinglist">
 		<?php wp_list_comments(array('callback' => array('ConcertoComments', 'pinglist'), 'type' => 'pings')); ?>
 	</ol>

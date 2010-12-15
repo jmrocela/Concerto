@@ -25,7 +25,6 @@ add_action('concerto_hook_branding', 'concerto_hook_default_branding_site_title'
 add_action('concerto_hook_branding', 'concerto_hook_default_branding_site_description');
 add_action('concerto_hook_access', 'concerto_hook_default_access');
 
-//add_action('concerto_hook_header_content', 'concerto_hook_default_banner');
 add_action('concerto_hook_content', 'concerto_hook_default_content');
 add_action('concerto_hook_before_content', 'concerto_hook_default_before_content');
 add_action('concerto_hook_loop', 'concerto_hook_default_loop');
@@ -34,6 +33,8 @@ add_action('concerto_hook_after_content', 'concerto_hook_default_after_content')
 add_action('concerto_hook_after_content', 'concerto_hook_default_article_navigation');
 
 add_action('concerto_hook_before_footer', 'concerto_hook_default_before_footer');
+add_action('concerto_hook_footer', 'concerto_hook_default_footer_siteinfo');
+add_action('concerto_hook_footer', 'concerto_hook_default_footer_sitegenerator');
 add_action('concerto_hook_footer', 'concerto_hook_default_footer');
 add_action('concerto_hook_after_footer', 'concerto_hook_default_after_footer');
 add_action('concerto_hook_end', 'concerto_hook_default_end');
@@ -43,12 +44,12 @@ add_action('concerto_hook_end', 'concerto_hook_default_end');
  */
 add_action('concerto_hook_after_article', 'concerto_hook_default_after_article');
 add_action('concerto_hook_article_title', 'concerto_hook_default_article_title');
-add_action('concerto_hook_article_meta', 'concerto_hook_default_article_meta');
+add_action('concerto_hook_article_byline', 'concerto_hook_default_article_byline');
 add_action('concerto_hook_article_content', 'concerto_hook_default_article_content');
 add_action('concerto_hook_article_content', 'concerto_hook_default_article_pages');
 add_action('concerto_hook_article_excerpt', 'concerto_hook_default_article_excerpt');
 add_action('concerto_hook_article_excerpt', 'concerto_hook_default_article_pages');
-add_action('concerto_hook_article_utility', 'concerto_hook_default_article_utility');
+add_action('concerto_hook_article_meta', 'concerto_hook_default_article_meta');
 add_action('concerto_hook_article_comments', 'concerto_hook_default_article_comments');
 
 /**

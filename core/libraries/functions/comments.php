@@ -20,13 +20,13 @@ class ConcertoComments {
 		}
 	}
 	
-	public function commentCount($zero = 'No Responses', $one = 'One Response', $more = '%1$s Responses', $echo = false) {
+	public function commentCount($zero = 'No Responses', $one = 'One Response', $more = '% Responses', $echo = false) {
 		global $wpdb;
 		$result = $wpdb->get_var('SELECT COUNT(comment_ID) FROM ' . $wpdb->comments . ' WHERE comment_type = "" AND comment_approved="1" AND comment_post_ID= ' . get_the_ID());
 		if ($result == 0) {
-			$count = str_replace('%', $result, $zero);
+			$count = $zero;
 		} elseif ($result == 1) {
-			$count = str_replace('%', $result, $one);
+			$count = $one;
 		} elseif($result > 1) {
 			$count = str_replace('%', $result, $more);
 		}
@@ -36,13 +36,13 @@ class ConcertoComments {
 		return $result;
 	}
 	
-	public function pingCount($zero = '', $one = '1 Trackback', $more = '%1$s Trackbacks', $echo = false) {
+	public function pingCount($zero = '', $one = '1 Trackback', $more = '% Trackbacks', $echo = false) {
 		global $wpdb;
 		$result = $wpdb->get_var('SELECT COUNT(comment_ID) FROM ' . $wpdb->comments . ' WHERE comment_type !=  "" AND comment_approved="1" AND comment_post_ID= ' . get_the_ID());
 		if ($result == 0) {
-			$count = str_replace('%', $result, $zero);
+			$count = $zero;
 		} elseif ($result == 1) {
-			$count = str_replace('%', $result, $one);
+			$count = $one;
 		} elseif($result > 1) {
 			$count = str_replace('%', $result, $more);
 		}
