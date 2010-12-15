@@ -96,6 +96,7 @@ p { margin-bottom: 20px; }
  */
  
 /* CONTENT */
+/* #CHANGE ENTRY META TO ENTRY BYLINE AND ENTRY UTILITY TO ENTRY META */
 .post, .page { margin-bottom: 30px; clear: both; } /* border-bottom: 1px solid #dddddd; */
 .type-post,.type-page { padding:10px 10px 30px; }
 .entry-title, .entry-title a { font-size: 28px; color: #000000; font-weight: bold; line-height: 30px; text-decoration: none; margin-bottom: 10px; }
@@ -107,6 +108,14 @@ p { margin-bottom: 20px; }
 .entry-content:after { display: block; clear: both; content: ""; }
 .entry-utility, .entry-utility a { clear: both; font-family: georgia, arial, serif; color: #666666; font-size: 13px; font-style: italic; text-decoration: none; }
 .entry-utility a:hover { color: #245cba; }
+.entry-utility #entry-author-info { padding: 10px; margin-bottom: 20px; border: 1px solid #ddd; background: #fdfdfd; }
+.entry-utility #author-avatar { float: right; width: 60px; }
+.entry-utility #author-description { float: left; width: 490px; }
+.entry-utility #author-description h2 { margin-bottom: 10px; color: #000000; }
+.entry-utility #author-description #author-link { margin-top: 10px; }
+.entry-utility #author-description #author-link a { color: #245cba; }
+.entry-utility #author-description #author-link a:hover { text-decoration: underline; }
+.entry-utility #entry-author-info:after { display: block; clear: both; content: ""; }
 .archive .entry-content p:last-child, .archive .entry-content, .category .entry-content p:last-child, .category .entry-content, .tags .entry-content p:last-child, .tags .entry-content, .search .entry-content p:last-child, .search .entry-content { display: block; margin-bottom: 0; }
 
 img.size-full { width: inherit; }

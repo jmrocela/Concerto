@@ -109,25 +109,6 @@ function concerto_hook_default_article_meta () {
 	$tagged = 'Tagged';
 	$comments_text = array('Leave a Comment', '1 Comment', '% Comments', '', 'Comments Off');
 	$meta = Concerto::config('design','meta');
-	
-	if (get_the_author_meta('description') && is_single()) {
-	?>
-	<div id="entry-author-info">
-		<div id="author-avatar">
-			<?php echo get_avatar(get_the_author_meta('user_email'), 60); ?>
-		</div>
-		<div id="author-description">
-			<h2><?php printf(esc_attr__('About %s'), get_the_author()); ?></h2>
-			<?php the_author_meta('description'); ?>
-			<div id="author-link">
-				<a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>">
-					<?php printf('View all posts by %s <span class="meta-nav">&rarr;</span>', get_the_author()); ?>
-				</a>
-			</div>
-		</div>
-	</div>
-	<?php
-	}
 
 	if (count(get_the_category())) {
 		if ($meta['categories']) {
@@ -159,6 +140,33 @@ function concerto_hook_default_article_meta () {
 	} 
 	if ($meta['show_edit_link']) {
 		edit_post_link('Edit', '<span class="meta-sep">|</span> <span class="edit-link">', '</span>');
+	}
+}
+
+/**
+ * Author Description box
+ */
+function concerto_hook_default_author_description () {
+	$avatarsize = 60;
+	$abouttheauthor = 'About %s';
+	$viewallposts = 'View all posts by %s <span class="meta-nav">&rarr;</span>';
+	if (get_the_author_meta('description') && is_single()) {
+	?>
+	<div id="entry-author-info">
+		<div id="author-avatar">
+			<?php echo get_avatar(get_the_author_meta('user_email'), apply_filters('concerto_author_description_avatarsize', $avatarsize)); ?>
+		</div>
+		<div id="author-description">
+			<h2><?php printf(esc_attr__(apply_filters('concerto_author_description_title', $abouttheauthor)), get_the_author()); ?></h2>
+			<?php the_author_meta('description'); ?>
+			<div id="author-link">
+				<a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>">
+					<?php printf(apply_filters('concerto_author_description_link', $viewallposts), get_the_author()); ?> 				
+				</a>
+			</div>
+		</div>
+	</div>
+	<?php
 	}
 }
 

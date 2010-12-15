@@ -49,6 +49,7 @@ add_action('concerto_hook_article_content', 'concerto_hook_default_article_conte
 add_action('concerto_hook_article_content', 'concerto_hook_default_article_pages');
 add_action('concerto_hook_article_excerpt', 'concerto_hook_default_article_excerpt');
 add_action('concerto_hook_article_excerpt', 'concerto_hook_default_article_pages');
+add_action('concerto_hook_article_meta', 'concerto_hook_default_author_description');
 add_action('concerto_hook_article_meta', 'concerto_hook_default_article_meta');
 add_action('concerto_hook_article_comments', 'concerto_hook_default_article_comments');
 

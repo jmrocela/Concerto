@@ -89,6 +89,9 @@ body{font-family:<?php echo $fonts['body']; ?>;background:<?php echo $colors['ba
 .entry-meta a{color:<?php echo $colors['fonts']['comment-meta']; ?>;}
 .entry-content{font-family:<?php echo $fonts['content']; ?>;font-size:<?php echo $sizes['content']; ?>px;line-height:<?php echo $sizes['content'] + 7; ?>px;}
 .entry-utility,.entry-utility a{font-family:<?php echo $fonts['content']; ?>;color:<?php echo $colors['fonts']['comment-meta']; ?>;font-size:<?php echo $sizes['content-meta']; ?>px;}
+.entry-utility #entry-author-info{border: 1px solid <?php echo $colors['borders']['common']; ?>;background:<?php echo $colors['background']['header']; ?>;}
+.entry-utility #author-description h2{color:<?php echo $colors['fonts']['header-title']; ?>;}
+.entry-utility #author-description #author-link a{color:<?php echo $colors['fonts']['link']; ?>;}
 .sidebars a:hover{color:<?php echo $colors['fonts']['link-hover']; ?>;}
 #content .entry-content a:visited{color:<?php echo $colors['fonts']['visited']; ?>;}
 #content .entry-content h1{font-size:<?php echo $sizes['h1']; ?>px;font-family:<?php echo $fonts['content-title']; ?>;}
