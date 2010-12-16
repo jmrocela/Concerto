@@ -56,11 +56,11 @@ class ConcertoLoop {
 				$article = 'index';
 			break;
 		}
-		require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . $article . '.php';
+		require CONCERTO_HTML_DIR . $article . '.php';
 	}
 	
 	public function custompage() {
-		require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . 'custom_page.php';
+		require CONCERTO_HTML_DIR . 'custom_page.php';
 	}
 	
 	public function index() {

@@ -110,8 +110,9 @@ body{font-family:<?php echo $fonts['body']; ?>;background:<?php echo $colors['ba
 .normal-page #content .entry-content .attachment img{max-width:<?php echo $width['content']; ?>px;}
 #comments{font-family:<?php echo $fonts['content']; ?>;padding:0 <?php echo Concerto::config('design','article_padding'); ?>px;}
 h3#comments-title,h3#reply-title{color:<?php echo $colors['fonts']['site']; ?>;font-size:<?php echo $sizes['h3']; ?>px;}
-.commentlist{font-family:<?php echo $fonts['content']; ?>;border-top:1px solid <?php echo $colors['borders']['comment-top']; ?>;border-bottom:1px solid <?php echo $colors['borders']['comment-bottom']; ?>;}
-.commentlist li.comment{border-bottom:1px solid <?php echo $colors['borders']['comment-bottom']; ?>;}
+.commentlist{font-family:<?php echo $fonts['content']; ?>;border-top:<?php echo $borders['commentlist-top']; ?>px solid <?php echo $colors['borders']['commentlist-top']; ?>;border-bottom:<?php echo $borders['commentlist-bottom']; ?>px solid <?php echo $colors['borders']['commentlist-bottom']; ?>;}
+.commentlist li.comment{border-top:<?php echo $borders['comment-top']; ?>px solid <?php echo $colors['borders']['comment-top']; ?>;border-bottom:<?php echo $borders['comment-bottom']; ?>px solid <?php echo $colors['borders']['comment-bottom']; ?>;}
+.commentlist li:last-child{border-bottom:none;}
 .pinglist{border-bottom:1px solid <?php echo $colors['borders']['comment-bottom']; ?>;}
 #respond{font-family:<?php echo $fonts['content']; ?>;}
 #respond .required{color:<?php echo $colors['fonts']['content-link-hover']; ?>;font-weight:700;}

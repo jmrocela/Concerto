@@ -78,7 +78,7 @@ function concerto_hook_default_before_header() {}
  * Default Header Content
  */
 function concerto_hook_default_header() {
-	require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . 'header.php';
+	require CONCERTO_HTML_DIR . 'header.php';
 }
 
 /**
@@ -90,7 +90,7 @@ function concerto_hook_default_after_header() {}
  * Menu wrapper after the header area.
  */
 function concerto_hook_access() {
-	require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . 'access.php';
+	require CONCERTO_HTML_DIR . 'access.php';
 }
 
 /**
@@ -142,14 +142,14 @@ function concerto_hook_default_banner() {
  * Default Content
  */
 function concerto_hook_default_content() {
-	require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . 'content.php';
+	require CONCERTO_HTML_DIR . 'content.php';
 }
 
 /**
  * Default Sidebars
  */
 function concerto_hook_default_sidebars() {
-	require CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS . 'sidebar.php';
+	require CONCERTO_HTML_DIR . 'sidebar.php';
 }
 
 /**

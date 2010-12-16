@@ -59,6 +59,8 @@ function concerto_hook_default_after_comment () {}
 function concerto_hook_default_after_commentlist () {
 	concerto_default_comment_pings();
 	concerto_default_common_comment_navigation();
+	// Get the Comments Respond form
+	ConcertoComments::respond();
 }
 
 function concerto_default_common_comment_navigation () {
