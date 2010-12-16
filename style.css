@@ -254,7 +254,7 @@ h3#comments-title { padding: 24px 0; }
 .pinglist { margin: 20px 0 0; clear: both; border-bottom: 1px solid #E7E7E7; padding-bottom: 20px; }
 
 /* Comments form */
-#respond { margin: 24px 0; overflow: hidden; position: relative; font-family: georgia, arial, serif; }
+#respond { display: block; margin: 24px 0; overflow: hidden; position: relative; font-family: georgia, arial, serif; }
 #respond p { margin: 0; }
 #respond .comment-notes { margin-bottom: 1em; }
 .form-allowed-tags { line-height: 1em; }
