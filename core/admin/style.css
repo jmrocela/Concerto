@@ -5,35 +5,3 @@
  */
 
 /*@ MAIN */
-.concerto { clear: both; font-family: georgia, 'times new roman', serif; }
-	#concerto_header { }
-		#cfw_title { font-style: normal; font-size: 28px; margin-bottom: 10px; }
-	#concerto_navigation { clear: both; width: 1090px; }
-		#concerto_navigation li { float: left; margin-right: 30px; }
-			#concerto_navigation li a { display: block; padding: 5px 0; text-decoration: none; margin-top: 8px; color: #666666; text-transform: uppercase; }
-			#concerto_navigation li a:hover { text-decoration: underline; }
-		#concerto_navigation li:last-child { float: right; margin: 5px 0 0; }
-			#highlight { width:160px; color: #c0c0c0; margin-top: 5px; }
-		#concerto_navigation #cfw_save { background: #f7941d; border: 5px solid #fbaf5d; color: #ffdfbc; font-size: 18px; padding: 5px 10px; letter-spacing: 1px; }
-		#concerto_navigation #cfw_save:hover { border: 5px solid #ee8912; color: #ffffff; cursor: pointer; }
-		#concerto_navigation #cfw_search { width: 190px; }
-	#concerto_controls { clear: both; padding: 10px 0; }
-		#concerto_controls .cfw_column { float: left; width: 350px; margin-right: 20px; }
-		#concerto_controls .cfw_box { padding: 10px; background: #f3efe9; margin-bottom: 20px; border-bottom: 1px solid #f0e7d8; border-right: 1px solid #f0e7d8; border-top: 1px solid #ffffff; border-left: 1px solid #ffffff; -moz-border-radius: 5px; -webkit-border-radius: 5px; -khtml-border-radius: 5px; }
-			.cfw_box h3 { font-size: 18px; margin: 0; font-weight: normal; border-bottom: 1px dotted #d8ccbb; padding: 10px 0; }
-			.cfw_box h4 { font-size: 14px; font-weight: normal; font-style: italic; }
-			.cfw_box p { color: #5d5d5d; }
-			.cfw_box label { color: #000000; }
-			.cfw_box input[type=text], .cfw_box textarea { width: 100%; font-size: 16px; }
-
-#cfw_terms_agreements_box { border: 1px solid #c0c0c0; padding: 5px; background: #ffffff; overflow: auto; height: 400px; -moz-border-radius: 5px; -webkit-border-radius: 5px; -khtml-border-radius: 5px; }
-			
-/*@ EXTENSIONS */
-#cfw_extensions_seo td { text-align: center; font-family: georgia, 'times new roman', serif; }
-#cfw_extensions_seo tr td:first-child { text-align: left; }
-
-/*@ MISCELLANEOUS */
-p.green { background: #39b54a; color: #ffffff; padding: 5px; text-align: center; }
-.greentext { color: #39b54a; }
-p.red { background: #E8515B; color: #ffffff; padding: 5px; text-align: center; }
-.redtext { color: #E8515B; }

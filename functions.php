@@ -11,7 +11,7 @@
  
 // We define the Theme constants
 define('_DS', DIRECTORY_SEPARATOR);
-define('CONCERTO_VERSION', '1.0 beta');
+define('CONCERTO_VERSION', '0.1 beta');
 define('CONCERTO_ROOT', dirname(__FILE__) . _DS);
 define('CONCERTO_STAGES', CONCERTO_ROOT . 'stages' . _DS);
 define('CONCERTO_CORE', CONCERTO_ROOT . 'core' . _DS);

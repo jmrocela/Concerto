@@ -13,8 +13,8 @@ class Concerto {
 	public function __construct($mode = false) {
 		// We then Setup the Theme to be displayed
 		define('CONCERTO_CONFIG_CUSTOM', ($mode == true) ? true: false); // We are using a Custom Page
-		define('CONCERTO_CONFIG_HTML', (Concerto::config('design', 'html_version') == 4) ? 4: 5); // Determine the HTML version used
-		define('CONCERTO_CONFIG_LAYOUT', (Concerto::config('design', 'page_structure') == 'wrapped') ? 'wrapped': 'fullwidth'); // Determine the Layout of the Theme
+		define('CONCERTO_CONFIG_HTML', (get_option('concerto_design_html_version') == 4) ? 4: 5); // Determine the HTML version used
+		define('CONCERTO_CONFIG_LAYOUT', (get_option('concerto_design_page_structure') == 'wrapped') ? 'wrapped': 'fullwidth'); // Determine the Layout of the Theme
 		define('CONCERTO_HTML_DIR', CONCERTO_HTML . CONCERTO_CONFIG_HTML . _DS);
 		
 		// We add the Hooks to Wordpress
@@ -22,18 +22,6 @@ class Concerto {
 		require CONCERTO_LIBS . 'filters.php';
 		require CONCERTO_LIBS . 'theme.php';
 		require CONCERTO_LIBS . 'defaults.php';
-	}
-	
-	public static function config($namespace, $name) {
-		$options = get_option('concerto_options');
-		return (isset($options[$namespace][$name])) ? $options[$namespace][$name]: null;
-	}
-	
-	public static function updateconfig($namespace, $name, $value) {
-		$options = get_option('concerto_options');
-		$options[$namespace][$name] = $value;
-		update_options('concerto_options', $options);
-		return true;
 	}
 
 }

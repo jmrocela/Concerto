@@ -28,6 +28,7 @@ function concerto_hook_default_before_comment () {}
  * Comment vcard
  */
 function concerto_hook_default_comment_vcard () {
+	global $comment;
 	echo get_avatar($comment, 40);
 	printf('%s <span class="says">says:</span>', sprintf('<cite class="fn">%s</cite>', get_comment_author_link()));
 }
@@ -36,6 +37,7 @@ function concerto_hook_default_comment_vcard () {
  * Comment metadata
  */
 function concerto_hook_default_comment_metadata () {
+	global $comment;
 	?>
 	<a href="<?php echo esc_url(get_comment_link($comment->comment_ID)); ?>">
 	<?php printf('%1$s at %2$s', get_comment_date(),  get_comment_time()); ?></a><?php edit_comment_link('(Edit)', ' ');

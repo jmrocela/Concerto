@@ -44,7 +44,7 @@ function concerto_hook_title() {
  * Syndication link in the <head> tag
  */
 function concerto_hook_syndication() {
-	if (Concerto::config('general','syndication_url')) {
+	if (get_option('concerto_general_syndication_url')) {
 	?>
 		<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> &raquo; Feed" href="<?php echo get_option('concerto_general_syndication_url'); ?>" />
 	<?php
@@ -115,7 +115,7 @@ function concerto_hook_default_branding_site_description() {
  * Default Menu
  */
 function concerto_hook_default_access() {
-	if (Concerto::config('general','menu') == 'default') {
+	if (get_option('concerto_general_menu') == 'default') {
 		wp_nav_menu(array('container' => 'nav', 'show_home' => true));
 	} else {
 

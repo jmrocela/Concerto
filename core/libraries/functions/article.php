@@ -53,15 +53,14 @@ function concerto_hook_default_article_title () {
 function concerto_hook_default_article_byline () {
 	$postedon = 'Posted on';
 	$by = 'by';
-	$byline = Concerto::config('design','bylines');
 	?>
-		<?php if (is_front_page() || (is_single() && $byline['post']['published_date']) || (is_page() && $byline['page']['published_date'])) { ?>
+		<?php if (is_front_page() || (is_single() && get_option('concerto_design_bylines_post_published_date')) || (is_page() && get_option('concerto_design_bylines_page_published_date'))) { ?>
 		<span class="meta-prep meta-prep-author"><?php echo apply_filters('concerto_article_byline_postedon', $postedon); ?></span>
 		<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr(get_the_time()); ?>" rel="bookmark">
 			<span class="entry-date"><?php the_date(); ?></span>
 		</a>
 		<?php } ?>
-		<?php if (is_front_page() || (is_single() && $byline['post']['author']) || (is_page() && $byline['page']['author'])) { ?>
+		<?php if (is_front_page() || (is_single() && get_option('concerto_design_bylines_post_author')) || (is_page() && get_option('concerto_design_bylines_page_author'))) { ?>
 		<span class="meta-sep"><?php echo apply_filters('concerto_article_byline_by', $by); ?></span>
 		<span class="author vcard">
 			<a class="url fn n" href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>" title="View all posts by <?php the_author(); ?>">
@@ -108,10 +107,9 @@ function concerto_hook_default_article_meta () {
 	$postedin = 'Posted in';
 	$tagged = 'Tagged';
 	$comments_text = array('Leave a Comment', '1 Comment', '% Comments', '', 'Comments Off');
-	$meta = Concerto::config('design','meta');
 
 	if (count(get_the_category())) {
-		if ($meta['categories']) {
+		if (get_option('concerto_design_meta_categories')) {
 	?>
 		<span class="cat-links">
 			<span class="entry-utility-prep entry-utility-prep-cat-links"><?php echo apply_filters('concerto_article_meta_postedin', $postedin); ?></span> <?php the_category(', '); ?>
@@ -122,7 +120,7 @@ function concerto_hook_default_article_meta () {
 	}
 	$tags_list = get_the_tag_list('', ', ');
 	if ($tags_list) {
-		if ($meta['tags']) {
+		if (get_option('concerto_design_meta_tags')) {
 	?>
 		<span class="tag-links">
 			<span class="entry-utility-prep entry-utility-prep-tag-links"><?php echo apply_filters('concerto_article_meta_tagged', $tagged); ?></span> <?php echo $tags_list; ?>
@@ -131,14 +129,14 @@ function concerto_hook_default_article_meta () {
 	<?php
 		}
 	}	
-	if ($meta['comments_link']) {
+	if (get_option('concerto_design_meta_comments_link')) {
 	$comments_text = apply_filters('concerto_article_meta_commentstext', $comments_text);
 	add_filter('get_comments_number', 'concerto_fix_comment_number'); //Fixes the true comment count. Separates it from Pings
 	?>
 	<span class="comments-link"><?php comments_popup_link($comments_text[0], $comments_text[1], $comments_text[2], $comments_text[3], $comments_text[4]); ?></span>
 	<?php
 	} 
-	if ($meta['show_edit_link']) {
+	if (get_option('concerto_design_meta_show_edit_link')) {
 		edit_post_link('Edit', '<span class="meta-sep">|</span> <span class="edit-link">', '</span>');
 	}
 }
