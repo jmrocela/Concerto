@@ -8,11 +8,12 @@
 .concerto { margin: 15px AUTO; padding: 0; cursor: default; width: 960px;}
 #concerto_header { padding: 20px 0 10px; margin: 0 10px; border-bottom: 1px dotted #c0c0c0; }
 #concerto_title { padding: 0; font-size: 40px; font-style: normal; }
-#concerto_context { color: #639638; font-size: 14px; margin: 12px 0 0 10px; font-family: georgia; }
+#concerto_context { margin: 10px 10px 0; padding: 5px; background: #c34b3b; -moz-border-radius: 5px; }
+#concerto_context input { border: 0; font-size: 18px; padding: 5px 25px; background: #df7b6d; color: #ffffff; }
 #concerto_navigation li { float: left; margin-right: 20px; margin-top: 10px; }
 .concerto a { text-decoration: none; color: #639638; }
 .concerto a:hover { text-decoration: underline; color: #f26522; }
-#concerto_navigation li a { font-family: georgia; }
+#concerto_navigation li a { font-family: georgia; text-transform: uppercase; }
 #concerto_header .right { text-align: right; margin-top: 10px; }
 #concerto_header .right p { font-size: 12px; margin: 0; font-family: georgia; }
 #concerto_stage { margin-bottom: 10px; }
@@ -23,6 +24,7 @@
 .concerto_notice { clear: both; padding: 5px 20px; margin: 10px 10px 0; text-align: center; color: #ffffff; }
 .concerto_notice a { text-decoration: underline; }
 .concerto_notice a:hover { text-decoration: none; }
+.level_updated { background: #fffbcc; border: 1px solid #e6db55; color: #666666; padding: 20px; }
 .level_green { background: #39b54a; }
 .level_green a { color: #c4df9b; }
 .level_green a:hover { color: #92278f; }
@@ -52,6 +54,8 @@
 
 #favicon { margin: 10px AUTO; width: 130px; }
 #favicon_preview { float: left; margin-right: 5px; height: 16px; width: 16px; border: 1px solid #c0c0c0; background: #fefefe; }
+
+#thealmightysavebutton { background: #1fcf37; border: 15px solid #13bd2b; font-size: 15px; padding: 20px; color: #ffffff; }
 
 .blur { border: 1px solid #bbbbbb; background: #f9f9f9; color: #bbbbbb; }
 .blur h3 { background: #e1e1e1; border-bottom: 1px solid #bbbbbb; color: #999999; }

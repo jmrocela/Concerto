@@ -4,11 +4,10 @@ function admin_general() {
 ?>
 <div class="wrap concerto">
 	<form method="POST" action="options.php" id="concerto_options">
-	<?php wp_nonce_field('update-options'); ?>
+	<?php settings_fields('concerto_general'); ?>
 	<div id="concerto_header">
 		<div class="left">
 			<h2 id="concerto_title" class="left">Concerto</h2>
-			<h3 id="concerto_context" class="left">General</h3>
 			<div class="clear"></div>
 			<div id="concerto_navigation">
 				<ul>
@@ -26,11 +25,15 @@ function admin_general() {
 					<option value="default">Default</option>
 				</select>
 			</div>
-			<p>You are running <strong>Concerto <?php echo CONCERTO_VERSION; ?></strong>. <em><a href="http://themeconcert.com/update/" target="_new">Upgrade your Copy</a></em></p>
+			<p>You are running <strong>Concerto <?php echo CONCERTO_VERSION; ?></strong>. <em><a href="http://themeconcert.com/members/update/" target="_new">Upgrade your Copy</a></em></p>
 		</div>
 		<div class="clear"></div>
 	</div>
-	<div class="concerto_notice level_green">You are running a Beta Version of Concerto. This product is provided free under our <a href="#">Terms and Agreements</a>.</div>
+	<div class="concerto_notice level_green">You are running a Beta Version of Concerto. This product is provided free under our <a href="http://themeconcert.com/documents/licenses/free-beta" target="_new"">Terms and Agreements</a>.</div>
+	<?php if (@$_GET['updated'] == 'true') { ?>
+	<div class="concerto_notice level_updated">Your Configuration has been changed and saved. <a href="<?php bloginfo('url'); ?>">See the changes on your site</a></div>
+	<?php } ?>
+	<h3 id="concerto_context"><input type="submit" value="Save Changes" /></h3>
 	<div id="concerto_dashboard">
 	
 		<div class="box box2columns" id="concerto_site_title">
@@ -44,7 +47,7 @@ function admin_general() {
 		<div class="box box2columns" id="concerto_seo">
 			<h3><abbr title="Search Engine Optimization">SEO</abbr> Options</h3>
 			<div class="inner">
-				<p>You can easily finetune your Site's Global SEO here. You can also set SEO options for <a href="http://themeconcert.com/concert/manual/" target="_new">individual Posts or Pages</a></p>
+				<p>You can easily fine tune your Site's Global SEO here. You can also set SEO options for <a href="http://themeconcert.com/concert/manual/" target="_new">individual Posts or Pages</a></p>
 				<table>
 					<thead>
 						<tr>
@@ -112,7 +115,7 @@ function admin_general() {
 				<p><label><input type="radio" name="concerto_general_menu" value="default" <?php echo (get_option('concerto_general_menu') == 'default') ? 'checked': ''; ?>/> Wordpress Default Menu</em></label></p>
 				<p><label><input type="radio" name="concerto_general_menu" value="concerto" <?php echo (get_option('concerto_general_menu') == 'concerto') ? 'checked': ''; ?>/> Concerto Navigation</label></p>
 				<div class="navigationlists">
-					<h4><label><input type="checkbox" name="concerto_general_menu_use_pages" <?php echo (get_option('concerto_general_menu_use_pages') == 1) ? 'checked': ''; ?>/> Pages</label></h4>
+					<h4><label><input type="checkbox" name="concerto_general_menu_use_pages" value="1" <?php echo (get_option('concerto_general_menu_use_pages') == 1) ? 'checked': ''; ?>/> Pages</label></h4>
 					<p>You can sort the Pages you would like to include in your Navigation Menu here</p>
 					<ul>
 						<?php
@@ -125,7 +128,7 @@ function admin_general() {
 					</ul>
 				</div>
 				<div class="navigationlists">
-					<h4><label><input type="checkbox" name="concerto_general_menu_use_categories" <?php echo (get_option('concerto_general_menu_use_categories') == 1) ? 'checked': ''; ?>/> Categories</label></h4>
+					<h4><label><input type="checkbox" name="concerto_general_menu_use_categories" value="1" <?php echo (get_option('concerto_general_menu_use_categories') == 1) ? 'checked': ''; ?>/> Categories</label></h4>
 					<p>Sort the Categories you would want to show up on your Navigation Menu</p>
 					<ul>
 						<?php
@@ -138,7 +141,7 @@ function admin_general() {
 					</ul>
 				</div>
 				<div class="navigationlists">
-					<h4><label><input type="checkbox" name="concerto_general_menu_use_tags" <?php echo (get_option('concerto_general_menu_use_tags') == 1) ? 'checked': ''; ?>/> Tags</label></h4>
+					<h4><label><input type="checkbox" name="concerto_general_menu_use_tags" value="1" <?php echo (get_option('concerto_general_menu_use_tags') == 1) ? 'checked': ''; ?>/> Tags</label></h4>
 					<p>Sort Tags you want to display on your Navigation Menu</p>
 					<ul>
 						<?php
@@ -150,8 +153,8 @@ function admin_general() {
 						<?php } ?>
 					</ul>
 				</div>
-				<p><label><input type="checkbox" name="concerto_general_menu_show_home" <?php echo (get_option('concerto_general_menu_show_home') == 1) ? 'checked': ''; ?>/> Show the Home Link</em></label></p>
-				<p><label><input type="checkbox" name="concerto_general_menu_show_feed" <?php echo (get_option('concerto_general_menu_show_feed') == 1) ? 'checked': ''; ?>/> Show Subscribe Link</label></p>
+				<p><label><input type="checkbox" name="concerto_general_menu_show_home" value="1" <?php echo (get_option('concerto_general_menu_show_home') == 1) ? 'checked': ''; ?>/> Show the Home Link</em></label></p>
+				<p><label><input type="checkbox" name="concerto_general_menu_show_feed" value="1" <?php echo (get_option('concerto_general_menu_show_feed') == 1) ? 'checked': ''; ?>/> Show Subscribe Link</label></p>
 			</div>
 		</div>
 	
@@ -256,9 +259,6 @@ function admin_general() {
 		</div>
 		
 	</div>
-	
-	<input type="hidden" name="action" value="update" />
-	<input type="hidden" name="page_options" value="concerto_general_site_title" />
 	</form>
 	<script type="text/javascript">
 		jQuery(function($) {

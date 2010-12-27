@@ -21,7 +21,14 @@ class Concerto {
 		require CONCERTO_LIBS . 'actions.php';
 		require CONCERTO_LIBS . 'filters.php';
 		require CONCERTO_LIBS . 'theme.php';
-		require CONCERTO_LIBS . 'defaults.php';
+	}
+	
+	public function getExtensions() {
+		
+	}
+	
+	public function getStages() {
+		
 	}
 
 }

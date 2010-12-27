@@ -161,7 +161,36 @@ update_option('concerto_design_engrave', 0); // add an engrave effect to texts
  */
 update_option('concerto_extensions_cache_enabled', 0);
 update_option('concerto_extensions_seo_enabled', 0);
+	update_option('concerto_seo_enable_canonical', 0);
+	update_option('concerto_extensions_thumbnail_enabled', 0);
+	update_option('concerto_seo_child_noindex', 0);
+	update_option('concerto_seo_child_nofollow', 0);
+	update_option('concerto_seo_child_noarchive', 0);
+	update_option('concerto_seo_category_noindex', 0);
+	update_option('concerto_seo_category_nofollow', 0);
+	update_option('concerto_seo_category_noarchive', 0);
+	update_option('concerto_seo_tag_noindex', 0);
+	update_option('concerto_seo_tag_nofollow', 0);
+	update_option('concerto_seo_tag_noarchive', 0);
+	update_option('concerto_seo_author_noindex', 0);
+	update_option('concerto_seo_author_nofollow', 0);
+	update_option('concerto_seo_author_noarchive', 0);
+	update_option('concerto_seo_month_noindex', 0);
+	update_option('concerto_seo_month_nofollow', 0);
+	update_option('concerto_seo_month_noarchive', 0);
+	update_option('concerto_seo_day_noindex', 0);
+	update_option('concerto_seo_day_nofollow', 0);
+	update_option('concerto_seo_day_noarchive', 0);
+	update_option('concerto_seo_year_noindex', 0);
+	update_option('concerto_seo_year_nofollow', 0);
+	update_option('concerto_seo_year_noarchive', 0);
 update_option('concerto_extensions_social_enabled', 0);
 update_option('concerto_extensions_thumbnail_enabled', 0);
+	update_option('concerto_personal_twitter', '');
+	update_option('concerto_personal_facebook', '');
+	update_option('concerto_personal_youtube', '');
+	update_option('concerto_personal_linkedin', '');
+	update_option('concerto_personal_email', '');
+	update_option('concerto_personal_email_use_admin', 0);
 
 ?>
