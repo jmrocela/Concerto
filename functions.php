@@ -26,6 +26,9 @@ add_theme_support('menus');
 register_sidebar(array('name' => 'Main Sidebar'));
 register_sidebar(array('name' => 'Second Sidebar'));
 
+// We require the Concerto Framework
+require CONCERTO_LIBS . 'concerto.php';
+
 // We determine what context the user wishes to do. In this case, the user is trying to access
 // the script via the Administration Views...
 if (is_admin()) {
@@ -33,13 +36,6 @@ if (is_admin()) {
 	// We are in the admin, let's call the Administration pages
 	require CONCERTO_ADM . 'admin.php';
 	new ConcertoAdmin();
-
-}
-// or else, the home page
-else {
-
-	// We invoke the Concerto Framework
-	require CONCERTO_LIBS . 'concerto.php';
 
 }
 
