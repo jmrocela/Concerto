@@ -22,6 +22,12 @@ function admin_general() {
 			<div id="concerto_stage">
 				Active Stage
 				<select name="concerto_stage">
+					<?php
+						$stages = Concerto::getStages();
+						foreach ($stages as $stage) {
+							
+						}
+					?>
 					<option value="default">Default</option>
 				</select>
 			</div>
@@ -112,11 +118,11 @@ function admin_general() {
 			<div class="inner">
 				<h4>Please Select Menu Type</h4>
 				<p>This will determine if Concerto will handle Navigation display or let Wordpress display it's menus.</p>
-				<p><label><input type="radio" name="concerto_general_menu" value="default" <?php echo (get_option('concerto_general_menu') == 'default') ? 'checked': ''; ?>/> Wordpress Default Menu</em></label></p>
-				<p><label><input type="radio" name="concerto_general_menu" value="concerto" <?php echo (get_option('concerto_general_menu') == 'concerto') ? 'checked': ''; ?>/> Concerto Navigation</label></p>
+				<p><label><input type="radio" name="concerto_general_menu" class="menu_type" value="default" <?php echo (get_option('concerto_general_menu') == 'default') ? 'checked': ''; ?>/> Wordpress Default Menu</em></label></p>
+				<p><label><input type="radio" name="concerto_general_menu" class="menu_type" value="concerto" <?php echo (get_option('concerto_general_menu') == 'concerto') ? 'checked': ''; ?>/> Concerto Navigation</label></p>
 				<div class="navigationlists">
-					<h4><label><input type="checkbox" id="toggle_pageslist" name="concerto_general_menu_use_pages" value="1" <?php echo (get_option('concerto_general_menu_use_pages') == 1) ? 'checked': ''; ?>/> Pages</label></h4>
-					<div id="pageslist">
+					<h4><label><input type="checkbox" name="concerto_general_menu_use_pages" value="1" <?php echo (get_option('concerto_general_menu_use_pages') == 1) ? 'checked': ''; ?>/> Pages</label></h4>
+					<div class="navigationlist">
 					<p>You can sort the Pages you would like to include in your Navigation Menu here</p>
 					<ul>
 						<?php
@@ -130,8 +136,8 @@ function admin_general() {
 					</div>
 				</div>
 				<div class="navigationlists">
-					<h4><label><input type="checkbox" id="toggle_categorieslist" name="concerto_general_menu_use_categories" value="1" <?php echo (get_option('concerto_general_menu_use_categories') == 1) ? 'checked': ''; ?>/> Categories</label></h4>
-					<div id="categorieslist">
+					<h4><label><input type="checkbox" name="concerto_general_menu_use_categories" value="1" <?php echo (get_option('concerto_general_menu_use_categories') == 1) ? 'checked': ''; ?>/> Categories</label></h4>
+					<div class="navigationlist">
 					<p>Sort the Categories you would want to show up on your Navigation Menu</p>
 					<ul>
 						<?php
@@ -145,8 +151,8 @@ function admin_general() {
 					</div>
 				</div>
 				<div class="navigationlists">
-					<h4><label><input type="checkbox" id="toggle_tagslist" name="concerto_general_menu_use_tags" value="1" <?php echo (get_option('concerto_general_menu_use_tags') == 1) ? 'checked': ''; ?>/> Tags</label></h4>
-					<div id="tagslist">
+					<h4><label><input type="checkbox" name="concerto_general_menu_use_tags" value="1" <?php echo (get_option('concerto_general_menu_use_tags') == 1) ? 'checked': ''; ?>/> Tags</label></h4>
+					<div class="navigationlist">
 					<p>Sort Tags you want to display on your Navigation Menu</p>
 					<ul>
 						<?php
@@ -164,7 +170,6 @@ function admin_general() {
 			</div>
 			<script type="text/javascript">
 				jQuery(function($) {
-					
 				});
 			</script>
 		</div>
@@ -188,6 +193,7 @@ function admin_general() {
 					<div class="swfupload-control"><span id="spanButtonPlaceholder"></span></div>
 					<input type="hidden" name="concerto_general_favicon" id="favicon_hidden" value="<?php echo get_option('concerto_general_favicon'); ?>"/>
 					<div class="clear"></div>
+					<a href="javascript:;" id="removefavicon">Remove Favicon</a>
 				</div>
 			</div>
 		</div>
@@ -271,18 +277,6 @@ function admin_general() {
 	</form>
 	<script type="text/javascript">
 		jQuery(function($) {
-			/*
-			// NOT IMPLEMENTED YET
-			// FOCUS ON BOX CURRENTLY BEING EDITED(MOUSE OVER??)
-			$('.box').mouseover(function(){
-				$('.box').addClass('blur');
-				$(this).removeClass('blur');
-			});
-			$('.box').mouseout(function(){
-				$('.box').removeClass('blur');
-			});
-			*/
-			
 			/**
 			 * Upload functionality
 			 */
@@ -311,7 +305,50 @@ function admin_general() {
 				.bind('uploadSuccess', function(event, file, response){
 					$('#favicon_preview img').attr('src', response);
 					$('#favicon_hidden').val(response);
+					$('#removefavicon').show();
 				});
+			
+			/**
+			 * Behaviour
+			 */
+			if ($('#favicon_hidden').val() == '') {
+				$('#removefavicon').hide();
+			}
+			$('#removefavicon').click(function() {
+				if (confirm('Are you sure you want to remove your Favicon?')) {
+					$('#favicon_preview img').attr('src', '');
+					$('#favicon_hidden').val('');
+					$('#removefavicon').hide();
+				}
+			});
+			$('.navigationlists h4 input').change(function(){
+				if ($(this).is(':checked')) {
+					$(this).parents('.navigationlists').find('.navigationlist').show();
+				} else {
+					$(this).parents('.navigationlists').find('.navigationlist').hide();
+				}
+				$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
+			});
+			$('.menu_type').change(function(){
+				if ($(this).val() == 'default') {
+					$('.navigationlists').hide();
+				} else {
+					$('.navigationlists').show();
+				}
+				$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
+			});
+			$('.navigationlists h4 input').each(function(){
+				if ($(this).is(':checked')) {
+					$(this).parents('.navigationlists').find('.navigationlist').show();
+				} else {
+					$(this).parents('.navigationlists').find('.navigationlist').hide();
+				}
+			});
+			if ($('.menu_type:checked').val() == 'default') {
+				$('.navigationlists').hide();
+			} else {
+				$('.navigationlists').show();
+			}
 			
 			/**
 			 * Masonry
