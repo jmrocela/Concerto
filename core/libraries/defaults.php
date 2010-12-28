@@ -24,7 +24,6 @@ update_option('concerto_general_menu_use_tags', 0);
 	update_option('concerto_general_menu_tags_items', ''); //serialized
 update_option('concerto_general_menu_show_home', 1);
 update_option('concerto_general_menu_show_feed', 1);
-update_option('concerto_general_language', 'en_us');
 
 update_option('concerto_design_html_version', 5);
 update_option('concerto_design_page_structure', 'fullwidth');

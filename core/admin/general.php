@@ -123,7 +123,7 @@ function admin_general() {
 							$pages_used = get_option('concerto_general_menu_pages_items');
 							foreach ($pages as $page) {
 						?>
-						<li><label><input type="checkbox" name="concerto_general_menu_pages_items[]" value="<?php echo $page->ID; ?>" <?php echo (in_array($page->ID, $pages_used)) ? 'checked="checked" ': ''; ?>/> <?php echo $page->post_title; ?></label></li>
+						<li><label><input type="checkbox" name="concerto_general_menu_pages_items[]" value="<?php echo $page->ID; ?>" <?php echo (@in_array($page->ID, $pages_used)) ? 'checked="checked" ': ''; ?>/> <?php echo $page->post_title; ?></label></li>
 						<?php } ?>
 					</ul>
 				</div>
@@ -136,7 +136,7 @@ function admin_general() {
 							$categories_used = get_option('concerto_general_menu_categories_items');
 							foreach ($categories as $category) {
 						?>
-						<li><label><input type="checkbox" name="concerto_general_menu_categories_items[]" value="<?php echo $category->term_id; ?>" <?php echo (in_array($category->term_id, $categories_used)) ? 'checked="checked" ': ''; ?>/> <?php echo $category->cat_name; ?></label></li>
+						<li><label><input type="checkbox" name="concerto_general_menu_categories_items[]" value="<?php echo $category->term_id; ?>" <?php echo (@in_array($category->term_id, $categories_used)) ? 'checked="checked" ': ''; ?>/> <?php echo $category->cat_name; ?></label></li>
 						<?php } ?>
 					</ul>
 				</div>
@@ -149,7 +149,7 @@ function admin_general() {
 							$tags_used = get_option('concerto_general_menu_tags_items');
 							foreach ($tags as $tag) {
 						?>
-						<li><label><input type="checkbox" name="concerto_general_menu_tags_items[]" value="<?php echo $tag->term_id; ?>" <?php echo (in_array($tag->term_id, $tags_used)) ? 'checked="checked" ': ''; ?>/> <?php echo $tag->name; ?></label></li>
+						<li><label><input type="checkbox" name="concerto_general_menu_tags_items[]" value="<?php echo $tag->term_id; ?>" <?php echo (@in_array($tag->term_id, $tags_used)) ? 'checked="checked" ': ''; ?>/> <?php echo $tag->name; ?></label></li>
 						<?php } ?>
 					</ul>
 				</div>
@@ -164,7 +164,7 @@ function admin_general() {
 				<p>Description</p>
 				<textarea name="concerto_general_homepage_description"><?php echo get_option('concerto_general_homepage_description'); ?></textarea>
 				<p>Keywords</p>
-				<input type="text" class="text" name="concerto_general_homepage_keyword" value="<?php echo get_option('concerto_general_homepage_keyword'); ?>"/>
+				<input type="text" class="text" name="concerto_general_homepage_keywords" value="<?php echo get_option('concerto_general_homepage_keywords'); ?>"/>
 			</div>
 		</div>
 		
@@ -173,13 +173,44 @@ function admin_general() {
 			<div class="inner">
 				<p>If you would like to have a custom favicon for your site. Upload it here.</p>
 				<div id="favicon">
-					<div id="favicon_preview"></div>
-					Current Favicon
+					<div id="favicon_preview"><img src="<?php echo get_option('concerto_general_favicon'); ?>" width="16" height="16" alt="" border="0" /></div>
+					<div class="swfupload-control"><span id="spanButtonPlaceholder"></span></div>
+					<input type="hidden" name="concerto_general_favicon" id="favicon_hidden" value="<?php echo get_option('concerto_general_favicon'); ?>"/>
 					<div class="clear"></div>
 				</div>
 				<!-- 
 					Javascript Upload using Native Wordpress methods
 				-->
+				<script type="text/javascript">
+					jQuery(function($) {
+						$('.swfupload-control').swfupload({
+							upload_url: ajaxurl + '?action=concerto_upload',
+							flash_url : "<?php bloginfo('url'); ?>/wp-includes/js/swfupload/swfupload.swf",
+							post_params: {concerto_action: "favicon", _concerto_nonce: "<?php echo wp_create_nonce('CONCERTO_UPLOAD'); ?>"},
+							
+							file_post_name: "CONCERTO_UPLOAD",
+							file_size_limit : "2 MB",
+							file_types : "*.ico;*.png",
+							file_types_description : "ICO or PNG files only",
+							file_queue_limit : "1",
+
+							button_placeholder_id : "spanButtonPlaceholder",
+							button_text: '<span class="changefavicon">Change Favicon</span>',
+							button_width: 100,
+							button_height: 20,
+							button_text_style: ".changefavicon { color: #639638; font-family: arial; }",
+							button_cursor: SWFUpload.CURSOR.HAND, 
+							button_action: SWFUpload.BUTTON_ACTION.SELECT_FILE,
+							button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT, 
+						});
+						$('.swfupload-control')
+							.bind('fileQueued', function(event, file){$(this).swfupload('startUpload');})
+							.bind('uploadSuccess', function(event, file, response){
+								$('#favicon_preview img').attr('src', response);
+								$('#favicon_hidden').val(response);
+							});
+					});
+				</script>
 			</div>
 		</div>
 		
@@ -273,6 +304,7 @@ function admin_general() {
 				$('.box').removeClass('blur');
 			});
 			*/
+			
 			$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
 		});
 	</script>

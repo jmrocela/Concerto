@@ -60,3 +60,5 @@
 .blur { border: 1px solid #bbbbbb; background: #f9f9f9; color: #bbbbbb; }
 .blur h3 { background: #e1e1e1; border-bottom: 1px solid #bbbbbb; color: #999999; }
 .blur .text, .blur textarea { border: 1px solid #bbbbbb; }
+
+.swfupload { margin: 0; }
