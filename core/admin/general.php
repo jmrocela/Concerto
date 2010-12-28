@@ -25,10 +25,11 @@ function admin_general() {
 					<?php
 						$stages = Concerto::getStages();
 						foreach ($stages as $stage) {
-							
+							?>
+								<option value="<?php echo strtolower($stage); ?>"><?php echo $stage; ?></option>
+							<?php
 						}
 					?>
-					<option value="default">Default</option>
 				</select>
 			</div>
 			<p>You are running <strong>Concerto <?php echo CONCERTO_VERSION; ?></strong>. <em><a href="http://themeconcert.com/members/update/" target="_new">Upgrade your Copy</a></em></p>
@@ -66,50 +67,50 @@ function admin_general() {
 					<tbody>
 						<tr>
 							<td>Child Pages</td>
-							<td><input type="checkbox" name="concerto_seo_child_noindex" value="1" <?php echo (get_option('concerto_seo_child_noindex') == 1) ? 'checked="checked" ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_child_nofollow" value="1" <?php echo (get_option('concerto_seo_child_nofollow') == 1) ? 'checked="checked" ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_child_noarchive" value="1" <?php echo (get_option('concerto_seo_child_noarchive') == 1) ? 'checked="checked" ': '';?>/></td>
+							<td><input type="checkbox" name="concerto_seo_child_noindex" value="1" <?php echo (get_option('concerto_seo_child_noindex') == 1) ? 'checked ': '';?>/></td>
+							<td><input type="checkbox" name="concerto_seo_child_nofollow" value="1" <?php echo (get_option('concerto_seo_child_nofollow') == 1) ? 'checked ': '';?>/></td>
+							<td><input type="checkbox" name="concerto_seo_child_noarchive" value="1" <?php echo (get_option('concerto_seo_child_noarchive') == 1) ? 'checked ': '';?>/></td>
 						</tr>
 						<tr>
 							<td>Categories</td>
-							<td><input type="checkbox" name="concerto_seo_category_noindex" value="1" <?php echo (get_option('concerto_seo_category_noindex') == 1) ? 'checked="checked" ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_category_nofollow" value="1" <?php echo (get_option('concerto_seo_category_nofollow') == 1) ? 'checked="checked" ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_category_noarchive" value="1" <?php echo (get_option('concerto_seo_category_noarchive') == 1) ? 'checked="checked" ': '';?>/></td>
+							<td><input type="checkbox" name="concerto_seo_category_noindex" value="1" <?php echo (get_option('concerto_seo_category_noindex') == 1) ? 'checked ': '';?>/></td>
+							<td><input type="checkbox" name="concerto_seo_category_nofollow" value="1" <?php echo (get_option('concerto_seo_category_nofollow') == 1) ? 'checked ': '';?>/></td>
+							<td><input type="checkbox" name="concerto_seo_category_noarchive" value="1" <?php echo (get_option('concerto_seo_category_noarchive') == 1) ? 'checked ': '';?>/></td>
 						</tr>
 						<tr>
 							<td>Tags</td>
-							<td><input type="checkbox" name="concerto_seo_tag_noindex" value="1" <?php echo (get_option('concerto_seo_tag_noindex') == 1) ? 'checked="checked" ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_tag_nofollow" value="1" <?php echo (get_option('concerto_seo_tag_nofollow') == 1) ? 'checked="checked" ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_tag_noarchive" value="1" <?php echo (get_option('concerto_seo_tag_noarchive') == 1) ? 'checked="checked" ': '';?>/></td>
+							<td><input type="checkbox" name="concerto_seo_tag_noindex" value="1" <?php echo (get_option('concerto_seo_tag_noindex') == 1) ? 'checked ': '';?>/></td>
+							<td><input type="checkbox" name="concerto_seo_tag_nofollow" value="1" <?php echo (get_option('concerto_seo_tag_nofollow') == 1) ? 'checked ': '';?>/></td>
+							<td><input type="checkbox" name="concerto_seo_tag_noarchive" value="1" <?php echo (get_option('concerto_seo_tag_noarchive') == 1) ? 'checked ': '';?>/></td>
 						</tr>
 						<tr>
 							<td>Authors</td>
-							<td><input type="checkbox" name="concerto_seo_author_noindex" value="1" <?php echo (get_option('concerto_seo_author_noindex') == 1) ? 'checked="checked" ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_author_nofollow" value="1" <?php echo (get_option('concerto_seo_author_nofollow') == 1) ? 'checked="checked" ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_author_noarchive" value="1" <?php echo (get_option('concerto_seo_author_noarchive') == 1) ? 'checked="checked" ': '';?>/></td>
+							<td><input type="checkbox" name="concerto_seo_author_noindex" value="1" <?php echo (get_option('concerto_seo_author_noindex') == 1) ? 'checked ': '';?>/></td>
+							<td><input type="checkbox" name="concerto_seo_author_nofollow" value="1" <?php echo (get_option('concerto_seo_author_nofollow') == 1) ? 'checked ': '';?>/></td>
+							<td><input type="checkbox" name="concerto_seo_author_noarchive" value="1" <?php echo (get_option('concerto_seo_author_noarchive') == 1) ? 'checked ': '';?>/></td>
 						</tr>
 						<tr>
 							<td>Months</td>
-							<td><input type="checkbox" name="concerto_seo_month_noindex" value="1" <?php echo (get_option('concerto_seo_month_noindex') == 1) ? 'checked="checked" ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_month_nofollow" value="1" <?php echo (get_option('concerto_seo_month_nofollow') == 1) ? 'checked="checked" ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_month_noarchive" value="1" <?php echo (get_option('concerto_seo_month_noarchive') == 1) ? 'checked="checked" ': '';?>/></td>
+							<td><input type="checkbox" name="concerto_seo_month_noindex" value="1" <?php echo (get_option('concerto_seo_month_noindex') == 1) ? 'checked ': '';?>/></td>
+							<td><input type="checkbox" name="concerto_seo_month_nofollow" value="1" <?php echo (get_option('concerto_seo_month_nofollow') == 1) ? 'checked ': '';?>/></td>
+							<td><input type="checkbox" name="concerto_seo_month_noarchive" value="1" <?php echo (get_option('concerto_seo_month_noarchive') == 1) ? 'checked ': '';?>/></td>
 						</tr>
 						<tr>
 							<td>Days</td>
-							<td><input type="checkbox" name="concerto_seo_day_noindex" value="1" <?php echo (get_option('concerto_seo_day_noindex') == 1) ? 'checked="checked" ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_day_nofollow" value="1" <?php echo (get_option('concerto_seo_day_nofollow') == 1) ? 'checked="checked" ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_day_noarchive" value="1" <?php echo (get_option('concerto_seo_day_noarchive') == 1) ? 'checked="checked" ': '';?>/></td>
+							<td><input type="checkbox" name="concerto_seo_day_noindex" value="1" <?php echo (get_option('concerto_seo_day_noindex') == 1) ? 'checked ': '';?>/></td>
+							<td><input type="checkbox" name="concerto_seo_day_nofollow" value="1" <?php echo (get_option('concerto_seo_day_nofollow') == 1) ? 'checked ': '';?>/></td>
+							<td><input type="checkbox" name="concerto_seo_day_noarchive" value="1" <?php echo (get_option('concerto_seo_day_noarchive') == 1) ? 'checked ': '';?>/></td>
 						</tr>
 						<tr>
 							<td>Years</td>
-							<td><input type="checkbox" name="concerto_seo_year_noindex" value="1" <?php echo (get_option('concerto_seo_year_noindex') == 1) ? 'checked="checked" ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_year_nofollow" value="1" <?php echo (get_option('concerto_seo_year_nofollow') == 1) ? 'checked="checked" ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_year_noarchive" value="1" <?php echo (get_option('concerto_seo_year_noarchive') == 1) ? 'checked="checked" ': '';?>/></td>
+							<td><input type="checkbox" name="concerto_seo_year_noindex" value="1" <?php echo (get_option('concerto_seo_year_noindex') == 1) ? 'checked ': '';?>/></td>
+							<td><input type="checkbox" name="concerto_seo_year_nofollow" value="1" <?php echo (get_option('concerto_seo_year_nofollow') == 1) ? 'checked ': '';?>/></td>
+							<td><input type="checkbox" name="concerto_seo_year_noarchive" value="1" <?php echo (get_option('concerto_seo_year_noarchive') == 1) ? 'checked ': '';?>/></td>
 						</tr>
 					</tbody>
 				</table>
 					<div class="clear"></div>
-				<p><label><input type="checkbox" name="concerto_seo_enable_canonical" value="1" <?php echo (get_option('concerto_seo_enable_canonical') == 1) ? 'checked="checked" ': '';?>/> Support Canonical URLs for your Site</label></p>
+				<p><label><input type="checkbox" name="concerto_seo_enable_canonical" value="1" <?php echo (get_option('concerto_seo_enable_canonical') == 1) ? 'checked ': '';?>/> Support Canonical URLs for your Site</label></p>
 			</div>
 		</div>
 		
@@ -130,7 +131,7 @@ function admin_general() {
 							$pages_used = get_option('concerto_general_menu_pages_items');
 							foreach ($pages as $page) {
 						?>
-						<li><label><input type="checkbox" name="concerto_general_menu_pages_items[]" value="<?php echo $page->ID; ?>" <?php echo (@in_array($page->ID, $pages_used)) ? 'checked="checked" ': ''; ?>/> <?php echo $page->post_title; ?></label></li>
+						<li><label><input type="checkbox" name="concerto_general_menu_pages_items[]" value="<?php echo $page->ID; ?>" <?php echo (@in_array($page->ID, $pages_used)) ? 'checked ': ''; ?>/> <?php echo $page->post_title; ?></label></li>
 						<?php } ?>
 					</ul>
 					</div>
@@ -145,7 +146,7 @@ function admin_general() {
 							$categories_used = get_option('concerto_general_menu_categories_items');
 							foreach ($categories as $category) {
 						?>
-						<li><label><input type="checkbox" name="concerto_general_menu_categories_items[]" value="<?php echo $category->term_id; ?>" <?php echo (@in_array($category->term_id, $categories_used)) ? 'checked="checked" ': ''; ?>/> <?php echo $category->cat_name; ?></label></li>
+						<li><label><input type="checkbox" name="concerto_general_menu_categories_items[]" value="<?php echo $category->term_id; ?>" <?php echo (@in_array($category->term_id, $categories_used)) ? 'checked ': ''; ?>/> <?php echo $category->cat_name; ?></label></li>
 						<?php } ?>
 					</ul>
 					</div>
@@ -160,7 +161,7 @@ function admin_general() {
 							$tags_used = get_option('concerto_general_menu_tags_items');
 							foreach ($tags as $tag) {
 						?>
-						<li><label><input type="checkbox" name="concerto_general_menu_tags_items[]" value="<?php echo $tag->term_id; ?>" <?php echo (@in_array($tag->term_id, $tags_used)) ? 'checked="checked" ': ''; ?>/> <?php echo $tag->name; ?></label></li>
+						<li><label><input type="checkbox" name="concerto_general_menu_tags_items[]" value="<?php echo $tag->term_id; ?>" <?php echo (@in_array($tag->term_id, $tags_used)) ? 'checked ': ''; ?>/> <?php echo $tag->name; ?></label></li>
 						<?php } ?>
 					</ul>
 					</div>
@@ -210,20 +211,35 @@ function admin_general() {
 			<h3>Theme Extensions</h3>
 			<div class="inner">
 				<?php
-					if (!empty($extensions)) {
+					if (Concerto::hasExtensions()) {
+						$extensions = Concerto::getExtensions();
 				?>
-					<p>Tick the extensions you would like Concerto to use. The option boxes for the plugins will be available upon activation.</p>
-					<?php
+					<p>Enable extensions available for your Site.</p>
+					<ul id="extensions">
+						<?php
 						foreach ($extensions as $extension) {
-						$title = $extension['Title'];
-					?>
-						<p><label title="<?php echo $extension['Description']; ?>"><input type="checkbox" name="concerto_options[general][<?php echo strtolower($title); ?>_enabled]" <?php echo (concerto::option(strtolower($title) . '_enabled')) ? 'checked': ''; ?>/> <?php _e($title, 'concerto'); ?></label></p>
+							$author = '';
+							if ($extension['author']) {
+								if ($extension['author_uri']) {
+									$author = ' by <a href="' . $extension['author_uri'] . '" target="_new">' . $extension['author'] . '</a>';
+								} else {
+									$author = ' by ' . $extension['author'];
+								}
+							}
+						?>
+						<li>
+							<label><input type="checkbox" name="concerto_extensions_<?php echo $extension['id']; ?>_enabled" value="1" <?php echo (get_option('concerto_extensions_' . $extension['id'] . '_enabled') == 1) ? ' checked': ''; ?>/> <?php echo $extension['name']; ?><?php echo $author; ?></label>
+							<p><?php echo $extension['description']; ?></p>
+						</li>
 					<?php
 						}
+					?>
+					</ul>
+					<?php
 					} else {
 					?>
 					<p>It seems that you are missing a few files on your Concerto Directory.</p>
-					<p class="red">The extensions directory is empty.</p>
+					<p class="red">The Extension directory is empty.</p>
 				<?php
 					}
 				?>
@@ -235,16 +251,16 @@ function admin_general() {
 			<div class="inner">
 				<p>These options here are plainly for custom use only and are not required. You can use them on the widgets included or <a href="http://themeconcert.com/concert/manual/" target="_new">through code</a>.</p>
 				<h4>Twitter</h4>
-				<input type="text" class="text" name="concerto_personal_twitter" value="<?php echo get_option('concerto_personal_twitter'); ?>"
+				<input type="text" class="text" name="concerto_personal_twitter" value="<?php echo get_option('concerto_personal_twitter'); ?>" />
 				<h4>Facebook</h4>
-				<input type="text" class="text" name="concerto_personal_facebook" value="<?php echo get_option('concerto_personal_facebook'); ?>"
+				<input type="text" class="text" name="concerto_personal_facebook" value="<?php echo get_option('concerto_personal_facebook'); ?>" />
 				<h4>Youtube</h4>
-				<input type="text" class="text" name="concerto_personal_youtube" value="<?php echo get_option('concerto_personal_youtube'); ?>"
+				<input type="text" class="text" name="concerto_personal_youtube" value="<?php echo get_option('concerto_personal_youtube'); ?>" />
 				<h4>LinkedIn</h4>
-				<input type="text" class="text" name="concerto_personal_linkedin" value="<?php echo get_option('concerto_personal_linkedin'); ?>"
+				<input type="text" class="text" name="concerto_personal_linkedin" value="<?php echo get_option('concerto_personal_linkedin'); ?>" />
 				<h4>Email</h4>
-				<input type="text" class="text" name="concerto_personal_email" value="<?php echo get_option('concerto_personal_email'); ?>"
-				<p><label><input type="checkbox" name="concerto_personal_email_use_admin" value="1" <?php echo (get_option('concerto_personal_email_use_admin') == 1) ? 'checked="checked" ': '';?>/> Use Administrator Email</label></p>
+				<input type="text" class="text" name="concerto_personal_email" value="<?php echo get_option('concerto_personal_email'); ?>" />
+				<p><label><input type="checkbox" name="concerto_personal_email_use_admin" value="1" <?php echo (get_option('concerto_personal_email_use_admin') == 1) ? 'checked ': '';?>/> Use Administrator Email</label></p>
 			</div>
 		</div>
 		
@@ -268,8 +284,8 @@ function admin_general() {
 			<h3>Javascript Libraries</h3>
 			<div class="inner">
 				<p>This option will help you load javascript libraries the right way.</p>
-				<p><label><input type="checkbox" name="concerto_general_scripts_libraries_jquery" value="1" <?php echo (get_option('concerto_general_scripts_libraries_jquery') == 1) ? 'checked="checked" ': '';?>/> jQuery</label></p>
-				<p><label><input type="checkbox" name="concerto_general_scripts_libraries_jquery_ui" value="1" <?php echo (get_option('concerto_general_scripts_libraries_jquery_ui') == 1) ? 'checked="checked" ': '';?>/> jQuery UI</label></p>
+				<p><label><input type="checkbox" name="concerto_general_scripts_libraries_jquery" value="1" <?php echo (get_option('concerto_general_scripts_libraries_jquery') == 1) ? 'checked ': '';?>/> jQuery</label></p>
+				<p><label><input type="checkbox" name="concerto_general_scripts_libraries_jquery_ui" value="1" <?php echo (get_option('concerto_general_scripts_libraries_jquery_ui') == 1) ? 'checked ': '';?>/> jQuery UI</label></p>
 			</div>
 		</div>
 		

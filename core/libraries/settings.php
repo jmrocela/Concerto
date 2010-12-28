@@ -19,6 +19,7 @@
 	register_setting('concerto_general', 'concerto_general_menu_show_home');
 	register_setting('concerto_general', 'concerto_general_menu_show_feed');
 
+	register_setting('concerto_general', 'concerto_extensions_seo_enabled');
 	register_setting('concerto_general', 'concerto_seo_enable_canonical');
 	register_setting('concerto_general', 'concerto_seo_child_noindex');
 	register_setting('concerto_general', 'concerto_seo_child_nofollow');

@@ -158,8 +158,7 @@ update_option('concerto_design_engrave', 0); // add an engrave effect to texts
 /**
  * Extensions
  */
-update_option('concerto_extensions_cache_enabled', 0);
-update_option('concerto_extensions_seo_enabled', 0);
+update_option('concerto_extensions_seo_enabled', 1);
 	update_option('concerto_seo_enable_canonical', 0);
 	update_option('concerto_extensions_thumbnail_enabled', 0);
 	update_option('concerto_seo_child_noindex', 0);
@@ -183,8 +182,7 @@ update_option('concerto_extensions_seo_enabled', 0);
 	update_option('concerto_seo_year_noindex', 0);
 	update_option('concerto_seo_year_nofollow', 0);
 	update_option('concerto_seo_year_noarchive', 0);
-update_option('concerto_extensions_social_enabled', 0);
-update_option('concerto_extensions_thumbnail_enabled', 0);
+	
 	update_option('concerto_personal_twitter', '');
 	update_option('concerto_personal_facebook', '');
 	update_option('concerto_personal_youtube', '');

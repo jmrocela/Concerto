@@ -23,12 +23,75 @@ class Concerto {
 		require CONCERTO_LIBS . 'theme.php';
 	}
 	
-	public function getExtensions() {
-		
+	public static function hasExtensions() {
+		$extensions = Concerto::getExtensions();
+		if (empty($extensions)) {
+			return false;
+		}
+		return true;
 	}
 	
-	public function getStages() {
-		
+	public static function getExtensions() {
+		$extensions = array();
+		if (file_exists(CONCERTO_MOD)) {
+			if ($dh = opendir(CONCERTO_MOD)) {
+				$default_headers = array(
+					'Name' => 'Module Name',
+					'Description' => 'Description',
+					'Author' => 'Author',
+					'AuthorURI' => 'Author URI',
+					'Version' => 'Version',
+					);
+				$themes_allowed_tags = array(
+					'a' => array(
+						'href' => array(),'title' => array()
+						),
+					'abbr' => array(
+						'title' => array()
+						),
+					'acronym' => array(
+						'title' => array()
+						),
+					'code' => array(),
+					'em' => array(),
+					'strong' => array()
+				);				
+				while (($file = readdir($dh)) !== false) {
+					if (!is_dir(CONCERTO_MOD . $file) || $file == '.' || $file == '..' || $file == 'CVS' || $file == '.git') {
+						continue;
+					}
+					if (file_exists(CONCERTO_MOD . $file . _DS . $file . '.php') && is_readable(CONCERTO_MOD . $file . _DS . $file . '.php')) {
+						$meta = get_file_data(CONCERTO_MOD . $file . _DS . $file . '.php', $default_headers, 'concerto_extensions');
+						$extensions[] = array(
+							'id' => strtolower($file),
+							'name' => $meta['Name'],
+							'description' => wp_kses($meta['Description'], $themes_allowed_tags),
+							'version' => $meta['Version'],
+							'author' => $meta['Author'],
+							'author_uri' => $meta['AuthorURI'] 
+						);
+					}
+				}
+			}
+		}
+		return $extensions;
+	}
+	
+	public static function getStages() {
+		$stage = array();
+		if (file_exists(CONCERTO_STAGES)) {
+			if ($dh = opendir(CONCERTO_STAGES)) {
+				while (($file = readdir($dh)) !== false) {
+					if (!is_dir(CONCERTO_STAGES . $file) || $file == '.' || $file == '..' || $file == 'CVS' || $file == '.git') {
+						continue;
+					}
+					// Should we check if the stage has a custom stylesheet?
+					$stage[] = $file;
+				}
+			}
+		}
+		return $stage;
+		// Throw an Error: STAGE FOLDER IS MISSING
 	}
 
 }
