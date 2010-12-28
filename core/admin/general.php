@@ -115,7 +115,8 @@ function admin_general() {
 				<p><label><input type="radio" name="concerto_general_menu" value="default" <?php echo (get_option('concerto_general_menu') == 'default') ? 'checked': ''; ?>/> Wordpress Default Menu</em></label></p>
 				<p><label><input type="radio" name="concerto_general_menu" value="concerto" <?php echo (get_option('concerto_general_menu') == 'concerto') ? 'checked': ''; ?>/> Concerto Navigation</label></p>
 				<div class="navigationlists">
-					<h4><label><input type="checkbox" name="concerto_general_menu_use_pages" value="1" <?php echo (get_option('concerto_general_menu_use_pages') == 1) ? 'checked': ''; ?>/> Pages</label></h4>
+					<h4><label><input type="checkbox" id="toggle_pageslist" name="concerto_general_menu_use_pages" value="1" <?php echo (get_option('concerto_general_menu_use_pages') == 1) ? 'checked': ''; ?>/> Pages</label></h4>
+					<div id="pageslist">
 					<p>You can sort the Pages you would like to include in your Navigation Menu here</p>
 					<ul>
 						<?php
@@ -126,9 +127,11 @@ function admin_general() {
 						<li><label><input type="checkbox" name="concerto_general_menu_pages_items[]" value="<?php echo $page->ID; ?>" <?php echo (@in_array($page->ID, $pages_used)) ? 'checked="checked" ': ''; ?>/> <?php echo $page->post_title; ?></label></li>
 						<?php } ?>
 					</ul>
+					</div>
 				</div>
 				<div class="navigationlists">
-					<h4><label><input type="checkbox" name="concerto_general_menu_use_categories" value="1" <?php echo (get_option('concerto_general_menu_use_categories') == 1) ? 'checked': ''; ?>/> Categories</label></h4>
+					<h4><label><input type="checkbox" id="toggle_categorieslist" name="concerto_general_menu_use_categories" value="1" <?php echo (get_option('concerto_general_menu_use_categories') == 1) ? 'checked': ''; ?>/> Categories</label></h4>
+					<div id="categorieslist">
 					<p>Sort the Categories you would want to show up on your Navigation Menu</p>
 					<ul>
 						<?php
@@ -139,9 +142,11 @@ function admin_general() {
 						<li><label><input type="checkbox" name="concerto_general_menu_categories_items[]" value="<?php echo $category->term_id; ?>" <?php echo (@in_array($category->term_id, $categories_used)) ? 'checked="checked" ': ''; ?>/> <?php echo $category->cat_name; ?></label></li>
 						<?php } ?>
 					</ul>
+					</div>
 				</div>
 				<div class="navigationlists">
-					<h4><label><input type="checkbox" name="concerto_general_menu_use_tags" value="1" <?php echo (get_option('concerto_general_menu_use_tags') == 1) ? 'checked': ''; ?>/> Tags</label></h4>
+					<h4><label><input type="checkbox" id="toggle_tagslist" name="concerto_general_menu_use_tags" value="1" <?php echo (get_option('concerto_general_menu_use_tags') == 1) ? 'checked': ''; ?>/> Tags</label></h4>
+					<div id="tagslist">
 					<p>Sort Tags you want to display on your Navigation Menu</p>
 					<ul>
 						<?php
@@ -152,10 +157,16 @@ function admin_general() {
 						<li><label><input type="checkbox" name="concerto_general_menu_tags_items[]" value="<?php echo $tag->term_id; ?>" <?php echo (@in_array($tag->term_id, $tags_used)) ? 'checked="checked" ': ''; ?>/> <?php echo $tag->name; ?></label></li>
 						<?php } ?>
 					</ul>
+					</div>
 				</div>
 				<p><label><input type="checkbox" name="concerto_general_menu_show_home" value="1" <?php echo (get_option('concerto_general_menu_show_home') == 1) ? 'checked': ''; ?>/> Show the Home Link</em></label></p>
 				<p><label><input type="checkbox" name="concerto_general_menu_show_feed" value="1" <?php echo (get_option('concerto_general_menu_show_feed') == 1) ? 'checked': ''; ?>/> Show Subscribe Link</label></p>
 			</div>
+			<script type="text/javascript">
+				jQuery(function($) {
+					
+				});
+			</script>
 		</div>
 	
 		<div class="box box1column" id="concerto_home_meta">
@@ -178,39 +189,6 @@ function admin_general() {
 					<input type="hidden" name="concerto_general_favicon" id="favicon_hidden" value="<?php echo get_option('concerto_general_favicon'); ?>"/>
 					<div class="clear"></div>
 				</div>
-				<!-- 
-					Javascript Upload using Native Wordpress methods
-				-->
-				<script type="text/javascript">
-					jQuery(function($) {
-						$('.swfupload-control').swfupload({
-							upload_url: ajaxurl + '?action=concerto_upload',
-							flash_url : "<?php bloginfo('url'); ?>/wp-includes/js/swfupload/swfupload.swf",
-							post_params: {concerto_action: "favicon", _concerto_nonce: "<?php echo wp_create_nonce('CONCERTO_UPLOAD'); ?>"},
-							
-							file_post_name: "CONCERTO_UPLOAD",
-							file_size_limit : "2 MB",
-							file_types : "*.ico;*.png",
-							file_types_description : "ICO or PNG files only",
-							file_queue_limit : "1",
-
-							button_placeholder_id : "spanButtonPlaceholder",
-							button_text: '<span class="changefavicon">Change Favicon</span>',
-							button_width: 100,
-							button_height: 20,
-							button_text_style: ".changefavicon { color: #639638; font-family: arial; }",
-							button_cursor: SWFUpload.CURSOR.HAND, 
-							button_action: SWFUpload.BUTTON_ACTION.SELECT_FILE,
-							button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT, 
-						});
-						$('.swfupload-control')
-							.bind('fileQueued', function(event, file){$(this).swfupload('startUpload');})
-							.bind('uploadSuccess', function(event, file, response){
-								$('#favicon_preview img').attr('src', response);
-								$('#favicon_hidden').val(response);
-							});
-					});
-				</script>
 			</div>
 		</div>
 		
@@ -305,6 +283,39 @@ function admin_general() {
 			});
 			*/
 			
+			/**
+			 * Upload functionality
+			 */
+			$('.swfupload-control').swfupload({
+				upload_url: ajaxurl + '?action=concerto_upload',
+				flash_url : "<?php bloginfo('url'); ?>/wp-includes/js/swfupload/swfupload.swf",
+				post_params: {concerto_action: "favicon", _concerto_nonce: "<?php echo wp_create_nonce('CONCERTO_UPLOAD'); ?>"},
+				
+				file_post_name: "CONCERTO_UPLOAD",
+				file_size_limit : "2 MB",
+				file_types : "*.ico;*.png",
+				file_types_description : "ICO or PNG files only",
+				file_queue_limit : "1",
+
+				button_placeholder_id : "spanButtonPlaceholder",
+				button_text: '<span class="changefavicon">Change Favicon</span>',
+				button_width: 100,
+				button_height: 20,
+				button_text_style: ".changefavicon { color: #639638; font-family: arial; }",
+				button_cursor: SWFUpload.CURSOR.HAND, 
+				button_action: SWFUpload.BUTTON_ACTION.SELECT_FILE,
+				button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT, 
+			});
+			$('.swfupload-control')
+				.bind('fileQueued', function(event, file){$(this).swfupload('startUpload');})
+				.bind('uploadSuccess', function(event, file, response){
+					$('#favicon_preview img').attr('src', response);
+					$('#favicon_hidden').val(response);
+				});
+			
+			/**
+			 * Masonry
+			 */
 			$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
 		});
 	</script>

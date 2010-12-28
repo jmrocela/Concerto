@@ -11,6 +11,7 @@
 // Actions
 add_action('concerto_hook_title', 'concerto_hook_title');
 add_action('concerto_hook_head', 'concerto_hook_head');
+add_action('concerto_hook_head', 'concerto_hook_favicon');
 add_action('concerto_hook_head', 'concerto_hook_syndication');
 add_action('concerto_hook_head', 'concerto_hook_comment_syndication');
 add_action('concerto_hook_head', 'wp_head');

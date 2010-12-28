@@ -56,6 +56,17 @@ function concerto_hook_syndication() {
 }
 
 /**
+ * Site Favicon
+ */
+function concerto_hook_favicon() {
+	if (get_option('concerto_general_favicon')) {
+	?>
+	<link rel="shortcut icon" href="<?php echo get_option('concerto_general_favicon'); ?>" type="image/x-icon" />
+	<?php
+	}
+}
+
+/**
  * Comment Syndication link in the <head> tag
  */
 function concerto_hook_comment_syndication() {
