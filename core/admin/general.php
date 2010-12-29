@@ -1,6 +1,6 @@
 <?php
-function admin_general() {
 
+function admin_general() {
 ?>
 <div class="wrap concerto">
 	<form method="POST" action="options.php" id="concerto_options">
@@ -20,17 +20,28 @@ function admin_general() {
 		</div>
 		<div class="right">
 			<div id="concerto_stage">
+				<?php
+					global $stages;
+					if (!empty($stages->stages)) {
+				?>
 				Active Stage
 				<select name="concerto_stage">
 					<?php
-						$stages = Concerto::getStages();
+						$stages = $stages->stages;
 						foreach ($stages as $stage) {
 							?>
-								<option value="<?php echo strtolower($stage); ?>"><?php echo $stage; ?></option>
+								<option value="<?php echo strtolower($stage['name']); ?>"><?php echo $stage['name']; ?></option>
 							<?php
 						}
 					?>
 				</select>
+				<?php 
+					} else {
+				?>
+					<span class="warning_span"><strong>Warning:</strong> there are no <em>Stages</em> in your Stage directory.</span>
+				<?php
+					}
+				?>
 			</div>
 			<p>You are running <strong>Concerto <?php echo CONCERTO_VERSION; ?></strong>. <em><a href="http://themeconcert.com/members/update/" target="_new">Upgrade your Copy</a></em></p>
 		</div>
@@ -42,253 +53,7 @@ function admin_general() {
 	<?php } ?>
 	<h3 id="concerto_context"><input type="submit" value="Save Changes" /></h3>
 	<div id="concerto_dashboard">
-	
-		<div class="box box2columns" id="concerto_site_title">
-			<h3>Site Title</h3>
-			<div class="inner">
-				<p>If you would rather have Concerto replace the default Wordpress Title for all pages to a more SEO friendlier one.</p>
-				<input type="text" class="text" name="concerto_general_site_title" value="<?php echo get_option('concerto_general_site_title'); ?>" />
-			</div>
-		</div>
-		
-		<div class="box box2columns" id="concerto_seo">
-			<h3><abbr title="Search Engine Optimization">SEO</abbr> Options</h3>
-			<div class="inner">
-				<p>You can easily fine tune your Site's Global SEO here. You can also set SEO options for <a href="http://themeconcert.com/concert/manual/" target="_new">individual Posts or Pages</a></p>
-				<table>
-					<thead>
-						<tr>
-							<th></th>
-							<th><code>noindex</code></th>
-							<th><code>nofollow</code></th>
-							<th><code>noarchive</code></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Child Pages</td>
-							<td><input type="checkbox" name="concerto_seo_child_noindex" value="1" <?php echo (get_option('concerto_seo_child_noindex') == 1) ? 'checked ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_child_nofollow" value="1" <?php echo (get_option('concerto_seo_child_nofollow') == 1) ? 'checked ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_child_noarchive" value="1" <?php echo (get_option('concerto_seo_child_noarchive') == 1) ? 'checked ': '';?>/></td>
-						</tr>
-						<tr>
-							<td>Categories</td>
-							<td><input type="checkbox" name="concerto_seo_category_noindex" value="1" <?php echo (get_option('concerto_seo_category_noindex') == 1) ? 'checked ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_category_nofollow" value="1" <?php echo (get_option('concerto_seo_category_nofollow') == 1) ? 'checked ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_category_noarchive" value="1" <?php echo (get_option('concerto_seo_category_noarchive') == 1) ? 'checked ': '';?>/></td>
-						</tr>
-						<tr>
-							<td>Tags</td>
-							<td><input type="checkbox" name="concerto_seo_tag_noindex" value="1" <?php echo (get_option('concerto_seo_tag_noindex') == 1) ? 'checked ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_tag_nofollow" value="1" <?php echo (get_option('concerto_seo_tag_nofollow') == 1) ? 'checked ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_tag_noarchive" value="1" <?php echo (get_option('concerto_seo_tag_noarchive') == 1) ? 'checked ': '';?>/></td>
-						</tr>
-						<tr>
-							<td>Authors</td>
-							<td><input type="checkbox" name="concerto_seo_author_noindex" value="1" <?php echo (get_option('concerto_seo_author_noindex') == 1) ? 'checked ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_author_nofollow" value="1" <?php echo (get_option('concerto_seo_author_nofollow') == 1) ? 'checked ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_author_noarchive" value="1" <?php echo (get_option('concerto_seo_author_noarchive') == 1) ? 'checked ': '';?>/></td>
-						</tr>
-						<tr>
-							<td>Months</td>
-							<td><input type="checkbox" name="concerto_seo_month_noindex" value="1" <?php echo (get_option('concerto_seo_month_noindex') == 1) ? 'checked ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_month_nofollow" value="1" <?php echo (get_option('concerto_seo_month_nofollow') == 1) ? 'checked ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_month_noarchive" value="1" <?php echo (get_option('concerto_seo_month_noarchive') == 1) ? 'checked ': '';?>/></td>
-						</tr>
-						<tr>
-							<td>Days</td>
-							<td><input type="checkbox" name="concerto_seo_day_noindex" value="1" <?php echo (get_option('concerto_seo_day_noindex') == 1) ? 'checked ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_day_nofollow" value="1" <?php echo (get_option('concerto_seo_day_nofollow') == 1) ? 'checked ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_day_noarchive" value="1" <?php echo (get_option('concerto_seo_day_noarchive') == 1) ? 'checked ': '';?>/></td>
-						</tr>
-						<tr>
-							<td>Years</td>
-							<td><input type="checkbox" name="concerto_seo_year_noindex" value="1" <?php echo (get_option('concerto_seo_year_noindex') == 1) ? 'checked ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_year_nofollow" value="1" <?php echo (get_option('concerto_seo_year_nofollow') == 1) ? 'checked ': '';?>/></td>
-							<td><input type="checkbox" name="concerto_seo_year_noarchive" value="1" <?php echo (get_option('concerto_seo_year_noarchive') == 1) ? 'checked ': '';?>/></td>
-						</tr>
-					</tbody>
-				</table>
-					<div class="clear"></div>
-				<p><label><input type="checkbox" name="concerto_seo_enable_canonical" value="1" <?php echo (get_option('concerto_seo_enable_canonical') == 1) ? 'checked ': '';?>/> Support Canonical URLs for your Site</label></p>
-			</div>
-		</div>
-		
-		<div class="box box1column" id="concerto_navigation">
-			<h3>Navigation</h3>
-			<div class="inner">
-				<h4>Please Select Menu Type</h4>
-				<p>This will determine if Concerto will handle Navigation display or let Wordpress display it's menus.</p>
-				<p><label><input type="radio" name="concerto_general_menu" class="menu_type" value="default" <?php echo (get_option('concerto_general_menu') == 'default') ? 'checked': ''; ?>/> Wordpress Default Menu</em></label></p>
-				<p><label><input type="radio" name="concerto_general_menu" class="menu_type" value="concerto" <?php echo (get_option('concerto_general_menu') == 'concerto') ? 'checked': ''; ?>/> Concerto Navigation</label></p>
-				<div class="navigationlists">
-					<h4><label><input type="checkbox" name="concerto_general_menu_use_pages" value="1" <?php echo (get_option('concerto_general_menu_use_pages') == 1) ? 'checked': ''; ?>/> Pages</label></h4>
-					<div class="navigationlist">
-					<p>You can sort the Pages you would like to include in your Navigation Menu here</p>
-					<ul>
-						<?php
-							$pages = get_pages();
-							$pages_used = get_option('concerto_general_menu_pages_items');
-							foreach ($pages as $page) {
-						?>
-						<li><label><input type="checkbox" name="concerto_general_menu_pages_items[]" value="<?php echo $page->ID; ?>" <?php echo (@in_array($page->ID, $pages_used)) ? 'checked ': ''; ?>/> <?php echo $page->post_title; ?></label></li>
-						<?php } ?>
-					</ul>
-					</div>
-				</div>
-				<div class="navigationlists">
-					<h4><label><input type="checkbox" name="concerto_general_menu_use_categories" value="1" <?php echo (get_option('concerto_general_menu_use_categories') == 1) ? 'checked': ''; ?>/> Categories</label></h4>
-					<div class="navigationlist">
-					<p>Sort the Categories you would want to show up on your Navigation Menu</p>
-					<ul>
-						<?php
-							$categories = get_categories();
-							$categories_used = get_option('concerto_general_menu_categories_items');
-							foreach ($categories as $category) {
-						?>
-						<li><label><input type="checkbox" name="concerto_general_menu_categories_items[]" value="<?php echo $category->term_id; ?>" <?php echo (@in_array($category->term_id, $categories_used)) ? 'checked ': ''; ?>/> <?php echo $category->cat_name; ?></label></li>
-						<?php } ?>
-					</ul>
-					</div>
-				</div>
-				<div class="navigationlists">
-					<h4><label><input type="checkbox" name="concerto_general_menu_use_tags" value="1" <?php echo (get_option('concerto_general_menu_use_tags') == 1) ? 'checked': ''; ?>/> Tags</label></h4>
-					<div class="navigationlist">
-					<p>Sort Tags you want to display on your Navigation Menu</p>
-					<ul>
-						<?php
-							$tags = get_tags();
-							$tags_used = get_option('concerto_general_menu_tags_items');
-							foreach ($tags as $tag) {
-						?>
-						<li><label><input type="checkbox" name="concerto_general_menu_tags_items[]" value="<?php echo $tag->term_id; ?>" <?php echo (@in_array($tag->term_id, $tags_used)) ? 'checked ': ''; ?>/> <?php echo $tag->name; ?></label></li>
-						<?php } ?>
-					</ul>
-					</div>
-				</div>
-				<p><label><input type="checkbox" name="concerto_general_menu_show_home" value="1" <?php echo (get_option('concerto_general_menu_show_home') == 1) ? 'checked': ''; ?>/> Show the Home Link</em></label></p>
-				<p><label><input type="checkbox" name="concerto_general_menu_show_feed" value="1" <?php echo (get_option('concerto_general_menu_show_feed') == 1) ? 'checked': ''; ?>/> Show Subscribe Link</label></p>
-			</div>
-			<script type="text/javascript">
-				jQuery(function($) {
-				});
-			</script>
-		</div>
-	
-		<div class="box box1column" id="concerto_home_meta">
-			<h3>Homepage Meta</h3>
-			<div class="inner">
-				<p>Description</p>
-				<textarea name="concerto_general_homepage_description"><?php echo get_option('concerto_general_homepage_description'); ?></textarea>
-				<p>Keywords</p>
-				<input type="text" class="text" name="concerto_general_homepage_keywords" value="<?php echo get_option('concerto_general_homepage_keywords'); ?>"/>
-			</div>
-		</div>
-		
-		<div class="box box1column" id="concerto_favicon">
-			<h3>Favicon</h3>
-			<div class="inner">
-				<p>If you would like to have a custom favicon for your site. Upload it here.</p>
-				<div id="favicon">
-					<div id="favicon_preview"><img src="<?php echo get_option('concerto_general_favicon'); ?>" width="16" height="16" alt="" border="0" /></div>
-					<div class="swfupload-control"><span id="spanButtonPlaceholder"></span></div>
-					<input type="hidden" name="concerto_general_favicon" id="favicon_hidden" value="<?php echo get_option('concerto_general_favicon'); ?>"/>
-					<div class="clear"></div>
-					<a href="javascript:;" id="removefavicon">Remove Favicon</a>
-				</div>
-			</div>
-		</div>
-		
-		<div class="box box1column" id="concerto_syndication_url">
-			<h3>RSS URL</h3>
-			<div class="inner">
-				<p>Enter the URL of your custom feed in the box below. Leave the box blank if you want to use Wordress' native feed.</p>
-				<input type="text" class="text" name="concerto_general_syndication_url" value="<?php echo get_option('concerto_general_syndication_url'); ?>" />
-			</div>
-		</div>
-		
-		<div class="box box1column" id="concerto_extensions">
-			<h3>Theme Extensions</h3>
-			<div class="inner">
-				<?php
-					if (Concerto::hasExtensions()) {
-						$extensions = Concerto::getExtensions();
-				?>
-					<p>Enable extensions available for your Site.</p>
-					<ul id="extensions">
-						<?php
-						foreach ($extensions as $extension) {
-							$author = '';
-							if ($extension['author']) {
-								if ($extension['author_uri']) {
-									$author = ' by <a href="' . $extension['author_uri'] . '" target="_new">' . $extension['author'] . '</a>';
-								} else {
-									$author = ' by ' . $extension['author'];
-								}
-							}
-						?>
-						<li>
-							<label><input type="checkbox" name="concerto_extensions_<?php echo $extension['id']; ?>_enabled" value="1" <?php echo (get_option('concerto_extensions_' . $extension['id'] . '_enabled') == 1) ? ' checked': ''; ?>/> <?php echo $extension['name']; ?><?php echo $author; ?></label>
-							<p><?php echo $extension['description']; ?></p>
-						</li>
-					<?php
-						}
-					?>
-					</ul>
-					<?php
-					} else {
-					?>
-					<p>It seems that you are missing a few files on your Concerto Directory.</p>
-					<p class="red">The Extension directory is empty.</p>
-				<?php
-					}
-				?>
-			</div>
-		</div>
-		
-		<div class="box box1column" id="concerto_personal">
-			<h3>Personal Information</h3>
-			<div class="inner">
-				<p>These options here are plainly for custom use only and are not required. You can use them on the widgets included or <a href="http://themeconcert.com/concert/manual/" target="_new">through code</a>.</p>
-				<h4>Twitter</h4>
-				<input type="text" class="text" name="concerto_personal_twitter" value="<?php echo get_option('concerto_personal_twitter'); ?>" />
-				<h4>Facebook</h4>
-				<input type="text" class="text" name="concerto_personal_facebook" value="<?php echo get_option('concerto_personal_facebook'); ?>" />
-				<h4>Youtube</h4>
-				<input type="text" class="text" name="concerto_personal_youtube" value="<?php echo get_option('concerto_personal_youtube'); ?>" />
-				<h4>LinkedIn</h4>
-				<input type="text" class="text" name="concerto_personal_linkedin" value="<?php echo get_option('concerto_personal_linkedin'); ?>" />
-				<h4>Email</h4>
-				<input type="text" class="text" name="concerto_personal_email" value="<?php echo get_option('concerto_personal_email'); ?>" />
-				<p><label><input type="checkbox" name="concerto_personal_email_use_admin" value="1" <?php echo (get_option('concerto_personal_email_use_admin') == 1) ? 'checked ': '';?>/> Use Administrator Email</label></p>
-			</div>
-		</div>
-		
-		<div class="box box1column" id="concerto_scripts">
-			<h3>Additional Scripts</h3>
-			<div class="inner">
-				<div>
-					<h4>Head</h4>
-					<p>If you want to add additional scripts to the <code>&lt;head&gt;</code> tag, place them here.</p>
-					<textarea name="concerto_general_scripts_head"><?php echo get_option('concerto_general_scripts_head'); ?></textarea>
-				</div>
-				<div>
-					<h4>Footer</h4>
-					<p>If you want to run Tracking scripts such as Google Analytics, place them here.</p>
-					<textarea name="concerto_general_scripts_footer"><?php echo get_option('concerto_general_scripts_footer'); ?></textarea>
-				</div>
-			</div>
-		</div>
-		
-		<div class="box box1column" id="concerto_javascript_libraries">
-			<h3>Javascript Libraries</h3>
-			<div class="inner">
-				<p>This option will help you load javascript libraries the right way.</p>
-				<p><label><input type="checkbox" name="concerto_general_scripts_libraries_jquery" value="1" <?php echo (get_option('concerto_general_scripts_libraries_jquery') == 1) ? 'checked ': '';?>/> jQuery</label></p>
-				<p><label><input type="checkbox" name="concerto_general_scripts_libraries_jquery_ui" value="1" <?php echo (get_option('concerto_general_scripts_libraries_jquery_ui') == 1) ? 'checked ': '';?>/> jQuery UI</label></p>
-			</div>
-		</div>
-		
+		<?php do_action('concerto_admin_general'); ?>
 	</div>
 	</form>
 	<script type="text/javascript">
@@ -374,5 +139,209 @@ function admin_general() {
 	</script>
 </div>
 <?php
-	}
+}
+
+function admin_general_box_navigation() {
+?>
+	<div class="box box1column" id="concerto_navigation">
+		<h3>Navigation</h3>
+		<div class="inner">
+			<h4>Please Select Menu Type</h4>
+			<p>This will determine if Concerto will handle Navigation display or let Wordpress display it's menus.</p>
+			<p><label><input type="radio" name="concerto_general_menu" class="menu_type" value="default" <?php echo (get_option('concerto_general_menu') == 'default') ? 'checked': ''; ?>/> Wordpress Default Menu</em></label></p>
+			<p><label><input type="radio" name="concerto_general_menu" class="menu_type" value="concerto" <?php echo (get_option('concerto_general_menu') == 'concerto') ? 'checked': ''; ?>/> Concerto Navigation</label></p>
+			<div class="navigationlists">
+				<h4><label><input type="checkbox" name="concerto_general_menu_use_pages" value="1" <?php echo (get_option('concerto_general_menu_use_pages') == 1) ? 'checked': ''; ?>/> Pages</label></h4>
+				<div class="navigationlist">
+				<p>You can sort the Pages you would like to include in your Navigation Menu here</p>
+				<ul>
+					<?php
+						$pages = get_pages();
+						$pages_used = get_option('concerto_general_menu_pages_items');
+						foreach ($pages as $page) {
+					?>
+					<li><label><input type="checkbox" name="concerto_general_menu_pages_items[]" value="<?php echo $page->ID; ?>" <?php echo (@in_array($page->ID, $pages_used)) ? 'checked ': ''; ?>/> <?php echo $page->post_title; ?></label></li>
+					<?php } ?>
+				</ul>
+				</div>
+			</div>
+			<div class="navigationlists">
+				<h4><label><input type="checkbox" name="concerto_general_menu_use_categories" value="1" <?php echo (get_option('concerto_general_menu_use_categories') == 1) ? 'checked': ''; ?>/> Categories</label></h4>
+				<div class="navigationlist">
+				<p>Sort the Categories you would want to show up on your Navigation Menu</p>
+				<ul>
+					<?php
+						$categories = get_categories();
+						$categories_used = get_option('concerto_general_menu_categories_items');
+						foreach ($categories as $category) {
+					?>
+					<li><label><input type="checkbox" name="concerto_general_menu_categories_items[]" value="<?php echo $category->term_id; ?>" <?php echo (@in_array($category->term_id, $categories_used)) ? 'checked ': ''; ?>/> <?php echo $category->cat_name; ?></label></li>
+					<?php } ?>
+				</ul>
+				</div>
+			</div>
+			<div class="navigationlists">
+				<h4><label><input type="checkbox" name="concerto_general_menu_use_tags" value="1" <?php echo (get_option('concerto_general_menu_use_tags') == 1) ? 'checked': ''; ?>/> Tags</label></h4>
+				<div class="navigationlist">
+				<p>Sort Tags you want to display on your Navigation Menu</p>
+				<ul>
+					<?php
+						$tags = get_tags();
+						$tags_used = get_option('concerto_general_menu_tags_items');
+						foreach ($tags as $tag) {
+					?>
+					<li><label><input type="checkbox" name="concerto_general_menu_tags_items[]" value="<?php echo $tag->term_id; ?>" <?php echo (@in_array($tag->term_id, $tags_used)) ? 'checked ': ''; ?>/> <?php echo $tag->name; ?></label></li>
+					<?php } ?>
+				</ul>
+				</div>
+			</div>
+			<p><label><input type="checkbox" name="concerto_general_menu_show_home" value="1" <?php echo (get_option('concerto_general_menu_show_home') == 1) ? 'checked': ''; ?>/> Show the Home Link</em></label></p>
+			<p><label><input type="checkbox" name="concerto_general_menu_show_feed" value="1" <?php echo (get_option('concerto_general_menu_show_feed') == 1) ? 'checked': ''; ?>/> Show Subscribe Link</label></p>
+		</div>
+		<script type="text/javascript">
+			jQuery(function($) {
+			});
+		</script>
+	</div>
+<?php
+}
+
+function admin_general_box_home_meta() {
+?>
+	<div class="box box1column" id="concerto_home_meta">
+		<h3>Homepage Meta</h3>
+		<div class="inner">
+			<p>Description</p>
+			<textarea name="concerto_general_homepage_description"><?php echo get_option('concerto_general_homepage_description'); ?></textarea>
+			<p>Keywords</p>
+			<input type="text" class="text" name="concerto_general_homepage_keywords" value="<?php echo get_option('concerto_general_homepage_keywords'); ?>"/>
+		</div>
+	</div>
+<?php
+}
+
+function admin_general_box_favicon() {
+?>
+	<div class="box box1column" id="concerto_favicon">
+		<h3>Favicon</h3>
+		<div class="inner">
+			<p>If you would like to have a custom favicon for your site. Upload it here.</p>
+			<div id="favicon">
+				<div id="favicon_preview"><img src="<?php echo get_option('concerto_general_favicon'); ?>" width="16" height="16" alt="" border="0" /></div>
+				<div class="swfupload-control"><span id="spanButtonPlaceholder"></span></div>
+				<input type="hidden" name="concerto_general_favicon" id="favicon_hidden" value="<?php echo get_option('concerto_general_favicon'); ?>"/>
+				<div class="clear"></div>
+				<a href="javascript:;" id="removefavicon">Remove Favicon</a>
+			</div>
+		</div>
+	</div>
+<?php
+}
+
+function admin_general_box_syndication_url() {
+?>
+	<div class="box box1column" id="concerto_syndication_url">
+		<h3>RSS URL</h3>
+		<div class="inner">
+			<p>Enter the URL of your custom feed in the box below. Leave the box blank if you want to use Wordress' native feed.</p>
+			<input type="text" class="text" name="concerto_general_syndication_url" value="<?php echo get_option('concerto_general_syndication_url'); ?>" />
+		</div>
+	</div>
+<?php
+}
+
+function admin_general_box_personal() {
+?>
+	<div class="box box1column" id="concerto_personal">
+		<h3>Personal Information</h3>
+		<div class="inner">
+			<p>These options here are plainly for custom use only and are not required. You can use them on the widgets included or <a href="http://themeconcert.com/concert/manual/" target="_new">through code</a>.</p>
+			<h4>Twitter</h4>
+			<input type="text" class="text" name="concerto_personal_twitter" value="<?php echo get_option('concerto_personal_twitter'); ?>" />
+			<h4>Facebook</h4>
+			<input type="text" class="text" name="concerto_personal_facebook" value="<?php echo get_option('concerto_personal_facebook'); ?>" />
+			<h4>Youtube</h4>
+			<input type="text" class="text" name="concerto_personal_youtube" value="<?php echo get_option('concerto_personal_youtube'); ?>" />
+			<h4>LinkedIn</h4>
+			<input type="text" class="text" name="concerto_personal_linkedin" value="<?php echo get_option('concerto_personal_linkedin'); ?>" />
+			<h4>Email</h4>
+			<input type="text" class="text" name="concerto_personal_email" value="<?php echo get_option('concerto_personal_email'); ?>" />
+			<p><label><input type="checkbox" name="concerto_personal_email_use_admin" value="1" <?php echo (get_option('concerto_personal_email_use_admin') == 1) ? 'checked ': '';?>/> Use Administrator Email</label></p>
+		</div>
+	</div>
+<?php
+}
+
+function admin_general_box_scripts() {
+?>
+	<div class="box box1column" id="concerto_scripts">
+		<h3>Additional Scripts</h3>
+		<div class="inner">
+			<div>
+				<h4>Head</h4>
+				<p>If you want to add additional scripts to the <code>&lt;head&gt;</code> tag, place them here.</p>
+				<textarea name="concerto_general_scripts_head"><?php echo get_option('concerto_general_scripts_head'); ?></textarea>
+			</div>
+			<div>
+				<h4>Footer</h4>
+				<p>If you want to run Tracking scripts such as Google Analytics, place them here.</p>
+				<textarea name="concerto_general_scripts_footer"><?php echo get_option('concerto_general_scripts_footer'); ?></textarea>
+			</div>
+		</div>
+	</div>
+	
+	<div class="box box1column" id="concerto_javascript_libraries">
+		<h3>Javascript Libraries</h3>
+		<div class="inner">
+			<p>This option will help you load javascript libraries the right way.</p>
+			<p><label><input type="checkbox" name="concerto_general_scripts_libraries_jquery" value="1" <?php echo (get_option('concerto_general_scripts_libraries_jquery') == 1) ? 'checked ': '';?>/> jQuery</label></p>
+			<p><label><input type="checkbox" name="concerto_general_scripts_libraries_jquery_ui" value="1" <?php echo (get_option('concerto_general_scripts_libraries_jquery_ui') == 1) ? 'checked ': '';?>/> jQuery UI</label></p>
+		</div>
+	</div>
+<?php
+}
+
+function admin_general_box_extensions() {
+?>
+	<div class="box box1column" id="concerto_extensions">
+		<h3>Theme Extensions</h3>
+		<div class="inner">
+			<?php
+				global $extensions;
+				if (!empty($extensions->extensions)) {
+					$extensions = $extensions->get();
+			?>
+				<p>Enable extensions available for your Installation of Concerto.</p>
+				<ul id="extensions">
+					<?php
+					foreach ($extensions as $extension) {
+						$author = '';
+						if ($extension['author']) {
+							if ($extension['author_uri']) {
+								$author = ' by <a href="' . $extension['author_uri'] . '" target="_new">' . $extension['author'] . '</a>';
+							} else {
+								$author = ' by ' . $extension['author'];
+							}
+						}
+					?>
+					<li>
+						<label><input type="checkbox" name="concerto_extensions_<?php echo $extension['id']; ?>_enabled" value="1" <?php echo (get_option('concerto_extensions_' . $extension['id'] . '_enabled') == 1) ? ' checked': ''; ?>/> <?php echo $extension['name']; ?><?php echo $author; ?></label>
+						<p><?php echo $extension['description']; ?></p>
+					</li>
+				<?php
+					}
+				?>
+				</ul>
+				<?php
+				} else {
+				?>
+				<p>It seems that you are missing a few files on your Concerto Directory.</p>
+				<p class="red">The Extension directory is empty.</p>
+			<?php
+				}
+			?>
+		</div>
+	</div>
+<?php
+}
 ?>

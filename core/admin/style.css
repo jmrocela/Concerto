@@ -55,8 +55,6 @@
 #favicon { margin: 10px AUTO; width: 130px; }
 #favicon_preview { float: left; margin-right: 5px; height: 16px; width: 16px; border: 1px solid #c0c0c0; background: #fefefe; }
 
-#thealmightysavebutton { background: #1fcf37; border: 15px solid #13bd2b; font-size: 15px; padding: 20px; color: #ffffff; }
-
 .blur { border: 1px solid #bbbbbb; background: #f9f9f9; color: #bbbbbb; }
 .blur h3 { background: #e1e1e1; border-bottom: 1px solid #bbbbbb; color: #999999; }
 .blur .text, .blur textarea { border: 1px solid #bbbbbb; }
@@ -66,3 +64,5 @@
 
 ul#extensions { border-top: 1px solid #dddddd; padding-top: 10px; margin-top: 10px; }
 #extensions li p { font-size: 10px; color: #999999; }
+
+.warning_span { background: #df7b6d; color: #ffffff; padding: 5px; }

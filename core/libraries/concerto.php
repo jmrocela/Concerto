@@ -8,6 +8,9 @@
  * you are doing). This file serves as the Base Class for setting up administration pages.
  */
 
+// We set the Extension and Stage Classes as Global
+global $extensions, $stages;
+
 class Concerto {
 
 	public function __construct($mode = false) {
@@ -22,16 +25,18 @@ class Concerto {
 		require CONCERTO_LIBS . 'filters.php';
 		require CONCERTO_LIBS . 'theme.php';
 	}
-	
-	public static function hasExtensions() {
-		$extensions = Concerto::getExtensions();
-		if (empty($extensions)) {
-			return false;
-		}
-		return true;
+
+}
+
+class ConcertoExtensions {
+
+	public $extensions = array();
+
+	public function __construct() {
+		$this->extensions = $this->get();
 	}
-	
-	public static function getExtensions() {
+
+	public function get() {
 		$extensions = array();
 		if (file_exists(CONCERTO_MOD)) {
 			if ($dh = opendir(CONCERTO_MOD)) {
@@ -68,7 +73,8 @@ class Concerto {
 							'description' => wp_kses($meta['Description'], $themes_allowed_tags),
 							'version' => $meta['Version'],
 							'author' => $meta['Author'],
-							'author_uri' => $meta['AuthorURI'] 
+							'author_uri' => $meta['AuthorURI'],
+							'path' => CONCERTO_MOD . $file . _DS . $file . '.php'
 						);
 					}
 				}
@@ -77,7 +83,26 @@ class Concerto {
 		return $extensions;
 	}
 	
-	public static function getStages() {
+	public function load() {
+		$extensions = $this->extensions;
+			if ($extensions) {
+			foreach ($extensions as $extension) {
+				require_once $extension['path'];
+			}
+		}
+	}
+	
+}
+
+class ConcertoStages {
+
+	public $stages = array();
+	
+	public function __construct() {
+		$this->stages = $this->get();
+	}
+	
+	public function get() {
 		$stage = array();
 		if (file_exists(CONCERTO_STAGES)) {
 			if ($dh = opendir(CONCERTO_STAGES)) {
@@ -86,7 +111,10 @@ class Concerto {
 						continue;
 					}
 					// Should we check if the stage has a custom stylesheet?
-					$stage[] = $file;
+					$stage[] = array(
+						'name' => $file,
+						'path' => CONCERTO_STAGES . $file
+					);
 				}
 			}
 		}
@@ -95,5 +123,9 @@ class Concerto {
 	}
 
 }
+
+// Make an instance to the Extension and Stage classes
+$extensions = new ConcertoExtensions();
+$stages = new ConcertoStages();
 
 ?>
