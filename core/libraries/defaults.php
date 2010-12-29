@@ -1,9 +1,14 @@
 <?php
 update_option('concerto_version', '1.0');
 update_option('concerto_level', 'beta');
-update_option('concerto_license', 'personal');
-update_option('concerto_license_on', 'http://projects/concerto/');
+update_option('concerto_license', 'personal'); //personal, developer, multi-domain, unrestricted
+update_option('concerto_license_to', 'John Rocela');
+update_option('concerto_license_on', 'a:1:{i:0;s:25:"http://projects/concerto/";}');
+update_option('concerto_license_copies', 1);
 update_option('concerto_license_key', 'a26de47be042ec06bbn3');
+update_option('concerto_naughty', 0);
+update_option('concerto_stage', 'default');
+
 update_option('concerto_stage', 'default');
 
 update_option('concerto_general_site_title', '');

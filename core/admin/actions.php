@@ -8,4 +8,11 @@
 	add_action('concerto_admin_general', 'admin_general_box_personal', 120);
 	add_action('concerto_admin_general', 'admin_general_box_scripts', 140);
 	
+	// Support
+	add_action('concerto_admin_support', 'admin_general_box_registration', 20);
+	add_action('concerto_admin_support', 'admin_general_box_terms_and_agreements', 40);
+	add_action('concerto_admin_support', 'admin_general_box_search', 60);
+	add_action('concerto_admin_support', 'admin_general_box_support', 80);
+	add_action('concerto_admin_support', 'admin_general_box_about', 100);
+	
 ?>

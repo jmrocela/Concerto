@@ -28,6 +28,7 @@
 .level_green { background: #39b54a; }
 .level_green a { color: #c4df9b; }
 .level_green a:hover { color: #92278f; }
+.greentext { color: #39b54a; }
 
 .box { min-width: 298px; background: #f4fbee; font-size: 12px; border: 1px solid #adbaa0; margin: 10px; -moz-box-shadow: 0 1px 0 #ffffff; -moz-border-radius: 5px; }
 .box .inner { padding: 10px; }
@@ -66,3 +67,8 @@ ul#extensions { border-top: 1px solid #dddddd; padding-top: 10px; margin-top: 10
 #extensions li p { font-size: 10px; color: #999999; }
 
 .warning_span { background: #df7b6d; color: #ffffff; padding: 5px; }
+#terms_agreements_box { height: 750px; padding: 10px; overflow: auto; border: 1px solid #dddddd; background: #ffffff; }
+#terms_agreements_box p { margin-bottom: 20px; font-family: georgia; font-size: 14px; color: #999999; }
+#registation_upgrade { margin-top: 10px; text-align: center; }
+#naughty { background: #c34b3b; padding: 10px; font-size: 13px; text-align: center; color: #ffffff; }
+#license_to, #license_on { font-size: 16px; }

@@ -87,7 +87,9 @@ class ConcertoExtensions {
 		$extensions = $this->extensions;
 			if ($extensions) {
 			foreach ($extensions as $extension) {
-				require_once $extension['path'];
+				if (get_option('concerto_extensions_' . $extension['id'] . '_enabled') == 1) {
+					require_once $extension['path'];
+				}
 			}
 		}
 	}

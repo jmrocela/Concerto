@@ -9,6 +9,8 @@
 if (is_admin()) {
 	add_action('concerto_admin_general', 'admin_general_box_site_title', 20);
 	add_action('concerto_admin_general', 'admin_general_box_seo', 30);
+} else {
+	// We bind everything that can be used in the front end
 }
 
 function admin_general_box_site_title() {
