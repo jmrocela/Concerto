@@ -47,7 +47,7 @@ function admin_general() {
 		</div>
 		<div class="clear"></div>
 	</div>
-	<div class="concerto_notice level_green">You are running a Beta Version of Concerto. This product is provided free under our <a href="http://themeconcert.com/documents/licenses/free-beta" target="_new"">Terms and Agreements</a>.</div>
+	<?php do_action('concerto_admin_notices'); ?>
 	<?php if (@$_GET['updated'] == 'true') { ?>
 	<div class="concerto_notice level_updated">Your Configuration has been changed and saved. <a href="<?php bloginfo('url'); ?>">See the changes on your site</a></div>
 	<?php } ?>
@@ -147,7 +147,7 @@ function admin_general_box_navigation() {
 		<h3>Navigation</h3>
 		<div class="inner">
 			<h4>Please Select Menu Type</h4>
-			<p>This will determine if Concerto will handle Navigation display or let Wordpress display it's menus.</p>
+			<p class="desc">This will determine if Concerto will handle Navigation display or let Wordpress display it's menus.</p>
 			<p><label><input type="radio" name="concerto_general_menu" class="menu_type" value="default" <?php echo (get_option('concerto_general_menu') == 'default') ? 'checked': ''; ?>/> Wordpress Default Menu</em></label></p>
 			<p><label><input type="radio" name="concerto_general_menu" class="menu_type" value="concerto" <?php echo (get_option('concerto_general_menu') == 'concerto') ? 'checked': ''; ?>/> Concerto Navigation</label></p>
 			<div class="navigationlists">
@@ -225,7 +225,7 @@ function admin_general_box_favicon() {
 	<div class="box box1column" id="concerto_favicon">
 		<h3>Favicon</h3>
 		<div class="inner">
-			<p>If you would like to have a custom favicon for your site. Upload it here.</p>
+			<p class="desc">If you would like to have a custom favicon for your site. Upload it here.</p>
 			<div id="favicon">
 				<div id="favicon_preview"><img src="<?php echo get_option('concerto_general_favicon'); ?>" width="16" height="16" alt="" border="0" /></div>
 				<div class="swfupload-control"><span id="spanButtonPlaceholder"></span></div>
@@ -243,7 +243,7 @@ function admin_general_box_syndication_url() {
 	<div class="box box1column" id="concerto_syndication_url">
 		<h3>RSS URL</h3>
 		<div class="inner">
-			<p>Enter the URL of your custom feed in the box below. Leave the box blank if you want to use Wordress' native feed.</p>
+			<p class="desc">Enter the URL of your custom feed in the box below. Leave the box blank if you want to use Wordress' native feed.</p>
 			<input type="text" class="text" name="concerto_general_syndication_url" value="<?php echo get_option('concerto_general_syndication_url'); ?>" />
 		</div>
 	</div>
@@ -255,7 +255,7 @@ function admin_general_box_personal() {
 	<div class="box box1column" id="concerto_personal">
 		<h3>Personal Information</h3>
 		<div class="inner">
-			<p>These options here are plainly for custom use only and are not required. You can use them on the widgets included or <a href="http://themeconcert.com/concert/manual/" target="_new">through code</a>.</p>
+			<p class="desc">These options here are plainly for custom use only and are not required. You can use them on the widgets included or <a href="http://themeconcert.com/concert/manual/" target="_new">through code</a>.</p>
 			<h4>Twitter</h4>
 			<input type="text" class="text" name="concerto_personal_twitter" value="<?php echo get_option('concerto_personal_twitter'); ?>" />
 			<h4>Facebook</h4>
@@ -289,11 +289,15 @@ function admin_general_box_scripts() {
 			</div>
 		</div>
 	</div>
-	
+<?php
+}
+
+function admin_general_box_javascript_libraries() {
+?>
 	<div class="box box1column" id="concerto_javascript_libraries">
 		<h3>Javascript Libraries</h3>
 		<div class="inner">
-			<p>This option will help you load javascript libraries the right way.</p>
+			<p class="desc">This option will help you load javascript libraries the right way.</p>
 			<p><label><input type="checkbox" name="concerto_general_scripts_libraries_jquery" value="1" <?php echo (get_option('concerto_general_scripts_libraries_jquery') == 1) ? 'checked ': '';?>/> jQuery</label></p>
 			<p><label><input type="checkbox" name="concerto_general_scripts_libraries_jquery_ui" value="1" <?php echo (get_option('concerto_general_scripts_libraries_jquery_ui') == 1) ? 'checked ': '';?>/> jQuery UI</label></p>
 		</div>
@@ -311,7 +315,7 @@ function admin_general_box_extensions() {
 				if (!empty($extensions->extensions)) {
 					$extensions = $extensions->get();
 			?>
-				<p>Enable extensions available for your Installation of Concerto.</p>
+				<p class="desc">Enable extensions available for your Installation of Concerto.</p>
 				<ul id="extensions">
 					<?php
 					foreach ($extensions as $extension) {

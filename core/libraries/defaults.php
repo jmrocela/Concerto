@@ -54,11 +54,11 @@ update_option('concerto_design_meta_comments_link', 1);
 update_option('concerto_design_meta_categories', 1);
 update_option('concerto_design_meta_tags', 1);
 
-update_option('concerto_design_posts_excerpts', 0);
+update_option('concerto_design_posts_excerpts', 0); //display as excerpts on homepage
 update_option('concerto_design_posts_readmore_text', '');
 update_option('concerto_design_posts_navigation', 1);
 											
-update_option('concerto_design_archive_display', 'excerpts');
+update_option('concerto_design_archive_display', 1);
 							
 update_option('concerto_design_fonts_body', 'arial');
 update_option('concerto_design_fonts_menu', 'inherit-body');
@@ -97,6 +97,23 @@ update_option('concerto_design_colors_background_article', '#ffffff');
 update_option('concerto_design_colors_background_comment_odd', '#fafafa');
 update_option('concerto_design_colors_background_comment_even', '#ffffff');
 
+update_option('concerto_design_colors_fonts_site', '#000000');
+update_option('concerto_design_colors_fonts_header_title', '#000000');
+update_option('concerto_design_colors_fonts_header_description', '#666666');
+update_option('concerto_design_colors_fonts_menu', '#000000');
+update_option('concerto_design_colors_fonts_menu_active', '#000000');
+update_option('concerto_design_colors_fonts_menu_hover', '#000000');
+update_option('concerto_design_colors_fonts_footer', '#666666');
+update_option('concerto_design_colors_fonts_link', '#245cba');
+update_option('concerto_design_colors_fonts_link_hover', '#ff4b33');
+update_option('concerto_design_colors_fonts_link_visited', '#8024ba');
+update_option('concerto_design_colors_fonts_comment_meta', '#666666');
+update_option('concerto_design_colors_fonts_content_title', '#000000');
+update_option('concerto_design_colors_fonts_content_link', '#245cba');
+update_option('concerto_design_colors_fonts_content_link_hover', '#ff4b33');
+update_option('concerto_design_colors_fonts_content_meta', '#666666');
+update_option('concerto_design_colors_fonts_respond', '#888888');
+
 update_option('concerto_design_colors_borders_common', '#dddddd');
 update_option('concerto_design_colors_borders_menu', '#eeeeee');
 update_option('concerto_design_colors_borders_menu_active', '#dddddd');
@@ -109,23 +126,6 @@ update_option('concerto_design_colors_borders_comment_top', 'transparent');
 update_option('concerto_design_colors_borders_comment_bottom', '#e7e7e7');
 update_option('concerto_design_colors_borders_commentlist_top', '#e7e7e7');
 update_option('concerto_design_colors_borders_commentlist_bottom', '#e7e7e7');
-
-update_option('concerto_design_colors_fonts_site', '#000000');
-update_option('concerto_design_colors_fonts_header_title', '#000000');
-update_option('concerto_design_colors_fonts_header_description', '#666666');
-update_option('concerto_design_colors_fonts_menu', '#000000');
-update_option('concerto_design_colors_fonts_menu_active', '#000000');
-update_option('concerto_design_colors_fonts_menu_hover', '#000000');
-update_option('concerto_design_colors_fonts_footer', '#666666');
-update_option('concerto_design_colors_fonts_link', '#245cba');
-update_option('concerto_design_colors_fonts_link_hover', '#ff4b33');
-update_option('concerto_design_colors_fonts_visited', '#8024ba');
-update_option('concerto_design_colors_fonts_comment_meta', '#666666');
-update_option('concerto_design_colors_fonts_content_title', '#000000');
-update_option('concerto_design_colors_fonts_content_link', '#245cba');
-update_option('concerto_design_colors_fonts_content_link_hover', '#ff4b33');
-update_option('concerto_design_colors_fonts_meta', '#666666');
-update_option('concerto_design_colors_fonts_respond', '#888888');
 
 update_option('concerto_design_borders_container', 1);
 update_option('concerto_design_borders_header', 0);
@@ -147,16 +147,17 @@ update_option('concerto_design_borders_table', 1);
 
 update_option('concerto_design_comments_is_closed_show_message', 1);
 update_option('concerto_design_comments_position', '{}'); //serialized [comments, trackbacks, respond]
-	update_option('concerto_design_comments_display_number', '');
-	update_option('concerto_design_comments_display_avatar', '');
-	update_option('concerto_design_comments_display_author', '');
-	update_option('concerto_design_comments_display_date', '');
-	update_option('concerto_design_comments_display_edit', '');
+update_option('concerto_design_comments_display_number', 1);
+update_option('concerto_design_comments_display_avatar', 1);
+update_option('concerto_design_comments_display_author', 1);
+update_option('concerto_design_comments_display_date', 1);
+update_option('concerto_design_comments_display_time', 0);
+update_option('concerto_design_comments_display_edit', 1);
 update_option('concerto_design_comments_avatar_size', 40);
-update_option('concerto_design_comments_time', 1);
 update_option('concerto_design_comments_time_format', 'F j, Y');
 update_option('concerto_design_comments_body', '{}'); //serialized [vcard, body, reply]
 update_option('concerto_design_comments_trackback_date', 1);
+
 update_option('concerto_design_glow', 0); // add a glow effect to the outer borders of your page
 update_option('concerto_design_engrave', 0); // add an engrave effect to texts
 

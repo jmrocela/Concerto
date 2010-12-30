@@ -32,11 +32,14 @@
 
 .box { min-width: 298px; background: #f4fbee; font-size: 12px; border: 1px solid #adbaa0; margin: 10px; -moz-box-shadow: 0 1px 0 #ffffff; -moz-border-radius: 5px; }
 .box .inner { padding: 10px; }
-.box .inner .text, .box .inner textarea { width: 100%; margin: 0; border: 1px solid #adbaa0; font-size: 16px; font-family: georgia; color: #999; }
+.box .inner .text, .box .inner textarea { width: 100%; margin: 0; border: 1px solid #adbaa0; font-size: 16px; font-family: georgia; color: #999999; }
+.box .inner .small-text { width: 48px; margin: 0; border: 1px solid #adbaa0; font-size: 16px; font-family: georgia; color: #999; }
+.box .inner .small-text.hex { width: 60px; }
 .box h3 { background: #d1dec6; text-shadow: 0 1px 0 #ffffff; padding: 10px; margin: 0; border-top: 1px solid #ffffff; border-bottom: 1px solid #adbaa0; color: #333333; font-size: 18px; font-family: georgia; font-weight: normal; -moz-border-radius-topleft: 4px;  -moz-border-radius-topright: 4px; }
 .box h3 abbr { border-bottom: 1px dashed #000; cursor: help; }
 .box h4 { margin: 10px 0 0; }
 .box .inner p { font-size: 11px; margin: 5px 0; }
+.box .inner p.desc { font-size: 12px; }
 .box .inner table { width: 100%; }
 .box .inner table td { text-align: center; }
 .box .inner table th { background: #d1dec6; padding: 5px; }
@@ -72,3 +75,5 @@ ul#extensions { border-top: 1px solid #dddddd; padding-top: 10px; margin-top: 10
 #registation_upgrade { margin-top: 10px; text-align: center; }
 #naughty { background: #c34b3b; padding: 10px; font-size: 13px; text-align: center; color: #ffffff; }
 #license_to, #license_on { font-size: 16px; }
+
+#layout_columns { width: 100%; font-size: 16px; border: 1px solid #adbaa0; }

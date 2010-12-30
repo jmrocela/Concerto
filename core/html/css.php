@@ -83,12 +83,12 @@ $colors['fonts'] = array(
 				'footer' => get_option('concerto_design_colors_fonts_footer'),
 				'link' => get_option('concerto_design_colors_fonts_link'),
 				'link-hover' => get_option('concerto_design_colors_fonts_link_hover'),
-				'visited' => get_option('concerto_design_colors_fonts_visited'),
+				'visited' => get_option('concerto_design_colors_fonts_link_visited'),
 				'comment-meta' => get_option('concerto_design_colors_fonts_comment_meta'),
 				'content-title' => get_option('concerto_design_colors_fonts_content_title'),
 				'content-link' => get_option('concerto_design_colors_fonts_content_link'),
 				'content-link-hover' => get_option('concerto_design_colors_fonts_content_link_hover'),
-				'meta' => get_option('concerto_design_colors_fonts_meta'),
+				'meta' => get_option('concerto_design_colors_fonts_content_meta'),
 				'respond' => get_option('concerto_design_colors_fonts_respond')
 			);
 

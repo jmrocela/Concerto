@@ -18,7 +18,7 @@ function admin_general_box_site_title() {
 	<div class="box box2columns" id="concerto_site_title">
 		<h3>Site Title</h3>
 		<div class="inner">
-			<p>If you would rather have Concerto replace the default Wordpress Title for all pages to a more SEO friendlier one.</p>
+			<p class="desc">If you would rather have Concerto replace the default Wordpress Title for all pages to a more SEO friendlier one.</p>
 			<input type="text" class="text" name="concerto_general_site_title" value="<?php echo get_option('concerto_general_site_title'); ?>" />
 		</div>
 	</div>
@@ -30,7 +30,7 @@ function admin_general_box_seo() {
 	<div class="box box2columns" id="concerto_seo">
 		<h3><abbr title="Search Engine Optimization">SEO</abbr> Options</h3>
 		<div class="inner">
-			<p>You can easily fine tune your Site's Global SEO here. You can also set SEO options for <a href="http://themeconcert.com/concert/manual/" target="_new">individual Posts or Pages</a></p>
+			<p class="desc">You can easily fine tune your Site's Global SEO here. You can also set SEO options for <a href="http://themeconcert.com/concert/manual/" target="_new">individual Posts or Pages</a></p>
 			<table>
 				<thead>
 					<tr>
