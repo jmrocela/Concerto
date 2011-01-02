@@ -12,6 +12,19 @@
 	add_action('concerto_admin_general', 'admin_general_box_scripts', 140);
 	add_action('concerto_admin_general', 'admin_general_box_javascript_libraries', 140);
 	
+	// Design
+	add_action('concerto_admin_design', 'admin_design_box_markup', 20);
+	add_action('concerto_admin_design', 'admin_design_box_header', 40);
+	add_action('concerto_admin_design', 'admin_design_box_layout', 60);
+	add_action('concerto_admin_design', 'admin_design_box_fontscolorsborders', 80);
+	add_action('concerto_admin_design', 'admin_design_box_columns', 100);
+	add_action('concerto_admin_design', 'admin_design_box_articles', 120);
+	add_action('concerto_admin_design', 'admin_design_box_comments', 140);
+	add_action('concerto_admin_design', 'admin_design_box_eyecandy', 160);
+	
+	// Tools
+	
+	
 	// Support
 	add_action('concerto_admin_support', 'admin_general_box_registration', 20);
 	add_action('concerto_admin_support', 'admin_general_box_terms_and_agreements', 40);
