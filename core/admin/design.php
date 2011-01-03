@@ -60,6 +60,16 @@ function admin_design() {
 			/**
 			 * Behaviour
 			 */
+			if ($('#header_hidden').val() == '') {
+				$('#removeheader').hide();
+			}
+			$('#removeheader').click(function() {
+				if (confirm('Are you sure you want to remove your Header?')) {
+					$('#header_preview img').attr('src', '');
+					$('#header_hidden').val('');
+					$('#removeheader').hide();
+				}
+			});
 			$('#layout_columns').change(function(){
 				if ($(this).val() == 3) {
 					$('.columns3, #columnsarrangement').show();
@@ -111,18 +121,77 @@ function admin_design_box_header () {
 		<div class="box box2columns">
 			<h3>Header</h3>
 			<div class="inner">
+				<p class="desc">You can define your header to accomodate Text, Text and Logo or just a whole Banner below. You can customize the style on your stage's stylesheet.</p>
 				<div id="header">
-					<select>
-						<option>Text Only</option>
-						<option>Text &amp; Logo</option>
-						<option>Image</option>
+					<select name="concerto_design_header_mode" id="header_change">
+						<option value="1"<?php echo (get_option('concerto_design_header_mode') == 1) ? ' selected': ''; ?>>Text Only</option>
+						<option value="2"<?php echo (get_option('concerto_design_header_mode') == 2) ? ' selected': ''; ?>>Text &amp; Logo</option>
+						<option value="3"<?php echo (get_option('concerto_design_header_mode') == 3) ? ' selected': ''; ?>>Image</option>
 					</select>
-					<div style="width:596px;height:120px;border:1px solid #c0c0c0;">
-						<a href="javascript:;" style="position:relative;top:0;left:0;padding:2px 5px;font-size:11px;">Change Header</a>
+					<div id="header_image">
+						<div id="header_preview" style="overflow:hidden;height:150px;"><img src="<?php echo get_option('concerto_design_header_image'); ?>" width="596" alt="" /></div>
+						<div class="swfupload-control"><span id="spanButtonPlaceholder"></span></div>
+						<input type="hidden" id="header_hidden" value="<?php echo get_option('concerto_design_header_image'); ?>" name="concerto_design_header_image" />
+						<div class="clear"></div>
+						<a href="javascript:;" id="removeheader">Remove Header</a>
 					</div>
 					<p><label><input type="checkbox" value="1" name="concerto_design_header_title" <?php echo (get_option('concerto_design_header_title') == 1) ? 'checked ': ''; ?>/> Show Title</label></p>
 					<p><label><input type="checkbox" value="1" name="concerto_design_header_description" <?php echo (get_option('concerto_design_header_description') == 1) ? 'checked ': ''; ?>/> Show Description</label></p>
 				</div>
+				<script type="text/javascript">
+					jQuery(function($){
+						$('.swfupload-control').swfupload({
+							upload_url: ajaxurl + '?action=concerto_upload',
+							flash_url : "<?php bloginfo('url'); ?>/wp-includes/js/swfupload/swfupload.swf",
+							post_params: {concerto_action: "header", _concerto_nonce: "<?php echo wp_create_nonce('CONCERTO_UPLOAD'); ?>"},
+							
+							file_post_name: "CONCERTO_UPLOAD",
+							file_size_limit : "5 MB",
+							file_types : "*.jpg;*.png;*.gif;*.bmp",
+							file_types_description : "Image files only",
+							file_queue_limit : "1",
+
+							button_placeholder_id : "spanButtonPlaceholder",
+							button_text: '<span class="changeheader">Change Header</span>',
+							button_width: 100,
+							button_height: 20,
+							button_text_style: ".changeheader { color: #639638; font-family: arial; }",
+							button_cursor: SWFUpload.CURSOR.HAND, 
+							button_action: SWFUpload.BUTTON_ACTION.SELECT_FILE,
+							button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT, 
+						});
+						if ($('#header_change').val() == 1) {
+							$('#header_image').hide();
+							$('.swfupload-control').unbind();
+						} else {
+							$('#header_image').show();
+							$('.swfupload-control')
+								.bind('fileQueued', function(event, file){$(this).swfupload('startUpload');})
+								.bind('uploadSuccess', function(event, file, response){
+									$('#removeheader').show();
+									$('#header_preview img').attr('src', response);
+									$('#header_hidden').val(response);
+									$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
+								});
+						}
+						$('#header_change').change(function(){
+							if ($(this).val() == 1) {
+								$('#header_image').hide();
+								$('.swfupload-control').unbind();
+							} else {
+								$('#header_image').show();
+								$('.swfupload-control')
+									.bind('fileQueued', function(event, file){$(this).swfupload('startUpload');})
+									.bind('uploadSuccess', function(event, file, response){
+										$('#removeheader').show();
+										$('#header_preview img').attr('src', response);
+										$('#header_hidden').val(response);
+										$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
+									});
+							}
+						});
+					});
+				</script>
 			</div>
 		</div>
 <?php
@@ -152,6 +221,7 @@ function admin_design_box_fontscolorsborders () {
 						// Find a way for .color to have farbtastic
 					});
 				</script>
+				<p class="desc">You can tweak font faces, sizes, colors as well as backgrounds for specific elements throughout the default layout. Border sizes and colors are also available below.</p>
 				<div>
 					<h4>Body</h4>
 					<p>Outer Page Padding

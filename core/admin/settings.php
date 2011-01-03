@@ -59,6 +59,8 @@
 	register_setting('concerto_design', 'concerto_design_layout_columns_width_sidebar2');
 	register_setting('concerto_design', 'concerto_design_article_padding');
 	register_setting('concerto_design', 'concerto_design_page_padding');
+	register_setting('concerto_design', 'concerto_design_header_mode');
+	register_setting('concerto_design', 'concerto_design_header_image');
 	register_setting('concerto_design', 'concerto_design_header_title');
 	register_setting('concerto_design', 'concerto_design_header_description');
 	register_setting('concerto_design', 'concerto_design_bylines_page_author');

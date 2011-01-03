@@ -198,10 +198,6 @@ function admin_general_box_navigation() {
 			<p><label><input type="checkbox" name="concerto_general_menu_show_home" value="1" <?php echo (get_option('concerto_general_menu_show_home') == 1) ? 'checked': ''; ?>/> Show the Home Link</em></label></p>
 			<p><label><input type="checkbox" name="concerto_general_menu_show_feed" value="1" <?php echo (get_option('concerto_general_menu_show_feed') == 1) ? 'checked': ''; ?>/> Show Subscribe Link</label></p>
 		</div>
-		<script type="text/javascript">
-			jQuery(function($) {
-			});
-		</script>
 	</div>
 <?php
 }

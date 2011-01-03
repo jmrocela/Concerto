@@ -41,6 +41,8 @@ update_option('concerto_design_layout_columns_order', 1);
 update_option('concerto_design_article_padding', 10);
 update_option('concerto_design_page_padding', 10);
 							
+update_option('concerto_design_header_mode', 1);
+update_option('concerto_design_header_image', '');
 update_option('concerto_design_header_title', 1);
 update_option('concerto_design_header_description', 1);
 
