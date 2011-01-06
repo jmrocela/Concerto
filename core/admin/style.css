@@ -82,3 +82,8 @@ ul#extensions { border-top: 1px solid #dddddd; padding-top: 10px; margin-top: 10
 
 #header_image { margin: 10px 0; }
 #removeheader { float: right; }
+
+.content-toggle { float: left; margin-top: 2px; margin-right: 5px; display: block; height: 14px; width: 14px; }
+.content-toggle.expand { background: #ffffff url('../images/admin-content-expand.jpg') no-repeat center scroll; }
+.content-toggle.collapse { background: #ffffff url('../images/admin-content-collapse.jpg') no-repeat center scroll; }
+.hide { display: none; }
