@@ -56,6 +56,8 @@
 .box.box2columns { width: 618px; }
 .box.box3columns { width: 938px; }
 
+.swfupload-control { height: 20px; }
+
 #favicon { margin: 10px AUTO; width: 130px; }
 #favicon_preview { float: left; margin-right: 5px; height: 16px; width: 16px; border: 1px solid #c0c0c0; background: #fefefe; }
 
@@ -77,3 +79,6 @@ ul#extensions { border-top: 1px solid #dddddd; padding-top: 10px; margin-top: 10
 #license_to, #license_on { font-size: 16px; }
 
 #layout_columns { width: 100%; font-size: 16px; border: 1px solid #adbaa0; }
+
+#header_image { margin: 10px 0; }
+#removeheader { float: right; }

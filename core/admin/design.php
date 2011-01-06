@@ -131,12 +131,14 @@ function admin_design_box_header () {
 					<div id="header_image">
 						<div id="header_preview" style="overflow:hidden;height:150px;"><img src="<?php echo get_option('concerto_design_header_image'); ?>" width="596" alt="" /></div>
 						<div class="swfupload-control"><span id="spanButtonPlaceholder"></span></div>
+						<a href="javascript:;" id="removeheader">Remove Header</a>
 						<input type="hidden" id="header_hidden" value="<?php echo get_option('concerto_design_header_image'); ?>" name="concerto_design_header_image" />
 						<div class="clear"></div>
-						<a href="javascript:;" id="removeheader">Remove Header</a>
 					</div>
-					<p><label><input type="checkbox" value="1" name="concerto_design_header_title" <?php echo (get_option('concerto_design_header_title') == 1) ? 'checked ': ''; ?>/> Show Title</label></p>
-					<p><label><input type="checkbox" value="1" name="concerto_design_header_description" <?php echo (get_option('concerto_design_header_description') == 1) ? 'checked ': ''; ?>/> Show Description</label></p>
+					<div id="header_shows">
+						<p><label><input type="checkbox" value="1" name="concerto_design_header_title" <?php echo (get_option('concerto_design_header_title') == 1) ? 'checked ': ''; ?>/> Show Title</label></p>
+						<p><label><input type="checkbox" value="1" name="concerto_design_header_description" <?php echo (get_option('concerto_design_header_description') == 1) ? 'checked ': ''; ?>/> Show Description</label></p>
+					</div>
 				</div>
 				<script type="text/javascript">
 					jQuery(function($){
@@ -163,8 +165,17 @@ function admin_design_box_header () {
 						if ($('#header_change').val() == 1) {
 							$('#header_image').hide();
 							$('.swfupload-control').unbind();
+							$('#header_hidden').val('');
+							$('#header_preview img').attr('src', '');
+							$('#header_shows').show()
+							$('#header_hidden').parents('.box').removeClass('box2columns');
+							$('#header_hidden').parents('.box').addClass('box1column');
 						} else {
+							$('#header_shows').show()
+							if ($('#header_change').val() == 3) $('#header_shows').hide();
 							$('#header_image').show();
+							$('#header_hidden').parents('.box').addClass('box2columns');
+							$('#header_hidden').parents('.box').removeClass('box1column');
 							$('.swfupload-control')
 								.bind('fileQueued', function(event, file){$(this).swfupload('startUpload');})
 								.bind('uploadSuccess', function(event, file, response){
@@ -178,8 +189,17 @@ function admin_design_box_header () {
 							if ($(this).val() == 1) {
 								$('#header_image').hide();
 								$('.swfupload-control').unbind();
+								$('#header_hidden').val('');
+								$('#header_shows').show()
+								$('#header_preview img').attr('src', '');
+								$('#header_hidden').parents('.box').removeClass('box2columns');
+								$('#header_hidden').parents('.box').addClass('box1column');
 							} else {
+								$('#header_shows').show()
+								if ($(this).val() == 3) $('#header_shows').hide();
 								$('#header_image').show();
+								$('#header_hidden').parents('.box').addClass('box2columns');
+								$('#header_hidden').parents('.box').removeClass('box1column');
 								$('.swfupload-control')
 									.bind('fileQueued', function(event, file){$(this).swfupload('startUpload');})
 									.bind('uploadSuccess', function(event, file, response){
@@ -189,6 +209,7 @@ function admin_design_box_header () {
 										$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
 									});
 							}
+							$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
 						});
 					});
 				</script>
