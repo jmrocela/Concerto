@@ -239,17 +239,23 @@ function admin_design_box_fontscolorsborders () {
 				<div id="colorpicker"></div>
 				<script type="text/javascript">
 					jQuery(function($) {
-						$('.content-toggle').toggle(function() {
-							$(this).removeClass('expand');
-							$(this).addClass('collapse');
-							$(this).parent('h4').next('.content').removeClass('hide');
-							$(this).parent('h4').next('.content').show();
-							$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
-						}, function() {
-							$(this).addClass('expand');
-							$(this).removeClass('collapse');
-							$(this).parent('h4').next('.content').addClass('hide');
-							$(this).parent('h4').next('.content').hide();
+						$('.hide').hide();
+						
+						$('.content-toggle').click(function() {
+							if ($(this).hasClass('all')){
+								$('.content-toggle').toggleClass('expand');
+								if (!$(this).hasClass('expand')){
+									$('.content-toggle:not(.all)').removeClass('expand');
+									$(this).parents('.box').find('.content:hidden').show();
+								} else {
+									$('.content-toggle:not(.all)').addClass('expand');
+									$(this).parents('.box').find('.content:visible').hide();
+								}
+							} else {
+								$(this).toggleClass('expand');
+								$('.content-toggle.all').addClass('expand');
+								$(this).parent('h4').next('.content').toggle();
+							}
 							$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
 						});
 						
