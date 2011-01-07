@@ -234,7 +234,7 @@ function admin_design_box_layout () {
 function admin_design_box_fontscolorsborders () {
 ?>
 		<div class="box box1column">
-			<h3>Fonts, Colors and Borders</h3>
+			<h3>Fonts, Colors and Borders  <a href="javascript:;" class="content-toggle expand all"></a></h3>
 			<div class="inner">
 				<div id="colorpicker"></div>
 				<script type="text/javascript">
@@ -253,6 +253,42 @@ function admin_design_box_fontscolorsborders () {
 							$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
 						});
 						
+						var newhex;
+						$('.color').each(function() {
+							$(this).css({backgroundColor:$(this).val()});
+							if ($(this).val() != 'none' && $(this).val() != 'transparent') {
+								newhex = '#' + oppositeHex($(this).val());
+								$(this).css({color:newhex});
+							}
+						});
+
+						function oppositeHex(hex) {
+							hex = hex.replace('#','');
+							var red = parseInt(hex.substr(0,2), 16);
+							var green = parseInt(hex.substr(2,2), 16);
+							var blue = parseInt(hex.substr(4,2), 16);
+							var new_red = dechex(255 - red);
+							var new_green = dechex(255 - green);
+							var new_blue = dechex(255 - blue);
+							new_red = (new_red == '0') ? 00: new_red;
+							new_green = (new_green == '0') ? 00: new_green;
+							new_blue = (new_blue == '0') ? 00: new_blue;
+							return new_red + '' + new_green + '' + new_blue;
+						}
+						
+						function dechex (number) {
+							// Returns a string containing a hexadecimal representation of the given number  
+							// version: 1009.2513
+							// discuss at: http://phpjs.org/functions/dechex    // +   original by: Philippe Baumann
+							// +   bugfixed by: Onno Marsman
+							// +   improved by: http://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript
+							// +   input by: pilus    
+							if (number < 0) {
+								number = 0xFFFFFFFF + number + 1;
+							}
+							return parseInt(number, 10).toString(16);
+						}
+						
 						// Add Color Picker for each Color boxes
 					});
 				</script>
@@ -260,21 +296,25 @@ function admin_design_box_fontscolorsborders () {
 				<div>
 					<h4>Body <a href="javascript:;" class="content-toggle expand"></a></h4>
 					<div class="content hide">
+						<p class="desc">Page outer padding</p>
 						<p>Outer Page Padding
 							<select name="concerto_design_page_padding">
-								<option value="10"<?php echo (get_option('concerto_design_page_padding') == 10) ? ' selected': ''; ?>>10</option>
-								<option value="15"<?php echo (get_option('concerto_design_page_padding') == 15) ? ' selected': ''; ?>>15</option>
-								<option value="20"<?php echo (get_option('concerto_design_page_padding') == 20) ? ' selected': ''; ?>>20</option>
-								<option value="25"<?php echo (get_option('concerto_design_page_padding') == 25) ? ' selected': ''; ?>>25</option>
-								<option value="30"<?php echo (get_option('concerto_design_page_padding') == 30) ? ' selected': ''; ?>>30</option>
-								<option value="35"<?php echo (get_option('concerto_design_page_padding') == 35) ? ' selected': ''; ?>>35</option>
-								<option value="40"<?php echo (get_option('concerto_design_page_padding') == 40) ? ' selected': ''; ?>>40</option>
+								<option value="0"<?php echo (get_option('concerto_design_page_padding') == 0) ? ' selected': ''; ?>>0px</option>
+								<option value="10"<?php echo (get_option('concerto_design_page_padding') == 10) ? ' selected': ''; ?>>10px</option>
+								<option value="15"<?php echo (get_option('concerto_design_page_padding') == 15) ? ' selected': ''; ?>>15px</option>
+								<option value="20"<?php echo (get_option('concerto_design_page_padding') == 20) ? ' selected': ''; ?>>20px</option>
+								<option value="25"<?php echo (get_option('concerto_design_page_padding') == 25) ? ' selected': ''; ?>>25px</option>
+								<option value="30"<?php echo (get_option('concerto_design_page_padding') == 30) ? ' selected': ''; ?>>30px</option>
+								<option value="35"<?php echo (get_option('concerto_design_page_padding') == 35) ? ' selected': ''; ?>>35px</option>
+								<option value="40"<?php echo (get_option('concerto_design_page_padding') == 40) ? ' selected': ''; ?>>40px</option>
 							</select>
 						</p>
-						<p>Background <input type="text" class="small-text color" value="<?php echo get_option('concerto_design_colors_background_site'); ?>" name="concerto_design_colors_background_site" /></p>
-						<p>Container Background <input type="text" class="small-text color" value="<?php echo get_option('concerto_design_colors_background_container'); ?>" name="concerto_design_colors_background_container" /></p>
-						<p>Main Background <input type="text" class="small-text color" value="<?php echo get_option('concerto_design_colors_background_main'); ?>" name="concerto_design_colors_background_main" /></p>
+						<p class="desc">Global site background colors</p>
+						<p>Background <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_background_site'); ?>" name="concerto_design_colors_background_site" /></p>
+						<p>Container Background <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_background_container'); ?>" name="concerto_design_colors_background_container" /></p>
+						<p>Main Background <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_background_main'); ?>" name="concerto_design_colors_background_main" /></p>
 						
+						<p class="desc">Global site font styles</p>
 						<p>Global Font Face
 							<select name="concerto_design_fonts_body">
 								<option value="arial"<?php echo (get_option('concerto_design_fonts_body') == 'arial') ? ' selected': ''; ?>>Arial</option>
@@ -289,35 +329,37 @@ function admin_design_box_fontscolorsborders () {
 							<select name="concerto_design_sizes_body">
 								<option value="inherit-body"<?php echo (get_option('concerto_design_sizes_body') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Body</option>
 								<option value="inherit-content"<?php echo (get_option('concerto_design_sizes_body') == 'inherit-content') ? ' selected': ''; ?>>Inherit from Content</option>
-								<option value="10"<?php echo (get_option('concerto_design_sizes_body') == 10) ? ' selected': ''; ?>>10</option>
-								<option value="11"<?php echo (get_option('concerto_design_sizes_body') == 11) ? ' selected': ''; ?>>11</option>
-								<option value="12"<?php echo (get_option('concerto_design_sizes_body') == 12) ? ' selected': ''; ?>>12</option>
-								<option value="14"<?php echo (get_option('concerto_design_sizes_body') == 14) ? ' selected': ''; ?>>14</option>
-								<option value="15"<?php echo (get_option('concerto_design_sizes_body') == 15) ? ' selected': ''; ?>>15</option>
-								<option value="16"<?php echo (get_option('concerto_design_sizes_body') == 16) ? ' selected': ''; ?>>16</option>
-								<option value="18"<?php echo (get_option('concerto_design_sizes_body') == 18) ? ' selected': ''; ?>>18</option>
-								<option value="20"<?php echo (get_option('concerto_design_sizes_body') == 20) ? ' selected': ''; ?>>20</option>
-								<option value="22"<?php echo (get_option('concerto_design_sizes_body') == 22) ? ' selected': ''; ?>>22</option>
-								<option value="24"<?php echo (get_option('concerto_design_sizes_body') == 24) ? ' selected': ''; ?>>24</option>
-								<option value="25"<?php echo (get_option('concerto_design_sizes_body') == 25) ? ' selected': ''; ?>>25</option>
+								<option value="10"<?php echo (get_option('concerto_design_sizes_body') == 10) ? ' selected': ''; ?>>10px</option>
+								<option value="11"<?php echo (get_option('concerto_design_sizes_body') == 11) ? ' selected': ''; ?>>11px</option>
+								<option value="12"<?php echo (get_option('concerto_design_sizes_body') == 12) ? ' selected': ''; ?>>12px</option>
+								<option value="14"<?php echo (get_option('concerto_design_sizes_body') == 14) ? ' selected': ''; ?>>14px</option>
+								<option value="15"<?php echo (get_option('concerto_design_sizes_body') == 15) ? ' selected': ''; ?>>15px</option>
+								<option value="16"<?php echo (get_option('concerto_design_sizes_body') == 16) ? ' selected': ''; ?>>16px</option>
+								<option value="18"<?php echo (get_option('concerto_design_sizes_body') == 18) ? ' selected': ''; ?>>18px</option>
+								<option value="20"<?php echo (get_option('concerto_design_sizes_body') == 20) ? ' selected': ''; ?>>20px</option>
+								<option value="22"<?php echo (get_option('concerto_design_sizes_body') == 22) ? ' selected': ''; ?>>22px</option>
+								<option value="24"<?php echo (get_option('concerto_design_sizes_body') == 24) ? ' selected': ''; ?>>24px</option>
+								<option value="25"<?php echo (get_option('concerto_design_sizes_body') == 25) ? ' selected': ''; ?>>25px</option>
 							</select>
 						</p>
 						
-						<p>Text Color <input type="text" class="small-text color" value="<?php echo get_option('concerto_design_colors_fonts_site'); ?>" name="concerto_design_colors_fonts_site" /></p>
-						<p>Link Color <input type="text" class="small-text color" value="<?php echo get_option('concerto_design_colors_fonts_link'); ?>" name="concerto_design_colors_fonts_link" /></p>
-						<p>Hover Link Color <input type="text" class="small-text color" value="<?php echo get_option('concerto_design_colors_fonts_link_hover'); ?>" name="concerto_design_colors_fonts_link_hover" /></p>
-						<p>Visted Link Color <input type="text" class="small-text color" value="<?php echo get_option('concerto_design_colors_fonts_link_visited'); ?>" name="concerto_design_colors_fonts_link_visited" /></p>
+						<p class="desc">Global font colors</p>
+						<p>Text Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_fonts_site'); ?>" name="concerto_design_colors_fonts_site" /></p>
+						<p>Link Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_fonts_link'); ?>" name="concerto_design_colors_fonts_link" /></p>
+						<p>Hover Link Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_fonts_link_hover'); ?>" name="concerto_design_colors_fonts_link_hover" /></p>
+						<p>Visted Link Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_fonts_link_visited'); ?>" name="concerto_design_colors_fonts_link_visited" /></p>
 						
-						<p>Border Color <input type="text" class="small-text color" value="<?php echo get_option('concerto_design_colors_borders_common'); ?>" name="concerto_design_colors_borders_common" /></p>
+						<p class="desc">Global border styles</p>
+						<p>Border Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_borders_common'); ?>" name="concerto_design_colors_borders_common" /></p>
 						<p>Container Border Size
 							<select name="concerto_design_borders_container">
 								<option value="inherit-container"<?php echo (get_option('concerto_design_borders_container') == 'inherit-container') ? ' selected': ''; ?>>Inherit Global</option>
-								<option value="0"<?php echo (get_option('concerto_design_borders_container') == 0) ? ' selected': ''; ?>>0</option>
-								<option value="1"<?php echo (get_option('concerto_design_borders_container') == 1) ? ' selected': ''; ?>>1</option>
-								<option value="2"<?php echo (get_option('concerto_design_borders_container') == 2) ? ' selected': ''; ?>>2</option>
-								<option value="3"<?php echo (get_option('concerto_design_borders_container') == 3) ? ' selected': ''; ?>>3</option>
-								<option value="4"<?php echo (get_option('concerto_design_borders_container') == 4) ? ' selected': ''; ?>>4</option>
-								<option value="5"<?php echo (get_option('concerto_design_borders_container') == 5) ? ' selected': ''; ?>>5</option>
+								<option value="0"<?php echo (get_option('concerto_design_borders_container') == 0) ? ' selected': ''; ?>>0px</option>
+								<option value="1"<?php echo (get_option('concerto_design_borders_container') == 1) ? ' selected': ''; ?>>1px</option>
+								<option value="2"<?php echo (get_option('concerto_design_borders_container') == 2) ? ' selected': ''; ?>>2px</option>
+								<option value="3"<?php echo (get_option('concerto_design_borders_container') == 3) ? ' selected': ''; ?>>3px</option>
+								<option value="4"<?php echo (get_option('concerto_design_borders_container') == 4) ? ' selected': ''; ?>>4px</option>
+								<option value="5"<?php echo (get_option('concerto_design_borders_container') == 5) ? ' selected': ''; ?>>5px</option>
 							</select>
 						</p>
 					</div>
@@ -325,8 +367,10 @@ function admin_design_box_fontscolorsborders () {
 				<div>
 					<h4>Header <a href="javascript:;" class="content-toggle expand"></a></h4>
 					<div class="content hide">
-						<p>Background <input type="text" class="small-text color" value="<?php echo get_option('concerto_design_colors_background_header'); ?>" name="concerto_design_colors_background_header" /></p>
-											
+						<p class="desc">Header background color</p>
+						<p>Background <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_background_header'); ?>" name="concerto_design_colors_background_header" /></p>
+										
+						<p class="desc">Header font styles</p>	
 						<p>Font Face
 							<select name="concerto_design_fonts_header">
 								<option value="inherit-body"<?php echo (get_option('concerto_design_fonts_header') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Body</option>
@@ -341,14 +385,14 @@ function admin_design_box_fontscolorsborders () {
 						<p>Title Font Size
 						
 							<select name="concerto_design_sizes_header_title">
-								<option value="20"<?php echo (get_option('concerto_design_sizes_header_title') == 20) ? ' selected': ''; ?>>20</option>
-								<option value="24"<?php echo (get_option('concerto_design_sizes_header_title') == 24) ? ' selected': ''; ?>>24</option>
-								<option value="28"<?php echo (get_option('concerto_design_sizes_header_title') == 28) ? ' selected': ''; ?>>28</option>
-								<option value="32"<?php echo (get_option('concerto_design_sizes_header_title') == 32) ? ' selected': ''; ?>>32</option>
-								<option value="40"<?php echo (get_option('concerto_design_sizes_header_title') == 50) ? ' selected': ''; ?>>40</option>
-								<option value="48"<?php echo (get_option('concerto_design_sizes_header_title') == 48) ? ' selected': ''; ?>>48</option>
-								<option value="52"<?php echo (get_option('concerto_design_sizes_header_title') == 52) ? ' selected': ''; ?>>52</option>
-								<option value="60"<?php echo (get_option('concerto_design_sizes_header_title') == 60) ? ' selected': ''; ?>>60</option>
+								<option value="20"<?php echo (get_option('concerto_design_sizes_header_title') == 20) ? ' selected': ''; ?>>20px</option>
+								<option value="24"<?php echo (get_option('concerto_design_sizes_header_title') == 24) ? ' selected': ''; ?>>24px</option>
+								<option value="28"<?php echo (get_option('concerto_design_sizes_header_title') == 28) ? ' selected': ''; ?>>28px</option>
+								<option value="32"<?php echo (get_option('concerto_design_sizes_header_title') == 32) ? ' selected': ''; ?>>32px</option>
+								<option value="40"<?php echo (get_option('concerto_design_sizes_header_title') == 50) ? ' selected': ''; ?>>40px</option>
+								<option value="48"<?php echo (get_option('concerto_design_sizes_header_title') == 48) ? ' selected': ''; ?>>48px</option>
+								<option value="52"<?php echo (get_option('concerto_design_sizes_header_title') == 52) ? ' selected': ''; ?>>52px</option>
+								<option value="60"<?php echo (get_option('concerto_design_sizes_header_title') == 60) ? ' selected': ''; ?>>60px</option>
 							</select>
 						
 						</p>
@@ -356,53 +400,55 @@ function admin_design_box_fontscolorsborders () {
 						<p>Description Font Size
 											
 							<select name="concerto_design_sizes_header_description">
-								<option value="12"<?php echo (get_option('concerto_design_sizes_header_description') == 12) ? ' selected': ''; ?>>12</option>
-								<option value="14"<?php echo (get_option('concerto_design_sizes_header_description') == 14) ? ' selected': ''; ?>>14</option>
-								<option value="15"<?php echo (get_option('concerto_design_sizes_header_description') == 15) ? ' selected': ''; ?>>15</option>
-								<option value="16"<?php echo (get_option('concerto_design_sizes_header_description') == 16) ? ' selected': ''; ?>>16</option>
-								<option value="18"<?php echo (get_option('concerto_design_sizes_header_description') == 18) ? ' selected': ''; ?>>18</option>
-								<option value="20"<?php echo (get_option('concerto_design_sizes_header_description') == 20) ? ' selected': ''; ?>>20</option>
+								<option value="12"<?php echo (get_option('concerto_design_sizes_header_description') == 12) ? ' selected': ''; ?>>12px</option>
+								<option value="14"<?php echo (get_option('concerto_design_sizes_header_description') == 14) ? ' selected': ''; ?>>14px</option>
+								<option value="15"<?php echo (get_option('concerto_design_sizes_header_description') == 15) ? ' selected': ''; ?>>15px</option>
+								<option value="16"<?php echo (get_option('concerto_design_sizes_header_description') == 16) ? ' selected': ''; ?>>16px</option>
+								<option value="18"<?php echo (get_option('concerto_design_sizes_header_description') == 18) ? ' selected': ''; ?>>18px</option>
+								<option value="20"<?php echo (get_option('concerto_design_sizes_header_description') == 20) ? ' selected': ''; ?>>20px</option>
 							</select>
 													
 						</p>
 						
-						<p>Title Text Color <input type="text" class="small-text color" value="<?php echo get_option('concerto_design_colors_fonts_header_title'); ?>" name="concerto_design_colors_fonts_header_title" /></p>
-						<p>Description Text Color <input type="text" class="small-text color" value="<?php echo get_option('concerto_design_colors_fonts_header_description'); ?>" name="concerto_design_colors_fonts_header_description" /></p>
+						<p class="desc">Header font colors</p>
+						<p>Title Text Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_fonts_header_title'); ?>" name="concerto_design_colors_fonts_header_title" /></p>
+						<p>Description Text Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_fonts_header_description'); ?>" name="concerto_design_colors_fonts_header_description" /></p>
 						
+						<p class="desc">Header border sizes</p>
 						<p>Border Size
 						
 							<select name="concerto_design_borders_header">
 								<option value="inherit-container"<?php echo (get_option('concerto_design_borders_header') == 'inherit-container') ? ' selected': ''; ?>>Inherit Global</option>
-								<option value="0"<?php echo (get_option('concerto_design_borders_header') == 0) ? ' selected': ''; ?>>0</option>
-								<option value="1"<?php echo (get_option('concerto_design_borders_header') == 1) ? ' selected': ''; ?>>1</option>
-								<option value="2"<?php echo (get_option('concerto_design_borders_header') == 2) ? ' selected': ''; ?>>2</option>
-								<option value="3"<?php echo (get_option('concerto_design_borders_header') == 3) ? ' selected': ''; ?>>3</option>
-								<option value="4"<?php echo (get_option('concerto_design_borders_header') == 4) ? ' selected': ''; ?>>4</option>
-								<option value="5"<?php echo (get_option('concerto_design_borders_header') == 5) ? ' selected': ''; ?>>5</option>
+								<option value="0"<?php echo (get_option('concerto_design_borders_header') == 0) ? ' selected': ''; ?>>0px</option>
+								<option value="1"<?php echo (get_option('concerto_design_borders_header') == 1) ? ' selected': ''; ?>>1px</option>
+								<option value="2"<?php echo (get_option('concerto_design_borders_header') == 2) ? ' selected': ''; ?>>2px</option>
+								<option value="3"<?php echo (get_option('concerto_design_borders_header') == 3) ? ' selected': ''; ?>>3px</option>
+								<option value="4"<?php echo (get_option('concerto_design_borders_header') == 4) ? ' selected': ''; ?>>4px</option>
+								<option value="5"<?php echo (get_option('concerto_design_borders_header') == 5) ? ' selected': ''; ?>>5px</option>
 							</select>
 						</p>
 						<p>Top Border Size
 							
 							<select name="concerto_design_borders_header_top">
 								<option value="inherit-container"<?php echo (get_option('concerto_design_borders_header_top') == 'inherit-container') ? ' selected': ''; ?>>Inherit Global</option>
-								<option value="0"<?php echo (get_option('concerto_design_borders_header_top') == 0) ? ' selected': ''; ?>>0</option>
-								<option value="1"<?php echo (get_option('concerto_design_borders_header_top') == 1) ? ' selected': ''; ?>>1</option>
-								<option value="2"<?php echo (get_option('concerto_design_borders_header_top') == 2) ? ' selected': ''; ?>>2</option>
-								<option value="3"<?php echo (get_option('concerto_design_borders_header_top') == 3) ? ' selected': ''; ?>>3</option>
-								<option value="4"<?php echo (get_option('concerto_design_borders_header_top') == 4) ? ' selected': ''; ?>>4</option>
-								<option value="5"<?php echo (get_option('concerto_design_borders_header_top') == 5) ? ' selected': ''; ?>>5</option>
+								<option value="0"<?php echo (get_option('concerto_design_borders_header_top') == 0) ? ' selected': ''; ?>>0px</option>
+								<option value="1"<?php echo (get_option('concerto_design_borders_header_top') == 1) ? ' selected': ''; ?>>1px</option>
+								<option value="2"<?php echo (get_option('concerto_design_borders_header_top') == 2) ? ' selected': ''; ?>>2px</option>
+								<option value="3"<?php echo (get_option('concerto_design_borders_header_top') == 3) ? ' selected': ''; ?>>3px</option>
+								<option value="4"<?php echo (get_option('concerto_design_borders_header_top') == 4) ? ' selected': ''; ?>>4px</option>
+								<option value="5"<?php echo (get_option('concerto_design_borders_header_top') == 5) ? ' selected': ''; ?>>5px</option>
 							</select>
 						</p>
 						<p>Bottom Border Size
 						
 							<select name="concerto_design_borders_header_bottom">
 								<option value="inherit-container"<?php echo (get_option('concerto_design_borders_header_bottom') == 'inherit-container') ? ' selected': ''; ?>>Inherit Global</option>
-								<option value="0"<?php echo (get_option('concerto_design_borders_header_bottom') == 0) ? ' selected': ''; ?>>0</option>
-								<option value="1"<?php echo (get_option('concerto_design_borders_header_bottom') == 1) ? ' selected': ''; ?>>1</option>
-								<option value="2"<?php echo (get_option('concerto_design_borders_header_bottom') == 2) ? ' selected': ''; ?>>2</option>
-								<option value="3"<?php echo (get_option('concerto_design_borders_header_bottom') == 3) ? ' selected': ''; ?>>3</option>
-								<option value="4"<?php echo (get_option('concerto_design_borders_header_bottom') == 4) ? ' selected': ''; ?>>4</option>
-								<option value="5"<?php echo (get_option('concerto_design_borders_header_bottom') == 5) ? ' selected': ''; ?>>5</option>
+								<option value="0"<?php echo (get_option('concerto_design_borders_header_bottom') == 0) ? ' selected': ''; ?>>0px</option>
+								<option value="1"<?php echo (get_option('concerto_design_borders_header_bottom') == 1) ? ' selected': ''; ?>>1px</option>
+								<option value="2"<?php echo (get_option('concerto_design_borders_header_bottom') == 2) ? ' selected': ''; ?>>2px</option>
+								<option value="3"<?php echo (get_option('concerto_design_borders_header_bottom') == 3) ? ' selected': ''; ?>>3px</option>
+								<option value="4"<?php echo (get_option('concerto_design_borders_header_bottom') == 4) ? ' selected': ''; ?>>4px</option>
+								<option value="5"<?php echo (get_option('concerto_design_borders_header_bottom') == 5) ? ' selected': ''; ?>>5px</option>
 							</select>
 						</p>
 					</div>
@@ -410,10 +456,12 @@ function admin_design_box_fontscolorsborders () {
 				<div>
 					<h4>Navigation Menu <a href="javascript:;" class="content-toggle expand"></a></h4>
 					<div class="content hide">
-						<p>Background <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_background_menu'); ?>" name="concerto_design_colors_background_menu" /></p>
-						<p>Active Background <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_background_menu_active'); ?>" name="concerto_design_colors_background_menu_active" /></p>
-						<p>Hover Background <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_background_menu_hover'); ?>" name="concerto_design_colors_background_menu_hover" /></p>
+						<p class="desc">Navigation background colors</p>
+						<p>Background <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_background_menu'); ?>" name="concerto_design_colors_background_menu" /></p>
+						<p>Active Background <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_background_menu_active'); ?>" name="concerto_design_colors_background_menu_active" /></p>
+						<p>Hover Background <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_background_menu_hover'); ?>" name="concerto_design_colors_background_menu_hover" /></p>
 						
+						<p class="desc">Navigation font styles</p>
 						<p>Font Face
 							<select name="concerto_design_fonts_menu">
 								<option value="inherit-body"<?php echo (get_option('concerto_design_fonts_menu') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Body</option>
@@ -430,35 +478,37 @@ function admin_design_box_fontscolorsborders () {
 							<select name="concerto_design_sizes_menu">
 								<option value="inherit-body"<?php echo (get_option('concerto_design_sizes_menu') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Body</option>
 								<option value="inherit-content"<?php echo (get_option('concerto_design_sizes_menu') == 'inherit-content') ? ' selected': ''; ?>>Inherit from Content</option>
-								<option value="10"<?php echo (get_option('concerto_design_sizes_menu') == 10) ? ' selected': ''; ?>>10</option>
-								<option value="11"<?php echo (get_option('concerto_design_sizes_menu') == 11) ? ' selected': ''; ?>>11</option>
-								<option value="12"<?php echo (get_option('concerto_design_sizes_menu') == 12) ? ' selected': ''; ?>>12</option>
-								<option value="14"<?php echo (get_option('concerto_design_sizes_menu') == 14) ? ' selected': ''; ?>>14</option>
-								<option value="15"<?php echo (get_option('concerto_design_sizes_menu') == 15) ? ' selected': ''; ?>>15</option>
-								<option value="16"<?php echo (get_option('concerto_design_sizes_menu') == 16) ? ' selected': ''; ?>>16</option>
-								<option value="18"<?php echo (get_option('concerto_design_sizes_menu') == 18) ? ' selected': ''; ?>>18</option>
-								<option value="20"<?php echo (get_option('concerto_design_sizes_menu') == 20) ? ' selected': ''; ?>>20</option>
-								<option value="22"<?php echo (get_option('concerto_design_sizes_menu') == 22) ? ' selected': ''; ?>>22</option>
+								<option value="10"<?php echo (get_option('concerto_design_sizes_menu') == 10) ? ' selected': ''; ?>>10px</option>
+								<option value="11"<?php echo (get_option('concerto_design_sizes_menu') == 11) ? ' selected': ''; ?>>11px</option>
+								<option value="12"<?php echo (get_option('concerto_design_sizes_menu') == 12) ? ' selected': ''; ?>>12px</option>
+								<option value="14"<?php echo (get_option('concerto_design_sizes_menu') == 14) ? ' selected': ''; ?>>14px</option>
+								<option value="15"<?php echo (get_option('concerto_design_sizes_menu') == 15) ? ' selected': ''; ?>>15px</option>
+								<option value="16"<?php echo (get_option('concerto_design_sizes_menu') == 16) ? ' selected': ''; ?>>16px</option>
+								<option value="18"<?php echo (get_option('concerto_design_sizes_menu') == 18) ? ' selected': ''; ?>>18px</option>
+								<option value="20"<?php echo (get_option('concerto_design_sizes_menu') == 20) ? ' selected': ''; ?>>20px</option>
+								<option value="22"<?php echo (get_option('concerto_design_sizes_menu') == 22) ? ' selected': ''; ?>>22px</option>
 							</select>
 						</p>
 						
-						<p>Text Color <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_fonts_menu'); ?>" name="concerto_design_colors_fonts_menu" /></p>
-						<p>Active Text Color <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_fonts_menu_active'); ?>" name="concerto_design_colors_fonts_menu_active" /></p>
-						<p>Hover Text Color <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_fonts_menu_hover'); ?>" name="concerto_design_colors_fonts_menu_hover" /></p>
+						<p class="desc">Navigation font colors</p>
+						<p>Text Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_fonts_menu'); ?>" name="concerto_design_colors_fonts_menu" /></p>
+						<p>Active Text Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_fonts_menu_active'); ?>" name="concerto_design_colors_fonts_menu_active" /></p>
+						<p>Hover Text Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_fonts_menu_hover'); ?>" name="concerto_design_colors_fonts_menu_hover" /></p>
 						
-						<p>Border Color <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_borders_menu'); ?>" name="concerto_design_colors_borders_menu" /></p>
-						<p>Active Border Color <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_borders_menu_active'); ?>" name="concerto_design_colors_borders_menu_active" /></p>
-						<p>Hover Border Color <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_borders_menu_hover'); ?>" name="concerto_design_colors_borders_menu_hover" /></p>
+						<p class="desc">Navigation border styles</p>
+						<p>Border Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_borders_menu'); ?>" name="concerto_design_colors_borders_menu" /></p>
+						<p>Active Border Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_borders_menu_active'); ?>" name="concerto_design_colors_borders_menu_active" /></p>
+						<p>Hover Border Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_borders_menu_hover'); ?>" name="concerto_design_colors_borders_menu_hover" /></p>
 						
 						<p>Border Size
 							<select name="concerto_design_borders_menu">
 								<option value="inherit-container"<?php echo (get_option('concerto_design_borders_menu') == 'inherit-container') ? ' selected': ''; ?>>Inherit Global</option>
-								<option value="0"<?php echo (get_option('concerto_design_borders_menu') == 0) ? ' selected': ''; ?>>0</option>
-								<option value="1"<?php echo (get_option('concerto_design_borders_menu') == 1) ? ' selected': ''; ?>>1</option>
-								<option value="2"<?php echo (get_option('concerto_design_borders_menu') == 2) ? ' selected': ''; ?>>2</option>
-								<option value="3"<?php echo (get_option('concerto_design_borders_menu') == 3) ? ' selected': ''; ?>>3</option>
-								<option value="4"<?php echo (get_option('concerto_design_borders_menu') == 4) ? ' selected': ''; ?>>4</option>
-								<option value="5"<?php echo (get_option('concerto_design_borders_menu') == 5) ? ' selected': ''; ?>>5</option>
+								<option value="0"<?php echo (get_option('concerto_design_borders_menu') == 0) ? ' selected': ''; ?>>0px</option>
+								<option value="1"<?php echo (get_option('concerto_design_borders_menu') == 1) ? ' selected': ''; ?>>1px</option>
+								<option value="2"<?php echo (get_option('concerto_design_borders_menu') == 2) ? ' selected': ''; ?>>2px</option>
+								<option value="3"<?php echo (get_option('concerto_design_borders_menu') == 3) ? ' selected': ''; ?>>3px</option>
+								<option value="4"<?php echo (get_option('concerto_design_borders_menu') == 4) ? ' selected': ''; ?>>4px</option>
+								<option value="5"<?php echo (get_option('concerto_design_borders_menu') == 5) ? ' selected': ''; ?>>5px</option>
 							</select>
 						</p>
 					</div>
@@ -466,8 +516,10 @@ function admin_design_box_fontscolorsborders () {
 				<div>
 					<h4>Content <a href="javascript:;" class="content-toggle expand"></a></h4>
 					<div class="content hide">
-						<p>Background <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_background_content'); ?>" name="concerto_design_colors_background_content" /></p>
-											
+						<p class="desc">Content background colors</p>
+						<p>Background <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_background_content'); ?>" name="concerto_design_colors_background_content" /></p>
+									
+						<p class="desc">Content font styles</p>		
 						<p>Title Font Face
 							<select name="concerto_design_fonts_content_title">
 								<option value="inherit-body"<?php echo (get_option('concerto_design_fonts_content_title') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Body</option>
@@ -482,13 +534,13 @@ function admin_design_box_fontscolorsborders () {
 						<p>Title Font Size
 							<select name="concerto_design_sizes_content_title">
 								<option value="inherit-header_title"<?php echo (get_option('concerto_design_sizes_content_title') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Site Title</option>
-								<option value="20"<?php echo (get_option('concerto_design_sizes_content_title') == 20) ? ' selected': ''; ?>>20</option>
-								<option value="24"<?php echo (get_option('concerto_design_sizes_content_title') == 24) ? ' selected': ''; ?>>24</option>
-								<option value="28"<?php echo (get_option('concerto_design_sizes_content_title') == 28) ? ' selected': ''; ?>>28</option>
-								<option value="32"<?php echo (get_option('concerto_design_sizes_content_title') == 32) ? ' selected': ''; ?>>32</option>
-								<option value="40"<?php echo (get_option('concerto_design_sizes_content_title') == 40) ? ' selected': ''; ?>>40</option>
-								<option value="44"<?php echo (get_option('concerto_design_sizes_content_title') == 44) ? ' selected': ''; ?>>44</option>
-								<option value="48"<?php echo (get_option('concerto_design_sizes_content_title') == 48) ? ' selected': ''; ?>>48</option>
+								<option value="20"<?php echo (get_option('concerto_design_sizes_content_title') == 20) ? ' selected': ''; ?>>20px</option>
+								<option value="24"<?php echo (get_option('concerto_design_sizes_content_title') == 24) ? ' selected': ''; ?>>24px</option>
+								<option value="28"<?php echo (get_option('concerto_design_sizes_content_title') == 28) ? ' selected': ''; ?>>28px</option>
+								<option value="32"<?php echo (get_option('concerto_design_sizes_content_title') == 32) ? ' selected': ''; ?>>32px</option>
+								<option value="40"<?php echo (get_option('concerto_design_sizes_content_title') == 40) ? ' selected': ''; ?>>40px</option>
+								<option value="44"<?php echo (get_option('concerto_design_sizes_content_title') == 44) ? ' selected': ''; ?>>44px</option>
+								<option value="48"<?php echo (get_option('concerto_design_sizes_content_title') == 48) ? ' selected': ''; ?>>48px</option>
 							</select>
 						</p>
 						
@@ -506,26 +558,26 @@ function admin_design_box_fontscolorsborders () {
 						<p>Font Size
 							<select name="concerto_design_sizes_content">
 								<option value="inherit-body"<?php echo (get_option('concerto_design_sizes_content') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Body</option>
-								<option value="10"<?php echo (get_option('concerto_design_sizes_content') == 10) ? ' selected': ''; ?>>10</option>
-								<option value="11"<?php echo (get_option('concerto_design_sizes_content') == 11) ? ' selected': ''; ?>>11</option>
-								<option value="12"<?php echo (get_option('concerto_design_sizes_content') == 12) ? ' selected': ''; ?>>12</option>
-								<option value="14"<?php echo (get_option('concerto_design_sizes_content') == 14) ? ' selected': ''; ?>>14</option>
-								<option value="15"<?php echo (get_option('concerto_design_sizes_content') == 15) ? ' selected': ''; ?>>15</option>
-								<option value="16"<?php echo (get_option('concerto_design_sizes_content') == 16) ? ' selected': ''; ?>>16</option>
-								<option value="18"<?php echo (get_option('concerto_design_sizes_content') == 18) ? ' selected': ''; ?>>18</option>
-								<option value="20"<?php echo (get_option('concerto_design_sizes_content') == 20) ? ' selected': ''; ?>>20</option>
-								<option value="22"<?php echo (get_option('concerto_design_sizes_content') == 22) ? ' selected': ''; ?>>22</option>
+								<option value="10"<?php echo (get_option('concerto_design_sizes_content') == 10) ? ' selected': ''; ?>>10px</option>
+								<option value="11"<?php echo (get_option('concerto_design_sizes_content') == 11) ? ' selected': ''; ?>>11px</option>
+								<option value="12"<?php echo (get_option('concerto_design_sizes_content') == 12) ? ' selected': ''; ?>>12px</option>
+								<option value="14"<?php echo (get_option('concerto_design_sizes_content') == 14) ? ' selected': ''; ?>>14px</option>
+								<option value="15"<?php echo (get_option('concerto_design_sizes_content') == 15) ? ' selected': ''; ?>>15px</option>
+								<option value="16"<?php echo (get_option('concerto_design_sizes_content') == 16) ? ' selected': ''; ?>>16px</option>
+								<option value="18"<?php echo (get_option('concerto_design_sizes_content') == 18) ? ' selected': ''; ?>>18px</option>
+								<option value="20"<?php echo (get_option('concerto_design_sizes_content') == 20) ? ' selected': ''; ?>>20px</option>
+								<option value="22"<?php echo (get_option('concerto_design_sizes_content') == 22) ? ' selected': ''; ?>>22px</option>
 							</select>
 						</p>
 						<p>Meta Font Size
 							<select name="concerto_design_sizes_content_meta">
 								<option value="inherit-body"<?php echo (get_option('concerto_design_sizes_content_meta') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Body</option>
 								<option value="inherit-content"<?php echo (get_option('concerto_design_sizes_content_meta') == 'inherit-content') ? ' selected': ''; ?>>Inherit from Content</option>
-								<option value="10"<?php echo (get_option('concerto_design_sizes_content_meta') == 10) ? ' selected': ''; ?>>10</option>
-								<option value="11"<?php echo (get_option('concerto_design_sizes_content_meta') == 11) ? ' selected': ''; ?>>11</option>
-								<option value="12"<?php echo (get_option('concerto_design_sizes_content_meta') == 12) ? ' selected': ''; ?>>12</option>
-								<option value="14"<?php echo (get_option('concerto_design_sizes_content_meta') == 14) ? ' selected': ''; ?>>14</option>
-								<option value="15"<?php echo (get_option('concerto_design_sizes_content_meta') == 15) ? ' selected': ''; ?>>15</option>
+								<option value="10"<?php echo (get_option('concerto_design_sizes_content_meta') == 10) ? ' selected': ''; ?>>10px</option>
+								<option value="11"<?php echo (get_option('concerto_design_sizes_content_meta') == 11) ? ' selected': ''; ?>>11px</option>
+								<option value="12"<?php echo (get_option('concerto_design_sizes_content_meta') == 12) ? ' selected': ''; ?>>12px</option>
+								<option value="14"<?php echo (get_option('concerto_design_sizes_content_meta') == 14) ? ' selected': ''; ?>>14px</option>
+								<option value="15"<?php echo (get_option('concerto_design_sizes_content_meta') == 15) ? ' selected': ''; ?>>15px</option>
 							</select>
 						</p>
 					</div>
@@ -534,6 +586,7 @@ function admin_design_box_fontscolorsborders () {
 					<h4>Sidebar <a href="javascript:;" class="content-toggle expand"></a></h4>
 					<div class="content hide">
 					
+						<p class="desc">Sidebar font styles</p>
 						<p>Font Face
 							<select name="concerto_design_fonts_sidebar">
 								<option value="inherit-body"<?php echo (get_option('concerto_design_fonts_sidebar') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Body</option>
@@ -549,15 +602,15 @@ function admin_design_box_fontscolorsborders () {
 						<p>Font Size
 							<select name="concerto_design_sizes_sidebar">
 								<option value="inherit-body"<?php echo (get_option('concerto_design_sizes_sidebar') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Body</option>
-								<option value="10"<?php echo (get_option('concerto_design_sizes_sidebar') == 10) ? ' selected': ''; ?>>10</option>
-								<option value="11"<?php echo (get_option('concerto_design_sizes_sidebar') == 11) ? ' selected': ''; ?>>11</option>
-								<option value="12"<?php echo (get_option('concerto_design_sizes_sidebar') == 12) ? ' selected': ''; ?>>12</option>
-								<option value="14"<?php echo (get_option('concerto_design_sizes_sidebar') == 14) ? ' selected': ''; ?>>14</option>
-								<option value="15"<?php echo (get_option('concerto_design_sizes_sidebar') == 15) ? ' selected': ''; ?>>15</option>
-								<option value="16"<?php echo (get_option('concerto_design_sizes_sidebar') == 16) ? ' selected': ''; ?>>16</option>
-								<option value="18"<?php echo (get_option('concerto_design_sizes_sidebar') == 18) ? ' selected': ''; ?>>18</option>
-								<option value="20"<?php echo (get_option('concerto_design_sizes_sidebar') == 20) ? ' selected': ''; ?>>20</option>
-								<option value="22"<?php echo (get_option('concerto_design_sizes_sidebar') == 22) ? ' selected': ''; ?>>22</option>
+								<option value="10"<?php echo (get_option('concerto_design_sizes_sidebar') == 10) ? ' selected': ''; ?>>10px</option>
+								<option value="11"<?php echo (get_option('concerto_design_sizes_sidebar') == 11) ? ' selected': ''; ?>>11px</option>
+								<option value="12"<?php echo (get_option('concerto_design_sizes_sidebar') == 12) ? ' selected': ''; ?>>12px</option>
+								<option value="14"<?php echo (get_option('concerto_design_sizes_sidebar') == 14) ? ' selected': ''; ?>>14px</option>
+								<option value="15"<?php echo (get_option('concerto_design_sizes_sidebar') == 15) ? ' selected': ''; ?>>15px</option>
+								<option value="16"<?php echo (get_option('concerto_design_sizes_sidebar') == 16) ? ' selected': ''; ?>>16px</option>
+								<option value="18"<?php echo (get_option('concerto_design_sizes_sidebar') == 18) ? ' selected': ''; ?>>18px</option>
+								<option value="20"<?php echo (get_option('concerto_design_sizes_sidebar') == 20) ? ' selected': ''; ?>>20px</option>
+								<option value="22"<?php echo (get_option('concerto_design_sizes_sidebar') == 22) ? ' selected': ''; ?>>22px</option>
 							</select>
 						</p>
 					</div>
@@ -565,135 +618,140 @@ function admin_design_box_fontscolorsborders () {
 				<div>
 					<h4>Article <a href="javascript:;" class="content-toggle expand"></a></h4>
 					<div class="content hide">
-						<p>Padding <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_background_article'); ?>" name="concerto_design_colors_background_article" /></p>
+						<p class="desc">Article padding</p>
+						<p>Padding <input type="text" class="small-text" value="<?php echo get_option('concerto_design_article_padding'); ?>" name="concerto_design_article_padding" /></p>
 						
-						<p>Article Background <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_background_article'); ?>" name="concerto_design_colors_background_article" /></p>
+						<p class="desc">Article background color</p>
+						<p>Article Background <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_background_article'); ?>" name="concerto_design_colors_background_article" /></p>
 						
+						<p class="desc">Article font styles</p>
 						<p>h1
 							<select name="concerto_design_sizes_h1">
 								<option value="inherit-header_title"<?php echo (get_option('concerto_design_sizes_h1') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Site Title</option>
-								<option value="20"<?php echo (get_option('concerto_design_sizes_h1') == 20) ? ' selected': ''; ?>>20</option>
-								<option value="24"<?php echo (get_option('concerto_design_sizes_h1') == 24) ? ' selected': ''; ?>>24</option>
-								<option value="28"<?php echo (get_option('concerto_design_sizes_h1') == 28) ? ' selected': ''; ?>>28</option>
-								<option value="32"<?php echo (get_option('concerto_design_sizes_h1') == 32) ? ' selected': ''; ?>>32</option>
-								<option value="40"<?php echo (get_option('concerto_design_sizes_h1') == 40) ? ' selected': ''; ?>>40</option>
-								<option value="44"<?php echo (get_option('concerto_design_sizes_h1') == 44) ? ' selected': ''; ?>>44</option>
-								<option value="48"<?php echo (get_option('concerto_design_sizes_h1') == 48) ? ' selected': ''; ?>>48</option>
+								<option value="20"<?php echo (get_option('concerto_design_sizes_h1') == 20) ? ' selected': ''; ?>>20px</option>
+								<option value="24"<?php echo (get_option('concerto_design_sizes_h1') == 24) ? ' selected': ''; ?>>24px</option>
+								<option value="28"<?php echo (get_option('concerto_design_sizes_h1') == 28) ? ' selected': ''; ?>>28px</option>
+								<option value="32"<?php echo (get_option('concerto_design_sizes_h1') == 32) ? ' selected': ''; ?>>32px</option>
+								<option value="40"<?php echo (get_option('concerto_design_sizes_h1') == 40) ? ' selected': ''; ?>>40px</option>
+								<option value="44"<?php echo (get_option('concerto_design_sizes_h1') == 44) ? ' selected': ''; ?>>44px</option>
+								<option value="48"<?php echo (get_option('concerto_design_sizes_h1') == 48) ? ' selected': ''; ?>>48px</option>
 							</select>
 						</p>
 						<p>h2
 						
 							<select name="concerto_design_sizes_h2">
-								<option value="14"<?php echo (get_option('concerto_design_sizes_h2') == 14) ? ' selected': ''; ?>>14</option>
-								<option value="18"<?php echo (get_option('concerto_design_sizes_h2') == 18) ? ' selected': ''; ?>>18</option>
-								<option value="20"<?php echo (get_option('concerto_design_sizes_h2') == 20) ? ' selected': ''; ?>>20</option>
-								<option value="25"<?php echo (get_option('concerto_design_sizes_h2') == 25) ? ' selected': ''; ?>>25</option>
-								<option value="28"<?php echo (get_option('concerto_design_sizes_h2') == 28) ? ' selected': ''; ?>>28</option>
-								<option value="32"<?php echo (get_option('concerto_design_sizes_h2') == 32) ? ' selected': ''; ?>>32</option>
-								<option value="40"<?php echo (get_option('concerto_design_sizes_h2') == 40) ? ' selected': ''; ?>>40</option>
+								<option value="14"<?php echo (get_option('concerto_design_sizes_h2') == 14) ? ' selected': ''; ?>>14px</option>
+								<option value="18"<?php echo (get_option('concerto_design_sizes_h2') == 18) ? ' selected': ''; ?>>18px</option>
+								<option value="20"<?php echo (get_option('concerto_design_sizes_h2') == 20) ? ' selected': ''; ?>>20px</option>
+								<option value="25"<?php echo (get_option('concerto_design_sizes_h2') == 25) ? ' selected': ''; ?>>25px</option>
+								<option value="28"<?php echo (get_option('concerto_design_sizes_h2') == 28) ? ' selected': ''; ?>>28px</option>
+								<option value="32"<?php echo (get_option('concerto_design_sizes_h2') == 32) ? ' selected': ''; ?>>32px</option>
+								<option value="40"<?php echo (get_option('concerto_design_sizes_h2') == 40) ? ' selected': ''; ?>>40px</option>
 							</select>
 						</p>
 						<p>h3
 						
 							<select name="concerto_design_sizes_h3">
-								<option value="10"<?php echo (get_option('concerto_design_sizes_h3') == 10) ? ' selected': ''; ?>>10</option>
-								<option value="11"<?php echo (get_option('concerto_design_sizes_h3') == 11) ? ' selected': ''; ?>>11</option>
-								<option value="12"<?php echo (get_option('concerto_design_sizes_h3') == 12) ? ' selected': ''; ?>>12</option>
-								<option value="14"<?php echo (get_option('concerto_design_sizes_h3') == 14) ? ' selected': ''; ?>>14</option>
-								<option value="18"<?php echo (get_option('concerto_design_sizes_h3') == 18) ? ' selected': ''; ?>>18</option>
-								<option value="20"<?php echo (get_option('concerto_design_sizes_h3') == 20) ? ' selected': ''; ?>>20</option>
-								<option value="25"<?php echo (get_option('concerto_design_sizes_h3') == 25) ? ' selected': ''; ?>>25</option>
-								<option value="28"<?php echo (get_option('concerto_design_sizes_h3') == 28) ? ' selected': ''; ?>>28</option>
+								<option value="10"<?php echo (get_option('concerto_design_sizes_h3') == 10) ? ' selected': ''; ?>>10px</option>
+								<option value="11"<?php echo (get_option('concerto_design_sizes_h3') == 11) ? ' selected': ''; ?>>11px</option>
+								<option value="12"<?php echo (get_option('concerto_design_sizes_h3') == 12) ? ' selected': ''; ?>>12px</option>
+								<option value="14"<?php echo (get_option('concerto_design_sizes_h3') == 14) ? ' selected': ''; ?>>14px</option>
+								<option value="18"<?php echo (get_option('concerto_design_sizes_h3') == 18) ? ' selected': ''; ?>>18px</option>
+								<option value="20"<?php echo (get_option('concerto_design_sizes_h3') == 20) ? ' selected': ''; ?>>20px</option>
+								<option value="25"<?php echo (get_option('concerto_design_sizes_h3') == 25) ? ' selected': ''; ?>>25px</option>
+								<option value="28"<?php echo (get_option('concerto_design_sizes_h3') == 28) ? ' selected': ''; ?>>28px</option>
 							</select>
 						</p>
 						<p>h4
 						
 							<select name="concerto_design_sizes_h4">
-								<option value="10"<?php echo (get_option('concerto_design_sizes_h4') == 10) ? ' selected': ''; ?>>10</option>
-								<option value="11"<?php echo (get_option('concerto_design_sizes_h4') == 11) ? ' selected': ''; ?>>11</option>
-								<option value="12"<?php echo (get_option('concerto_design_sizes_h4') == 12) ? ' selected': ''; ?>>12</option>
-								<option value="14"<?php echo (get_option('concerto_design_sizes_h4') == 14) ? ' selected': ''; ?>>14</option>
-								<option value="16"<?php echo (get_option('concerto_design_sizes_h4') == 16) ? ' selected': ''; ?>>16</option>
-								<option value="20"<?php echo (get_option('concerto_design_sizes_h4') == 20) ? ' selected': ''; ?>>20</option>
-								<option value="22"<?php echo (get_option('concerto_design_sizes_h4') == 22) ? ' selected': ''; ?>>22</option>
+								<option value="10"<?php echo (get_option('concerto_design_sizes_h4') == 10) ? ' selected': ''; ?>>10px</option>
+								<option value="11"<?php echo (get_option('concerto_design_sizes_h4') == 11) ? ' selected': ''; ?>>11px</option>
+								<option value="12"<?php echo (get_option('concerto_design_sizes_h4') == 12) ? ' selected': ''; ?>>12px</option>
+								<option value="14"<?php echo (get_option('concerto_design_sizes_h4') == 14) ? ' selected': ''; ?>>14px</option>
+								<option value="16"<?php echo (get_option('concerto_design_sizes_h4') == 16) ? ' selected': ''; ?>>16px</option>
+								<option value="20"<?php echo (get_option('concerto_design_sizes_h4') == 20) ? ' selected': ''; ?>>20px</option>
+								<option value="22"<?php echo (get_option('concerto_design_sizes_h4') == 22) ? ' selected': ''; ?>>22px</option>
 							</select>
 						</p>
 						<p>h5
 						
 							<select name="concerto_design_sizes_h5">
-								<option value="10"<?php echo (get_option('concerto_design_sizes_h5') == 10) ? ' selected': ''; ?>>10</option>
-								<option value="11"<?php echo (get_option('concerto_design_sizes_h5') == 11) ? ' selected': ''; ?>>11</option>
-								<option value="12"<?php echo (get_option('concerto_design_sizes_h5') == 12) ? ' selected': ''; ?>>12</option>
-								<option value="14"<?php echo (get_option('concerto_design_sizes_h5') == 14) ? ' selected': ''; ?>>14</option>
-								<option value="18"<?php echo (get_option('concerto_design_sizes_h5') == 18) ? ' selected': ''; ?>>18</option>
+								<option value="10"<?php echo (get_option('concerto_design_sizes_h5') == 10) ? ' selected': ''; ?>>10px</option>
+								<option value="11"<?php echo (get_option('concerto_design_sizes_h5') == 11) ? ' selected': ''; ?>>11px</option>
+								<option value="12"<?php echo (get_option('concerto_design_sizes_h5') == 12) ? ' selected': ''; ?>>12px</option>
+								<option value="14"<?php echo (get_option('concerto_design_sizes_h5') == 14) ? ' selected': ''; ?>>14px</option>
+								<option value="18"<?php echo (get_option('concerto_design_sizes_h5') == 18) ? ' selected': ''; ?>>18px</option>
 							</select>
 						</p>
 						<p>h6
 						
 							<select name="concerto_design_sizes_h6">
-								<option value="10"<?php echo (get_option('concerto_design_sizes_h6') == 10) ? ' selected': ''; ?>>10</option>
-								<option value="11"<?php echo (get_option('concerto_design_sizes_h6') == 11) ? ' selected': ''; ?>>11</option>
-								<option value="12"<?php echo (get_option('concerto_design_sizes_h6') == 12) ? ' selected': ''; ?>>12</option>
-								<option value="14"<?php echo (get_option('concerto_design_sizes_h6') == 14) ? ' selected': ''; ?>>14</option>
-								<option value="18"<?php echo (get_option('concerto_design_sizes_h6') == 18) ? ' selected': ''; ?>>18</option>
+								<option value="10"<?php echo (get_option('concerto_design_sizes_h6') == 10) ? ' selected': ''; ?>>10px</option>
+								<option value="11"<?php echo (get_option('concerto_design_sizes_h6') == 11) ? ' selected': ''; ?>>11px</option>
+								<option value="12"<?php echo (get_option('concerto_design_sizes_h6') == 12) ? ' selected': ''; ?>>12px</option>
+								<option value="14"<?php echo (get_option('concerto_design_sizes_h6') == 14) ? ' selected': ''; ?>>14px</option>
+								<option value="18"<?php echo (get_option('concerto_design_sizes_h6') == 18) ? ' selected': ''; ?>>18px</option>
 							</select>
 						</p>
 						
-						<p>Title Text Color <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_fonts_content_title'); ?>" name="concerto_design_colors_fonts_content_title" /></p>
-						<p>Link Text Color <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_fonts_content_link'); ?>" name="concerto_design_colors_fonts_content_link" /></p>
-						<p>Hover Link Text Color <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_fonts_content_link_hover'); ?>" name="concerto_design_colors_fonts_content_link_hover" /></p>
-						<p>Meta Text Color <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_fonts_content_meta'); ?>" name="concerto_design_colors_fonts_content_meta" /></p>
+						<p class="desc">Article font colors</p>
+						<p>Title Text Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_fonts_content_title'); ?>" name="concerto_design_colors_fonts_content_title" /></p>
+						<p>Link Text Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_fonts_content_link'); ?>" name="concerto_design_colors_fonts_content_link" /></p>
+						<p>Hover Link Text Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_fonts_content_link_hover'); ?>" name="concerto_design_colors_fonts_content_link_hover" /></p>
+						<p>Meta Text Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_fonts_content_meta'); ?>" name="concerto_design_colors_fonts_content_meta" /></p>
 						
-						<p>Article Border Color <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_borders_article'); ?>" name="concerto_design_colors_borders_article" /></p>
-						<p>Top Article Border Color <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_borders_article_top'); ?>" name="concerto_design_colors_borders_article_top" /></p>
-						<p>Bottom Article Border Color <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_borders_article_bottom'); ?>" name="concerto_design_colors_borders_article_bottom" /></p>
+						<p class="desc">Article border styles</p>
+						<p>Article Border Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_borders_article'); ?>" name="concerto_design_colors_borders_article" /></p>
+						<p>Top Article Border Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_borders_article_top'); ?>" name="concerto_design_colors_borders_article_top" /></p>
+						<p>Bottom Article Border Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_borders_article_bottom'); ?>" name="concerto_design_colors_borders_article_bottom" /></p>
 						
 						<p>Border Size
 						
 							<select name="concerto_design_borders_article">
 								<option value="inherit-container"<?php echo (get_option('concerto_design_borders_article') == 'inherit-container') ? ' selected': ''; ?>>Inherit Global</option>
-								<option value="0"<?php echo (get_option('concerto_design_borders_article') == 0) ? ' selected': ''; ?>>0</option>
-								<option value="1"<?php echo (get_option('concerto_design_borders_article') == 1) ? ' selected': ''; ?>>1</option>
-								<option value="2"<?php echo (get_option('concerto_design_borders_article') == 2) ? ' selected': ''; ?>>2</option>
-								<option value="3"<?php echo (get_option('concerto_design_borders_article') == 3) ? ' selected': ''; ?>>3</option>
-								<option value="4"<?php echo (get_option('concerto_design_borders_article') == 4) ? ' selected': ''; ?>>4</option>
-								<option value="5"<?php echo (get_option('concerto_design_borders_article') == 5) ? ' selected': ''; ?>>5</option>
+								<option value="0"<?php echo (get_option('concerto_design_borders_article') == 0) ? ' selected': ''; ?>>0px</option>
+								<option value="1"<?php echo (get_option('concerto_design_borders_article') == 1) ? ' selected': ''; ?>>1px</option>
+								<option value="2"<?php echo (get_option('concerto_design_borders_article') == 2) ? ' selected': ''; ?>>2px</option>
+								<option value="3"<?php echo (get_option('concerto_design_borders_article') == 3) ? ' selected': ''; ?>>3px</option>
+								<option value="4"<?php echo (get_option('concerto_design_borders_article') == 4) ? ' selected': ''; ?>>4px</option>
+								<option value="5"<?php echo (get_option('concerto_design_borders_article') == 5) ? ' selected': ''; ?>>5px</option>
 							</select>
 						</p>
 						<p>Top Border Size
 						
 							<select name="concerto_design_borders_article_top">
 								<option value="inherit-container"<?php echo (get_option('concerto_design_borders_article_top') == 'inherit-container') ? ' selected': ''; ?>>Inherit Global</option>
-								<option value="0"<?php echo (get_option('concerto_design_borders_article_top') == 0) ? ' selected': ''; ?>>0</option>
-								<option value="1"<?php echo (get_option('concerto_design_borders_article_top') == 1) ? ' selected': ''; ?>>1</option>
-								<option value="2"<?php echo (get_option('concerto_design_borders_article_top') == 2) ? ' selected': ''; ?>>2</option>
-								<option value="3"<?php echo (get_option('concerto_design_borders_article_top') == 3) ? ' selected': ''; ?>>3</option>
-								<option value="4"<?php echo (get_option('concerto_design_borders_article_top') == 4) ? ' selected': ''; ?>>4</option>
-								<option value="5"<?php echo (get_option('concerto_design_borders_article_top') == 5) ? ' selected': ''; ?>>5</option>
+								<option value="0"<?php echo (get_option('concerto_design_borders_article_top') == 0) ? ' selected': ''; ?>>0px</option>
+								<option value="1"<?php echo (get_option('concerto_design_borders_article_top') == 1) ? ' selected': ''; ?>>1px</option>
+								<option value="2"<?php echo (get_option('concerto_design_borders_article_top') == 2) ? ' selected': ''; ?>>2px</option>
+								<option value="3"<?php echo (get_option('concerto_design_borders_article_top') == 3) ? ' selected': ''; ?>>3px</option>
+								<option value="4"<?php echo (get_option('concerto_design_borders_article_top') == 4) ? ' selected': ''; ?>>4px</option>
+								<option value="5"<?php echo (get_option('concerto_design_borders_article_top') == 5) ? ' selected': ''; ?>>5px</option>
 							</select>
 						</p>
 						<p>Bottom Border Size
 						
 							<select name="concerto_design_borders_article_bottom">
 								<option value="inherit-container"<?php echo (get_option('concerto_design_borders_article_bottom') == 'inherit-container') ? ' selected': ''; ?>>Inherit Global</option>
-								<option value="0"<?php echo (get_option('concerto_design_borders_article_bottom') == 0) ? ' selected': ''; ?>>0</option>
-								<option value="1"<?php echo (get_option('concerto_design_borders_article_bottom') == 1) ? ' selected': ''; ?>>1</option>
-								<option value="2"<?php echo (get_option('concerto_design_borders_article_bottom') == 2) ? ' selected': ''; ?>>2</option>
-								<option value="3"<?php echo (get_option('concerto_design_borders_article_bottom') == 3) ? ' selected': ''; ?>>3</option>
-								<option value="4"<?php echo (get_option('concerto_design_borders_article_bottom') == 4) ? ' selected': ''; ?>>4</option>
-								<option value="5"<?php echo (get_option('concerto_design_borders_article_bottom') == 5) ? ' selected': ''; ?>>5</option>
+								<option value="0"<?php echo (get_option('concerto_design_borders_article_bottom') == 0) ? ' selected': ''; ?>>0px</option>
+								<option value="1"<?php echo (get_option('concerto_design_borders_article_bottom') == 1) ? ' selected': ''; ?>>1px</option>
+								<option value="2"<?php echo (get_option('concerto_design_borders_article_bottom') == 2) ? ' selected': ''; ?>>2px</option>
+								<option value="3"<?php echo (get_option('concerto_design_borders_article_bottom') == 3) ? ' selected': ''; ?>>3px</option>
+								<option value="4"<?php echo (get_option('concerto_design_borders_article_bottom') == 4) ? ' selected': ''; ?>>4px</option>
+								<option value="5"<?php echo (get_option('concerto_design_borders_article_bottom') == 5) ? ' selected': ''; ?>>5px</option>
 							</select>
 						</p>
 						<p>Table Border Size
 						
 							<select name="concerto_design_borders_table">
 								<option value="inherit-container"<?php echo (get_option('concerto_design_borders_table') == 'inherit-container') ? ' selected': ''; ?>>Inherit Global</option>
-								<option value="0"<?php echo (get_option('concerto_design_borders_table') == 0) ? ' selected': ''; ?>>0</option>
-								<option value="1"<?php echo (get_option('concerto_design_borders_table') == 1) ? ' selected': ''; ?>>1</option>
-								<option value="2"<?php echo (get_option('concerto_design_borders_table') == 2) ? ' selected': ''; ?>>2</option>
-								<option value="3"<?php echo (get_option('concerto_design_borders_table') == 3) ? ' selected': ''; ?>>3</option>
-								<option value="4"<?php echo (get_option('concerto_design_borders_table') == 4) ? ' selected': ''; ?>>4</option>
-								<option value="5"<?php echo (get_option('concerto_design_borders_table') == 5) ? ' selected': ''; ?>>5</option>
+								<option value="0"<?php echo (get_option('concerto_design_borders_table') == 0) ? ' selected': ''; ?>>0px</option>
+								<option value="1"<?php echo (get_option('concerto_design_borders_table') == 1) ? ' selected': ''; ?>>1px</option>
+								<option value="2"<?php echo (get_option('concerto_design_borders_table') == 2) ? ' selected': ''; ?>>2px</option>
+								<option value="3"<?php echo (get_option('concerto_design_borders_table') == 3) ? ' selected': ''; ?>>3px</option>
+								<option value="4"<?php echo (get_option('concerto_design_borders_table') == 4) ? ' selected': ''; ?>>4px</option>
+								<option value="5"<?php echo (get_option('concerto_design_borders_table') == 5) ? ' selected': ''; ?>>5px</option>
 							</select>
 						</p>
 					</div>
@@ -701,76 +759,79 @@ function admin_design_box_fontscolorsborders () {
 				<div>
 					<h4>Comments <a href="javascript:;" class="content-toggle expand"></a></h4>
 					<div class="content hide">
-						<p>Even Comments <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_background_comment_even'); ?>" name="concerto_design_colors_background_comment_even" /></p>
-						<p>Odd Comments <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_background_comment_odd'); ?>" name="concerto_design_colors_background_comment_odd" /></p>
+						<p class="desc">Comment background colors</p>
+						<p>Even Comments <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_background_comment_even'); ?>" name="concerto_design_colors_background_comment_even" /></p>
+						<p>Odd Comments <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_background_comment_odd'); ?>" name="concerto_design_colors_background_comment_odd" /></p>
 						
-						<p>Meta Text Color <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_fonts_comment_meta'); ?>" name="concerto_design_colors_fonts_comment_meta" /></p>
-						<p>Respond Text Color <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_fonts_respond'); ?>" name="concerto_design_colors_fonts_respond" /></p>
+						<p class="desc">Comment font colors</p>
+						<p>Meta Text Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_fonts_comment_meta'); ?>" name="concerto_design_colors_fonts_comment_meta" /></p>
+						<p>Respond Text Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_fonts_respond'); ?>" name="concerto_design_colors_fonts_respond" /></p>
 						
-						<p>Border Color <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_borders_comment'); ?>" name="concerto_design_colors_borders_comment" /></p>
-						<p>Top Border Color <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_borders_comment_top'); ?>" name="concerto_design_colors_borders_comment_top" /></p>
-						<p>Bottom Border Color <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_borders_comment_bottom'); ?>" name="concerto_design_colors_borders_comment_bottom" /></p>
-						<p>Top Commentlist Border Color <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_borders_commentlist_top'); ?>" name="concerto_design_colors_borders_commentlist_top" /></p>
-						<p>Bottom Commentlist Border Color <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_borders_commentlist_bottom'); ?>" name="concerto_design_colors_borders_commentlist_bottom" /></p>
+						<p class="desc">Comment border styles</p>
+						<p>Border Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_borders_comment'); ?>" name="concerto_design_colors_borders_comment" /></p>
+						<p>Top Border Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_borders_comment_top'); ?>" name="concerto_design_colors_borders_comment_top" /></p>
+						<p>Bottom Border Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_borders_comment_bottom'); ?>" name="concerto_design_colors_borders_comment_bottom" /></p>
+						<p>Top Commentlist Border Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_borders_commentlist_top'); ?>" name="concerto_design_colors_borders_commentlist_top" /></p>
+						<p>Bottom Commentlist Border Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_borders_commentlist_bottom'); ?>" name="concerto_design_colors_borders_commentlist_bottom" /></p>
 						
 						<p>Border Size
 											
 							<select name="concerto_design_borders_comment">
 								<option value="inherit-container"<?php echo (get_option('concerto_design_borders_comment') == 'inherit-container') ? ' selected': ''; ?>>Inherit Global</option>
-								<option value="0"<?php echo (get_option('concerto_design_borders_comment') == 0) ? ' selected': ''; ?>>0</option>
-								<option value="1"<?php echo (get_option('concerto_design_borders_comment') == 1) ? ' selected': ''; ?>>1</option>
-								<option value="2"<?php echo (get_option('concerto_design_borders_comment') == 2) ? ' selected': ''; ?>>2</option>
-								<option value="3"<?php echo (get_option('concerto_design_borders_comment') == 3) ? ' selected': ''; ?>>3</option>
-								<option value="4"<?php echo (get_option('concerto_design_borders_comment') == 4) ? ' selected': ''; ?>>4</option>
-								<option value="5"<?php echo (get_option('concerto_design_borders_comment') == 5) ? ' selected': ''; ?>>5</option>
+								<option value="0"<?php echo (get_option('concerto_design_borders_comment') == 0) ? ' selected': ''; ?>>0px</option>
+								<option value="1"<?php echo (get_option('concerto_design_borders_comment') == 1) ? ' selected': ''; ?>>1px</option>
+								<option value="2"<?php echo (get_option('concerto_design_borders_comment') == 2) ? ' selected': ''; ?>>2px</option>
+								<option value="3"<?php echo (get_option('concerto_design_borders_comment') == 3) ? ' selected': ''; ?>>3px</option>
+								<option value="4"<?php echo (get_option('concerto_design_borders_comment') == 4) ? ' selected': ''; ?>>4px</option>
+								<option value="5"<?php echo (get_option('concerto_design_borders_comment') == 5) ? ' selected': ''; ?>>5px</option>
 							</select>
 						</p>
 						<p>Top Border Size
 											
 							<select name="concerto_design_borders_comment_top">
 								<option value="inherit-container"<?php echo (get_option('concerto_design_borders_comment_top') == 'inherit-container') ? ' selected': ''; ?>>Inherit Global</option>
-								<option value="0"<?php echo (get_option('concerto_design_borders_comment_top') == 0) ? ' selected': ''; ?>>0</option>
-								<option value="1"<?php echo (get_option('concerto_design_borders_comment_top') == 1) ? ' selected': ''; ?>>1</option>
-								<option value="2"<?php echo (get_option('concerto_design_borders_comment_top') == 2) ? ' selected': ''; ?>>2</option>
-								<option value="3"<?php echo (get_option('concerto_design_borders_comment_top') == 3) ? ' selected': ''; ?>>3</option>
-								<option value="4"<?php echo (get_option('concerto_design_borders_comment_top') == 4) ? ' selected': ''; ?>>4</option>
-								<option value="5"<?php echo (get_option('concerto_design_borders_comment_top') == 5) ? ' selected': ''; ?>>5</option>
+								<option value="0"<?php echo (get_option('concerto_design_borders_comment_top') == 0) ? ' selected': ''; ?>>0px</option>
+								<option value="1"<?php echo (get_option('concerto_design_borders_comment_top') == 1) ? ' selected': ''; ?>>1px</option>
+								<option value="2"<?php echo (get_option('concerto_design_borders_comment_top') == 2) ? ' selected': ''; ?>>2px</option>
+								<option value="3"<?php echo (get_option('concerto_design_borders_comment_top') == 3) ? ' selected': ''; ?>>3px</option>
+								<option value="4"<?php echo (get_option('concerto_design_borders_comment_top') == 4) ? ' selected': ''; ?>>4px</option>
+								<option value="5"<?php echo (get_option('concerto_design_borders_comment_top') == 5) ? ' selected': ''; ?>>5px</option>
 							</select>
 						</p>
 						<p>Bottom Border Size
 											
 							<select name="concerto_design_borders_comment_bottom">
 								<option value="inherit-container"<?php echo (get_option('concerto_design_borders_comment_bottom') == 'inherit-container') ? ' selected': ''; ?>>Inherit Global</option>
-								<option value="0"<?php echo (get_option('concerto_design_borders_comment_bottom') == 0) ? ' selected': ''; ?>>0</option>
-								<option value="1"<?php echo (get_option('concerto_design_borders_comment_bottom') == 1) ? ' selected': ''; ?>>1</option>
-								<option value="2"<?php echo (get_option('concerto_design_borders_comment_bottom') == 2) ? ' selected': ''; ?>>2</option>
-								<option value="3"<?php echo (get_option('concerto_design_borders_comment_bottom') == 3) ? ' selected': ''; ?>>3</option>
-								<option value="4"<?php echo (get_option('concerto_design_borders_comment_bottom') == 4) ? ' selected': ''; ?>>4</option>
-								<option value="5"<?php echo (get_option('concerto_design_borders_comment_bottom') == 5) ? ' selected': ''; ?>>5</option>
+								<option value="0"<?php echo (get_option('concerto_design_borders_comment_bottom') == 0) ? ' selected': ''; ?>>0px</option>
+								<option value="1"<?php echo (get_option('concerto_design_borders_comment_bottom') == 1) ? ' selected': ''; ?>>1px</option>
+								<option value="2"<?php echo (get_option('concerto_design_borders_comment_bottom') == 2) ? ' selected': ''; ?>>2px</option>
+								<option value="3"<?php echo (get_option('concerto_design_borders_comment_bottom') == 3) ? ' selected': ''; ?>>3px</option>
+								<option value="4"<?php echo (get_option('concerto_design_borders_comment_bottom') == 4) ? ' selected': ''; ?>>4px</option>
+								<option value="5"<?php echo (get_option('concerto_design_borders_comment_bottom') == 5) ? ' selected': ''; ?>>5px</option>
 							</select>
 						</p>
 						<p>Top Commentlist Border Size
 											
 							<select name="concerto_design_borders_commentlist_top">
 								<option value="inherit-container"<?php echo (get_option('concerto_design_borders_commentlist_top') == 'inherit-container') ? ' selected': ''; ?>>Inherit Global</option>
-								<option value="0"<?php echo (get_option('concerto_design_borders_commentlist_top') == 0) ? ' selected': ''; ?>>0</option>
-								<option value="1"<?php echo (get_option('concerto_design_borders_commentlist_top') == 1) ? ' selected': ''; ?>>1</option>
-								<option value="2"<?php echo (get_option('concerto_design_borders_commentlist_top') == 2) ? ' selected': ''; ?>>2</option>
-								<option value="3"<?php echo (get_option('concerto_design_borders_commentlist_top') == 3) ? ' selected': ''; ?>>3</option>
-								<option value="4"<?php echo (get_option('concerto_design_borders_commentlist_top') == 4) ? ' selected': ''; ?>>4</option>
-								<option value="5"<?php echo (get_option('concerto_design_borders_commentlist_top') == 5) ? ' selected': ''; ?>>5</option>
+								<option value="0"<?php echo (get_option('concerto_design_borders_commentlist_top') == 0) ? ' selected': ''; ?>>0px</option>
+								<option value="1"<?php echo (get_option('concerto_design_borders_commentlist_top') == 1) ? ' selected': ''; ?>>1px</option>
+								<option value="2"<?php echo (get_option('concerto_design_borders_commentlist_top') == 2) ? ' selected': ''; ?>>2px</option>
+								<option value="3"<?php echo (get_option('concerto_design_borders_commentlist_top') == 3) ? ' selected': ''; ?>>3px</option>
+								<option value="4"<?php echo (get_option('concerto_design_borders_commentlist_top') == 4) ? ' selected': ''; ?>>4px</option>
+								<option value="5"<?php echo (get_option('concerto_design_borders_commentlist_top') == 5) ? ' selected': ''; ?>>5px</option>
 							</select>
 						</p>
 						<p>Bottom Commentlist Border Size
 											
 							<select name="concerto_design_borders_commentlist_bottom">
 								<option value="inherit-container"<?php echo (get_option('concerto_design_borders_commentlist_bottom') == 'inherit-container') ? ' selected': ''; ?>>Inherit Global</option>
-								<option value="0"<?php echo (get_option('concerto_design_borders_commentlist_bottom') == 0) ? ' selected': ''; ?>>0</option>
-								<option value="1"<?php echo (get_option('concerto_design_borders_commentlist_bottom') == 1) ? ' selected': ''; ?>>1</option>
-								<option value="2"<?php echo (get_option('concerto_design_borders_commentlist_bottom') == 2) ? ' selected': ''; ?>>2</option>
-								<option value="3"<?php echo (get_option('concerto_design_borders_commentlist_bottom') == 3) ? ' selected': ''; ?>>3</option>
-								<option value="4"<?php echo (get_option('concerto_design_borders_commentlist_bottom') == 4) ? ' selected': ''; ?>>4</option>
-								<option value="5"<?php echo (get_option('concerto_design_borders_commentlist_bottom') == 5) ? ' selected': ''; ?>>5</option>
+								<option value="0"<?php echo (get_option('concerto_design_borders_commentlist_bottom') == 0) ? ' selected': ''; ?>>0px</option>
+								<option value="1"<?php echo (get_option('concerto_design_borders_commentlist_bottom') == 1) ? ' selected': ''; ?>>1px</option>
+								<option value="2"<?php echo (get_option('concerto_design_borders_commentlist_bottom') == 2) ? ' selected': ''; ?>>2px</option>
+								<option value="3"<?php echo (get_option('concerto_design_borders_commentlist_bottom') == 3) ? ' selected': ''; ?>>3px</option>
+								<option value="4"<?php echo (get_option('concerto_design_borders_commentlist_bottom') == 4) ? ' selected': ''; ?>>4px</option>
+								<option value="5"<?php echo (get_option('concerto_design_borders_commentlist_bottom') == 5) ? ' selected': ''; ?>>5px</option>
 							</select>
 						</p>
 					</div>
@@ -778,8 +839,10 @@ function admin_design_box_fontscolorsborders () {
 				<div>
 					<h4>Footer <a href="javascript:;" class="content-toggle expand"></a></h4>
 					<div class="content hide">
-						<p>Footer Background <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_background_footer'); ?>" name="concerto_design_colors_background_footer" /></p>
+						<p class="desc">Footer background color</p>
+						<p>Footer Background <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_background_footer'); ?>" name="concerto_design_colors_background_footer" /></p>
 						
+						<p class="desc">Footer font styles</p>
 						<p>Font Face
 							<select name="concerto_design_fonts_footer">
 								<option value="inherit-body"<?php echo (get_option('concerto_design_fonts_footer') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Body</option>
@@ -795,42 +858,43 @@ function admin_design_box_fontscolorsborders () {
 						
 							<select name="concerto_design_sizes_footer">
 								<option value="inherit-body"<?php echo (get_option('concerto_design_sizes_footer') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Body</option>
-								<option value="10"<?php echo (get_option('concerto_design_sizes_footer') == 10) ? ' selected': ''; ?>>10</option>
-								<option value="11"<?php echo (get_option('concerto_design_sizes_footer') == 11) ? ' selected': ''; ?>>11</option>
-								<option value="12"<?php echo (get_option('concerto_design_sizes_footer') == 12) ? ' selected': ''; ?>>12</option>
-								<option value="14"<?php echo (get_option('concerto_design_sizes_footer') == 14) ? ' selected': ''; ?>>14</option>
-								<option value="15"<?php echo (get_option('concerto_design_sizes_footer') == 15) ? ' selected': ''; ?>>15</option>
-								<option value="16"<?php echo (get_option('concerto_design_sizes_footer') == 16) ? ' selected': ''; ?>>16</option>
-								<option value="18"<?php echo (get_option('concerto_design_sizes_footer') == 18) ? ' selected': ''; ?>>18</option>
-								<option value="20"<?php echo (get_option('concerto_design_sizes_footer') == 20) ? ' selected': ''; ?>>20</option>
-								<option value="22"<?php echo (get_option('concerto_design_sizes_footer') == 22) ? ' selected': ''; ?>>22</option>
+								<option value="10"<?php echo (get_option('concerto_design_sizes_footer') == 10) ? ' selected': ''; ?>>10px</option>
+								<option value="11"<?php echo (get_option('concerto_design_sizes_footer') == 11) ? ' selected': ''; ?>>11px</option>
+								<option value="12"<?php echo (get_option('concerto_design_sizes_footer') == 12) ? ' selected': ''; ?>>12px</option>
+								<option value="14"<?php echo (get_option('concerto_design_sizes_footer') == 14) ? ' selected': ''; ?>>14px</option>
+								<option value="15"<?php echo (get_option('concerto_design_sizes_footer') == 15) ? ' selected': ''; ?>>15px</option>
+								<option value="16"<?php echo (get_option('concerto_design_sizes_footer') == 16) ? ' selected': ''; ?>>16px</option>
+								<option value="18"<?php echo (get_option('concerto_design_sizes_footer') == 18) ? ' selected': ''; ?>>18px</option>
+								<option value="20"<?php echo (get_option('concerto_design_sizes_footer') == 20) ? ' selected': ''; ?>>20px</option>
+								<option value="22"<?php echo (get_option('concerto_design_sizes_footer') == 22) ? ' selected': ''; ?>>22px</option>
 							</select>
 						</p>
 						
-						<p>Text Color <input type="text" class="small-text" value="<?php echo get_option('concerto_design_colors_fonts_footer'); ?>" name="concerto_design_colors_fonts_footer" /></p>
+						<p class="desc">Footer font colors</p>
+						<p>Text Color <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_fonts_footer'); ?>" name="concerto_design_colors_fonts_footer" /></p>
 						
+						<p class="desc">Footer border styles</p>
 						<p>Border Size
-						
 							<select name="concerto_design_borders_footer">
 								<option value="inherit-container"<?php echo (get_option('concerto_design_borders_footer') == 'inherit-container') ? ' selected': ''; ?>>Inherit Global</option>
-								<option value="0"<?php echo (get_option('concerto_design_borders_footer') == 0) ? ' selected': ''; ?>>0</option>
-								<option value="1"<?php echo (get_option('concerto_design_borders_footer') == 1) ? ' selected': ''; ?>>1</option>
-								<option value="2"<?php echo (get_option('concerto_design_borders_footer') == 2) ? ' selected': ''; ?>>2</option>
-								<option value="3"<?php echo (get_option('concerto_design_borders_footer') == 3) ? ' selected': ''; ?>>3</option>
-								<option value="4"<?php echo (get_option('concerto_design_borders_footer') == 4) ? ' selected': ''; ?>>4</option>
-								<option value="5"<?php echo (get_option('concerto_design_borders_footer') == 5) ? ' selected': ''; ?>>5</option>
+								<option value="0"<?php echo (get_option('concerto_design_borders_footer') == 0) ? ' selected': ''; ?>>0px</option>
+								<option value="1"<?php echo (get_option('concerto_design_borders_footer') == 1) ? ' selected': ''; ?>>1px</option>
+								<option value="2"<?php echo (get_option('concerto_design_borders_footer') == 2) ? ' selected': ''; ?>>2px</option>
+								<option value="3"<?php echo (get_option('concerto_design_borders_footer') == 3) ? ' selected': ''; ?>>3px</option>
+								<option value="4"<?php echo (get_option('concerto_design_borders_footer') == 4) ? ' selected': ''; ?>>4px</option>
+								<option value="5"<?php echo (get_option('concerto_design_borders_footer') == 5) ? ' selected': ''; ?>>5px</option>
 							</select>
 						</p>
 						<p>Top Border Size
 						
 							<select name="concerto_design_borders_footer_top">
 								<option value="inherit-container"<?php echo (get_option('concerto_design_borders_footer_top') == 'inherit-container') ? ' selected': ''; ?>>Inherit Global</option>
-								<option value="0"<?php echo (get_option('concerto_design_borders_footer_top') == 0) ? ' selected': ''; ?>>0</option>
-								<option value="1"<?php echo (get_option('concerto_design_borders_footer_top') == 1) ? ' selected': ''; ?>>1</option>
-								<option value="2"<?php echo (get_option('concerto_design_borders_footer_top') == 2) ? ' selected': ''; ?>>2</option>
-								<option value="3"<?php echo (get_option('concerto_design_borders_footer_top') == 3) ? ' selected': ''; ?>>3</option>
-								<option value="4"<?php echo (get_option('concerto_design_borders_footer_top') == 4) ? ' selected': ''; ?>>4</option>
-								<option value="5"<?php echo (get_option('concerto_design_borders_footer_top') == 5) ? ' selected': ''; ?>>5</option>
+								<option value="0"<?php echo (get_option('concerto_design_borders_footer_top') == 0) ? ' selected': ''; ?>>0px</option>
+								<option value="1"<?php echo (get_option('concerto_design_borders_footer_top') == 1) ? ' selected': ''; ?>>1px</option>
+								<option value="2"<?php echo (get_option('concerto_design_borders_footer_top') == 2) ? ' selected': ''; ?>>2px</option>
+								<option value="3"<?php echo (get_option('concerto_design_borders_footer_top') == 3) ? ' selected': ''; ?>>3px</option>
+								<option value="4"<?php echo (get_option('concerto_design_borders_footer_top') == 4) ? ' selected': ''; ?>>4px</option>
+								<option value="5"<?php echo (get_option('concerto_design_borders_footer_top') == 5) ? ' selected': ''; ?>>5px</option>
 							</select>
 						</p>
 						<p>Bottom Border Size
@@ -838,11 +902,11 @@ function admin_design_box_fontscolorsborders () {
 							<select name="concerto_design_borders_footer_bottom">
 								<option value="inherit-container"<?php echo (get_option('concerto_design_borders_footer_bottom') == 'inherit-container') ? ' selected': ''; ?>>Inherit Global</option>
 								<option value="0"<?php echo (get_option('concerto_design_borders_footer_bottom') == 0) ? ' selected': ''; ?>>0</option>
-								<option value="1"<?php echo (get_option('concerto_design_borders_footer_bottom') == 1) ? ' selected': ''; ?>>1</option>
-								<option value="2"<?php echo (get_option('concerto_design_borders_footer_bottom') == 2) ? ' selected': ''; ?>>2</option>
-								<option value="3"<?php echo (get_option('concerto_design_borders_footer_bottom') == 3) ? ' selected': ''; ?>>3</option>
-								<option value="4"<?php echo (get_option('concerto_design_borders_footer_bottom') == 4) ? ' selected': ''; ?>>4</option>
-								<option value="5"<?php echo (get_option('concerto_design_borders_footer_bottom') == 5) ? ' selected': ''; ?>>5</option>
+								<option value="1"<?php echo (get_option('concerto_design_borders_footer_bottom') == 1) ? ' selected': ''; ?>>1px</option>
+								<option value="2"<?php echo (get_option('concerto_design_borders_footer_bottom') == 2) ? ' selected': ''; ?>>2px</option>
+								<option value="3"<?php echo (get_option('concerto_design_borders_footer_bottom') == 3) ? ' selected': ''; ?>>3px</option>
+								<option value="4"<?php echo (get_option('concerto_design_borders_footer_bottom') == 4) ? ' selected': ''; ?>>4px</option>
+								<option value="5"<?php echo (get_option('concerto_design_borders_footer_bottom') == 5) ? ' selected': ''; ?>>5px</option>
 							</select>
 						</p>
 					</div>
@@ -971,7 +1035,7 @@ function admin_design_box_eyecandy () {
 		<div class="box box1column">
 			<h3>EyeCandy</h3>
 			<div class="inner">
-				<p class="desc">Some EyeCandy Options may not be supported by the browser you are using, mainly Internet Explorer. Check the Features below if you want your blog to have some cool effects.</p>
+				<p class="desc">Some EyeCandy Options may not be supported by the browser you are using, mainly Internet Explorer. Check the Features below if you want your blog to have some cool effects. <em>Take note that these options only apply to the Default Stage.</em></p>
 				<ul id="extensions">
 					<li>
 						<label><input type="checkbox" value="1" name="concerto_design_glow" <?php echo (get_option('') == 1) ? 'checked ': ''; ?>/> <strong>Glow</strong></label>
