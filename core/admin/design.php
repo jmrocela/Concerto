@@ -256,6 +256,7 @@ function admin_design_box_header () {
 						<option value="3"<?php echo (get_option('concerto_' . $stage . '_design_header_mode') == 3) ? ' selected': ''; ?>>Image</option>
 					</select>
 					<div id="header_image">
+						<!-- should mason properly -->
 						<div id="header_preview" style="overflow:hidden;height:150px;"><img src="<?php echo get_option('concerto_' . $stage . '_design_header_image'); ?>" width="596" alt="" /></div>
 						<a href="javascript:;" id="removeheader">Remove Header</a>
 						<div class="swfupload-control"><span id="spanButtonPlaceholder"></span></div>

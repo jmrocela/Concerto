@@ -87,6 +87,7 @@ function admin_general() {
 					$('#favicon_preview img').attr('src', response);
 					$('#favicon_hidden').val(response);
 					$('#removefavicon').show();
+					$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
 				});
 			
 			/**
@@ -100,6 +101,7 @@ function admin_general() {
 					$('#favicon_preview img').attr('src', '');
 					$('#favicon_hidden').val('');
 					$('#removefavicon').hide();
+					$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
 				}
 			});
 			$('.navigationlists h4 input').change(function(){
