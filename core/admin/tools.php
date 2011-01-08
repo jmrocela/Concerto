@@ -158,5 +158,5 @@ function admin_tools() {
 	</script>
 </div>
 <?php
-	}
+}
 ?>

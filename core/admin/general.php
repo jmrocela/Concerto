@@ -142,90 +142,93 @@ function admin_general() {
 }
 
 function admin_general_box_navigation() {
+	$stage = get_option('concerto_stage');
 ?>
 	<div class="box box1column" id="concerto_navigation_type">
 		<h3>Navigation</h3>
 		<div class="inner">
 			<h4>Please Select Menu Type</h4>
 			<p class="desc">This will determine if Concerto will handle Navigation display or let Wordpress display it's menus.</p>
-			<p><label><input type="radio" name="concerto_general_menu" class="menu_type" value="default" <?php echo (get_option('concerto_general_menu') == 'default') ? 'checked': ''; ?>/> Wordpress Default Menu</em></label></p>
-			<p><label><input type="radio" name="concerto_general_menu" class="menu_type" value="concerto" <?php echo (get_option('concerto_general_menu') == 'concerto') ? 'checked': ''; ?>/> Concerto Navigation</label></p>
+			<p><label><input type="radio" name="concerto_<?php echo $stage; ?>_general_menu" class="menu_type" value="default" <?php echo (get_option('concerto_' . $stage . '_general_menu') == 'default') ? 'checked': ''; ?>/> Wordpress Default Menu</em></label></p>
+			<p><label><input type="radio" name="concerto_<?php echo $stage; ?>_general_menu" class="menu_type" value="concerto" <?php echo (get_option('concerto_' . $stage . '_general_menu') == 'concerto') ? 'checked': ''; ?>/> Concerto Navigation</label></p>
 			<div class="navigationlists">
-				<h4><label><input type="checkbox" name="concerto_general_menu_use_pages" value="1" <?php echo (get_option('concerto_general_menu_use_pages') == 1) ? 'checked': ''; ?>/> Pages</label></h4>
+				<h4><label><input type="checkbox" name="concerto_<?php echo $stage; ?>_general_menu_use_pages" value="1" <?php echo (get_option('concerto_' . $stage . '_general_menu_use_pages') == 1) ? 'checked': ''; ?>/> Pages</label></h4>
 				<div class="navigationlist">
 				<p>You can sort the Pages you would like to include in your Navigation Menu here</p>
 				<ul>
 					<?php
 						$pages = get_pages();
-						$pages_used = get_option('concerto_general_menu_pages_items');
+						$pages_used = get_option('concerto_' . $stage . '_general_menu_pages_items');
 						foreach ($pages as $page) {
 					?>
-					<li><label><input type="checkbox" name="concerto_general_menu_pages_items[]" value="<?php echo $page->ID; ?>" <?php echo (@in_array($page->ID, $pages_used)) ? 'checked ': ''; ?>/> <?php echo $page->post_title; ?></label></li>
+					<li><label><input type="checkbox" name="concerto_<?php echo $stage; ?>_general_menu_pages_items[]" value="<?php echo $page->ID; ?>" <?php echo (@in_array($page->ID, $pages_used)) ? 'checked ': ''; ?>/> <?php echo $page->post_title; ?></label></li>
 					<?php } ?>
 				</ul>
 				</div>
 			</div>
 			<div class="navigationlists">
-				<h4><label><input type="checkbox" name="concerto_general_menu_use_categories" value="1" <?php echo (get_option('concerto_general_menu_use_categories') == 1) ? 'checked': ''; ?>/> Categories</label></h4>
+				<h4><label><input type="checkbox" name="concerto_<?php echo $stage; ?>_general_menu_use_categories" value="1" <?php echo (get_option('concerto_' . $stage . '_general_menu_use_categories') == 1) ? 'checked': ''; ?>/> Categories</label></h4>
 				<div class="navigationlist">
 				<p>Sort the Categories you would want to show up on your Navigation Menu</p>
 				<ul>
 					<?php
 						$categories = get_categories();
-						$categories_used = get_option('concerto_general_menu_categories_items');
+						$categories_used = get_option('concerto_' . $stage . '_general_menu_categories_items');
 						foreach ($categories as $category) {
 					?>
-					<li><label><input type="checkbox" name="concerto_general_menu_categories_items[]" value="<?php echo $category->term_id; ?>" <?php echo (@in_array($category->term_id, $categories_used)) ? 'checked ': ''; ?>/> <?php echo $category->cat_name; ?></label></li>
+					<li><label><input type="checkbox" name="concerto_<?php echo $stage; ?>_general_menu_categories_items[]" value="<?php echo $category->term_id; ?>" <?php echo (@in_array($category->term_id, $categories_used)) ? 'checked ': ''; ?>/> <?php echo $category->cat_name; ?></label></li>
 					<?php } ?>
 				</ul>
 				</div>
 			</div>
 			<div class="navigationlists">
-				<h4><label><input type="checkbox" name="concerto_general_menu_use_tags" value="1" <?php echo (get_option('concerto_general_menu_use_tags') == 1) ? 'checked': ''; ?>/> Tags</label></h4>
+				<h4><label><input type="checkbox" name="concerto_<?php echo $stage; ?>_general_menu_use_tags" value="1" <?php echo (get_option('concerto_' . $stage . '_general_menu_use_tags') == 1) ? 'checked': ''; ?>/> Tags</label></h4>
 				<div class="navigationlist">
 				<p>Sort Tags you want to display on your Navigation Menu</p>
 				<ul>
 					<?php
 						$tags = get_tags();
-						$tags_used = get_option('concerto_general_menu_tags_items');
+						$tags_used = get_option('concerto_' . $stage . '_general_menu_tags_items');
 						foreach ($tags as $tag) {
 					?>
-					<li><label><input type="checkbox" name="concerto_general_menu_tags_items[]" value="<?php echo $tag->term_id; ?>" <?php echo (@in_array($tag->term_id, $tags_used)) ? 'checked ': ''; ?>/> <?php echo $tag->name; ?></label></li>
+					<li><label><input type="checkbox" name="concerto_<?php echo $stage; ?>_general_menu_tags_items[]" value="<?php echo $tag->term_id; ?>" <?php echo (@in_array($tag->term_id, $tags_used)) ? 'checked ': ''; ?>/> <?php echo $tag->name; ?></label></li>
 					<?php } ?>
 				</ul>
 				</div>
 			</div>
-			<p><label><input type="checkbox" name="concerto_general_menu_show_home" value="1" <?php echo (get_option('concerto_general_menu_show_home') == 1) ? 'checked': ''; ?>/> Show the Home Link</em></label></p>
-			<p><label><input type="checkbox" name="concerto_general_menu_show_feed" value="1" <?php echo (get_option('concerto_general_menu_show_feed') == 1) ? 'checked': ''; ?>/> Show Subscribe Link</label></p>
+			<p><label><input type="checkbox" name="concerto_<?php echo $stage; ?>_general_menu_show_home" value="1" <?php echo (get_option('concerto_' . $stage . '_general_menu_show_home') == 1) ? 'checked': ''; ?>/> Show the Home Link</em></label></p>
+			<p><label><input type="checkbox" name="concerto_<?php echo $stage; ?>_general_menu_show_feed" value="1" <?php echo (get_option('concerto_' . $stage . '_general_menu_show_feed') == 1) ? 'checked': ''; ?>/> Show Subscribe Link</label></p>
 		</div>
 	</div>
 <?php
 }
 
 function admin_general_box_home_meta() {
+	$stage = get_option('concerto_stage');
 ?>
 	<div class="box box1column" id="concerto_home_meta">
 		<h3>Homepage Meta</h3>
 		<div class="inner">
 			<p>Description</p>
-			<textarea name="concerto_general_homepage_description"><?php echo get_option('concerto_general_homepage_description'); ?></textarea>
+			<textarea name="concerto_<?php echo $stage; ?>_general_homepage_description"><?php echo get_option('concerto_' . $stage . '_general_homepage_description'); ?></textarea>
 			<p>Keywords</p>
-			<input type="text" class="text" name="concerto_general_homepage_keywords" value="<?php echo get_option('concerto_general_homepage_keywords'); ?>"/>
+			<input type="text" class="text" name="concerto_<?php echo $stage; ?>_general_homepage_keywords" value="<?php echo get_option('concerto_' . $stage . '_general_homepage_keywords'); ?>"/>
 		</div>
 	</div>
 <?php
 }
 
 function admin_general_box_favicon() {
+	$stage = get_option('concerto_stage');
 ?>
 	<div class="box box1column" id="concerto_favicon">
 		<h3>Favicon</h3>
 		<div class="inner">
 			<p class="desc">If you would like to have a custom favicon for your site. Upload it here.</p>
 			<div id="favicon">
-				<div id="favicon_preview"><img src="<?php echo get_option('concerto_general_favicon'); ?>" width="16" height="16" alt="" border="0" /></div>
+				<div id="favicon_preview"><img src="<?php echo get_option('concerto_' . $stage . '_general_favicon'); ?>" width="16" height="16" alt="" border="0" /></div>
 				<div class="swfupload-control"><span id="spanButtonPlaceholder"></span></div>
-				<input type="hidden" name="concerto_general_favicon" id="favicon_hidden" value="<?php echo get_option('concerto_general_favicon'); ?>"/>
+				<input type="hidden" name="concerto_<?php echo $stage; ?>_general_favicon" id="favicon_hidden" value="<?php echo get_option('concerto_' . $stage . '_general_favicon'); ?>"/>
 				<div class="clear"></div>
 				<a href="javascript:;" id="removefavicon">Remove Favicon</a>
 			</div>
@@ -235,18 +238,20 @@ function admin_general_box_favicon() {
 }
 
 function admin_general_box_syndication_url() {
+	$stage = get_option('concerto_stage');
 ?>
 	<div class="box box1column" id="concerto_syndication_url">
 		<h3>RSS URL</h3>
 		<div class="inner">
 			<p class="desc">Enter the URL of your custom feed in the box below. Leave the box blank if you want to use Wordress' native feed.</p>
-			<input type="text" class="text" name="concerto_general_syndication_url" value="<?php echo get_option('concerto_general_syndication_url'); ?>" />
+			<input type="text" class="text" name="concerto_<?php echo $stage; ?>_general_syndication_url" value="<?php echo get_option('concerto_' . $stage . '_general_syndication_url'); ?>" />
 		</div>
 	</div>
 <?php
 }
 
 function admin_general_box_personal() {
+	$stage = get_option('concerto_stage');
 ?>
 	<div class="box box1column" id="concerto_personal">
 		<h3>Personal Information</h3>
@@ -269,6 +274,7 @@ function admin_general_box_personal() {
 }
 
 function admin_general_box_scripts() {
+	$stage = get_option('concerto_stage');
 ?>
 	<div class="box box1column" id="concerto_scripts">
 		<h3>Additional Scripts</h3>
@@ -276,12 +282,12 @@ function admin_general_box_scripts() {
 			<div>
 				<h4>Head</h4>
 				<p>If you want to add additional scripts to the <code>&lt;head&gt;</code> tag, place them here.</p>
-				<textarea name="concerto_general_scripts_head"><?php echo get_option('concerto_general_scripts_head'); ?></textarea>
+				<textarea name="concerto_<?php echo $stage; ?>_general_scripts_head"><?php echo get_option('concerto_' . $stage . '_general_scripts_head'); ?></textarea>
 			</div>
 			<div>
 				<h4>Footer</h4>
 				<p>If you want to run Tracking scripts such as Google Analytics, place them here.</p>
-				<textarea name="concerto_general_scripts_footer"><?php echo get_option('concerto_general_scripts_footer'); ?></textarea>
+				<textarea name="concerto_<?php echo $stage; ?>_general_scripts_footer"><?php echo get_option('concerto_' . $stage . '_general_scripts_footer'); ?></textarea>
 			</div>
 		</div>
 	</div>
@@ -289,19 +295,21 @@ function admin_general_box_scripts() {
 }
 
 function admin_general_box_javascript_libraries() {
+	$stage = get_option('concerto_stage');
 ?>
 	<div class="box box1column" id="concerto_javascript_libraries">
 		<h3>Javascript Libraries</h3>
 		<div class="inner">
 			<p class="desc">This option will help you load javascript libraries the right way.</p>
-			<p><label><input type="checkbox" name="concerto_general_scripts_libraries_jquery" value="1" <?php echo (get_option('concerto_general_scripts_libraries_jquery') == 1) ? 'checked ': '';?>/> jQuery</label></p>
-			<p><label><input type="checkbox" name="concerto_general_scripts_libraries_jquery_ui" value="1" <?php echo (get_option('concerto_general_scripts_libraries_jquery_ui') == 1) ? 'checked ': '';?>/> jQuery UI</label></p>
+			<p><label><input type="checkbox" name="concerto_<?php echo $stage; ?>_general_scripts_libraries_jquery" value="1" <?php echo (get_option('concerto_' . $stage . '_general_scripts_libraries_jquery') == 1) ? 'checked ': '';?>/> jQuery</label></p>
+			<p><label><input type="checkbox" name="concerto_<?php echo $stage; ?>_general_scripts_libraries_jquery_ui" value="1" <?php echo (get_option('concerto_' . $stage . '_general_scripts_libraries_jquery_ui') == 1) ? 'checked ': '';?>/> jQuery UI</label></p>
 		</div>
 	</div>
 <?php
 }
 
 function admin_general_box_extensions() {
+	$stage = get_option('concerto_stage');
 ?>
 	<div class="box box1column" id="concerto_extensions">
 		<h3>Theme Extensions</h3>

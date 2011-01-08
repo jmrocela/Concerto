@@ -8,6 +8,6 @@
 	<?php do_action('concerto_hook_head'); ?>
 </head>
 <?php $custom = (CONCERTO_CONFIG_CUSTOM == 'custom') ? 'custom-page': 'normal-page'; ?>
-<body <?php body_class(array('concerto', $custom)); ?>>
+<body <?php body_class(array('concerto', $custom, 'html5')); ?>>
 <?php do_action('concerto_hook_start'); ?>
-<div id="wrapper" class="<?php echo (get_option('concerto_design_page_structure') == 'wrapped') ? 'wrapped': 'fullwidth'; ?>">
+<div id="wrapper" class="<?php echo (CONCERTO_CONFIG_LAYOUT == 'wrapped') ? 'wrapped': 'fullwidth'; ?>">
