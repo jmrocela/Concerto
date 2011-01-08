@@ -617,7 +617,18 @@ function admin_design_box_fontscolorsborders () {
 					<h4>Article <a href="javascript:;" class="content-toggle expand"></a></h4>
 					<div class="content hide">
 						<p class="desc">Article padding</p>
-						<p>Padding <input type="text" class="small-text" value="<?php echo get_option('concerto_design_article_padding'); ?>" name="concerto_design_article_padding" /></p>
+						<p>Padding 
+							<select name="concerto_design_article_padding">
+								<option value="0"<?php echo (get_option('concerto_design_article_padding') == 0) ? ' selected': ''; ?>>0px</option>
+								<option value="10"<?php echo (get_option('concerto_design_article_padding') == 10) ? ' selected': ''; ?>>10px</option>
+								<option value="15"<?php echo (get_option('concerto_design_article_padding') == 15) ? ' selected': ''; ?>>15px</option>
+								<option value="20"<?php echo (get_option('concerto_design_article_padding') == 20) ? ' selected': ''; ?>>20px</option>
+								<option value="25"<?php echo (get_option('concerto_design_article_padding') == 25) ? ' selected': ''; ?>>25px</option>
+								<option value="30"<?php echo (get_option('concerto_design_article_padding') == 30) ? ' selected': ''; ?>>30px</option>
+								<option value="35"<?php echo (get_option('concerto_design_article_padding') == 35) ? ' selected': ''; ?>>35px</option>
+								<option value="40"<?php echo (get_option('concerto_design_article_padding') == 40) ? ' selected': ''; ?>>40px</option>
+							</select>
+						</p>
 						
 						<p class="desc">Article background color</p>
 						<p>Article Background <input type="text" class="color" value="<?php echo get_option('concerto_design_colors_background_article'); ?>" name="concerto_design_colors_background_article" /></p>
@@ -968,22 +979,39 @@ function admin_design_box_articles () {
 				<p><label><input type="checkbox" value="1" name="concerto_design_paginate" <?php echo (get_option('concerto_design_paginate') == 1) ? 'checked ': ''; ?>/> Homepage Pagination</label></p>
 				<p><label><input type="checkbox" value="1" name="concerto_design_posts_excerpts" <?php echo (get_option('concerto_design_posts_excerpts') == 1) ? 'checked ': ''; ?>/> Homepage List as Excerpts</label></p>
 				<p><label>Readmore Text <input type="text" class="text" value="<?php echo get_option('concerto_design_posts_readmore_text'); ?>" name="concerto_design_posts_readmore_text" /></label></p>
+		
+				<h4>Article Display</h4>
+				<p class="desc">Display Options for Articles</p>
+				<div class="sortable">
+					<ul>
+						<?php
+							$index = get_option('concerto_design_display_article_index');
+							if (!is_array($index)) $index = array(1,2,3,4);
+							$label = array('Title', 'Byline', 'Content', 'Meta');
+							foreach ($index as $pos) {
+							?>
+							<li>
+								<input type="checkbox" value="1" name="concerto_design_display_article_<?php echo strtolower($label[$pos - 1]); ?>" <?php echo (get_option('concerto_design_display_article_' . strtolower($label[$pos - 1]))  == 1) ? 'checked ': ''; ?>/>
+								<input type="hidden" value="<?php echo $pos; ?>" name="concerto_design_display_article_index[]" />
+								<?php echo $label[$pos - 1]; ?>
+							</li>
+							<?php
+							}
+						?>
+					</ul>
+				</div>
+				<p><label><input type="checkbox" value="1" name="concerto_design_posts_navigation" <?php echo (get_option('concerto_design_posts_navigation') == 1) ? 'checked ': ''; ?>/> Navigation</label></p>
+				<p><label><input type="checkbox" value="1" name="concerto_design_comments_is_closed_show_message" <?php echo (get_option('concerto_design_comments_is_closed_show_message') == 1) ? 'checked ': ''; ?>/> Display Message when Comments are closed</label></p>
 				
-				<h4>Post</h4>
+				<h4>Post Byline</h4>
 				<p class="desc">Display Options for Posts</p>
 				<p><label><input type="checkbox" value="1" name="concerto_design_bylines_post_author" <?php echo (get_option('concerto_design_bylines_post_author') == 1) ? 'checked ': ''; ?>/> Show Author</label></p>
 				<p><label><input type="checkbox" value="1" name="concerto_design_bylines_post_published_date" <?php echo (get_option('concerto_design_bylines_post_published_date') == 1) ? 'checked ': ''; ?>/> Show Published Date</label></p>
 
-				<h4>Page</h4>
+				<h4>Page Byline</h4>
 				<p class="desc">Display Options for Pages</p>
 				<p><label><input type="checkbox" value="1" name="concerto_design_bylines_page_author" <?php echo (get_option('concerto_design_bylines_page_author') == 1) ? 'checked ': ''; ?>/> Show Author</label></p>
 				<p><label><input type="checkbox" value="1" name="concerto_design_bylines_page_published_date" <?php echo (get_option('concerto_design_bylines_page_published_date') == 1) ? 'checked ': ''; ?>/> Show Published Date</label></p>
-
-				<h4>Article Display</h4>
-				<p class="desc">Display Options for Articles</p>
-				<div style="height:120px;border:1px solid #c0c0c0;"></div>
-				<p><label><input type="checkbox" value="1" name="concerto_design_posts_navigation" <?php echo (get_option('concerto_design_posts_navigation') == 1) ? 'checked ': ''; ?>/> Navigation</label></p>
-				<p><label><input type="checkbox" value="1" name="concerto_design_comments_is_closed_show_message" <?php echo (get_option('concerto_design_comments_is_closed_show_message') == 1) ? 'checked ': ''; ?>/> Display Message when Comments are closed</label></p>
 
 				<h4>Article Meta</h4>
 				<p class="desc">Display Options for Article Metas</p>
@@ -1006,11 +1034,31 @@ function admin_design_box_comments () {
 		<div class="box box1column">
 			<h3>Comments</h3>
 			<div class="inner">
+				<script type="text/javascript">
+					jQuery(function($) {
+						$('.sortable ul').sortable({placeholder:'sortable-highlight'});
+					});
+				</script>
 				<h4>Display Position</h4>
-				<div style="height:120px;border:1px solid #c0c0c0;"></div>
-
-				<h4>Body Position</h4>
-				<div style="height:60px;border:1px solid #c0c0c0;"></div>
+				<p class="desc">You can configure Display Options for your Comments below. Naturally, You can leave these options alone, but if you are feeling picky, feel free to check stuff.</p>
+				<div class="sortable">
+					<ul>
+						<?php
+							$index = get_option('concerto_design_display_comments_index');
+							if (!is_array($index)) $index = array(1,2,3);
+							$label = array('Comments', 'Pings', 'Reply');
+							foreach ($index as $pos) {
+							?>
+							<li>
+								<input type="checkbox" value="1" name="concerto_design_display_comments_<?php echo strtolower($label[$pos - 1]); ?>" <?php echo (get_option('concerto_design_display_comments_' . strtolower($label[$pos - 1]))  == 1) ? 'checked ': ''; ?>/>
+								<input type="hidden" value="<?php echo $pos; ?>" name="concerto_design_display_comments_index[]" />
+								<?php echo $label[$pos - 1]; ?>
+							</li>
+							<?php
+							}
+						?>
+					</ul>
+				</div>
 				
 				<h4>Meta</h4>
 				<p><label><input type="checkbox" value="1" name="concerto_design_comments_display_number" <?php echo (get_option('concerto_design_comments_display_number') == 1) ? 'checked ': ''; ?>/> Display Number</label></p>

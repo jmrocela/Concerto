@@ -58,6 +58,11 @@
 	register_setting('concerto_design', 'concerto_design_layout_columns_width_sidebar1');
 	register_setting('concerto_design', 'concerto_design_layout_columns_width_sidebar2');
 	register_setting('concerto_design', 'concerto_design_article_padding');
+	register_setting('concerto_design', 'concerto_design_display_article_index');
+	register_setting('concerto_design', 'concerto_design_display_article_title');
+	register_setting('concerto_design', 'concerto_design_display_article_byline');
+	register_setting('concerto_design', 'concerto_design_display_article_content');
+	register_setting('concerto_design', 'concerto_design_display_article_meta');
 	register_setting('concerto_design', 'concerto_design_page_padding');
 	register_setting('concerto_design', 'concerto_design_header_mode');
 	register_setting('concerto_design', 'concerto_design_header_image');
@@ -155,7 +160,10 @@
 	register_setting('concerto_design', 'concerto_design_borders_commentlist_bottom');
 	register_setting('concerto_design', 'concerto_design_borders_table');
 	register_setting('concerto_design', 'concerto_design_comments_is_closed_show_message');
-	register_setting('concerto_design', 'concerto_design_comments_position');
+	register_setting('concerto_design', 'concerto_design_display_comments_index');
+	register_setting('concerto_design', 'concerto_design_display_comments_comments');
+	register_setting('concerto_design', 'concerto_design_display_comments_pings');
+	register_setting('concerto_design', 'concerto_design_display_comments_reply');
 	register_setting('concerto_design', 'concerto_design_comments_display_number');
 	register_setting('concerto_design', 'concerto_design_comments_display_avatar');
 	register_setting('concerto_design', 'concerto_design_comments_display_author');
@@ -164,7 +172,6 @@
 	register_setting('concerto_design', 'concerto_design_comments_display_edit');
 	register_setting('concerto_design', 'concerto_design_comments_avatar_size');
 	register_setting('concerto_design', 'concerto_design_comments_time_format');
-	register_setting('concerto_design', 'concerto_design_comments_body');
 	register_setting('concerto_design', 'concerto_design_comments_trackback_date');
 	register_setting('concerto_design', 'concerto_design_glow');
 	register_setting('concerto_design', 'concerto_design_engrave');

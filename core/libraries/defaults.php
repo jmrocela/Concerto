@@ -39,6 +39,11 @@ update_option('concerto_design_layout_columns_order', 1);
 	update_option('concerto_design_layout_columns_width_sidebar1', 300);
 	update_option('concerto_design_layout_columns_width_sidebar2', 0);
 update_option('concerto_design_article_padding', 10);
+	update_option('concerto_design_display_article_index', ''); //serialized
+		update_option('concerto_design_display_article_title', 1);
+		update_option('concerto_design_display_article_byline', 1);
+		update_option('concerto_design_display_article_content', 1);
+		update_option('concerto_design_display_article_meta', 1);
 update_option('concerto_design_page_padding', 10);
 							
 update_option('concerto_design_header_mode', 1);
@@ -148,7 +153,11 @@ update_option('concerto_design_borders_commentlist_bottom', 1);
 update_option('concerto_design_borders_table', 1);
 
 update_option('concerto_design_comments_is_closed_show_message', 1);
-update_option('concerto_design_comments_position', '{}'); //serialized [comments, trackbacks, respond]
+	update_option('concerto_design_display_comments_index', ''); //serialized [comments, trackbacks, respond]
+		update_option('concerto_design_display_comments_comments', 1);
+		update_option('concerto_design_display_comments_pings', 1);
+		update_option('concerto_design_display_comments_reply', 1);
+	update_option('concerto_design_comments_body', '{}'); //serialized [vcard, body, reply] #NOT YET IMPLEMENTED
 update_option('concerto_design_comments_display_number', 1);
 update_option('concerto_design_comments_display_avatar', 1);
 update_option('concerto_design_comments_display_author', 1);
@@ -157,11 +166,10 @@ update_option('concerto_design_comments_display_time', 0);
 update_option('concerto_design_comments_display_edit', 1);
 update_option('concerto_design_comments_avatar_size', 40);
 update_option('concerto_design_comments_time_format', 'F j, Y');
-update_option('concerto_design_comments_body', '{}'); //serialized [vcard, body, reply]
 update_option('concerto_design_comments_trackback_date', 1);
 
-update_option('concerto_design_glow', 0); // add a glow effect to the outer borders of your page
-update_option('concerto_design_engrave', 0); // add an engrave effect to texts
+update_option('concerto_design_glow', 0);
+update_option('concerto_design_engrave', 0);
 
 /**
  * Extensions

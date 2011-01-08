@@ -90,3 +90,7 @@ ul#extensions { border-top: 1px solid #dddddd; padding-top: 10px; margin-top: 10
 .content .desc { padding-top: 10px; font-weight: bold; color: #999999; }
 .hide { display: none; }
 #colorpicker { position: absolute; margin-top: 5px; margin-left: 40px; border: 1px solid #adbaa0; padding: 5px; background: #dde9d3; -moz-box-shadow: 3px 3px 7px rgba(0,0,0,0.3); -webkit-box-shadow: 3px 3px 7px rgba(0,0,0,0.3); }
+
+.sortable { margin-top: 5px; background: #cddbbf; border: 1px solid #adbaa0; padding: 2px 2px 0;}
+.sortable ul li { cursor: move; background: #e4f2d6; border: 1px solid #adbaa0; padding: 5px; margin-bottom: 2px; }
+.sortable ul li.sortable-highlight { background: #f2f2d6; border: 1px dashed #adbaa0; height: 17px; }
