@@ -58,6 +58,78 @@ function admin_design() {
 	<script type="text/javascript">
 		jQuery(function($) {
 			/**
+			 * Upload
+			 */
+			$('.swfupload-control').swfupload({
+				upload_url: ajaxurl + '?action=concerto_upload',
+				flash_url : "<?php bloginfo('url'); ?>/wp-includes/js/swfupload/swfupload.swf",
+				post_params: {concerto_action: "header", _concerto_nonce: "<?php echo wp_create_nonce('CONCERTO_UPLOAD'); ?>"},
+				
+				file_post_name: "CONCERTO_UPLOAD",
+				file_size_limit : "5 MB",
+				file_types : "*.jpg;*.png;*.gif;*.bmp",
+				file_types_description : "Image files only",
+				file_queue_limit : "1",
+
+				button_placeholder_id : "spanButtonPlaceholder",
+				button_text: '<span class="changeheader">Change Header</span>',
+				button_width: 100,
+				button_height: 20,
+				button_text_style: ".changeheader { color: #639638; font-family: arial; }",
+				button_cursor: SWFUpload.CURSOR.HAND, 
+				button_action: SWFUpload.BUTTON_ACTION.SELECT_FILE,
+				button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT, 
+			});
+			if ($('#header_change').val() == 1) {
+				$('#header_image').hide();
+				$('.swfupload-control').unbind();
+				$('#header_hidden').val('');
+				$('#header_preview img').attr('src', '');
+				$('#header_shows').show()
+				$('#header_hidden').parents('.box').removeClass('box2columns');
+				$('#header_hidden').parents('.box').addClass('box1column');
+			} else {
+				$('#header_shows').show()
+				if ($('#header_change').val() == 3) $('#header_shows').hide();
+				$('#header_image').show();
+				$('#header_hidden').parents('.box').addClass('box2columns');
+				$('#header_hidden').parents('.box').removeClass('box1column');
+				$('.swfupload-control')
+					.bind('fileQueued', function(event, file){$(this).swfupload('startUpload');})
+					.bind('uploadSuccess', function(event, file, response){
+						$('#removeheader').show();
+						$('#header_preview img').attr('src', response);
+						$('#header_hidden').val(response);
+						$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
+					});
+			}
+			$('#header_change').change(function(){
+				if ($(this).val() == 1) {
+					$('#header_image').hide();
+					$('.swfupload-control').unbind();
+					$('#header_hidden').val('');
+					$('#header_shows').show()
+					$('#header_preview img').attr('src', '');
+					$('#header_hidden').parents('.box').removeClass('box2columns');
+					$('#header_hidden').parents('.box').addClass('box1column');
+				} else {
+					$('#header_shows').show()
+					if ($(this).val() == 3) $('#header_shows').hide();
+					$('#header_image').show();
+					$('#header_hidden').parents('.box').addClass('box2columns');
+					$('#header_hidden').parents('.box').removeClass('box1column');
+					$('.swfupload-control')
+						.bind('fileQueued', function(event, file){$(this).swfupload('startUpload');})
+						.bind('uploadSuccess', function(event, file, response){
+							$('#removeheader').show();
+							$('#header_preview img').attr('src', response);
+							$('#header_hidden').val(response);
+							$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
+						});
+				}
+				$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
+			});
+			/**
 			 * Behaviour
 			 */
 			if ($('#header_hidden').val() == '') {
@@ -92,6 +164,59 @@ function admin_design() {
 			} else {
 				$('.columns2, .columns3, #columnsarrangement').hide();
 			}
+			
+			$('.hide').hide();
+			
+			$('.content-toggle').click(function() {
+				if ($(this).hasClass('all')){
+					$('.content-toggle').toggleClass('expand');
+					if (!$(this).hasClass('expand')){
+						$('.content-toggle:not(.all)').removeClass('expand');
+						$(this).parents('.box').find('.content:hidden').show();
+					} else {
+						$('.content-toggle:not(.all)').addClass('expand');
+						$(this).parents('.box').find('.content:visible').hide();
+					}
+				} else {
+					$(this).toggleClass('expand');
+					$('.content-toggle.all').addClass('expand');
+					$(this).parent('h4').next('.content').toggle();
+				}
+				$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
+			});
+			
+			var newhex;
+			$('.color').each(function() {
+				$(this).css({backgroundColor:$(this).val()});
+				if ($(this).val() != 'none' && $(this).val() != 'transparent') {
+					newhex = '#' + blackOrWhite($(this).val());
+					$(this).css({color:newhex});
+				}
+			});
+			
+			function blackOrWhite(hex) {
+				hex = hex.replace('#','');
+				var red = parseInt(hex.substr(0,2), 16);
+				var green = parseInt(hex.substr(2,2), 16);
+				var blue = parseInt(hex.substr(4,2), 16);
+				if (red >= 127 && green >= 127 && blue >= 127) {
+					return '000000';
+				} else {
+					return 'ffffff';
+				}
+			}
+			
+			$('.color').focus(function(){
+				$(this).after('<div id="colorpicker">asd</div>');
+				$('#colorpicker').farbtastic($(this));
+				var posX = $(this).innerHeight();
+			});
+
+			$('.color').blur(function(){
+				$('#colorpicker').remove();
+			});
+			
+			$('.sortable ul').sortable({placeholder:'sortable-highlight'});
 
 			/**
 			 * Masonry
@@ -105,7 +230,7 @@ function admin_design() {
 
 function admin_design_box_markup () {
 ?>
-		<div class="box box1column">
+		<div class="box box1column" id="concerto_markup">
 			<h3>Markup</h3>
 			<div class="inner">
 				<p class="desc">This option enables your page to display markup in HTML4 or HTML5 format. It is recommended that you use HTML4 if you have little knowledge of what HTML5 is.</p>
@@ -118,7 +243,7 @@ function admin_design_box_markup () {
 
 function admin_design_box_header () {
 ?>
-		<div class="box box2columns">
+		<div class="box box2columns" id="concerto_header_type">
 			<h3>Header</h3>
 			<div class="inner">
 				<p class="desc">You can define your header to accomodate Text, Text and Logo or just a whole Banner below. You can customize the style on your stage's stylesheet.</p>
@@ -140,79 +265,6 @@ function admin_design_box_header () {
 						<p><label><input type="checkbox" value="1" name="concerto_design_header_description" <?php echo (get_option('concerto_design_header_description') == 1) ? 'checked ': ''; ?>/> Show Description</label></p>
 					</div>
 				</div>
-				<script type="text/javascript">
-					jQuery(function($){
-						$('.swfupload-control').swfupload({
-							upload_url: ajaxurl + '?action=concerto_upload',
-							flash_url : "<?php bloginfo('url'); ?>/wp-includes/js/swfupload/swfupload.swf",
-							post_params: {concerto_action: "header", _concerto_nonce: "<?php echo wp_create_nonce('CONCERTO_UPLOAD'); ?>"},
-							
-							file_post_name: "CONCERTO_UPLOAD",
-							file_size_limit : "5 MB",
-							file_types : "*.jpg;*.png;*.gif;*.bmp",
-							file_types_description : "Image files only",
-							file_queue_limit : "1",
-
-							button_placeholder_id : "spanButtonPlaceholder",
-							button_text: '<span class="changeheader">Change Header</span>',
-							button_width: 100,
-							button_height: 20,
-							button_text_style: ".changeheader { color: #639638; font-family: arial; }",
-							button_cursor: SWFUpload.CURSOR.HAND, 
-							button_action: SWFUpload.BUTTON_ACTION.SELECT_FILE,
-							button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT, 
-						});
-						if ($('#header_change').val() == 1) {
-							$('#header_image').hide();
-							$('.swfupload-control').unbind();
-							$('#header_hidden').val('');
-							$('#header_preview img').attr('src', '');
-							$('#header_shows').show()
-							$('#header_hidden').parents('.box').removeClass('box2columns');
-							$('#header_hidden').parents('.box').addClass('box1column');
-						} else {
-							$('#header_shows').show()
-							if ($('#header_change').val() == 3) $('#header_shows').hide();
-							$('#header_image').show();
-							$('#header_hidden').parents('.box').addClass('box2columns');
-							$('#header_hidden').parents('.box').removeClass('box1column');
-							$('.swfupload-control')
-								.bind('fileQueued', function(event, file){$(this).swfupload('startUpload');})
-								.bind('uploadSuccess', function(event, file, response){
-									$('#removeheader').show();
-									$('#header_preview img').attr('src', response);
-									$('#header_hidden').val(response);
-									$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
-								});
-						}
-						$('#header_change').change(function(){
-							if ($(this).val() == 1) {
-								$('#header_image').hide();
-								$('.swfupload-control').unbind();
-								$('#header_hidden').val('');
-								$('#header_shows').show()
-								$('#header_preview img').attr('src', '');
-								$('#header_hidden').parents('.box').removeClass('box2columns');
-								$('#header_hidden').parents('.box').addClass('box1column');
-							} else {
-								$('#header_shows').show()
-								if ($(this).val() == 3) $('#header_shows').hide();
-								$('#header_image').show();
-								$('#header_hidden').parents('.box').addClass('box2columns');
-								$('#header_hidden').parents('.box').removeClass('box1column');
-								$('.swfupload-control')
-									.bind('fileQueued', function(event, file){$(this).swfupload('startUpload');})
-									.bind('uploadSuccess', function(event, file, response){
-										$('#removeheader').show();
-										$('#header_preview img').attr('src', response);
-										$('#header_hidden').val(response);
-										$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
-									});
-							}
-							$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
-						});
-					});
-				</script>
 			</div>
 		</div>
 <?php
@@ -220,7 +272,7 @@ function admin_design_box_header () {
 
 function admin_design_box_layout () {
 ?>
-		<div class="box box1column">
+		<div class="box box1column" id="concerto_layout">
 			<h3>Page Layout</h3>
 			<div class="inner">
 				<p class="desc">For detailed explanation of what Page Layout is, please visit the <a href="http://themeconcert.com/concerto/manual/page_structure">Concerto Manual</a>. This option will give you more flexibility in customizing your Stages</p>
@@ -233,63 +285,9 @@ function admin_design_box_layout () {
 
 function admin_design_box_fontscolorsborders () {
 ?>
-		<div class="box box1column">
+		<div class="box box1column" id="concerto_fontscolorsborders">
 			<h3>Fonts, Colors and Borders  <a href="javascript:;" class="content-toggle expand all"></a></h3>
 			<div class="inner">
-				<script type="text/javascript">
-					jQuery(function($) {
-						$('.hide').hide();
-						
-						$('.content-toggle').click(function() {
-							if ($(this).hasClass('all')){
-								$('.content-toggle').toggleClass('expand');
-								if (!$(this).hasClass('expand')){
-									$('.content-toggle:not(.all)').removeClass('expand');
-									$(this).parents('.box').find('.content:hidden').show();
-								} else {
-									$('.content-toggle:not(.all)').addClass('expand');
-									$(this).parents('.box').find('.content:visible').hide();
-								}
-							} else {
-								$(this).toggleClass('expand');
-								$('.content-toggle.all').addClass('expand');
-								$(this).parent('h4').next('.content').toggle();
-							}
-							$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
-						});
-						
-						var newhex;
-						$('.color').each(function() {
-							$(this).css({backgroundColor:$(this).val()});
-							if ($(this).val() != 'none' && $(this).val() != 'transparent') {
-								newhex = '#' + blackOrWhite($(this).val());
-								$(this).css({color:newhex});
-							}
-						});
-						
-						function blackOrWhite(hex) {
-							hex = hex.replace('#','');
-							var red = parseInt(hex.substr(0,2), 16);
-							var green = parseInt(hex.substr(2,2), 16);
-							var blue = parseInt(hex.substr(4,2), 16);
-							if (red >= 127 && green >= 127 && blue >= 127) {
-								return '000000';
-							} else {
-								return 'ffffff';
-							}
-						}
-						
-						$('.color').focus(function(){
-							$(this).after('<div id="colorpicker">asd</div>');
-							$('#colorpicker').farbtastic($(this));
-							var posX = $(this).innerHeight();
-						});
-
-						$('.color').blur(function(){
-							$('#colorpicker').remove();
-						});
-					});
-				</script>
 				<p class="desc">You can tweak font faces, sizes, colors as well as backgrounds for specific elements throughout the default layout. Border sizes and colors are also available below.</p>
 				<div>
 					<h4>Body <a href="javascript:;" class="content-toggle expand"></a></h4>
@@ -927,7 +925,7 @@ function admin_design_box_fontscolorsborders () {
 
 function admin_design_box_columns () {
 ?>
-		<div class="box box1column">
+		<div class="box box1column" id="concerto_columns">
 			<h3>Columns</h3>
 			<div class="inner">
 				<p class="desc">By Default, Concerto is enabled to display a 2 Column layout. The Theme also supports 3 Columns. You can change the settings below.</p>
@@ -970,7 +968,7 @@ function admin_design_box_columns () {
 
 function admin_design_box_articles () {
 ?>
-		<div class="box box1column">
+		<div class="box box1column" id="concerto_articles">
 			<h3>Articles</h3>
 			<div class="inner">
 				<p class="desc">You can configure Display Options for your Articles below. Naturally, You can leave these options alone, but if you are feeling picky, feel free to check stuff.</p>
@@ -981,7 +979,7 @@ function admin_design_box_articles () {
 				<p><label>Readmore Text <input type="text" class="text" value="<?php echo get_option('concerto_design_posts_readmore_text'); ?>" name="concerto_design_posts_readmore_text" /></label></p>
 		
 				<h4>Article Display</h4>
-				<p class="desc">Display Options for Articles</p>
+				<p class="desc">Display Position for Articles</p>
 				<div class="sortable">
 					<ul>
 						<?php
@@ -1031,16 +1029,11 @@ function admin_design_box_articles () {
 
 function admin_design_box_comments () {
 ?>
-		<div class="box box1column">
+		<div class="box box1column" id="concerto_comments">
 			<h3>Comments</h3>
 			<div class="inner">
-				<script type="text/javascript">
-					jQuery(function($) {
-						$('.sortable ul').sortable({placeholder:'sortable-highlight'});
-					});
-				</script>
-				<h4>Display Position</h4>
 				<p class="desc">You can configure Display Options for your Comments below. Naturally, You can leave these options alone, but if you are feeling picky, feel free to check stuff.</p>
+				<h4>Display Position</h4>
 				<div class="sortable">
 					<ul>
 						<?php
@@ -1079,7 +1072,7 @@ function admin_design_box_comments () {
 
 function admin_design_box_eyecandy () {
 ?>
-		<div class="box box1column">
+		<div class="box box1column" id="concerto_eyecandy">
 			<h3>EyeCandy</h3>
 			<div class="inner">
 				<p class="desc">Some EyeCandy Options may not be supported by the browser you are using, mainly Internet Explorer. Check the Features below if you want your blog to have some cool effects. <em>Take note that these options only apply to the Default Stage.</em></p>

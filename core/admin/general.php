@@ -143,7 +143,7 @@ function admin_general() {
 
 function admin_general_box_navigation() {
 ?>
-	<div class="box box1column" id="concerto_navigation">
+	<div class="box box1column" id="concerto_navigation_type">
 		<h3>Navigation</h3>
 		<div class="inner">
 			<h4>Please Select Menu Type</h4>

@@ -46,10 +46,6 @@
 .box .inner table th { background: #d1dec6; padding: 5px; }
 .box .inner table td:first-child { text-align: left; font-size: 11px; }
 
-.navigationlists ul { border: 1px solid #adbaa0; background: #ffffff; height: 190px; overflow: auto; }
-.navigationlists ul li { float: none; clear: both; }
-.navigationlists ul li label { display: block; padding: 2px 10px; }
-
 .left, .box { float: left; }
 .right { float: right; }
 
@@ -94,3 +90,6 @@ ul#extensions { border-top: 1px solid #dddddd; padding-top: 10px; margin-top: 10
 .sortable { margin-top: 5px; background: #cddbbf; border: 1px solid #adbaa0; padding: 2px 2px 0;}
 .sortable ul li { cursor: move; background: #e4f2d6; border: 1px solid #adbaa0; padding: 5px; margin-bottom: 2px; }
 .sortable ul li.sortable-highlight { background: #f2f2d6; border: 1px dashed #adbaa0; height: 17px; }
+
+.navigationlists ul { background: #cddbbf; border: 1px solid #adbaa0; height: 190px; overflow: auto; padding: 2px 2px 0; }
+.navigationlists ul li { background: #e4f2d6; border: 1px solid #adbaa0; padding: 5px; margin-bottom: 2px;}
