@@ -236,10 +236,9 @@ function admin_design_box_fontscolorsborders () {
 		<div class="box box1column">
 			<h3>Fonts, Colors and Borders  <a href="javascript:;" class="content-toggle expand all"></a></h3>
 			<div class="inner">
-				<div id="colorpicker"></div>
 				<script type="text/javascript">
 					jQuery(function($) {
-						//$('.hide').hide();
+						$('.hide').hide();
 						
 						$('.content-toggle').click(function() {
 							if ($(this).hasClass('all')){
@@ -273,13 +272,22 @@ function admin_design_box_fontscolorsborders () {
 							var red = parseInt(hex.substr(0,2), 16);
 							var green = parseInt(hex.substr(2,2), 16);
 							var blue = parseInt(hex.substr(4,2), 16);
-							if (red >= 8 && green >= 8 && blue >= 8) {
+							if (red >= 127 && green >= 127 && blue >= 127) {
 								return '000000';
 							} else {
 								return 'ffffff';
 							}
 						}
 						
+						$('.color').focus(function(){
+							$(this).after('<div id="colorpicker">asd</div>');
+							$('#colorpicker').farbtastic($(this));
+							var posX = $(this).innerHeight();
+						});
+
+						$('.color').blur(function(){
+							$('#colorpicker').remove();
+						});
 					});
 				</script>
 				<p class="desc">You can tweak font faces, sizes, colors as well as backgrounds for specific elements throughout the default layout. Border sizes and colors are also available below.</p>
@@ -955,8 +963,12 @@ function admin_design_box_articles () {
 			<h3>Articles</h3>
 			<div class="inner">
 				<p class="desc">You can configure Display Options for your Articles below. Naturally, You can leave these options alone, but if you are feeling picky, feel free to check stuff.</p>
+				
+				<h4>Homepage</h4>
 				<p><label><input type="checkbox" value="1" name="concerto_design_paginate" <?php echo (get_option('concerto_design_paginate') == 1) ? 'checked ': ''; ?>/> Homepage Pagination</label></p>
-
+				<p><label><input type="checkbox" value="1" name="concerto_design_posts_excerpts" <?php echo (get_option('concerto_design_posts_excerpts') == 1) ? 'checked ': ''; ?>/> Homepage List as Excerpts</label></p>
+				<p><label>Readmore Text <input type="text" class="text" value="<?php echo get_option('concerto_design_posts_readmore_text'); ?>" name="concerto_design_posts_readmore_text" /></label></p>
+				
 				<h4>Post</h4>
 				<p class="desc">Display Options for Posts</p>
 				<p><label><input type="checkbox" value="1" name="concerto_design_bylines_post_author" <?php echo (get_option('concerto_design_bylines_post_author') == 1) ? 'checked ': ''; ?>/> Show Author</label></p>
@@ -969,10 +981,7 @@ function admin_design_box_articles () {
 
 				<h4>Article Display</h4>
 				<p class="desc">Display Options for Articles</p>
-				<p><label><input type="checkbox" value="1" name="concerto_design_posts_excerpts" <?php echo (get_option('concerto_design_posts_excerpts') == 1) ? 'checked ': ''; ?>/> Homepage List as Excerpts</label></p>
-				<p><label>Readmore Text <input type="text" class="text" value="<?php echo get_option('concerto_design_posts_readmore_text'); ?>" name="concerto_design_posts_readmore_text" /></label></p>
-				
-				
+				<div style="height:120px;border:1px solid #c0c0c0;"></div>
 				<p><label><input type="checkbox" value="1" name="concerto_design_posts_navigation" <?php echo (get_option('concerto_design_posts_navigation') == 1) ? 'checked ': ''; ?>/> Navigation</label></p>
 				<p><label><input type="checkbox" value="1" name="concerto_design_comments_is_closed_show_message" <?php echo (get_option('concerto_design_comments_is_closed_show_message') == 1) ? 'checked ': ''; ?>/> Display Message when Comments are closed</label></p>
 
