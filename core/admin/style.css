@@ -27,7 +27,7 @@
 .level_updated { background: #fffbcc; border: 1px solid #e6db55; color: #666666; padding: 20px; }
 .level_green { background: #39b54a; }
 .level_green a { color: #c4df9b; }
-.level_green a:hover { color: #92278f; }
+.level_green a:hover { color: #991116; }
 .greentext { color: #39b54a; }
 
 .box { min-width: 298px; background: #f4fbee; font-size: 12px; border: 1px solid #adbaa0; margin: 10px; -moz-box-shadow: 0 1px 0 #ffffff; -moz-border-radius: 5px; }
