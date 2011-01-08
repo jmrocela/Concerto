@@ -239,7 +239,7 @@ function admin_design_box_fontscolorsborders () {
 				<div id="colorpicker"></div>
 				<script type="text/javascript">
 					jQuery(function($) {
-						$('.hide').hide();
+						//$('.hide').hide();
 						
 						$('.content-toggle').click(function() {
 							if ($(this).hasClass('all')){
@@ -263,39 +263,23 @@ function admin_design_box_fontscolorsborders () {
 						$('.color').each(function() {
 							$(this).css({backgroundColor:$(this).val()});
 							if ($(this).val() != 'none' && $(this).val() != 'transparent') {
-								newhex = '#' + oppositeHex($(this).val());
+								newhex = '#' + blackOrWhite($(this).val());
 								$(this).css({color:newhex});
 							}
 						});
-
-						function oppositeHex(hex) {
+						
+						function blackOrWhite(hex) {
 							hex = hex.replace('#','');
 							var red = parseInt(hex.substr(0,2), 16);
 							var green = parseInt(hex.substr(2,2), 16);
 							var blue = parseInt(hex.substr(4,2), 16);
-							var new_red = dechex(255 - red);
-							var new_green = dechex(255 - green);
-							var new_blue = dechex(255 - blue);
-							new_red = (new_red == '0') ? 00: new_red;
-							new_green = (new_green == '0') ? 00: new_green;
-							new_blue = (new_blue == '0') ? 00: new_blue;
-							return new_red + '' + new_green + '' + new_blue;
-						}
-						
-						function dechex (number) {
-							// Returns a string containing a hexadecimal representation of the given number  
-							// version: 1009.2513
-							// discuss at: http://phpjs.org/functions/dechex    // +   original by: Philippe Baumann
-							// +   bugfixed by: Onno Marsman
-							// +   improved by: http://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript
-							// +   input by: pilus    
-							if (number < 0) {
-								number = 0xFFFFFFFF + number + 1;
+							if (red >= 8 && green >= 8 && blue >= 8) {
+								return '000000';
+							} else {
+								return 'ffffff';
 							}
-							return parseInt(number, 10).toString(16);
 						}
 						
-						// Add Color Picker for each Color boxes
 					});
 				</script>
 				<p class="desc">You can tweak font faces, sizes, colors as well as backgrounds for specific elements throughout the default layout. Border sizes and colors are also available below.</p>
