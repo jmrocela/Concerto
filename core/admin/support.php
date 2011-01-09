@@ -25,8 +25,8 @@ function admin_support() {
 				Active Stage
 				<select name="concerto_stage" disabled>
 					<?php
-						$stages = $stages->stages;
-						foreach ($stages as $stage) {
+						$st = $stages->stages;
+						foreach ($st as $stage) {
 							?>
 								<option value="<?php echo strtolower($stage['name']); ?>"><?php echo $stage['name']; ?></option>
 							<?php
@@ -61,7 +61,7 @@ function admin_support() {
 <?php
 }
 
-function admin_general_box_registration() {
+function admin_support_box_registration() {
 ?>
 	<div class="box box1column" id="concerto_registration">
 		<h3>Your Registration</h3>
@@ -103,7 +103,7 @@ function admin_general_box_registration() {
 <?php
 }
 
-function admin_general_box_about() {
+function admin_support_box_about() {
 ?>
 	<div class="box box1column" id="concerto_about">
 		<h3>About Concerto</h3>
@@ -116,7 +116,7 @@ function admin_general_box_about() {
 <?php
 }
 
-function admin_general_box_support() {
+function admin_support_box_support() {
 ?>
 	<div class="box box1column" id="concerto_support">
 		<h3>Customer Support</h3>
@@ -128,7 +128,7 @@ function admin_general_box_support() {
 <?php
 }
 
-function admin_general_box_terms_and_agreements() {
+function admin_support_box_terms_and_agreements() {
 ?>
 	<div class="box box2columns" id="concerto_terms_and_agreements">
 		<h3>Terms &amp; Agreements</h3>
@@ -152,7 +152,7 @@ function admin_general_box_terms_and_agreements() {
 <?php
 }
 
-function admin_general_box_search() {
+function admin_support_box_search() {
 ?>
 	<div class="box box1column" id="concerto_search">
 		<h3>Search the Manual</h3>

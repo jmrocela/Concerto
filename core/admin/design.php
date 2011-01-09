@@ -26,8 +26,8 @@ function admin_design() {
 				Active Stage
 				<select name="concerto_stage">
 					<?php
-						$stages = $stages->stages;
-						foreach ($stages as $stage) {
+						$st = $stages->stages;
+						foreach ($st as $stage) {
 							?>
 								<option value="<?php echo strtolower($stage['name']); ?>"><?php echo $stage['name']; ?></option>
 							<?php

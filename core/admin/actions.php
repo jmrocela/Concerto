@@ -23,13 +23,16 @@
 	add_action('concerto_admin_design', 'admin_design_box_eyecandy', 160);
 	
 	// Tools
-	
+	add_action('concerto_admin_tools', 'admin_tools_box_importconfiguration', 20);
+	add_action('concerto_admin_tools', 'admin_tools_box_exportconfiguration', 40);
+	add_action('concerto_admin_tools', 'admin_tools_box_newstage', 60);
+	add_action('concerto_admin_tools', 'admin_tools_box_restoreconfiguration', 80);
 	
 	// Support
-	add_action('concerto_admin_support', 'admin_general_box_registration', 20);
-	add_action('concerto_admin_support', 'admin_general_box_terms_and_agreements', 40);
-	add_action('concerto_admin_support', 'admin_general_box_search', 60);
-	add_action('concerto_admin_support', 'admin_general_box_support', 80);
-	add_action('concerto_admin_support', 'admin_general_box_about', 100);
+	add_action('concerto_admin_support', 'admin_support_box_registration', 20);
+	add_action('concerto_admin_support', 'admin_support_box_terms_and_agreements', 40);
+	add_action('concerto_admin_support', 'admin_support_box_search', 60);
+	add_action('concerto_admin_support', 'admin_support_box_support', 80);
+	add_action('concerto_admin_support', 'admin_support_box_about', 100);
 	
 ?>

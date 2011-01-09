@@ -1,4 +1,5 @@
 <?php
+
 function admin_tools() {
 ?>
 <div class="wrap concerto">
@@ -24,8 +25,8 @@ function admin_tools() {
 				Active Stage
 				<select name="concerto_stage" disabled>
 					<?php
-						$stages = $stages->stages;
-						foreach ($stages as $stage) {
+						$st = $stages->stages;
+						foreach ($st as $stage) {
 							?>
 								<option value="<?php echo strtolower($stage['name']); ?>"><?php echo $stage['name']; ?></option>
 							<?php
@@ -46,8 +47,22 @@ function admin_tools() {
 	</div>
 	<?php do_action('concerto_admin_notices'); ?>
 	<div id="concerto_dashboard">
-		<?php do_action('concerto_admin_tools'); ?>
-		
+		<?php do_action('concerto_admin_tools'); ?>		
+	</div>
+	<script type="text/javascript">
+		jQuery(function($) {
+			/**
+			 * Masonry
+			 */
+			$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
+		});
+	</script>
+</div>
+<?php
+}
+
+function admin_tools_box_importconfiguration () {
+?>
 		<div class="box box1column">
 			<h3>Import Configuration</h3>
 			<div class="inner">
@@ -58,14 +73,32 @@ function admin_tools() {
 					<label>
 						to
 						<select name="cfw_import_applyto">
-							<option value="default">Default</option>
+						<?php
+							global $stages;
+							if (!empty($stages->stages)) {
+								$st = $stages->stages;
+								foreach ($st as $stage) {
+									?>
+										<option value="<?php echo strtolower($stage['name']); ?>"><?php echo $stage['name']; ?></option>
+									<?php
+								}
+							} else {
+						?>
+							<option>No Stages available</option>
+						<?php
+							}
+						?>
 						</select>
 						Stage
 					</label>
 				</p>
 			</div>
 		</div>
-		
+<?php
+}
+
+function admin_tools_box_exportconfiguration () {
+?>
 		<div class="box box1column">
 			<h3>Export Configuration</h3>
 			<div class="inner">
@@ -77,14 +110,32 @@ function admin_tools() {
 					<label>
 						from
 						<select name="cfw_import_applyto">
-							<option value="default">Default</option>
+						<?php
+							global $stages;
+							if (!empty($stages->stages)) {
+								$st = $stages->stages;
+								foreach ($st as $stage) {
+									?>
+										<option value="<?php echo strtolower($stage['name']); ?>"><?php echo $stage['name']; ?></option>
+									<?php
+								}
+							} else {
+						?>
+							<option>No Stages available</option>
+						<?php
+							}
+						?>
 						</select>
 						Stage
 					</label>
 				</p>
 			</div>
 		</div>
-		
+<?php
+}
+
+function admin_tools_box_newstage () {
+?>
 		<div class="box box1column">
 			<h3>Create New Stage</h3>
 			<div class="inner">
@@ -96,7 +147,11 @@ function admin_tools() {
 				<p><input type="button" value="Upload Stage" class="button"/></p>
 			</div>
 		</div>
-		
+<?php
+}
+
+function admin_tools_box_restoreconfiguration () {
+?>
 		<div class="box box1column">
 			<h3>Restore Default Configuration</h3>
 			<div class="inner">
@@ -108,24 +163,27 @@ function admin_tools() {
 					<label>
 						to
 						<select name="cfw_import_applyto">
-							<option value="default">Default</option>
+						<?php
+							global $stages;
+							if (!empty($stages->stages)) {
+								$st = $stages->stages;
+								foreach ($st as $stage) {
+									?>
+										<option value="<?php echo strtolower($stage['name']); ?>"><?php echo $stage['name']; ?></option>
+									<?php
+								}
+							} else {
+						?>
+							<option>No Stages available</option>
+						<?php
+							}
+						?>
 						</select>
 						Stage
 					</label>
 				</p>
 			</div>
 		</div>
-		
-	</div>
-	<script type="text/javascript">
-		jQuery(function($) {
-			/**
-			 * Masonry
-			 */
-			$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
-		});
-	</script>
-</div>
 <?php
 }
 ?>
