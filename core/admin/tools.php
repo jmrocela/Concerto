@@ -86,29 +86,6 @@ function admin_tools() {
 		</div>
 		
 		<div class="box box1column">
-			<h3>Stage File Editor</h3>
-			<div class="inner">
-				<p class="desc">Once you select a file you wish to edit, the editor will pop up. Don't be scared.</p>
-				<p>
-					<label>
-						Select files from
-						<select name="cfw_file_editor">
-							<option value="default">Default</option>
-						</select>
-						Stage
-					</label>
-				</p>
-				<p>
-					<select name="cfw_file_editor_file" style="width:180px;">
-						<option>style.css</option>
-						<option>functions.css</option>
-					</select>
-					<input type="button" value="Edit this file" class="button"/>
-				</p>
-			</div>
-		</div>
-		
-		<div class="box box1column">
 			<h3>Create New Stage</h3>
 			<div class="inner">
 				<p class="desc">If you wish to create a new stage with all the default settings, supply it's name and we will make it for you.</p>
@@ -117,14 +94,6 @@ function admin_tools() {
 				<p class="desc">If you already have a stage set with images, you can upload it here.</p>
 				<h4>Upload</h4>
 				<p><input type="button" value="Upload Stage" class="button"/></p>
-			</div>
-		</div>
-		
-		<div class="box box1column">
-			<h3>Update Version</h3>
-			<div class="inner">
-				<p class="desc">This tool will let you update your current Concerto installation. We will automatically determine if you need to update.</p>
-				<p class="concerto_notice level_green">You are up to date!</p>
 			</div>
 		</div>
 		

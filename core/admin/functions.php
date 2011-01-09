@@ -1,14 +1,14 @@
 <?php
 
-function exportConcertoOptions($what = null, $stage = 'default'){
+function exportConcertoOptions($stage = 'default', $context = null){
 	// Should add a hook somewhere to support custom option exports
-	if (!is_array($what) && $what != null) {
-		if ($exploded = @explode(',', $what)) {
-			$what = array_map('trim', $exploded);
+	if (!is_array($context) && $context != null) {
+		if ($exploded = @explode(',', $context)) {
+			$context = array_map('trim', $exploded);
 		} else {
-			$val = $what;
-			$what = array();
-			$what[] = $val;
+			$val = $context;
+			$context = array();
+			$context[] = $val;
 		}
 	}
 
@@ -27,21 +27,21 @@ function exportConcertoOptions($what = null, $stage = 'default'){
 	}
 	
 	$content = array();
-	if ($what == null) {
+	if ($context == null) {
 		$content['general'] = $general;
 		$content['design'] = $design;
-		$what = array('general','design');
+		$context = array('general','design');
 		$filename = '';
 	} else {
-		if (in_array('general', $what)) {
+		if (in_array('general', $context)) {
 			$content['general'] = $general;
 			$filename = '.general';
 		}
-		if (in_array('design', $what)) {
+		if (in_array('design', $context)) {
 			$content['design'] = $design;
 			$filename = '.design';
 		}
-		if (in_array('design', $what) && in_array('general', $what)) {
+		if (in_array('design', $context) && in_array('general', $context)) {
 			$filename = '';
 		}
 	}
@@ -60,13 +60,13 @@ function exportConcertoOptions($what = null, $stage = 'default'){
 ?>
 // This is an exported option file for Concerto generated on <?php echo date('r') ."\n"; ?>
 // Stage: <?php echo $stage . "\n"; ?>
-// Context: <?php echo implode(', ', $what) ."\n"; ?>
+// Context: <?php echo implode(', ', $context) ."\n"; ?>
 <?php echo $jsondcontent; ?>
 <?php
 	die();
 }
 
-function importConcertoOptions($file = null, $context = null, $stage = 'default') {
+function importConcertoOptions($file = null, $stage = 'default', $context = null) {
 	if (is_readable($file)) {
 		if (!is_array($context)) {
 			if ($context != null) {
@@ -88,6 +88,42 @@ function importConcertoOptions($file = null, $context = null, $stage = 'default'
 		}
 	}
 	die();
+}
+
+function restoreConcertoOptions($stage = 'default', $context = null) {
+	include CONCERTO_LIBS . 'defaults.php';
+	defaultOptions($stage, $context);
+}
+
+function createStage($name, $file = null) {
+	$name = ucfirst($name);
+	if (is_writable(CONCERTO_STAGES)) {
+		$dir = CONCERTO_STAGES . $name;
+		if (!is_dir($dir) && !is_readable($dir)) {
+			@mkdir($dir, 0755);
+		}
+		if (is_dir($dir) && is_readable($dir)) {
+			$file = ($file != null) ? $file: CONCERTO_LIBS . 'stage' . _DS . 'default.zip';
+			if (file_exists($file)) {
+				if (class_exists('ZipArchive')) {
+					$zip = new ZipArchive;
+					if ($zip->open($file) === TRUE) {
+						$zip->extractTo($dir);
+						$zip->close();
+						return true;
+					}
+				}
+				return 16; // ZipArchive class is not available
+			}
+			return 8; // File does not exist
+		}
+		return 4; // Couldn't make the stage folder
+	}
+	return 2; // Stage folder not writable
+}
+
+function repairStageFolder() {
+	createStage('default');
 }
 
 ?>
