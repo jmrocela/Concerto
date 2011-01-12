@@ -76,18 +76,21 @@ function importConcertoOptions($file = null, $stage = 'default', $context = null
 			}
 		}
 		$content = explode("\n", file_get_contents($file), 4);
-		$options = json_decode($content[3]);
-		foreach ($options as $what => $hash) {
-			if ($context == null || in_array($what, (array) $context)) {
-				foreach ($hash as $key => $value) {
-					$key = preg_replace('/concerto_(.*)_' . $what . '/', 'concerto_' . $stage . '_' . $what, $key );
-					echo $key . "-" . $value . "<br/>";
-					update_option($key, $value);
+		//should handle errors more thouroughly rather than suppressing them
+		if ($options = @json_decode($content[3])) {
+			foreach ($options as $what => $hash) {
+				if ($context == null || in_array($what, (array) $context)) {
+					foreach ($hash as $key => $value) {
+						$key = preg_replace('/concerto_(.*)_' . $what . '/', 'concerto_' . $stage . '_' . $what, $key );
+						update_option($key, $value);
+					}
 				}
 			}
+			return true;
+		} else {
+			return false;
 		}
 	}
-	die();
 }
 
 function restoreConcertoOptions($stage = 'default', $context = null) {
@@ -96,6 +99,13 @@ function restoreConcertoOptions($stage = 'default', $context = null) {
 }
 
 function createStage($name, $file = null) {
+	// Check if a stage of the same name exists
+	global $stages;
+	foreach ($stages->stages as $stage) {
+		if (strtolower($stage['name']) == strtolower($name)) {
+			return 0;
+		}
+	}
 	$name = ucfirst($name);
 	if (is_writable(CONCERTO_STAGES)) {
 		$dir = CONCERTO_STAGES . $name;
@@ -110,7 +120,8 @@ function createStage($name, $file = null) {
 					if ($zip->open($file) === TRUE) {
 						$zip->extractTo($dir);
 						$zip->close();
-						return true;
+						// READ AN ENCLOSED CONFIG FILE
+						return 1;
 					}
 				}
 				return 16; // ZipArchive class is not available
