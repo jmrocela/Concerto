@@ -118,10 +118,16 @@ function createStage($name, $file = null) {
 				if (class_exists('ZipArchive')) {
 					$zip = new ZipArchive;
 					if ($zip->open($file) === TRUE) {
-						$zip->extractTo($dir);
-						$zip->close();
-						// READ AN ENCLOSED CONFIG FILE
-						return 1;
+						if ($zip->locateName('style.css')) {
+							$zip->extractTo($dir);
+							$zip->close();
+							if ($zip->locateName('options.cfwconf')) { // we read the configuration file from the stage
+								importConcertoOptions($dir . _DS . 'options.cfwconf', strtolower($name))
+							}
+							return 1;
+						}
+						@rmdir($dir);
+						return 0;
 					}
 				}
 				return 16; // ZipArchive class is not available

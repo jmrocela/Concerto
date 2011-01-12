@@ -248,7 +248,7 @@ function admin_tools_box_newstage () {
 						$('.concerto_notice.level_updated,.concerto_notice.level_red').remove();
 						switch (response) {
 							case '0':
-								$('#concerto_dashboard').before('<div class="concerto_notice level_red">An error occured while creating your Stage<br/><strong>Sorry but the stage name you selected is not available or it already exists. Please try another one!</strong></div>');
+								$('#concerto_dashboard').before('<div class="concerto_notice level_red">An error occured while creating your Stage<br/><strong>Sorry but the Stage file is invalid or it already exists. Please try another one!</strong></div>');
 							break;
 							case '2':
 								$('#concerto_dashboard').before('<div class="concerto_notice level_red">An error occured while creating your Stage<br/><strong>It seems that the Stage folder is unwritable. See <a href="http://themeconcert.com/manual/createnewstage">solution here</a></strong></div>');
