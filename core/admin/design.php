@@ -390,7 +390,7 @@ function admin_design_box_fontscolorsborders () {
 								<option value="24"<?php echo (get_option('concerto_' . $stage . '_design_sizes_header_title') == 24) ? ' selected': ''; ?>>24px</option>
 								<option value="28"<?php echo (get_option('concerto_' . $stage . '_design_sizes_header_title') == 28) ? ' selected': ''; ?>>28px</option>
 								<option value="32"<?php echo (get_option('concerto_' . $stage . '_design_sizes_header_title') == 32) ? ' selected': ''; ?>>32px</option>
-								<option value="40"<?php echo (get_option('concerto_' . $stage . '_design_sizes_header_title') == 50) ? ' selected': ''; ?>>40px</option>
+								<option value="40"<?php echo (get_option('concerto_' . $stage . '_design_sizes_header_title') == 40) ? ' selected': ''; ?>>40px</option>
 								<option value="48"<?php echo (get_option('concerto_' . $stage . '_design_sizes_header_title') == 48) ? ' selected': ''; ?>>48px</option>
 								<option value="52"<?php echo (get_option('concerto_' . $stage . '_design_sizes_header_title') == 52) ? ' selected': ''; ?>>52px</option>
 								<option value="60"<?php echo (get_option('concerto_' . $stage . '_design_sizes_header_title') == 60) ? ' selected': ''; ?>>60px</option>
@@ -534,7 +534,7 @@ function admin_design_box_fontscolorsborders () {
 						
 						<p>Title Font Size
 							<select name="concerto_<?php echo $stage; ?>_design_sizes_content_title">
-								<option value="inherit-header_title"<?php echo (get_option('concerto_' . $stage . '_design_sizes_content_title') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Site Title</option>
+								<option value="inherit-header_title"<?php echo (get_option('concerto_' . $stage . '_design_sizes_content_title') == 'inherit-header_title') ? ' selected': ''; ?>>Inherit from Site Title</option>
 								<option value="20"<?php echo (get_option('concerto_' . $stage . '_design_sizes_content_title') == 20) ? ' selected': ''; ?>>20px</option>
 								<option value="24"<?php echo (get_option('concerto_' . $stage . '_design_sizes_content_title') == 24) ? ' selected': ''; ?>>24px</option>
 								<option value="28"<?php echo (get_option('concerto_' . $stage . '_design_sizes_content_title') == 28) ? ' selected': ''; ?>>28px</option>
@@ -639,7 +639,7 @@ function admin_design_box_fontscolorsborders () {
 						<p class="desc">Article font styles</p>
 						<p>h1
 							<select name="concerto_<?php echo $stage; ?>_design_sizes_h1">
-								<option value="inherit-header_title"<?php echo (get_option('concerto_' . $stage . '_design_sizes_h1') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Site Title</option>
+								<option value="inherit-header_title"<?php echo (get_option('concerto_' . $stage . '_design_sizes_h1') == 'inherit-header_title') ? ' selected': ''; ?>>Inherit from Site Title</option>
 								<option value="20"<?php echo (get_option('concerto_' . $stage . '_design_sizes_h1') == 20) ? ' selected': ''; ?>>20px</option>
 								<option value="24"<?php echo (get_option('concerto_' . $stage . '_design_sizes_h1') == 24) ? ' selected': ''; ?>>24px</option>
 								<option value="28"<?php echo (get_option('concerto_' . $stage . '_design_sizes_h1') == 28) ? ' selected': ''; ?>>28px</option>
