@@ -118,11 +118,11 @@ function createStage($name, $file = null) {
 				if (class_exists('ZipArchive')) {
 					$zip = new ZipArchive;
 					if ($zip->open($file) === TRUE) {
-						if ($zip->locateName('style.css')) {
+						if (is_numeric($zip->locateName('style.css'))) {
 							$zip->extractTo($dir);
 							$zip->close();
 							if ($zip->locateName('options.cfwconf')) { // we read the configuration file from the stage
-								importConcertoOptions($dir . _DS . 'options.cfwconf', strtolower($name))
+								importConcertoOptions($dir . _DS . 'options.cfwconf', strtolower($name));
 							}
 							return 1;
 						}
