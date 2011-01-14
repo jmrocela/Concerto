@@ -60,6 +60,9 @@ function concerto_hook_scripts() {
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('concerto-base', get_bloginfo('stylesheet_directory') . '/core/scripts/concerto.js');
 	}
+	if (get_option('concerto_' . $stage . '_general_scripts_libraries_jquery_ui') == 1) {
+		wp_enqueue_script('jquery-ui-core'); //load all UI libs?
+	}
 }
 
 function concerto_hook_scripts_head() {

@@ -213,13 +213,17 @@ function defaultOptions($stage = 'default', $context = null, $install  = false) 
 			update_option('concerto_' . $stage . '_seo_year_nofollow', 0);
 			update_option('concerto_' . $stage . '_seo_year_noarchive', 0);
 			
-			update_option('concerto_' . $stage . '_personal_twitter', '');
-			update_option('concerto_' . $stage . '_personal_facebook', '');
-			update_option('concerto_' . $stage . '_personal_youtube', '');
-			update_option('concerto_' . $stage . '_personal_linkedin', '');
-			update_option('concerto_' . $stage . '_personal_email', '');
-			update_option('concerto_' . $stage . '_personal_email_use_admin', 0);
 	}
+	
+	if ($context == null || in_array('personal', (array) $context)) {
+		update_option('concerto_' . $stage . '_personal_twitter', '');
+		update_option('concerto_' . $stage . '_personal_facebook', '');
+		update_option('concerto_' . $stage . '_personal_youtube', '');
+		update_option('concerto_' . $stage . '_personal_linkedin', '');
+		update_option('concerto_' . $stage . '_personal_email', '');
+		update_option('concerto_' . $stage . '_personal_email_use_admin', 0);
+	}
+
 	// Action to run when default options are being called
 	do_action('concerto_default_options', $stage, $context, $install);
 }
