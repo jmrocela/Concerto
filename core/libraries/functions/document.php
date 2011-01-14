@@ -30,7 +30,7 @@ function concerto_hook_title() {
 	if (is_front_page() && is_home()) {
 		$title = get_bloginfo('name') . ' | ' . get_bloginfo('description');
 	} else {
-		$title = wp_title('', false);
+		$title = trim(wp_title('', false));
 	}
 	echo apply_filters('concerto_title', $title);
 	# NOTE: AS FILTER?
@@ -174,9 +174,12 @@ function concerto_hook_default_access() {
 	$container = (CONCERTO_CONFIG_HTML == 5) ? 'nav': 'div';
 
 	if (get_option('concerto_' . $stage . '_general_menu') == 'default') {
+		add_filter('wp_nav_menu_items', 'concerto_filter_additional_nav_items');
+		add_filter('wp_list_pages', 'concerto_filter_additional_nav_items');
 		wp_nav_menu(array('container' => $container, 'show_home' => false, 'theme_location' => 'primary')); //not outputting correct element: DIV should be NAV on HTML5
 	} else {
-		buildNavigation();
+		add_filter('concerto_filter_access', 'concerto_filter_additional_nav_items');
+		buildConcertoNavigation();
 	}
 
 }
