@@ -171,22 +171,29 @@ function concerto_hook_default_branding_site_description() {
  */
 function concerto_hook_default_access() {
 	$stage = get_option('concerto_stage');
-	$show_home = (get_option('concerto_' . $stage . '_general_menu_show_home') == 1) ? true: false;
 	$container = (CONCERTO_CONFIG_HTML == 5) ? 'nav': 'div';
 
 	if (get_option('concerto_' . $stage . '_general_menu') == 'default') {
-		$container = 'div';
-		$menu = wp_nav_menu(array('container' => $container, 'show_home' => $show_home, 'theme_location' => 'primary', 'echo' => false)); //not outputting correct element: DIV should be NAV on HTML5
+		wp_nav_menu(array('container' => $container, 'show_home' => false, 'theme_location' => 'primary')); //not outputting correct element: DIV should be NAV on HTML5
 	} else {
-		$menu = buildNavigation();
+		buildNavigation();
+	}
+
+}
+
+function concerto_filter_additional_nav_items($items) {
+	$stage = get_option('concerto_stage');
+	$feed = (get_option('concerto_' . $stage . '_general_syndication_url')) ? get_option('concerto_' . $stage . '_general_syndication_url'): get_bloginfo('rss2_url');
+	
+	if (is_home()) {
+		$home = (get_option('concerto_' . $stage . '_general_menu_show_home') == 1) ? '<li class="current_page_item"><a href="' . get_bloginfo('url') . '">Home</a></li>': '';
+	} else {
+		$home = (get_option('concerto_' . $stage . '_general_menu_show_home') == 1) ? '<li><a href="' . get_bloginfo('url') . '">Home</a></li>': '';
 	}
 	
-	if (get_option('concerto_' . $stage . '_general_menu_show_feed') == 1) {
-		$feed = (get_option('concerto_' . $stage . '_general_syndication_url')) ? get_option('concerto_' . $stage . '_general_syndication_url'): get_bloginfo('rss2_url');
-		$ripped = str_replace('</li></ul></' . $container . '>', '', $menu);
-		$menu = $ripped . '</li><li id="feedlink"><a href="' . $feed . '">Subscribe</a></li></ul></' . $container . '>';
-	}
-	echo $menu;
+	$feed = (get_option('concerto_' . $stage . '_general_menu_show_feed') == 1) ? '<li id="feedlink"><a href="' . $feed . '">Subscribe</a></li>': '';
+	$items = $home . $items . $feed;
+	return $items;
 }
 
 /**

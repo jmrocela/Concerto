@@ -9,5 +9,7 @@
  */
 
 // Filters
+add_filter('wp_nav_menu_items', 'concerto_filter_additional_nav_items');
+add_filter('wp_list_pages', 'concerto_filter_additional_nav_items');
 
 ?>
