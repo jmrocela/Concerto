@@ -69,6 +69,12 @@ p { margin-bottom: 20px; }
 #access ul li ul.children li:first-child a { border-top: 1px solid transparent; }
 #access ul li ul.children li ul.children { top: 0; display: none; left: 100%; margin-top: 0; width: 100%; }
 
+#access ul li:hover a { border: 1px solid #dddddd; }
+#access ul li:hover ul.children { display: block; }
+
+#access ul li#feedlink { float: right; }
+#access ul li#feedlink a { border: 0; background: url('core/images/feed.png') no-repeat center left scroll; padding-right: 0; padding-left: 18px; }
+
 .container { width: 960px; margin: 0 AUTO; padding: 10px; }
 #main .container { background: #ffffff; padding: 0 10px; }
 #main .container:after { content: ""; display: block; clear: both; }

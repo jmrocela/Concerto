@@ -32,7 +32,7 @@ function defaultOptions($stage = 'default', $context = null, $install  = false) 
 		update_option('concerto_' . $stage . '_general_syndication_url', '');
 		update_option('concerto_' . $stage . '_general_scripts_head', '');
 		update_option('concerto_' . $stage . '_general_scripts_footer', '');
-			update_option('concerto_' . $stage . '_general_scripts_libraries_jquery', 0);
+			update_option('concerto_' . $stage . '_general_scripts_libraries_jquery', 1);
 			update_option('concerto_' . $stage . '_general_scripts_libraries_jquery_ui', 0);
 		update_option('concerto_' . $stage . '_general_menu', 'default');
 		update_option('concerto_' . $stage . '_general_menu_use_pages', 0);

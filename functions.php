@@ -22,7 +22,7 @@ define('CONCERTO_MOD', CONCERTO_CORE . 'modules' . _DS);
 define('CONCERTO_HTML', CONCERTO_CORE . 'html' . _DS);
 
 // We give what Wordpress needs from us
-add_theme_support('menus');
+register_nav_menus(array('primary' => 'Primary Navigation', 'top' => 'Top Navigation', 'footer' => 'Footer Navigation', 'custom' => 'Custom Navigation'));
 register_sidebar(array('name' => 'Main Sidebar'));
 register_sidebar(array('name' => 'Second Sidebar'));
 

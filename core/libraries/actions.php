@@ -10,7 +10,10 @@
 
 // Actions
 add_action('concerto_hook_title', 'concerto_hook_title');
+add_action('concerto_hook_head', 'concerto_hook_meta');
 add_action('concerto_hook_head', 'concerto_hook_head');
+add_action('concerto_hook_head', 'concerto_hook_scripts');
+add_action('concerto_hook_head', 'concerto_hook_scripts_head');
 add_action('concerto_hook_head', 'concerto_hook_favicon');
 add_action('concerto_hook_head', 'concerto_hook_syndication');
 add_action('concerto_hook_head', 'concerto_hook_comment_syndication');
@@ -38,6 +41,7 @@ add_action('concerto_hook_footer', 'concerto_hook_default_footer_siteinfo');
 add_action('concerto_hook_footer', 'concerto_hook_default_footer_sitegenerator');
 add_action('concerto_hook_footer', 'concerto_hook_default_footer');
 add_action('concerto_hook_after_footer', 'concerto_hook_default_after_footer');
+add_action('concerto_hook_end', 'concerto_hook_scripts_footer');
 add_action('concerto_hook_end', 'concerto_hook_default_end');
 
 /**

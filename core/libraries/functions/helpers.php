@@ -1,5 +1,8 @@
 <?php
 
+function buildNavigation() {
+}
+
 /**
  * Article Pagination method
  * URL: http://www.artofblog.com/thesis-page-navigation/

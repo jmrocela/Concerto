@@ -21,8 +21,6 @@ function concerto_hook_head() {
 	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/core/html/fixes.css?v=<?php echo time(); ?>" />
 	<!-- Concerto Theme Styles -->
 <?php
-	wp_enqueue_script('jquery');
-	wp_enqueue_script('concerto-base', get_bloginfo('stylesheet_directory') . '/core/scripts/concerto.js');
 }
 
 /**
@@ -40,13 +38,58 @@ function concerto_hook_title() {
 	# if (get_post_meta($post->ID, 'concerto_custom_post_title')) >>> as title
 }
 
+function concerto_hook_meta() {
+	$stage = get_option('concerto_stage');
+	if (is_front_page() && is_home()) {
+		if (get_option('concerto_' . $stage . '_general_homepage_description')) {
+		?>
+		<meta name="description" content="<?php echo get_option('concerto_' . $stage . '_general_homepage_description'); ?>" />
+		<?php
+		}
+		if (get_option('concerto_' . $stage . '_general_homepage_keywords')) {
+		?>
+		<meta name="keywords" content="<?php echo get_option('concerto_' . $stage . '_general_homepage_keywords'); ?>" />
+		<?php
+		}
+	} // else individual POST: handled by SEO extension?
+}
+
+function concerto_hook_scripts() {
+	$stage = get_option('concerto_stage');
+	if (get_option('concerto_' . $stage . '_general_scripts_libraries_jquery') == 1) {
+		wp_enqueue_script('jquery');
+		wp_enqueue_script('concerto-base', get_bloginfo('stylesheet_directory') . '/core/scripts/concerto.js');
+	}
+}
+
+function concerto_hook_scripts_head() {
+	$stage = get_option('concerto_stage');
+	if (get_option('concerto_' . $stage . '_general_scripts_head')) {
+		$hasScript = strpos(get_option('concerto_' . $stage . '_general_scripts_head'), '<script');
+		echo ($hasScript === false) ? '<script type="text/javascript">': '';
+		echo get_option('concerto_' . $stage . '_general_scripts_head');
+		echo ($hasScript === false) ? '</script>': '';
+	}
+}
+
+function concerto_hook_scripts_footer() {
+	$stage = get_option('concerto_stage');
+	if (get_option('concerto_' . $stage . '_general_scripts_footer')) {
+		$hasScript = strpos(get_option('concerto_' . $stage . '_general_scripts_footer'), '<script');
+		echo ($hasScript === false) ? '<script type="text/javascript">': '';
+		echo get_option('concerto_' . $stage . '_general_scripts_footer');
+		echo ($hasScript === false) ? '</script>': '';
+	}
+}
+
 /**
  * Syndication link in the <head> tag
  */
 function concerto_hook_syndication() {
-	if (get_option('concerto_general_syndication_url')) {
+	$stage = get_option('concerto_stage');
+	if (get_option('concerto_' . $stage . '_general_syndication_url')) {
 	?>
-		<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> &raquo; Feed" href="<?php echo get_option('concerto_general_syndication_url'); ?>" />
+		<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> &raquo; Feed" href="<?php echo get_option('concerto_' . $stage . '_general_syndication_url'); ?>" />
 	<?php
 	} else {
 	?>
@@ -59,7 +102,8 @@ function concerto_hook_syndication() {
  * Site Favicon
  */
 function concerto_hook_favicon() {
-	if (get_option('concerto_general_favicon')) {
+	$stage = get_option('concerto_stage');
+	if (get_option('concerto_' . $stage . '_general_favicon')) {
 	?>
 	<link rel="shortcut icon" href="<?php echo get_option('concerto_general_favicon'); ?>" type="image/x-icon" />
 	<?php
@@ -126,11 +170,23 @@ function concerto_hook_default_branding_site_description() {
  * Default Menu
  */
 function concerto_hook_default_access() {
-	if (get_option('concerto_general_menu') == 'default') {
-		wp_nav_menu(array('container' => 'nav', 'show_home' => true));
-	} else {
+	$stage = get_option('concerto_stage');
+	$show_home = (get_option('concerto_' . $stage . '_general_menu_show_home') == 1) ? true: false;
+	$container = (CONCERTO_CONFIG_HTML == 5) ? 'nav': 'div';
 
+	if (get_option('concerto_' . $stage . '_general_menu') == 'default') {
+		$container = 'div';
+		$menu = wp_nav_menu(array('container' => $container, 'show_home' => $show_home, 'theme_location' => 'primary', 'echo' => false)); //not outputting correct element: DIV should be NAV on HTML5
+	} else {
+		$menu = buildNavigation();
 	}
+	
+	if (get_option('concerto_' . $stage . '_general_menu_show_feed') == 1) {
+		$feed = (get_option('concerto_' . $stage . '_general_syndication_url')) ? get_option('concerto_' . $stage . '_general_syndication_url'): get_bloginfo('rss2_url');
+		$ripped = str_replace('</li></ul></' . $container . '>', '', $menu);
+		$menu = $ripped . '</li><li id="feedlink"><a href="' . $feed . '">Subscribe</a></li></ul></' . $container . '>';
+	}
+	echo $menu;
 }
 
 /**
@@ -174,7 +230,7 @@ function concerto_hook_default_before_footer() {}
 function concerto_hook_default_footer_siteinfo() {
 ?>
 <div id="site-info">
-	Copyright <?php echo date("Y"); ?> <a href="<?php bloginfo('url'); ?>" title="<?php bloginfo('name'); ?>" rel="home"><?php bloginfo('name'); ?></a>
+	Copyright &#0169; <?php echo date("Y"); ?> <a href="<?php bloginfo('url'); ?>" title="<?php bloginfo('name'); ?>" rel="home"><?php bloginfo('name'); ?></a>
 </div>
 <?php
 }
@@ -187,13 +243,7 @@ function concerto_hook_default_footer_sitegenerator() {
 <?php
 }
 
-function concerto_hook_default_footer() {
-?>
-<div id="wp-footer">
-	<?php wp_footer(); ?>
-</div>
-<?php
-}
+function concerto_hook_default_footer() {}
 
 /**
  * Content after the Footer area
@@ -203,6 +253,12 @@ function concerto_hook_default_after_footer() {}
 /**
  * Content right before the closing <body> tag
  */
-function concerto_hook_default_end() {}
+function concerto_hook_default_end() {
+?>
+<div id="wp-footer">
+	<?php wp_footer(); ?>
+</div>
+<?php
+}
 
 ?>
