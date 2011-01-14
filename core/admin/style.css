@@ -70,8 +70,9 @@ ul#extensions { border-top: 1px solid #dddddd; padding-top: 10px; margin-top: 10
 #extensions li p { font-size: 10px; color: #999999; }
 
 .warning_span { background: #df7b6d; color: #ffffff; padding: 5px; }
-#terms_agreements_box { height: 750px; padding: 10px; overflow: auto; border: 1px solid #dddddd; background: #ffffff; }
-#terms_agreements_box p { margin-bottom: 20px; font-family: georgia; font-size: 14px; color: #999999; }
+#terms_agreements_box { height: 800px; padding: 10px; overflow: auto; border: 1px solid #dddddd; background: #ffffff; }
+#terms_agreements_box h5 { font-size: 14px; margin: 0; padding: 0; }
+#terms_agreements_box p { margin-bottom: 20px; font-size: 12px; color: #777777; }
 #registation_upgrade { margin-top: 10px; text-align: center; }
 #naughty { background: #c34b3b; padding: 10px; font-size: 13px; text-align: center; color: #ffffff; }
 #license_to, #license_on { font-size: 16px; }

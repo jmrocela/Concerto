@@ -21,7 +21,8 @@ function defaultOptions($stage = 'default', $context = null, $install  = false) 
 		update_option('concerto_license_on', '');
 		update_option('concerto_license_copies', 0);
 		update_option('concerto_license_key', '');
-		update_option('concerto_naughty', 0);		
+		update_option('concerto_naughty', 0);
+		update_option('concerto_need_update', 0);
 	}
 
 	if ($context == null || in_array('general', (array) $context)) {

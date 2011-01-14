@@ -12,7 +12,7 @@ function admin_general() {
 			<div id="concerto_navigation">
 				<ul>
 					<li><a href="http://themeconcert.com/" target="_new">ThemeConcert</a></li>
-					<li><a href="http://themeconcert.com/concert/manual" target="_new">User Manual</a></li>
+					<li><a href="http://themeconcert.com/concerto/manual" target="_new">User Manual</a></li>
 					<li><a href="http://support.themeconcert.com/" target="_new">Support</a></li>
 				</ul>
 			</div>
@@ -43,7 +43,10 @@ function admin_general() {
 					}
 				?>
 			</div>
-			<p>You are running <strong>Concerto <?php echo CONCERTO_VERSION; ?></strong>. <em><a href="http://themeconcert.com/members/update/" target="_new">Upgrade your Copy</a></em></p>
+			<p>
+				You are running <strong>Concerto <?php echo CONCERTO_VERSION; ?></strong>.
+				<?php if (get_option('concerto_need_update') == 1) { ?><em><a href="http://themeconcert.com/members/update/" target="_new">Upgrade your Copy</a></em><?php } ?>
+			</p>
 		</div>
 		<div class="clear"></div>
 	</div>
