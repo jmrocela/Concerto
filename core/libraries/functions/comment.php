@@ -3,10 +3,7 @@
 /**
  * Markup just outside and before the commentlist
  */
-function concerto_hook_default_before_commentlist () {
-	concerto_default_common_comment_navigation();
-	concerto_default_commentlist_title();
-}
+function concerto_hook_default_before_commentlist () {}
 
 /**
  * Comment List
@@ -19,6 +16,25 @@ function concerto_hook_default_commentlist () {
 	<?php
 }
 
+function concerto_hook_default_comments () {
+	$stage = get_option('concerto_stage');
+	$index = get_option('concerto_' . $stage . '_design_display_comments_index');
+	foreach ($index as $i) {
+		if (($i - 1) == 0 && get_option('concerto_' . $stage . '_design_display_comments_comments') == 1) {
+			concerto_default_common_comment_navigation();
+			concerto_default_commentlist_title();
+			concerto_hook_default_commentlist();
+			concerto_default_common_comment_navigation();
+		}
+		if (($i - 1) == 1 && get_option('concerto_' . $stage . '_design_display_comments_pings') == 1) {
+			concerto_default_comment_pings();
+		}
+		if (($i - 1) == 2 && get_option('concerto_' . $stage . '_design_display_comments_reply') == 1) {
+			ConcertoComments::respond();
+		}
+	}
+}
+
 /**
  * Markup inside the comment container, before the Comment title
  */
@@ -29,8 +45,13 @@ function concerto_hook_default_before_comment () {}
  */
 function concerto_hook_default_comment_vcard () {
 	global $comment;
-	echo get_avatar($comment, 40);
-	printf('%s <span class="says">says:</span>', sprintf('<cite class="fn">%s</cite>', get_comment_author_link()));
+	$stage = get_option('concerto_stage');
+	if (get_option('concerto_' . $stage . '_design_comments_display_avatar') == 1) {
+		echo get_avatar($comment, get_option('concerto_' . $stage . '_design_comments_avatar_size'));
+	}
+	if (get_option('concerto_' . $stage . '_design_comments_display_author') == 1) {
+		printf('%s <span class="says">says:</span>', sprintf('<cite class="fn">%s</cite>', get_comment_author_link()));
+	}
 }
 
 /**
@@ -38,9 +59,25 @@ function concerto_hook_default_comment_vcard () {
  */
 function concerto_hook_default_comment_metadata () {
 	global $comment;
+	$stage = get_option('concerto_stage');
+	if (get_option('concerto_' . $stage . '_design_comments_display_date') == 1 || get_option('concerto_' . $stage . '_design_comments_display_time') == 1) {
 	?>
 	<a href="<?php echo esc_url(get_comment_link($comment->comment_ID)); ?>">
-	<?php printf('%1$s at %2$s', get_comment_date(),  get_comment_time()); ?></a><?php edit_comment_link('(Edit)', ' ');
+	<?php
+		if (get_option('concerto_' . $stage . '_design_comments_display_date') == 1 && get_option('concerto_' . $stage . '_design_comments_display_time') == 1) {
+			printf('%1$s at %2$s', get_comment_date(),  get_comment_time());
+		} else if (get_option('concerto_' . $stage . '_design_comments_display_date') == 1 && get_option('concerto_' . $stage . '_design_comments_display_time') == 0) {
+			printf('%1$s', get_comment_date(get_option('concerto_' . $stage . '_design_comments_time_format')));
+		} else {
+			printf('%1$s', get_comment_time());
+		}
+	?>
+	</a>
+	<?php
+	}
+	if (get_option('concerto_' . $stage . '_design_comments_display_edit') == 1) {
+		edit_comment_link('(Edit)', ' ');
+	}
 }
 
 /**
@@ -58,12 +95,7 @@ function concerto_hook_default_after_comment () {}
 /**
  * Markup just outside and after the commentlist
  */
-function concerto_hook_default_after_commentlist () {
-	concerto_default_comment_pings();
-	concerto_default_common_comment_navigation();
-	// Get the Comments Respond form
-	ConcertoComments::respond();
-}
+function concerto_hook_default_after_commentlist () {}
 
 function concerto_default_common_comment_navigation () {
 	if (get_comment_pages_count() > 1 && get_option('page_comments')) {
@@ -77,20 +109,11 @@ function concerto_default_common_comment_navigation () {
 }
 
 function concerto_default_commentlist_title () {
-	$stage = get_option('concerto_stage');
-	$comments_title = array('One Response to %2$s', '%1$s Responses to %2$s', 'Comments are closed');
+	$comments_title = array('One Response to %2$s', '%1$s Responses to %2$s');
 	$comments_title = apply_filters('concerto_commentlist_title', $comments_title);
-	if (ConcertoComments::commentCount() > 0) {
-		?>
-		<h3 id="comments-title"><?php printf(_n($comments_title[0], $comments_title[1], ConcertoComments::commentCount()), number_format_i18n(ConcertoComments::commentCount()), '<em>' . get_the_title() . '</em>'); ?></h3>
-		<?php
-	} else {
-		if (get_option('concerto_' . $stage . '_design_comments_is_closed_show_message') == 1) {
-			?>
-			<h3 id="comments-title"><?php echo $comments_title[2]; ?></h3>
-			<?php
-		}
-	}
+	?>
+	<h3 id="comments-title"><?php printf(_n($comments_title[0], $comments_title[1], ConcertoComments::commentCount()), number_format_i18n(ConcertoComments::commentCount()), '<em>' . get_the_title() . '</em>'); ?></h3>
+	<?php
 }
 
 /**
@@ -113,7 +136,12 @@ function concerto_default_comment_pings () {
  * Comment Pingback
  */
 function concerto_hook_default_pinglist () {
-	comment_author_link(); ?> <?php edit_comment_link('(Edit)', ' ' );
+	$stage = get_option('concerto_stage');
+	comment_author_link();
+	if (get_option('concerto_' . $stage . '_design_comments_trackback_date') == 1) {
+		echo ' on ' . get_comment_date() . ' ';
+	}
+	edit_comment_link('(Edit)', ' ' );
 }
 
 /**

@@ -170,7 +170,6 @@ function defaultOptions($stage = 'default', $context = null, $install  = false) 
 				update_option('concerto_' . $stage . '_design_display_comments_pings', 1);
 				update_option('concerto_' . $stage . '_design_display_comments_reply', 1);
 			update_option('concerto_' . $stage . '_design_comments_body', '{}'); //serialized [vcard, body, reply] #NOT YET IMPLEMENTED
-		update_option('concerto_' . $stage . '_design_comments_display_number', 1);
 		update_option('concerto_' . $stage . '_design_comments_display_avatar', 1);
 		update_option('concerto_' . $stage . '_design_comments_display_author', 1);
 		update_option('concerto_' . $stage . '_design_comments_display_date', 1);

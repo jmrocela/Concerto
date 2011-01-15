@@ -161,7 +161,6 @@
 	register_setting('concerto_design', 'concerto_' . $stage . '_design_display_comments_comments');
 	register_setting('concerto_design', 'concerto_' . $stage . '_design_display_comments_pings');
 	register_setting('concerto_design', 'concerto_' . $stage . '_design_display_comments_reply');
-	register_setting('concerto_design', 'concerto_' . $stage . '_design_comments_display_number');
 	register_setting('concerto_design', 'concerto_' . $stage . '_design_comments_display_avatar');
 	register_setting('concerto_design', 'concerto_' . $stage . '_design_comments_display_author');
 	register_setting('concerto_design', 'concerto_' . $stage . '_design_comments_display_date');

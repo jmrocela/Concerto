@@ -1047,7 +1047,6 @@ function admin_design_box_comments () {
 				</div>
 				
 				<h4>Meta</h4>
-				<p><label><input type="checkbox" value="1" name="concerto_<?php echo $stage; ?>_design_comments_display_number" <?php echo (get_option('concerto_' . $stage . '_design_comments_display_number') == 1) ? 'checked ': ''; ?>/> Display Number</label></p>
 				<p><label><input type="checkbox" value="1" name="concerto_<?php echo $stage; ?>_design_comments_display_avatar" <?php echo (get_option('concerto_' . $stage . '_design_comments_display_avatar') == 1) ? 'checked ': ''; ?>/> Display Avatar</label></p>
 				<p><label><input type="checkbox" value="1" name="concerto_<?php echo $stage; ?>_design_comments_display_author" <?php echo (get_option('concerto_' . $stage . '_design_comments_display_author') == 1) ? 'checked ': ''; ?>/> Display Author</label></p>
 				<p><label><input type="checkbox" value="1" name="concerto_<?php echo $stage; ?>_design_comments_display_date" <?php echo (get_option('concerto_' . $stage . '_design_comments_display_date') == 1) ? 'checked ': ''; ?>/> Display Date</label></p>
@@ -1057,7 +1056,7 @@ function admin_design_box_comments () {
 				
 				<h4>Options</h4>
 				<p>Avatar Size <input type="text" class="small-text" value="<?php echo get_option('concerto_' . $stage . '_design_comments_avatar_size'); ?>" name="concerto_<?php echo $stage; ?>_design_comments_avatar_size" /> px</p>
-				<p>Time Format <input type="text" class="small-text" value="<?php echo get_option('concerto_' . $stage . '_design_comments_time_format'); ?>" name="concerto_<?php echo $stage; ?>_design_comments_time_format" />  <a href="http://www.php.net/manual/en/function.date.php" title="Check out http://www.php.net/manual/en/function.date.php for proper usage of the date format.">[?]</a></p>
+				<p>Date Format <input type="text" class="small-text" value="<?php echo get_option('concerto_' . $stage . '_design_comments_time_format'); ?>" name="concerto_<?php echo $stage; ?>_design_comments_time_format" />  <a href="http://www.php.net/manual/en/function.date.php" title="Check out http://www.php.net/manual/en/function.date.php for proper usage of the date format.">[?]</a></p>
 			</div>
 		</div>
 <?php
