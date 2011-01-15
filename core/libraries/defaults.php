@@ -44,6 +44,10 @@ function defaultOptions($stage = 'default', $context = null, $install  = false) 
 			update_option('concerto_' . $stage . '_general_menu_tags_items', ''); //serialized
 		update_option('concerto_' . $stage . '_general_menu_show_home', 1);
 		update_option('concerto_' . $stage . '_general_menu_show_feed', 1);
+		update_option('concerto_' . $stage . '_general_footer_copyright', 1);
+		update_option('concerto_' . $stage . '_general_footer_copyright_line', '');
+		update_option('concerto_' . $stage . '_general_footer_attribution', 1);
+		update_option('concerto_' . $stage . '_general_footer_attribution_line', '');
 	}
 
 	if ($context == null || in_array('design', (array) $context)) {

@@ -5,12 +5,13 @@
 	// General
 	add_action('concerto_admin_general', 'admin_general_box_navigation', 40);
 	add_action('concerto_admin_general', 'admin_general_box_home_meta', 60);
-	add_action('concerto_admin_general', 'admin_general_box_favicon', 80);
-	add_action('concerto_admin_general', 'admin_general_box_extensions', 140);
-	add_action('concerto_admin_general', 'admin_general_box_syndication_url', 100);
-	add_action('concerto_admin_general', 'admin_general_box_personal', 120);
-	add_action('concerto_admin_general', 'admin_general_box_scripts', 140);
-	add_action('concerto_admin_general', 'admin_general_box_javascript_libraries', 140);
+	add_action('concerto_admin_general', 'admin_general_box_copyright', 80);
+	add_action('concerto_admin_general', 'admin_general_box_favicon', 100);
+	add_action('concerto_admin_general', 'admin_general_box_syndication_url', 120);
+	add_action('concerto_admin_general', 'admin_general_box_personal', 140);
+	add_action('concerto_admin_general', 'admin_general_box_extensions', 160);
+	add_action('concerto_admin_general', 'admin_general_box_scripts', 180);
+	add_action('concerto_admin_general', 'admin_general_box_javascript_libraries', 200);
 	
 	// Design
 	add_action('concerto_admin_design', 'admin_design_box_markup', 20);

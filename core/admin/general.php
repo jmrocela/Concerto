@@ -263,16 +263,16 @@ function admin_general_box_personal() {
 		<div class="inner">
 			<p class="desc">These options here are plainly for custom use only and are not required. You can use them on the widgets included or <a href="http://themeconcert.com/concerto/manual/" target="_new">through code</a>.</p>
 			<h4>Twitter</h4>
-			<input type="text" class="text" name="concerto_personal_twitter" value="<?php echo get_option('concerto_personal_twitter'); ?>" />
+			<input type="text" class="text" name="concerto_<?php echo $stage; ?>_personal_twitter" value="<?php echo get_option('concerto_' . $stage . '_personal_twitter'); ?>" />
 			<h4>Facebook</h4>
-			<input type="text" class="text" name="concerto_personal_facebook" value="<?php echo get_option('concerto_personal_facebook'); ?>" />
+			<input type="text" class="text" name="concerto_<?php echo $stage; ?>_personal_facebook" value="<?php echo get_option('concerto_' . $stage . '_personal_facebook'); ?>" />
 			<h4>Youtube</h4>
-			<input type="text" class="text" name="concerto_personal_youtube" value="<?php echo get_option('concerto_personal_youtube'); ?>" />
+			<input type="text" class="text" name="concerto_<?php echo $stage; ?>_personal_youtube" value="<?php echo get_option('concerto_' . $stage . '_personal_youtube'); ?>" />
 			<h4>LinkedIn</h4>
-			<input type="text" class="text" name="concerto_personal_linkedin" value="<?php echo get_option('concerto_personal_linkedin'); ?>" />
+			<input type="text" class="text" name="concerto_<?php echo $stage; ?>_personal_linkedin" value="<?php echo get_option('concerto_' . $stage . '_personal_linkedin'); ?>" />
 			<h4>Email</h4>
-			<input type="text" class="text" name="concerto_personal_email" value="<?php echo get_option('concerto_personal_email'); ?>" />
-			<p><label><input type="checkbox" name="concerto_personal_email_use_admin" value="1" <?php echo (get_option('concerto_personal_email_use_admin') == 1) ? 'checked ': '';?>/> Use Administrator Email</label></p>
+			<input type="text" class="text" name="concerto_<?php echo $stage; ?>_personal_email" value="<?php echo get_option('concerto_' . $stage . '_personal_email'); ?>" />
+			<p><label><input type="checkbox" name="concerto_<?php echo $stage; ?>_personal_email_use_admin" value="1" <?php echo (get_option('concerto_' . $stage . '_personal_email_use_admin') == 1) ? 'checked ': '';?>/> Use Administrator Email</label></p>
 		</div>
 	</div>
 <?php
@@ -308,6 +308,22 @@ function admin_general_box_javascript_libraries() {
 			<p class="desc">This option will help you load javascript libraries the right way.</p>
 			<p><label><input type="checkbox" name="concerto_<?php echo $stage; ?>_general_scripts_libraries_jquery" value="1" <?php echo (get_option('concerto_' . $stage . '_general_scripts_libraries_jquery') == 1) ? 'checked ': '';?>/> jQuery</label></p>
 			<p><label><input type="checkbox" name="concerto_<?php echo $stage; ?>_general_scripts_libraries_jquery_ui" value="1" <?php echo (get_option('concerto_' . $stage . '_general_scripts_libraries_jquery_ui') == 1) ? 'checked ': '';?>/> jQuery UI</label></p>
+		</div>
+	</div>
+<?php
+}
+
+function admin_general_box_copyright() {
+	$stage = get_option('concerto_stage');
+?>
+	<div class="box box1column" id="concerto_copyright">
+		<h3>Copyright</h3>
+		<div class="inner">
+			<p class="desc">If you want to remove or change the copyright line on the theme's footer, feel free to edit below.</p>
+			<p><label><input type="checkbox" name="concerto_<?php echo $stage; ?>_general_footer_copyright" value="1" <?php echo (get_option('concerto_' . $stage . '_general_footer_copyright') == 1) ? 'checked ': '';?>/> enable the Copyright line</label></p>
+			<input type="text" class="text" name="concerto_<?php echo $stage; ?>_general_footer_copyright_line" value="<?php echo get_option('concerto_' . $stage . '_general_footer_copyright_line'); ?>" />
+			<p><label><input type="checkbox" name="concerto_<?php echo $stage; ?>_general_footer_attribution" value="1" <?php echo (get_option('concerto_' . $stage . '_general_footer_attribution') == 1) ? 'checked ': '';?>/> enable the Attribution line</label></p>
+			<input type="text" class="text" name="concerto_<?php echo $stage; ?>_general_footer_attribution_line" value="<?php echo get_option('concerto_' . $stage . '_general_footer_attribution_line'); ?>" />
 		</div>
 	</div>
 <?php

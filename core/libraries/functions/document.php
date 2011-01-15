@@ -311,23 +311,49 @@ function concerto_hook_default_before_footer() {}
 /**
  * Default Footer Content
  */
-function concerto_hook_default_footer_siteinfo() {
-?>
-<div id="site-info">
-	Copyright &#0169; <?php echo date("Y"); ?> <a href="<?php bloginfo('url'); ?>" title="<?php bloginfo('name'); ?>" rel="home"><?php bloginfo('name'); ?></a>
-</div>
-<?php
+function concerto_hook_default_footer_copyright() {
+	$stage = get_option('concerto_stage');
+	if (get_option('concerto_' . $stage . '_general_footer_copyright') == 1) {
+	?>
+	<div id="site-info">
+		<?php
+		if (get_option('concerto_' . $stage . '_general_footer_copyright_line')) {
+			echo get_option('concerto_' . $stage . '_general_footer_copyright_line');
+		} else {
+			?>
+			Copyright &#0169; <?php echo date("Y"); ?> <a href="<?php bloginfo('url'); ?>" title="<?php bloginfo('name'); ?>" rel="home"><?php bloginfo('name'); ?></a>
+			<?php 
+		}
+		?>
+	</div>
+	<?php
+	}
 }
 
-function concerto_hook_default_footer_sitegenerator() {
-?>
-<div id="site-generator">
-	Powered by <a href="http://themeconcert.com/concerto">the Concerto Theme</a> from ThemeConcert
-</div>
-<?php
+function concerto_hook_default_footer_attribution() {
+	$stage = get_option('concerto_stage');
+	if (get_option('concerto_' . $stage . '_general_footer_attribution') == 1) {
+	?>
+	<div id="site-generator">
+		<?php
+		if (get_option('concerto_' . $stage . '_general_footer_attribution_line')) {
+			echo get_option('concerto_' . $stage . '_general_footer_attribution_line');
+		} else {
+			?>
+			Powered by <a href="http://themeconcert.com/concerto">the Concerto Theme</a> from ThemeConcert
+			<?php 
+		}
+		?>
+	</div>
+	<?php
+	}
 }
 
-function concerto_hook_default_footer() {}
+function concerto_hook_default_footer() {
+?>
+<div class="clear"></div>
+<?php
+}
 
 /**
  * Content after the Footer area

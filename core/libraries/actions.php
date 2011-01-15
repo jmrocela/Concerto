@@ -37,8 +37,8 @@ add_action('concerto_hook_after_content', 'concerto_hook_default_after_content')
 add_action('concerto_hook_after_content', 'concerto_hook_default_article_navigation');
 
 add_action('concerto_hook_before_footer', 'concerto_hook_default_before_footer');
-add_action('concerto_hook_footer', 'concerto_hook_default_footer_siteinfo');
-add_action('concerto_hook_footer', 'concerto_hook_default_footer_sitegenerator');
+add_action('concerto_hook_footer', 'concerto_hook_default_footer_copyright');
+add_action('concerto_hook_footer', 'concerto_hook_default_footer_attribution');
 add_action('concerto_hook_footer', 'concerto_hook_default_footer');
 add_action('concerto_hook_after_footer', 'concerto_hook_default_after_footer');
 add_action('concerto_hook_end', 'concerto_hook_scripts_footer');

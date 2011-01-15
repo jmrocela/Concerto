@@ -20,6 +20,10 @@
 	register_setting('concerto_general', 'concerto_' . $stage . '_general_menu_tags_items');
 	register_setting('concerto_general', 'concerto_' . $stage . '_general_menu_show_home');
 	register_setting('concerto_general', 'concerto_' . $stage . '_general_menu_show_feed');
+	register_setting('concerto_general', 'concerto_' . $stage . '_general_footer_copyright');
+	register_setting('concerto_general', 'concerto_' . $stage . '_general_footer_copyright_line');
+	register_setting('concerto_general', 'concerto_' . $stage . '_general_footer_attribution');
+	register_setting('concerto_general', 'concerto_' . $stage . '_general_footer_attribution_line');
 
 	register_setting('concerto_general', 'concerto_' . $stage . '_extensions_seo_enabled');
 	register_setting('concerto_general', 'concerto_' . $stage . '_seo_enable_canonical');
