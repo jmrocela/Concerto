@@ -87,13 +87,13 @@ function admin_design() {
 				$('#header_image').hide();
 				$('.swfupload-control').unbind();
 				$('#header_hidden').val('');
-				$('#header_preview img').attr('src', '');
-				$('#header_shows').show()
+				$('#header_shows').hide();
+				$('#header_shows').find('input[type=checkbox]').attr('checked', true);
 				$('#header_hidden').parents('.box').removeClass('box2columns');
 				$('#header_hidden').parents('.box').addClass('box1column');
 			} else {
 				$('#header_shows').show()
-				if ($('#header_change').val() == 3) $('#header_shows').hide();
+				if ($('#header_change').val() == 4) $('#header_shows').hide();
 				$('#header_image').show();
 				$('#header_hidden').parents('.box').addClass('box2columns');
 				$('#header_hidden').parents('.box').removeClass('box1column');
@@ -111,13 +111,13 @@ function admin_design() {
 					$('#header_image').hide();
 					$('.swfupload-control').unbind();
 					$('#header_hidden').val('');
-					$('#header_shows').show()
-					$('#header_preview img').attr('src', '');
+					$('#header_shows').hide();
+					$('#header_shows').find('input[type=checkbox]').attr('checked', true);
 					$('#header_hidden').parents('.box').removeClass('box2columns');
 					$('#header_hidden').parents('.box').addClass('box1column');
 				} else {
 					$('#header_shows').show()
-					if ($(this).val() == 3) $('#header_shows').hide();
+					if ($(this).val() == 4) $('#header_shows').hide();
 					$('#header_image').show();
 					$('#header_hidden').parents('.box').addClass('box2columns');
 					$('#header_hidden').parents('.box').removeClass('box1column');
@@ -256,7 +256,8 @@ function admin_design_box_header () {
 					<select name="concerto_<?php echo $stage; ?>_design_header_mode" id="header_change">
 						<option value="1"<?php echo (get_option('concerto_' . $stage . '_design_header_mode') == 1) ? ' selected': ''; ?>>Text Only</option>
 						<option value="2"<?php echo (get_option('concerto_' . $stage . '_design_header_mode') == 2) ? ' selected': ''; ?>>Text &amp; Logo</option>
-						<option value="3"<?php echo (get_option('concerto_' . $stage . '_design_header_mode') == 3) ? ' selected': ''; ?>>Image</option>
+						<option value="3"<?php echo (get_option('concerto_' . $stage . '_design_header_mode') == 3) ? ' selected': ''; ?>>Text &amp; Background</option>
+						<option value="4"<?php echo (get_option('concerto_' . $stage . '_design_header_mode') == 4) ? ' selected': ''; ?>>Image</option>
 					</select>
 					<div id="header_image">
 						<!-- should mason properly -->
@@ -1074,8 +1075,8 @@ function admin_design_box_comments () {
 				<p><label><input type="checkbox" value="1" name="concerto_<?php echo $stage; ?>_design_comments_trackback_date" <?php echo (get_option('concerto_' . $stage . '_design_comments_trackback_date') == 1) ? 'checked ': ''; ?>/> Display Trackback Date</label></p>
 				
 				<h4>Options</h4>
-				<p>Avatar Size <input type="text" class="small-text" value="<?php echo get_option('concerto_' . $stage . '_design_comments_avatar_size'); ?>" name="concerto_<?php echo $stage; ?>_design_comments_avatar_size" /></p>
-				<p>Time Format <input type="text" class="small-text" value="<?php echo get_option('concerto_' . $stage . '_design_comments_time_format'); ?>" name="concerto_<?php echo $stage; ?>_design_comments_time_format" /></p>
+				<p>Avatar Size <input type="text" class="small-text" value="<?php echo get_option('concerto_' . $stage . '_design_comments_avatar_size'); ?>" name="concerto_<?php echo $stage; ?>_design_comments_avatar_size" /> px</p>
+				<p>Time Format <input type="text" class="small-text" value="<?php echo get_option('concerto_' . $stage . '_design_comments_time_format'); ?>" name="concerto_<?php echo $stage; ?>_design_comments_time_format" />  <a href="http://www.php.net/manual/en/function.date.php" title="Check out http://www.php.net/manual/en/function.date.php for proper usage of the date format.">[?]</a></p>
 			</div>
 		</div>
 <?php

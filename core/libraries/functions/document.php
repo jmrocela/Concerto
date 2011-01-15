@@ -155,18 +155,38 @@ function concerto_hook_access() {
  * Default Branding Mark up: Site Heading
  */
 function concerto_hook_default_branding_site_title() {
-?>
-	<h1 id="site-title"><span><a href="<?php bloginfo('url'); ?>" title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a></span></h1>
-<?php
+	$stage = get_option('concerto_stage');
+	if (get_option('concerto_' . $stage . '_design_header_mode') == 2 && get_option('concerto_' . $stage . '_design_header_image')) {
+	?>
+		<div id="site-logo">
+			<a href="<?php bloginfo('url'); ?>" title="<?php bloginfo('name'); ?>"><img src="<?php echo get_option('concerto_' . $stage . '_design_header_image'); ?>" alt="<?php bloginfo('name'); ?>" /></a>
+		</div>
+	<?php
+	} else if (get_option('concerto_' . $stage . '_design_header_mode') == 4 && get_option('concerto_' . $stage . '_design_header_image')) {
+	
+	}
+	
+	if ((get_option('concerto_' . $stage . '_design_header_mode') == 1) || (get_option('concerto_' . $stage . '_design_header_mode') == 2 && get_option('concerto_' . $stage . '_design_header_image')) || (get_option('concerto_' . $stage . '_design_header_mode') == 3 && get_option('concerto_' . $stage . '_design_header_image'))) {
+		if (get_option('concerto_' . $stage . '_design_header_title') == 1) {
+		?>
+		<h1 id="site-title"><span><a href="<?php bloginfo('url'); ?>" title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a></span></h1>
+		<?php
+		}
+	}
 }
 
 /**
  * Default Branding Mark up: Site Description
  */
 function concerto_hook_default_branding_site_description() {
-?>
-	<p id="site-description"><?php bloginfo('description'); ?></p>
-<?php
+	$stage = get_option('concerto_stage');
+	if ((get_option('concerto_' . $stage . '_design_header_mode') == 1) || (get_option('concerto_' . $stage . '_design_header_mode') == 2 && get_option('concerto_' . $stage . '_design_header_image')) || (get_option('concerto_' . $stage . '_design_header_mode') == 3 && get_option('concerto_' . $stage . '_design_header_image'))) {
+		if (get_option('concerto_' . $stage . '_design_header_description') == 1) {
+		?>
+		<p id="site-description"><?php bloginfo('description'); ?></p>
+		<?php
+		}
+	}
 }
 
 /**

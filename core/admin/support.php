@@ -173,7 +173,7 @@ function admin_support_box_terms_and_agreements() {
 					<p>Any information submitted by you (the buyer) for completing the transaction, delivering the product, informing about new product releases, and addressing any customer service issues are strictly confidential. <strong>We don't share this information with anyone.</strong></p>
 				</div>
 			</div>
-			<p class="desc">You can read the Terms &amp; Conditions document online <a href="http://themeconcert.com/documents/licenses/?type=<?php echo get_option('concerto_license'); ?>" target="_blank">Here</a>.</p>
+			<p class="desc">You can read the Terms &amp; Conditions document online <a href="http://themeconcert.com/documents/licenses/<?php echo get_option('concerto_license'); ?>" target="_blank">Here</a>.</p>
 		</div>
 	</div>
 <?php

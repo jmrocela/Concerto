@@ -46,9 +46,11 @@ p { margin-bottom: 20px; }
 #header { border-bottom: 1px solid #dddddd; background: #fdfdfd; }
 
 #branding { padding: 60px 10px 30px; }
-#branding h1#site-title { font-size: 40px; font-weight: bold; line-height: 150%; }
+#branding:after { content: ""; clear: both; display: block; }
+#branding h1#site-title { font-size: 40px; font-weight: bold; line-height: 150%; display: inline-block; }
 #branding h1#site-title a { text-decoration: none; color: #000000; }
 #branding h1#site-title a:hover { color: #245cba; }
+#branding #site-logo { float: left; margin-right: 10px; }
 #branding p#site-description { font-size: 14px; color: #666666; }
 
 #access { margin-bottom: -1px; display: block; }

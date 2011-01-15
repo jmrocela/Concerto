@@ -154,7 +154,7 @@ function admin_general_box_navigation() {
 		<div class="inner">
 			<h4>Please Select Menu Type</h4>
 			<p class="desc">This will determine if Concerto will handle Navigation display or let Wordpress display it's menus.</p>
-			<p><label><input type="radio" name="concerto_<?php echo $stage; ?>_general_menu" class="menu_type" value="default" <?php echo (get_option('concerto_' . $stage . '_general_menu') == 'default') ? 'checked': ''; ?>/> Wordpress Default Menu</em></label></p>
+			<p><label><input type="radio" name="concerto_<?php echo $stage; ?>_general_menu" class="menu_type" value="default" <?php echo (get_option('concerto_' . $stage . '_general_menu') == 'default') ? 'checked': ''; ?>/> Wordpress Default Menu <a href="javascript:;" title="You can add custom menus from the Menu page under Appearances. This is more flexible and is recommended.">[?]</a></label></p>
 			<p><label><input type="radio" name="concerto_<?php echo $stage; ?>_general_menu" class="menu_type" value="concerto" <?php echo (get_option('concerto_' . $stage . '_general_menu') == 'concerto') ? 'checked': ''; ?>/> Concerto Navigation</label></p>
 			<div class="navigationlists">
 				<h4><label><input type="checkbox" name="concerto_<?php echo $stage; ?>_general_menu_use_pages" value="1" <?php echo (get_option('concerto_' . $stage . '_general_menu_use_pages') == 1) ? 'checked': ''; ?>/> Pages</label></h4>
@@ -261,7 +261,7 @@ function admin_general_box_personal() {
 	<div class="box box1column" id="concerto_personal">
 		<h3>Personal Information</h3>
 		<div class="inner">
-			<p class="desc">These options here are plainly for custom use only and are not required. You can use them on the widgets included or <a href="http://themeconcert.com/concert/manual/" target="_new">through code</a>.</p>
+			<p class="desc">These options here are plainly for custom use only and are not required. You can use them on the widgets included or <a href="http://themeconcert.com/concerto/manual/" target="_new">through code</a>.</p>
 			<h4>Twitter</h4>
 			<input type="text" class="text" name="concerto_personal_twitter" value="<?php echo get_option('concerto_personal_twitter'); ?>" />
 			<h4>Facebook</h4>

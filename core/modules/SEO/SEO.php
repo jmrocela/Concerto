@@ -32,7 +32,7 @@ function admin_general_box_seo() {
 	<div class="box box2columns" id="concerto_seo">
 		<h3><abbr title="Search Engine Optimization">SEO</abbr> Options</h3>
 		<div class="inner">
-			<p class="desc">You can easily fine tune your Site's Global SEO here. You can also set SEO options for <a href="http://themeconcert.com/concert/manual/" target="_new">individual Posts or Pages</a></p>
+			<p class="desc">You can easily fine tune your Site's Global SEO here. You can also set SEO options for <a href="http://themeconcert.com/concerto/manual/" target="_new">individual Posts or Pages</a></p>
 			<table>
 				<thead>
 					<tr>
