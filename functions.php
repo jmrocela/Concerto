@@ -1,6 +1,6 @@
 <?php
 /*!
- * Concerto 1.0 beta
+ * Concerto 0.70 alpha
  * http://themeconcert.com/concerto
  *
  * [WARNING]
@@ -11,7 +11,7 @@
  
 // We define the Theme constants
 define('_DS', DIRECTORY_SEPARATOR);
-define('CONCERTO_VERSION', '0.47 alpha');
+define('CONCERTO_VERSION', '0.70 alpha');
 define('CONCERTO_ROOT', dirname(__FILE__) . _DS);
 define('CONCERTO_STAGES', CONCERTO_ROOT . 'stages' . _DS);
 define('CONCERTO_CORE', CONCERTO_ROOT . 'core' . _DS);
@@ -25,6 +25,7 @@ define('CONCERTO_HTML', CONCERTO_CORE . 'html' . _DS);
 register_nav_menus(array('primary' => 'Primary Navigation', 'top' => 'Top Navigation', 'footer' => 'Footer Navigation', 'custom' => 'Custom Navigation'));
 register_sidebar(array('name' => 'Main Sidebar'));
 register_sidebar(array('name' => 'Second Sidebar'));
+add_action('switch_theme', 'concerto_install');
 
 // We require the Concerto Framework
 require CONCERTO_LIBS . 'concerto.php';
@@ -37,6 +38,14 @@ if (is_admin()) {
 	require CONCERTO_ADM . 'admin.php';
 	new ConcertoAdmin();
 
+}
+
+function concerto_install () {
+	if (get_option('concerto_is_installed') != 1) {
+		require_once CONCERTO_LIBS . 'defaults.php';
+		defaultOptions('default', null, true);
+		update_option('concerto_is_installed', 1);
+	}
 }
 
 ?>

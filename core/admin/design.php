@@ -606,7 +606,7 @@ function admin_design_box_fontscolorsborders () {
 						
 						<p>Font Size
 							<select name="concerto_<?php echo $stage; ?>_design_sizes_sidebar">
-								<option value="inherit-body"<?php echo (get_option('concerto_' . $stage . '_design_sizes_sidebar') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Body</option>
+								<option value="inherit-content"<?php echo (get_option('concerto_' . $stage . '_design_sizes_sidebar') == 'inherit-content') ? ' selected': ''; ?>>Inherit from Content</option>
 								<option value="10"<?php echo (get_option('concerto_' . $stage . '_design_sizes_sidebar') == 10) ? ' selected': ''; ?>>10px</option>
 								<option value="11"<?php echo (get_option('concerto_' . $stage . '_design_sizes_sidebar') == 11) ? ' selected': ''; ?>>11px</option>
 								<option value="12"<?php echo (get_option('concerto_' . $stage . '_design_sizes_sidebar') == 12) ? ' selected': ''; ?>>12px</option>
