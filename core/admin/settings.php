@@ -60,11 +60,6 @@
 	register_setting('concerto_design', 'concerto_' . $stage . '_design_layout_columns_width_sidebar1');
 	register_setting('concerto_design', 'concerto_' . $stage . '_design_layout_columns_width_sidebar2');
 	register_setting('concerto_design', 'concerto_' . $stage . '_design_article_padding');
-	register_setting('concerto_design', 'concerto_' . $stage . '_design_display_article_index');
-	register_setting('concerto_design', 'concerto_' . $stage . '_design_display_article_title');
-	register_setting('concerto_design', 'concerto_' . $stage . '_design_display_article_byline');
-	register_setting('concerto_design', 'concerto_' . $stage . '_design_display_article_content');
-	register_setting('concerto_design', 'concerto_' . $stage . '_design_display_article_meta');
 	register_setting('concerto_design', 'concerto_' . $stage . '_design_page_padding');
 	register_setting('concerto_design', 'concerto_' . $stage . '_design_header_mode');
 	register_setting('concerto_design', 'concerto_' . $stage . '_design_header_image');

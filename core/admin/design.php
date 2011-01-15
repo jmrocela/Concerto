@@ -990,25 +990,6 @@ function admin_design_box_articles () {
 				<p><label>Readmore Text <input type="text" class="text" value="<?php echo get_option('concerto_' . $stage . '_design_posts_readmore_text'); ?>" name="concerto_<?php echo $stage; ?>_design_posts_readmore_text" /></label></p>
 		
 				<h4>Article Display</h4>
-				<p class="desc">Display Position for Articles</p>
-				<div class="sortable">
-					<ul>
-						<?php
-							$index = get_option('concerto_' . $stage . '_design_display_article_index');
-							if (!is_array($index)) $index = array(1,2,3,4);
-							$label = array('Title', 'Byline', 'Content', 'Meta');
-							foreach ($index as $pos) {
-							?>
-							<li>
-								<input type="checkbox" value="1" name="concerto_<?php echo $stage; ?>_design_display_article_<?php echo strtolower($label[$pos - 1]); ?>" <?php echo (get_option('concerto_' . $stage . '_design_display_article_' . strtolower($label[$pos - 1]))  == 1) ? 'checked ': ''; ?>/>
-								<input type="hidden" value="<?php echo $pos; ?>" name="concerto_<?php echo $stage; ?>_design_display_article_index[]" />
-								<?php echo $label[$pos - 1]; ?>
-							</li>
-							<?php
-							}
-						?>
-					</ul>
-				</div>
 				<p><label><input type="checkbox" value="1" name="concerto_<?php echo $stage; ?>_design_posts_navigation" <?php echo (get_option('concerto_' . $stage . '_design_posts_navigation') == 1) ? 'checked ': ''; ?>/> Navigation</label></p>
 				<p><label><input type="checkbox" value="1" name="concerto_<?php echo $stage; ?>_design_comments_is_closed_show_message" <?php echo (get_option('concerto_' . $stage . '_design_comments_is_closed_show_message') == 1) ? 'checked ': ''; ?>/> Display Message when Comments are closed</label></p>
 				

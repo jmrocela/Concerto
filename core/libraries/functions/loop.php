@@ -22,16 +22,19 @@ class ConcertoLoop {
 						$this->category();
 					}  else if (is_tag()) {
 						$this->tag();
+					}   else if (is_404()) {
+						$this->fourohfour();
 					} else {
 						$this->index();
 					}
 				}
+			} else {
+				$this->nothing();
 			}
 		}
 	}
 	
 	public function article($context = null) {
-		$article = 'index';
 		switch ($context) {
 			case "single":
 				$article = 'single';
@@ -89,6 +92,14 @@ class ConcertoLoop {
 	
 	public function tag() {
 		$this->article('tag');
+	}
+	
+	public function fourohfour() {
+		$this->article('404');
+	}
+	
+	public function nothing() {
+		$this->article('nothing');
 	}
 	
 }

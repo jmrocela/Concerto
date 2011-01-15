@@ -56,11 +56,6 @@ function defaultOptions($stage = 'default', $context = null, $install  = false) 
 			update_option('concerto_' . $stage . '_design_layout_columns_width_sidebar1', 300);
 			update_option('concerto_' . $stage . '_design_layout_columns_width_sidebar2', 0);
 		update_option('concerto_' . $stage . '_design_article_padding', 10);
-			update_option('concerto_' . $stage . '_design_display_article_index', ''); //serialized
-				update_option('concerto_' . $stage . '_design_display_article_title', 1);
-				update_option('concerto_' . $stage . '_design_display_article_byline', 1);
-				update_option('concerto_' . $stage . '_design_display_article_content', 1);
-				update_option('concerto_' . $stage . '_design_display_article_meta', 1);
 		update_option('concerto_' . $stage . '_design_page_padding', 10);
 									
 		update_option('concerto_' . $stage . '_design_header_mode', 1);
@@ -68,8 +63,8 @@ function defaultOptions($stage = 'default', $context = null, $install  = false) 
 		update_option('concerto_' . $stage . '_design_header_title', 1);
 		update_option('concerto_' . $stage . '_design_header_description', 1);
 
-		update_option('concerto_' . $stage . '_design_bylines_page_author', 1);
-		update_option('concerto_' . $stage . '_design_bylines_page_published_date', 1);
+		update_option('concerto_' . $stage . '_design_bylines_page_author', 0);
+		update_option('concerto_' . $stage . '_design_bylines_page_published_date', 0);
 		update_option('concerto_' . $stage . '_design_bylines_post_author', 1);
 		update_option('concerto_' . $stage . '_design_bylines_post_published_date', 1);
 
@@ -79,7 +74,7 @@ function defaultOptions($stage = 'default', $context = null, $install  = false) 
 		update_option('concerto_' . $stage . '_design_meta_tags', 1);
 
 		update_option('concerto_' . $stage . '_design_posts_excerpts', 0); //display as excerpts on homepage
-		update_option('concerto_' . $stage . '_design_posts_readmore_text', '');
+		update_option('concerto_' . $stage . '_design_posts_readmore_text', 'Read More');
 		update_option('concerto_' . $stage . '_design_posts_navigation', 1);
 													
 		update_option('concerto_' . $stage . '_design_archive_display', 1);
@@ -169,7 +164,7 @@ function defaultOptions($stage = 'default', $context = null, $install  = false) 
 		update_option('concerto_' . $stage . '_design_borders_commentlist_bottom', 1);
 		update_option('concerto_' . $stage . '_design_borders_table', 1);
 
-		update_option('concerto_' . $stage . '_design_comments_is_closed_show_message', 1);
+		update_option('concerto_' . $stage . '_design_comments_is_closed_show_message', 0);
 			update_option('concerto_' . $stage . '_design_display_comments_index', ''); //serialized [comments, trackbacks, respond]
 				update_option('concerto_' . $stage . '_design_display_comments_comments', 1);
 				update_option('concerto_' . $stage . '_design_display_comments_pings', 1);

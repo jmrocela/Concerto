@@ -77,11 +77,20 @@ function concerto_default_common_comment_navigation () {
 }
 
 function concerto_default_commentlist_title () {
-	$comments_title = array('One Response to %2$s', '%1$s Responses to %2$s');
+	$stage = get_option('concerto_stage');
+	$comments_title = array('One Response to %2$s', '%1$s Responses to %2$s', 'Comments are closed');
 	$comments_title = apply_filters('concerto_commentlist_title', $comments_title);
-	?>
-	<h3 id="comments-title"><?php printf(_n($comments_title[0], $comments_title[1], ConcertoComments::commentCount()), number_format_i18n(ConcertoComments::commentCount()), '<em>' . get_the_title() . '</em>'); ?></h3>
-	<?php
+	if (ConcertoComments::commentCount() > 0) {
+		?>
+		<h3 id="comments-title"><?php printf(_n($comments_title[0], $comments_title[1], ConcertoComments::commentCount()), number_format_i18n(ConcertoComments::commentCount()), '<em>' . get_the_title() . '</em>'); ?></h3>
+		<?php
+	} else {
+		if (get_option('concerto_' . $stage . '_design_comments_is_closed_show_message') == 1) {
+			?>
+			<h3 id="comments-title"><?php echo $comments_title[2]; ?></h3>
+			<?php
+		}
+	}
 }
 
 /**
