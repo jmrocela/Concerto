@@ -9,6 +9,6 @@
 	<?php do_action('concerto_hook_head'); ?>
 </head>
 <?php $custom = (CONCERTO_CONFIG_CUSTOM == 'custom') ? 'custom-page': 'normal-page'; ?>
-<body <?php body_class(array('concerto', $custom, 'html4')); ?>>
+<body <?php body_class(array('concerto', $custom, 'html4' , 'column' . CONCERTO_CONFIG_COLUMNS_ORDER . 'order')); ?>>
 <?php do_action('concerto_hook_start'); ?>
 <div id="wrapper" class="<?php echo (CONCERTO_CONFIG_LAYOUT == 'wrapped') ? 'wrapped': 'fullwidth'; ?>">

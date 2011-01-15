@@ -162,11 +162,9 @@ function concerto_hook_default_branding_site_title() {
 			<a href="<?php bloginfo('url'); ?>" title="<?php bloginfo('name'); ?>"><img src="<?php echo get_option('concerto_' . $stage . '_design_header_image'); ?>" alt="<?php bloginfo('name'); ?>" /></a>
 		</div>
 	<?php
-	} else if (get_option('concerto_' . $stage . '_design_header_mode') == 4 && get_option('concerto_' . $stage . '_design_header_image')) {
-	
 	}
-	
-	if ((get_option('concerto_' . $stage . '_design_header_mode') == 1) || (get_option('concerto_' . $stage . '_design_header_mode') == 2 && get_option('concerto_' . $stage . '_design_header_image')) || (get_option('concerto_' . $stage . '_design_header_mode') == 3 && get_option('concerto_' . $stage . '_design_header_image'))) {
+
+	if ((!get_option('concerto_' . $stage . '_design_header_image')) || (get_option('concerto_' . $stage . '_design_header_mode') == 1) || (get_option('concerto_' . $stage . '_design_header_mode') == 2 && get_option('concerto_' . $stage . '_design_header_image')) || (get_option('concerto_' . $stage . '_design_header_mode') == 3 && get_option('concerto_' . $stage . '_design_header_image'))) {
 		if (get_option('concerto_' . $stage . '_design_header_title') == 1) {
 		?>
 		<h1 id="site-title"><span><a href="<?php bloginfo('url'); ?>" title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a></span></h1>
@@ -180,7 +178,7 @@ function concerto_hook_default_branding_site_title() {
  */
 function concerto_hook_default_branding_site_description() {
 	$stage = get_option('concerto_stage');
-	if ((get_option('concerto_' . $stage . '_design_header_mode') == 1) || (get_option('concerto_' . $stage . '_design_header_mode') == 2 && get_option('concerto_' . $stage . '_design_header_image')) || (get_option('concerto_' . $stage . '_design_header_mode') == 3 && get_option('concerto_' . $stage . '_design_header_image'))) {
+	if ((!get_option('concerto_' . $stage . '_design_header_image')) || (get_option('concerto_' . $stage . '_design_header_mode') == 1) || (get_option('concerto_' . $stage . '_design_header_mode') == 2 && get_option('concerto_' . $stage . '_design_header_image')) || (get_option('concerto_' . $stage . '_design_header_mode') == 3 && get_option('concerto_' . $stage . '_design_header_image'))) {
 		if (get_option('concerto_' . $stage . '_design_header_description') == 1) {
 		?>
 		<p id="site-description"><?php bloginfo('description'); ?></p>
@@ -242,14 +240,67 @@ function concerto_hook_default_banner() {
  * Default Content
  */
 function concerto_hook_default_content() {
+	switch (CONCERTO_CONFIG_COLUMNS_ORDER) {
+		case 2:
+			add_action('concerto_hook_main', 'concerto_hook_default_content_sidebar1', 10);
+			add_action('concerto_hook_main', 'concerto_hook_default_content_main', 20);
+		break;
+		case 3:
+			add_action('concerto_hook_main', 'concerto_hook_default_content_main', 10);
+			add_action('concerto_hook_main', 'concerto_hook_default_content_sidebar1', 20);
+			add_action('concerto_hook_main', 'concerto_hook_default_content_sidebar2', 30);
+		break;
+		case 4:
+			add_action('concerto_hook_main', 'concerto_hook_default_content_sidebar1', 10);
+			add_action('concerto_hook_main', 'concerto_hook_default_content_main', 20);
+			add_action('concerto_hook_main', 'concerto_hook_default_content_sidebar2', 30);
+		break;
+		case 5:
+			add_action('concerto_hook_main', 'concerto_hook_default_content_sidebar1', 10);
+			add_action('concerto_hook_main', 'concerto_hook_default_content_sidebar2', 20);
+			add_action('concerto_hook_main', 'concerto_hook_default_content_main', 30);
+		break;
+		default:
+		case 1:
+			add_action('concerto_hook_main', 'concerto_hook_default_content_main', 10);
+			add_action('concerto_hook_main', 'concerto_hook_default_content_sidebar1', 20);
+		break;
+	}
+
 	require CONCERTO_HTML_DIR . 'content.php';
+}
+
+function concerto_hook_default_content_main() {
+?>
+<section id="content">
+<?php do_action('concerto_hook_before_content'); ?>
+<?php do_action('concerto_hook_loop'); ?>
+<?php do_action('concerto_hook_after_content'); ?>
+</section>
+<?php
+}
+
+function concerto_hook_default_content_sidebar1() {
+	if (!CONCERTO_CONFIG_CUSTOM) {
+		do_action('concerto_hook_sidebar1'); 
+	}
+}
+
+function concerto_hook_default_content_sidebar2() {
+	if (!CONCERTO_CONFIG_CUSTOM) {
+		do_action('concerto_hook_sidebar2'); 
+	}
 }
 
 /**
  * Default Sidebars
  */
-function concerto_hook_default_sidebars() {
-	require CONCERTO_HTML_DIR . 'sidebar.php';
+function concerto_hook_default_sidebar1() {
+	require CONCERTO_HTML_DIR . 'sidebar1.php';
+}
+
+function concerto_hook_default_sidebar2() {
+	require CONCERTO_HTML_DIR . 'sidebar2.php';
 }
 
 /**

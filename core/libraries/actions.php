@@ -61,7 +61,8 @@ add_action('concerto_hook_article_comments', 'concerto_hook_default_article_comm
 /**
  * Sidebars
  */
-add_action('concerto_hook_sidebars', 'concerto_hook_default_sidebars');
+add_action('concerto_hook_sidebar1', 'concerto_hook_default_sidebar1');
+add_action('concerto_hook_sidebar2', 'concerto_hook_default_sidebar2');
 add_action('concerto_hook_before_sidebars', 'concerto_hook_default_before_sidebars');
 add_action('concerto_hook_before_sidebar_1', 'concerto_hook_default_before_sidebar_1');
 add_action('concerto_hook_before_sidebar_2', 'concerto_hook_default_before_sidebar_2');

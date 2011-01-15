@@ -161,6 +161,7 @@ function admin_design() {
 			});
 			if ($('#layout_columns').val() == 3) {
 				$('.columns2, .columns3, #columnsarrangement').show();
+				$('.columns2arrangement').hide();
 			} else if ($('#layout_columns').val() == 2) {
 				$('.columns3').hide();
 				$('.columns2, #columnsarrangement').show();
@@ -358,7 +359,6 @@ function admin_design_box_fontscolorsborders () {
 						<p>Border Color <input type="text" class="color" value="<?php echo get_option('concerto_' . $stage . '_design_colors_borders_common'); ?>" name="concerto_<?php echo $stage; ?>_design_colors_borders_common" /></p>
 						<p>Container Border Size
 							<select name="concerto_<?php echo $stage; ?>_design_borders_container">
-								<option value="inherit-container"<?php echo (get_option('concerto_' . $stage . '_design_borders_container') == 'inherit-container') ? ' selected': ''; ?>>Inherit Global</option>
 								<option value="0"<?php echo (get_option('concerto_' . $stage . '_design_borders_container') == 0) ? ' selected': ''; ?>>0px</option>
 								<option value="1"<?php echo (get_option('concerto_' . $stage . '_design_borders_container') == 1) ? ' selected': ''; ?>>1px</option>
 								<option value="2"<?php echo (get_option('concerto_' . $stage . '_design_borders_container') == 2) ? ' selected': ''; ?>>2px</option>
