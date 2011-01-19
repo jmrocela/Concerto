@@ -1,11 +1,26 @@
 <?php
-
+/**
+ * Comments API
+ *
+ * not really extensible but can be called statically. provides comment methods that
+ * might be extensible in the future
+ */
 class ConcertoComments {
 	
+	/**
+	 * Constructor
+	 *
+	 * fetches the comments template
+	 */
 	public function __construct() {
 		comments_template('/core/html/' . CONCERTO_CONFIG_HTML . '/comments.php', true);
 	}
-
+	
+	/**
+	 * Commentlist
+	 *
+	 * Lists the comments in a post. Extensible
+	 */
 	public function commentlist($comment, $args, $depth) {
 		$GLOBALS['comment'] = $comment;
 		if ($comment) {
@@ -14,7 +29,12 @@ class ConcertoComments {
 			}
 		}
 	}
-
+	
+	/**
+	 * Pinglist
+	 *
+	 * Lists the pings in a post. Extensible
+	 */
 	public function pinglist($comment, $args, $depth) {
 		$GLOBALS['comment'] = $comment;
 		if ($comment) {
@@ -24,6 +44,11 @@ class ConcertoComments {
 		}
 	}
 	
+	/**
+	 * Comment Count
+	 *
+	 * Returns the real comment count
+	 */
 	public function commentCount($zero = 'No Responses', $one = 'One Response', $more = '% Responses', $echo = false) {
 		global $wpdb, $post;
 		if ($post) {
@@ -43,6 +68,11 @@ class ConcertoComments {
 		return 0;
 	}
 	
+	/**
+	 * Ping Count
+	 *
+	 * Returns the real Ping count
+	 */
 	public function pingCount($zero = '', $one = '1 Trackback', $more = '% Trackbacks', $echo = false) {
 		global $wpdb, $post;
 		if ($post) {
@@ -62,6 +92,11 @@ class ConcertoComments {
 		return 0;
 	}
 	
+	/**
+	 * Respond form
+	 *
+	 * Custom Respond form
+	 */
 	public function respond($args = array(), $post_id = null) {
 		global $user_identity, $id;
 
@@ -119,9 +154,6 @@ class ConcertoComments {
 			do_action('comment_form_comments_closed');
 		}
 	}
-	
-	// Placeholder for Feed Comments
-	public function feed() {}
 	
 }
 
