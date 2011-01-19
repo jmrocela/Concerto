@@ -19,6 +19,7 @@ function concerto_hook_default_commentlist () {
 function concerto_hook_default_comments () {
 	$stage = get_option('concerto_stage');
 	$index = get_option('concerto_' . $stage . '_design_display_comments_index');
+	$index = ($index) ? $index: array(0,1,2);
 	foreach ($index as $i) {
 		if (($i - 1) == 0 && get_option('concerto_' . $stage . '_design_display_comments_comments') == 1) {
 			concerto_default_common_comment_navigation();

@@ -47,9 +47,9 @@ p { margin-bottom: 20px; }
 
 #branding { padding: 60px 10px 30px; }
 #branding:after { content: ""; clear: both; display: block; }
-#branding h1#site-title { font-size: 40px; font-weight: bold; line-height: 150%; display: inline-block; }
-#branding h1#site-title a { text-decoration: none; color: #000000; }
-#branding h1#site-title a:hover { color: #245cba; }
+#branding #site-title { font-size: 40px; font-weight: bold; line-height: 150%; display: inline-block; }
+#branding #site-title a { text-decoration: none; color: #000000; }
+#branding #site-title a:hover { color: #245cba; }
 #branding #site-logo { float: left; margin-right: 10px; }
 #branding p#site-description { font-size: 14px; color: #666666; }
 
@@ -57,7 +57,7 @@ p { margin-bottom: 20px; }
 #access .menu { width: 940px; overflow:hidden; margin: 0 AUTO; padding: 0 10px; }
 #access ul li { float: left; margin-right: 2px; }
 #access ul li a { display: block; padding: 5px 20px; color: #000000; border: 1px solid transparent; background-color: #ffffff; border: 1px solid #eeeeee; border-bottom: 1px solid #dddddd; text-decoration: none; }
-#access ul li.current_page_item a, #access ul li.current_page_item a:hover { border: 1px solid #dddddd; border-bottom: 1px solid transparent; }
+#access ul li.current_page_item a, #access ul li.current_page_item a:hover, #access ul li.current_page_parent a { border: 1px solid #dddddd; border-bottom: 1px solid transparent; }
 #access ul li a:hover { border: 1px solid #dddddd; text-decoration: underline; }
 #access ul:after { content: ""; clear: both; display: block; }
 
@@ -83,6 +83,9 @@ p { margin-bottom: 20px; }
 .normal-page #content { display: block; width: 600px; float: left; border-right: 1px solid #dddddd; padding:60px 29px 60px 0; }
 .custom-page #content { display: block; width: 100%; padding: 60px 0; }
 .sidebars { display: block; width: 300px; float: left; border-left: 1px solid #dddddd; padding:60px 15px 60px 15px; margin-left: -1px; }
+.context-title { padding: 0 10px 20px; }
+#errornothing, #error404 { text-align: center; }
+#centersearch { text-align: center; margin: 20px; }
 
 .column2order.normal-page #content { border-right: 0; border-left: 1px solid #dddddd; padding:60px 0 60px 29px; }
 .column2order .sidebars { border-left: 0; border-right: 1px solid #dddddd; margin-right: -1px; }

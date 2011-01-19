@@ -166,9 +166,15 @@ function concerto_hook_default_branding_site_title() {
 
 	if ((!get_option('concerto_' . $stage . '_design_header_image')) || (get_option('concerto_' . $stage . '_design_header_mode') == 1) || (get_option('concerto_' . $stage . '_design_header_mode') == 2 && get_option('concerto_' . $stage . '_design_header_image')) || (get_option('concerto_' . $stage . '_design_header_mode') == 3 && get_option('concerto_' . $stage . '_design_header_image'))) {
 		if (get_option('concerto_' . $stage . '_design_header_title') == 1) {
-		?>
-		<h1 id="site-title"><span><a href="<?php bloginfo('url'); ?>" title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a></span></h1>
-		<?php
+			if (!is_single() && !is_page()) {
+			?>
+			<h1 id="site-title"><span><a href="<?php bloginfo('url'); ?>" title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a></span></h1>
+			<?php
+			} else {
+			?>
+			<div id="site-title"><span><a href="<?php bloginfo('url'); ?>" title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a></span></div>
+			<?php
+			}
 		}
 	}
 }
@@ -301,6 +307,20 @@ function concerto_hook_default_sidebar1() {
 
 function concerto_hook_default_sidebar2() {
 	require CONCERTO_HTML_DIR . 'sidebar2.php';
+}
+
+/**
+ * Search Form
+ */
+function concerto_hook_default_searchform() {
+?>
+<form role="search" method="get" id="searchform" action="<?php echo home_url('/'); ?>">
+    <div><label class="screen-reader-text" for="s">Search for:</label>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="Search" />
+    </div>
+</form>
+<?php
 }
 
 /**

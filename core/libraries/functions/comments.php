@@ -8,48 +8,58 @@ class ConcertoComments {
 
 	public function commentlist($comment, $args, $depth) {
 		$GLOBALS['comment'] = $comment;
-		if ($comment->comment_type != 'pingback' && $comment->comment_type != 'trackback') {
-			require CONCERTO_HTML_DIR . 'comment.php';
+		if ($comment) {
+			if ($comment->comment_type != 'pingback' && $comment->comment_type != 'trackback') {
+				require CONCERTO_HTML_DIR . 'comment.php';
+			}
 		}
 	}
 
 	public function pinglist($comment, $args, $depth) {
 		$GLOBALS['comment'] = $comment;
-		if ($comment->comment_type == 'pingback' || $comment->comment_type == 'trackback') {
-			require CONCERTO_HTML_DIR . 'pingback.php';
+		if ($comment) {
+			if ($comment->comment_type == 'pingback' || $comment->comment_type == 'trackback') {
+				require CONCERTO_HTML_DIR . 'pingback.php';
+			}
 		}
 	}
 	
 	public function commentCount($zero = 'No Responses', $one = 'One Response', $more = '% Responses', $echo = false) {
-		global $wpdb;
-		$result = $wpdb->get_var('SELECT COUNT(comment_ID) FROM ' . $wpdb->comments . ' WHERE comment_type = "" AND comment_approved="1" AND comment_post_ID= ' . get_the_ID());
-		if ($result == 0) {
-			$count = $zero;
-		} elseif ($result == 1) {
-			$count = $one;
-		} elseif($result > 1) {
-			$count = str_replace('%', $result, $more);
+		global $wpdb, $post;
+		if ($post) {
+			$result = $wpdb->get_var('SELECT COUNT(comment_ID) FROM ' . $wpdb->comments . ' WHERE comment_type = "" AND comment_approved="1" AND comment_post_ID= ' . get_the_ID());
+			if ($result == 0) {
+				$count = $zero;
+			} elseif ($result == 1) {
+				$count = $one;
+			} elseif($result > 1) {
+				$count = str_replace('%', $result, $more);
+			}
+			if ($echo) {
+				echo $count;
+			}
+			return $result;
 		}
-		if ($echo) {
-			echo $count;
-		}
-		return $result;
+		return 0;
 	}
 	
 	public function pingCount($zero = '', $one = '1 Trackback', $more = '% Trackbacks', $echo = false) {
-		global $wpdb;
-		$result = $wpdb->get_var('SELECT COUNT(comment_ID) FROM ' . $wpdb->comments . ' WHERE comment_type !=  "" AND comment_approved="1" AND comment_post_ID= ' . get_the_ID());
-		if ($result == 0) {
-			$count = $zero;
-		} elseif ($result == 1) {
-			$count = $one;
-		} elseif($result > 1) {
-			$count = str_replace('%', $result, $more);
+		global $wpdb, $post;
+		if ($post) {
+			$result = $wpdb->get_var('SELECT COUNT(comment_ID) FROM ' . $wpdb->comments . ' WHERE comment_type !=  "" AND comment_approved="1" AND comment_post_ID= ' . get_the_ID());
+			if ($result == 0) {
+				$count = $zero;
+			} elseif ($result == 1) {
+				$count = $one;
+			} elseif($result > 1) {
+				$count = str_replace('%', $result, $more);
+			}
+			if ($echo) {
+				echo $count;
+			}
+			return $result;
 		}
-		if ($echo) {
-			echo $count;
-		}
-		return $result;
+		return 0;
 	}
 	
 	public function respond($args = array(), $post_id = null) {

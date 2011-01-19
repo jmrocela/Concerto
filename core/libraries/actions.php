@@ -33,6 +33,9 @@ add_action('concerto_hook_content', 'concerto_hook_default_content');
 add_action('concerto_hook_before_content', 'concerto_hook_default_before_content');
 add_action('concerto_hook_loop', 'concerto_hook_default_loop');
 add_action('concerto_hook_custom_page', 'concerto_hook_default_custom_page');
+add_action('concerto_hook_no_results', 'concerto_hook_default_searchform');
+add_action('concerto_hook_404', 'concerto_hook_default_searchform');
+add_action('concerto_hook_searchform', 'concerto_hook_default_searchform');
 add_action('concerto_hook_after_content', 'concerto_hook_default_after_content');
 add_action('concerto_hook_after_content', 'concerto_hook_default_article_navigation');
 

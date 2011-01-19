@@ -28,6 +28,11 @@ function concerto_hook_default_search () {}
 function concerto_hook_default_custom_page () {}
 
 /**
+ * No Results
+ */
+function concerto_hook_default_no_results () {}
+
+/**
  * Markup inside the article, before the title
  */
 function concerto_hook_default_before_article () {}
@@ -36,7 +41,7 @@ function concerto_hook_default_before_article () {}
  * Article Title
  */
 function concerto_hook_default_article_title () {
-	if (!is_single()) {
+	if (!is_single() && !is_page()) {
 	?>
 		<h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 	<?php
