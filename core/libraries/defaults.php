@@ -14,14 +14,6 @@ function defaultOptions($stage = 'default', $context = null, $install  = false) 
 	if ($install) {
 		update_option('concerto_version', CONCERTO_VERSION);
 		update_option('concerto_stage', $stage);
-		
-		// Should be on a different file
-		update_option('concerto_license', '');
-		update_option('concerto_license_to', '');
-		update_option('concerto_license_on', '');
-		update_option('concerto_license_copies', 0);
-		update_option('concerto_license_key', '');
-		update_option('concerto_naughty', 0);
 		update_option('concerto_need_update', 0);
 	}
 

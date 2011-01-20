@@ -86,6 +86,8 @@ function admin_general() {
 			});
 			$('.swfupload-control')
 				.bind('fileQueued', function(event, file){$(this).swfupload('startUpload');})
+				.bind('uploadProgress', function(event, file, bytesLoaded){progress(bytesLoaded, file.size)})
+				.bind('fileQueueError', function(event, file, errorCode, message){Alert('Sorry we cannot Upload your image file at this time. Please make sure the image file you selected is below 2MB.')})
 				.bind('uploadSuccess', function(event, file, response){
 					$('#favicon_preview img').attr('src', response);
 					$('#favicon_hidden').val(response);
@@ -100,12 +102,16 @@ function admin_general() {
 				$('#removefavicon').hide();
 			}
 			$('#removefavicon').click(function() {
-				if (confirm('Are you sure you want to remove your Favicon?')) {
-					$('#favicon_preview img').attr('src', '');
-					$('#favicon_hidden').val('');
-					$('#removefavicon').hide();
-					$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
-				}
+				Confirm({
+					title: 'Remove Favicon',
+					message: 'Are you sure you want to remove your Favicon?',
+					ok: function() {
+						$('#favicon_preview img').attr('src', '');
+						$('#favicon_hidden').val('');
+						$('#removefavicon').hide();
+						$('#concerto_dashboard').masonry({columnWidth: 10,itemSelector:'.box',resizable:false});
+					}
+				});
 			});
 			$('.navigationlists h4 input').change(function(){
 				if ($(this).is(':checked')) {

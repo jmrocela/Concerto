@@ -130,6 +130,8 @@ function admin_tools_box_importconfiguration () {
 					});
 					$('#swfupload-control')
 						.bind('fileQueued', function(event, file){$.swfupload.getInstance('#swfupload-control').addPostParam('stage', $('#concerto_tools_import_to').val());$(this).swfupload('startUpload');})
+						.bind('uploadProgress', function(event, file, bytesLoaded){progress(bytesLoaded, file.size)})
+						.bind('fileQueueError', function(event, file, errorCode, message){Alert('Sorry we cannot Upload your file at this time. Please make sure the file you selected is below 2MB and is a Stage Configuration file.')})
 						.bind('uploadSuccess', function(event, file, response){
 							$('.concerto_notice.level_updated,.concerto_notice.level_red').remove();
 							if (response == 1) {
@@ -247,6 +249,8 @@ function admin_tools_box_newstage () {
 				});
 				$('#swfupload-control2')
 					.bind('fileQueued', function(event, file){$(this).swfupload('startUpload');})
+					.bind('uploadProgress', function(event, file, bytesLoaded){progress(bytesLoaded, file.size)})
+					.bind('fileQueueError', function(event, file, errorCode, message){Alert('Sorry we cannot Upload your file at this time. Please make sure the file you selected is below 10MB and is a Stage archive.')})
 					.bind('uploadSuccess', function(event, file, response){
 						$('.concerto_notice.level_updated,.concerto_notice.level_red').remove();
 						switch (response) {
@@ -271,6 +275,16 @@ function admin_tools_box_newstage () {
 							break;
 						}
 					});
+				$('#restoredefault').click(function(){
+					Confirm({
+						title: 'Restore Defaults',
+						message: 'Are you sure you want to restore the default values for your selected items?',
+						ok: function() {
+							$('#restoredefaults').submit();
+						}
+					});
+					return false;
+				})
 			});
 		</script>
 		</form>
@@ -284,13 +298,13 @@ function admin_tools_box_restoreconfiguration () {
 <div class="box box1column">
 	<h3>Restore Default Configuration</h3>
 	<div class="inner">
-		<form method="POST" action="<?php bloginfo('url'); ?>/wp-admin/admin.php?page=concerto_admin_tools">
+		<form method="POST" action="<?php bloginfo('url'); ?>/wp-admin/admin.php?page=concerto_admin_tools" id="restoredefaults">
 		<?php wp_nonce_field('concerto_restoreconfig', 'concerto_restoreconfig_nonce'); ?> 
 		<p class="desc">Don't like what you see but don't know what you did wrong? Try restoring to the default configuration, it might fix your problem.</p>
 		<p><label><input type="checkbox" value="1" name="concerto_tools_restore_general" /> General Options</label></p>
 		<p><label><input type="checkbox" value="1" name="concerto_tools_restore_design" /> Design Options</label></p>
 		<p>
-			<input type="submit" value="Restore Defaults" class="button" onclick="if(!confirm('Are you sure you want to restore the default values for your selected items?'))return false;"/>
+			<input type="submit" value="Restore Defaults" class="button" id="restoredefault"/>
 			<label>
 				to
 				<select name="concerto_tools_restore_from">

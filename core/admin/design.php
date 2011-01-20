@@ -99,6 +99,8 @@ function admin_design() {
 				$('#header_hidden').parents('.box').removeClass('box1column');
 				$('.swfupload-control')
 					.bind('fileQueued', function(event, file){$(this).swfupload('startUpload');})
+					.bind('uploadProgress', function(event, file, bytesLoaded){progress(bytesLoaded, file.size)})
+					.bind('fileQueueError', function(event, file, errorCode, message){Alert('Sorry we cannot Upload your image file at this time. Please make sure the image file you selected is below 5MB.')})
 					.bind('uploadSuccess', function(event, file, response){
 						$('#removeheader').show();
 						$('#header_preview img').attr('src', response);
@@ -123,6 +125,8 @@ function admin_design() {
 					$('#header_hidden').parents('.box').removeClass('box1column');
 					$('.swfupload-control')
 						.bind('fileQueued', function(event, file){$(this).swfupload('startUpload');})
+						.bind('uploadProgress', function(event, file, bytesLoaded){progress(bytesLoaded, file.size)})
+						.bind('fileQueueError', function(event, file, errorCode, message){Alert('Sorry we cannot Upload your image file at this time. Please make sure the image file you selected is below 5MB.')})
 						.bind('uploadSuccess', function(event, file, response){
 							$('#removeheader').show();
 							$('#header_preview img').attr('src', response);
@@ -139,11 +143,15 @@ function admin_design() {
 				$('#removeheader').hide();
 			}
 			$('#removeheader').click(function() {
-				if (confirm('Are you sure you want to remove your Header?')) {
-					$('#header_preview img').attr('src', '');
-					$('#header_hidden').val('');
-					$('#removeheader').hide();
-				}
+				Confirm({
+					title: 'Remove Header',
+					message: 'Are you sure you want to remove your Header?',
+					ok: function() {
+						$('#header_preview img').attr('src', '');
+						$('#header_hidden').val('');
+						$('#removeheader').hide();
+					}
+				});
 			});
 			$('#layout_columns').change(function(){
 				if ($(this).val() == 3) {

@@ -64,55 +64,6 @@ function admin_support() {
 <?php
 }
 
-function admin_support_box_registration() {
-?>
-	<div class="box box1column" id="concerto_registration">
-		<h3>Your Registration</h3>
-		<div class="inner">
-			<?php if (get_option('concerto_naughty') == 1) { ?>
-			<div id="naughty"><strong>I think someone's being naughty!</strong><br/>It seems you are using an unregistered copy of Concerto.</div>
-			<p style="text-align:center;font-size:10px;"><a href="http://themeconcert.com/unregistered/">What is this?</a> <a href="http://themeconcert.com/members/verify/">Do you think this is wrong?</a></p>
-			<?php } else { ?>
-			<div style="text-align:center;">
-				<p>This copy of Concerto is registered to</p>
-				<p id="license_to"><strong class="greentext"><?php echo get_option('concerto_license_to'); ?></strong></p>
-				<p>and is licensed for <strong><?php echo get_option('concerto_license'); ?></strong> use on</p>
-				<p id="license_on">
-				<?php
-					$sites = unserialize(get_option('concerto_license_on'));
-					foreach ($sites as $site) {
-				?>
-					<strong><a href="<?php echo $site; ?>"><?php echo $site; ?></a></strong><br/>
-				<?php 
-					}
-				?>
-				</p>
-			</diV>
-			<?php if (get_option('concerto_license') != 'unrestricted') { ?>
-			<form action="http://themeconcert.com/pricing/" method="POST" id="registation_upgrade">
-				<input type="hidden" name="license" value="<?php echo get_option('concerto_license'); ?>" />
-				<input type="hidden" name="license_to" value="<?php echo get_option('concerto_license_to'); ?>" />
-				<input type="hidden" name="license_key" value="<?php echo get_option('concerto_license_key'); ?>" />
-				<input type="hidden" name="license_on" value="<?php echo get_option('concerto_license_on'); ?>" />
-				<input type="hidden" name="license_copies" value="<?php echo get_option('concerto_license_copies'); ?>" />
-				<input type="hidden" name="license_referrer" value="<?php bloginfo('url'); ?>/" />
-				<input type="submit" value="Upgrade your Package"/>
-				<a href="http://themeconcert.com/pricing/">Plans &amp; Pricing</a>
-			</form>
-			<?php } ?>
-			<script type="text/javascript">
-				// Ping the License server about this installation
-				jQuery(function($){
-					var license = {license: '<?php echo get_option('concerto_license'); ?>', to: '<?php echo get_option('concerto_license_to'); ?>', key: '<?php echo get_option('concerto_license_key'); ?>', on: '<?php echo json_encode(get_option('concerto_license_on')); ?>', copies: <?php echo get_option('concerto_license_copies'); ?>, referrer: '<?php bloginfo('url'); ?>'}
-					$.post(ajaxurl, {_wpnonce: '<?php echo wp_create_nonce(); ?>', action: 'pinglicense', info: license});
-				});
-			</script>
-			<?php } ?>
-		</div>
-	</div>
-<?php
-}
-
 function admin_support_box_about() {
 ?>
 	<div class="box box1column" id="concerto_about">
@@ -148,32 +99,31 @@ function admin_support_box_terms_and_agreements() {
 		<div class="inner">
 			<div id="terms_agreements_box">
 				<div>
-					<h5 style="">Terms &amp; Conditions</h5>
 					<p>Before purchasing any products from ThemeConcert, be it the framework, stages or bundles, please make sure that <strong>you have read and agreed to all our terms</strong>. By using Concerto, we will assume that <strong>you have read, agreed and accepted the terms of use</strong> that follows.</p>
 					<p>ThemeConcert <strong>reserves the right</strong> to change prices for all it's products. This right also applies to our terms and conditions that will change at anytime without prior notice.</p>
 					
-					<h5 style="font-size:14px;margin:0;padding:0;">Limitation of liability</h5>
+					<h5>Limitation of liability</h5>
 					<p>Under no circumstances shall <strong>ThemeConcert</strong> be liable for any direct, indirect, special, incidental or consequential damages, including, but not limited to, loss of data or profit, arising aut of the use, or the inability to use, the materials on this site, even if <strong>ThemeConcert</strong> or an authorised representative has been advised of the possibility of such damages. If your use of materials from this site results in the need for servicing, repair or correction of equipment or data, you assume any costs thereof.</p>
 					
-					<h5 style="font-size:14px;margin:0;padding:0;">License Types</h5>
+					<h5>License Types</h5>
 					<p>ThemeConcert sells 2 types of licenses: <strong>Personal License</strong> which allows you to use the theme on a single website and domain and the <strong>Developer License</strong>, that allows you to use the theme on multiple websites and domains. It is not allowed to sub-license, assign, or transfer your licenses to anyone.</p>
 					<p><strong>You may not</strong> claim intellectual or exclusive ownership to Concerto's core framework, modified or unmodified.</p>
 					<p><strong>You may</strong> claim intellectual or exclusive ownership to a Stage theme you developed or designed.</p>
 					<p><strong>You are allowed</strong> to use a theme in all your client projects but it <strong>does not allow</strong> redistribution of the theme in any form. Modified or unmodified, it is not permitted to share our themes on a disk, website, or any other medium. Resale is also <strong>not permitted</strong> and it is prohibited to port ThemeConcert stages to other platforms and content management systems.</p>
 					<p><strong>You are allowed</strong> to make any changes and modifications in the stages or products to suit your needs. It is not permitted to change or remove the copyright information in the source code. This includes the all PHP, JavaScript, HTML and CSS files distributed with our products. Of course, any visual copyrights, for example the copyrights in the theme footer can be removed. </p>
 					
-					<h5 style="font-size:14px;margin:0;padding:0;">Payments &amp; Refund</h5>
+					<h5>Payments &amp; Refund</h5>
 					<p>All payments are handled through PayPal using PayPal standard payment.</p>
 					<p>Consider that we offer intangible digital goods. We do not issue refunds after the purchase is made, which you are responsible for understanding upon making it.</p>
 					
-					<h5 style="font-size:14px;margin:0;padding:0;">Warranty</h5>
+					<h5>Warranty</h5>
 					<p>Concerto is provided <strong>"as is"</strong> without warranty of any kind, either expressed or implied. We do not guarantee that themes will work in all browsers, nor do we guarantee that our themes will be functional with all versions of WordPress. ThemeConcert does not guarantee compatibility with any additional third party plug-in, scripts, or applications unless stated otherwise.</p>
 					
-					<h5 style="font-size:14px;margin:0;padding:0;">Privacy Policy</h5>
+					<h5>Privacy Policy</h5>
 					<p>Any information submitted by you (the buyer) for completing the transaction, delivering the product, informing about new product releases, and addressing any customer service issues are strictly confidential. <strong>We don't share this information with anyone.</strong></p>
 				</div>
 			</div>
-			<p class="desc">You can read the Terms &amp; Conditions document online <a href="http://themeconcert.com/documents/licenses/<?php echo get_option('concerto_license'); ?>" target="_blank">Here</a>.</p>
+			<p class="desc">You can read the Terms &amp; Conditions document online <a href="http://themeconcert.com/documents/termsandconditions" target="_blank">Here</a>.</p>
 		</div>
 	</div>
 <?php
