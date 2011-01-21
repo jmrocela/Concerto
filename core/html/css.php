@@ -186,9 +186,9 @@ body{font-family:<?php echo $fonts['body']; ?>;background-color:<?php echo $colo
 #access{margin-bottom:-<?php echo $borders['menu']; ?>px;}
 #access .menu{width:<?php echo $width['container'] - (get_option('concerto_' . $stage . '_design_page_padding') * 2); ?>px;padding:0 <?php echo get_option('concerto_' . $stage . '_design_page_padding'); ?>px;}
 #access ul li a{font-family:<?php echo $fonts['menu']; ?>;color:<?php echo $colors['fonts']['menu']; ?>;background-color:<?php echo $colors['background']['menu']; ?>;border:<?php echo $borders['menu']; ?>px solid;border-color:<?php echo $colors['borders']['menu']; ?>;border-bottom:<?php echo $borders['menu']; ?>px solid;border-color:<?php echo $colors['borders']['menu-active']; ?>;}
-#access ul li.current_page_item a,#access ul li.current_page_item a:hover,#access ul li.current_page_parent a{border:<?php echo $borders['menu']; ?>px solid;border-color:<?php echo $colors['borders']['menu-active']; ?>;border-bottom:<?php echo $borders['menu']; ?>px solid;border-color:transparent;}
+#access ul li.current_page_item a,#access ul li.current_page_item a:hover,#access ul li.current_page_parent a{border:<?php echo $borders['menu']; ?>px solid;border-color:<?php echo $colors['borders']['menu-active']; ?>;border-bottom:<?php echo $borders['menu']; ?>px solid transparent;}
 #access ul li a:hover{border:<?php echo $borders['menu']; ?>px solid;border-color:<?php echo $colors['borders']['menu-hover']; ?>;}
-#access ul li a.active{border:<?php echo $borders['menu']; ?>px solid;border-color:<?php echo $colors['borders']['menu-active']; ?>;border-bottom:<?php echo $borders['menu']; ?>px solid;border-color:transparent;}
+#access ul li a.active{border:<?php echo $borders['menu']; ?>px solid;border-color:<?php echo $colors['borders']['menu-active']; ?>;border-bottom:<?php echo $borders['menu']; ?>px solid transparent;}
 #access ul li ul.children{border:<?php echo $borders['menu']; ?>px solid;border-color:<?php echo $colors['borders']['menu-active']; ?>;margin-top:-<?php echo $borders['menu']; ?>px;}
 #access ul li ul.children li a{border-top:<?php echo $borders['menu']; ?>px solid;border-color:<?php echo $colors['borders']['menu-active']; ?>;}
 #access ul li ul.children li a:hover{border-top:<?php echo $borders['menu']; ?>px solid;border-color:<?php echo $colors['borders']['menu-active']; ?>;}
