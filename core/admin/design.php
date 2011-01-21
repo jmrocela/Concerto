@@ -1,4 +1,22 @@
 <?php
+/*!
+ * Concerto - a fresh and new wordpress theme framework for everyone
+ *
+ * http://themeconcert.com/concerto
+ *
+ * @version: 1.0
+ * @package: ConcertoAdmin
+ *
+ * [WARNING]
+ * This is restricted file and should not be modified in any way(unless you know what
+ * you are doing). This file serves as the Base Class for setting up administration pages.
+ */
+
+/**
+ * Admin Design
+ *
+ * Concerto backend dashboard for Design
+ */
 function admin_design() {
 ?>
 <div class="wrap concerto">
@@ -240,6 +258,11 @@ function admin_design() {
 <?php
 }
 
+/**
+ * Design Box: Markup
+ *
+ * Markup options for Concerto
+ */
 function admin_design_box_markup () {
 	$stage = get_option('concerto_stage');
 ?>
@@ -254,6 +277,11 @@ function admin_design_box_markup () {
 <?php
 }
 
+/**
+ * Design Box: Header
+ *
+ * Header options for Concerto. Upload images are enabled
+ */
 function admin_design_box_header () {
 	$stage = get_option('concerto_stage');
 ?>
@@ -286,6 +314,11 @@ function admin_design_box_header () {
 <?php
 }
 
+/**
+ * Design Box: Layout
+ *
+ * Layout options for Concerto
+ */
 function admin_design_box_layout () {
 	$stage = get_option('concerto_stage');
 ?>
@@ -300,6 +333,11 @@ function admin_design_box_layout () {
 <?php
 }
 
+/**
+ * Design Box: Fonts, Colors and Borders
+ *
+ * Fonts, Colors and Border options for Concerto
+ */
 function admin_design_box_fontscolorsborders () {
 	$stage = get_option('concerto_stage');
 ?>
@@ -940,6 +978,11 @@ function admin_design_box_fontscolorsborders () {
 <?php
 }
 
+/**
+ * Design Box: Columns
+ *
+ * Column options for Concerto
+ */
 function admin_design_box_columns () {
 	$stage = get_option('concerto_stage');
 ?>
@@ -984,6 +1027,11 @@ function admin_design_box_columns () {
 <?php
 }
 
+/**
+ * Design Box: Articles
+ *
+ * Article options for Concerto
+ */
 function admin_design_box_articles () {
 	$stage = get_option('concerto_stage');
 ?>
@@ -1027,6 +1075,11 @@ function admin_design_box_articles () {
 <?php
 }
 
+/**
+ * Design Box: Comments
+ *
+ * Comments options for Concerto
+ */
 function admin_design_box_comments () {
 	$stage = get_option('concerto_stage');
 ?>
@@ -1070,6 +1123,11 @@ function admin_design_box_comments () {
 <?php
 }
 
+/**
+ * Design Box: Eyecandy
+ *
+ * Eyecandy options for Concerto
+ */
 function admin_design_box_eyecandy () {
 	$stage = get_option('concerto_stage');
 ?>

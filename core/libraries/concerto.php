@@ -1,18 +1,30 @@
 <?php
 /*!
- * Concerto 0.9 alpha
+ * Concerto - a fresh and new wordpress theme framework for everyone
+ *
  * http://themeconcert.com/concerto
+ *
+ * @version: 1.0
+ * @package: Concerto
  *
  * [WARNING]
  * This is restricted file and should not be modified in any way(unless you know what
- * you are doing). This file serves as the Base Class for setting up administration pages.
+ * you are doing).
  */
 
 // We set the Extension and Stage Classes as Global
 global $extensions, $stages;
 
+/**
+ * Concerto Base Class
+ */
 class Concerto {
 
+	/**
+	 * Constructor
+	 *
+	 * Sets up the Theme for use
+	 */
 	public function __construct($mode = false) {
 		// We then Setup the Theme to be displayed
 		$stage = get_option('concerto_stage');
@@ -30,14 +42,34 @@ class Concerto {
 
 }
 
+/**
+ * Concerto Extension Class
+ */
 class ConcertoExtensions {
 
+	/**
+	 * Extension store
+	 *
+	 * @access public
+	 */
 	public $extensions = array();
 
+	/**
+	 * Constructor
+	 *
+	 * Get the Extensions in the module folder
+	 */
 	public function __construct() {
 		$this->extensions = $this->get();
 	}
 
+	/**
+	 * Get
+	 *
+	 * Get the Extensions in the module folder
+	 *
+	 * @return void
+	 */
 	public function get() {
 		$extensions = array();
 		if (file_exists(CONCERTO_MOD)) {
@@ -84,7 +116,14 @@ class ConcertoExtensions {
 		}
 		return $extensions;
 	}
-	
+
+	/**
+	 * Load
+	 *
+	 * Load the Extension from their respective directories
+	 *
+	 * @return void
+	 */
 	public function load() {
 		$extensions = $this->extensions;
 			if ($extensions) {
@@ -98,14 +137,34 @@ class ConcertoExtensions {
 	
 }
 
+/**
+ * Concerto Stage Class
+ */
 class ConcertoStages {
 
+	/**
+	 * Stage store
+	 *
+	 * @access public
+	 */
 	public $stages = array();
-	
+
+	/**
+	 * Constructor
+	 *
+	 * Gets the Stages and sets them into the store variable
+	 */
 	public function __construct() {
 		$this->stages = $this->get();
 	}
-	
+
+	/**
+	 * Get
+	 *
+	 * Get the Stages in the stage folder
+	 *
+	 * @return void
+	 */
 	public function get() {
 		$stage = array();
 		if (file_exists(CONCERTO_STAGES)) {

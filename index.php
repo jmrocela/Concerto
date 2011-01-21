@@ -1,10 +1,14 @@
 <?php
 /*!
- * Concerto 0.9 alpha
+ * Concerto - a fresh and new wordpress theme framework for everyone
+ *
  * http://themeconcert.com/concerto
+ *
+ * @version: 1.0
+ * @package: Concerto
  */
 
-// This is where it all began..
+// This is where it all begins..
 new Concerto();
 
 ?>

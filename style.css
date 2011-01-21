@@ -1,16 +1,15 @@
 /*!
- * Theme Name:		Concerto
- * Description:		A Customizable Wordpress Theme Framework. Concerto provides flexiblity and usability to the user and enables a much better Wordpress. You will never need another Theme ever again. 
+ * Theme Name: 	Concerto
+ * Description:		A Customizable Wordpress Theme Framework. Concerto provides flexiblity and usability to the user and enables a much better Wordpress.
  * Theme URI:		http://themeconcert.com/concerto
- * Version:			0.9 alpha
- * Author:			ThemeConcert
+ * Version:				1.0
+ * Author:				ThemeConcert
  * Author URI:		http://themeconcert.com/
  *
  * [Warning]
  * You shouldn't be here. this file is the base CSS style for Concerto and should never
  * be edited. Future updates will modify this file and your changes here will get erased.
  * It is always advised that you edit style.css on your respective stage under the /stage folder.
- *
  */
  
 /**
@@ -30,7 +29,9 @@ a img { border: none; }
 /* HTML5 elements must be rendered as Block */
 header, footer, aside, nav, article { display: block; }  
 
-
+/**
+ * Miscellaneous
+ */
 .clear { clear: both; }
 .left { float: left; }
 .right { float: right; }

@@ -1,5 +1,22 @@
 <?php
+/*!
+ * Concerto - a fresh and new wordpress theme framework for everyone
+ *
+ * http://themeconcert.com/concerto
+ *
+ * @version: 1.0
+ * @package: ConcertoAdmin
+ *
+ * [WARNING]
+ * This is restricted file and should not be modified in any way(unless you know what
+ * you are doing). This file serves as the Base Class for setting up administration pages.
+ */
 
+/**
+ * Admin Tools
+ *
+ * Tools backend dashboard for Design
+ */
 function admin_tools() {
 ?>
 <div class="wrap concerto">
@@ -94,6 +111,11 @@ function admin_tools() {
 <?php
 }
 
+/**
+ * Tools Box: Import Configuration
+ *
+ * Import configuration
+ */
 function admin_tools_box_importconfiguration () {
 ?>
 <div class="box box1column">
@@ -169,6 +191,11 @@ function admin_tools_box_importconfiguration () {
 <?php
 }
 
+/**
+ * Tools Box: Export Configuration
+ *
+ * Export configuration
+ */
 function admin_tools_box_exportconfiguration () {
 ?>
 <div class="box box1column">
@@ -209,6 +236,11 @@ function admin_tools_box_exportconfiguration () {
 <?php
 }
 
+/**
+ * Tools Box: New Stage
+ *
+ * New Stage
+ */
 function admin_tools_box_newstage () {
 ?>
 <div class="box box1column">
@@ -293,6 +325,11 @@ function admin_tools_box_newstage () {
 <?php
 }
 
+/**
+ * Tools Box: Restore Configuration
+ *
+ * Restore Configuration
+ */
 function admin_tools_box_restoreconfiguration () {
 ?>
 <div class="box box1column">

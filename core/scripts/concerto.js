@@ -1,3 +1,9 @@
+/*!
+ * Javascript Frontend file
+ *
+ * @version: 1.0
+ * @package: scripts
+ */
 jQuery(function($){
 	$('#access .menu li').hover(function() {
 		if ($(this).children('.children').length) {

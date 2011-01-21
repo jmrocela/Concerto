@@ -1,5 +1,22 @@
 <?php
+/*!
+ * Concerto - a fresh and new wordpress theme framework for everyone
+ *
+ * http://themeconcert.com/concerto
+ *
+ * @version: 1.0
+ * @package: ConcertoAdmin
+ *
+ * [WARNING]
+ * This is restricted file and should not be modified in any way(unless you know what
+ * you are doing). This file serves as the Base Class for setting up administration pages.
+ */
 
+/**
+ * Admin General
+ *
+ * General Concerto backend dashboard
+ */
 function admin_general() {
 ?>
 <div class="wrap concerto">
@@ -152,6 +169,11 @@ function admin_general() {
 <?php
 }
 
+/**
+ * General Box: Navigation
+ *
+ * Navigation options for Concerto
+ */
 function admin_general_box_navigation() {
 	$stage = get_option('concerto_stage');
 ?>
@@ -214,6 +236,11 @@ function admin_general_box_navigation() {
 <?php
 }
 
+/**
+ * General Box: Meta
+ *
+ * Meta options for Concerto
+ */
 function admin_general_box_home_meta() {
 	$stage = get_option('concerto_stage');
 ?>
@@ -229,6 +256,11 @@ function admin_general_box_home_meta() {
 <?php
 }
 
+/**
+ * General Box: Favicon
+ *
+ * Favicon options for Concerto
+ */
 function admin_general_box_favicon() {
 	$stage = get_option('concerto_stage');
 ?>
@@ -248,6 +280,11 @@ function admin_general_box_favicon() {
 <?php
 }
 
+/**
+ * General Box: Syndication URL
+ *
+ * Syndication URL options for Concerto
+ */
 function admin_general_box_syndication_url() {
 	$stage = get_option('concerto_stage');
 ?>
@@ -261,6 +298,11 @@ function admin_general_box_syndication_url() {
 <?php
 }
 
+/**
+ * General Box: Personal
+ *
+ * Personal options for Concerto
+ */
 function admin_general_box_personal() {
 	$stage = get_option('concerto_stage');
 ?>
@@ -284,6 +326,11 @@ function admin_general_box_personal() {
 <?php
 }
 
+/**
+ * General Box: Scripts
+ *
+ * Scripts options for Concerto
+ */
 function admin_general_box_scripts() {
 	$stage = get_option('concerto_stage');
 ?>
@@ -305,6 +352,11 @@ function admin_general_box_scripts() {
 <?php
 }
 
+/**
+ * General Box: Libraries
+ *
+ * Libraries options for Concerto
+ */
 function admin_general_box_javascript_libraries() {
 	$stage = get_option('concerto_stage');
 ?>
@@ -319,6 +371,11 @@ function admin_general_box_javascript_libraries() {
 <?php
 }
 
+/**
+ * General Box: Copyright
+ *
+ * Copyright options for Concerto
+ */
 function admin_general_box_copyright() {
 	$stage = get_option('concerto_stage');
 ?>
@@ -335,6 +392,11 @@ function admin_general_box_copyright() {
 <?php
 }
 
+/**
+ * General Box: Extensions
+ *
+ * Extensions options for Concerto
+ */
 function admin_general_box_extensions() {
 	$stage = get_option('concerto_stage');
 ?>

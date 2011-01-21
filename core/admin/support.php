@@ -1,5 +1,22 @@
 <?php
+/*!
+ * Concerto - a fresh and new wordpress theme framework for everyone
+ *
+ * http://themeconcert.com/concerto
+ *
+ * @version: 1.0
+ * @package: ConcertoAdmin
+ *
+ * [WARNING]
+ * This is restricted file and should not be modified in any way(unless you know what
+ * you are doing). This file serves as the Base Class for setting up administration pages.
+ */
 
+/**
+ * Admin Support
+ *
+ * Support Concerto backend dashboard
+ */
 function admin_support() {
 ?>
 <div class="wrap concerto">
@@ -64,6 +81,11 @@ function admin_support() {
 <?php
 }
 
+/**
+ * Support Box: About
+ *
+ * About box
+ */
 function admin_support_box_about() {
 ?>
 	<div class="box box1column" id="concerto_about">
@@ -77,6 +99,11 @@ function admin_support_box_about() {
 <?php
 }
 
+/**
+ * Support Box: Support
+ *
+ * Support box
+ */
 function admin_support_box_support() {
 ?>
 	<div class="box box1column" id="concerto_support">
@@ -92,6 +119,11 @@ function admin_support_box_support() {
 <?php
 }
 
+/**
+ * Support Box: Terms and Agreements
+ *
+ * Terms and Agreements
+ */
 function admin_support_box_terms_and_agreements() {
 ?>
 	<div class="box box2columns" id="concerto_terms_and_agreements">
@@ -129,6 +161,11 @@ function admin_support_box_terms_and_agreements() {
 <?php
 }
 
+/**
+ * Support Box: Search
+ *
+ * Manual Search Box
+ */
 function admin_support_box_search() {
 ?>
 	<div class="box box1column" id="concerto_search">

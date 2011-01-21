@@ -1,4 +1,16 @@
 <?php
+/*!
+ * Concerto - a fresh and new wordpress theme framework for everyone
+ *
+ * http://themeconcert.com/concerto
+ *
+ * @version: 1.0
+ * @package: Concerto
+ *
+ * [WARNING]
+ * This is restricted file and should not be modified in any way(unless you know what
+ * you are doing).
+ */
 
 /**
  * Markup just outside and before the commentlist
@@ -16,6 +28,9 @@ function concerto_hook_default_commentlist () {
 	<?php
 }
 
+/**
+ * Default Comment Arrangements
+ */
 function concerto_hook_default_comments () {
 	$stage = get_option('concerto_stage');
 	$index = get_option('concerto_' . $stage . '_design_display_comments_index');

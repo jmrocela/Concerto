@@ -1,14 +1,16 @@
 <?php
 /*!
- * Concerto 0.9 alpha
+ * Concerto - a fresh and new wordpress theme framework for everyone
+ *
  * http://themeconcert.com/concerto
+ *
+ * @version: 1.0
+ * @package: Concerto
  *
  * [WARNING]
  * This is restricted file and should not be modified in any way(unless you know what
- * you are doing). This file serves as the Base Class for setting up administration pages.
+ * you are doing).
  */
-
-// Default Layout Hooks
 
 /**
  * HTML that goes onto the <head> tag
@@ -38,6 +40,9 @@ function concerto_hook_title() {
 	# if (get_post_meta($post->ID, 'concerto_custom_post_title')) >>> as title
 }
 
+/**
+ * Homepage Meta
+ */
 function concerto_hook_meta() {
 	$stage = get_option('concerto_stage');
 	if (is_front_page() && is_home()) {
@@ -54,6 +59,9 @@ function concerto_hook_meta() {
 	} // else individual POST: handled by SEO extension?
 }
 
+/**
+ * Scripts for the Theme
+ */
 function concerto_hook_scripts() {
 	$stage = get_option('concerto_stage');
 	if (get_option('concerto_' . $stage . '_general_scripts_libraries_jquery') == 1) {
@@ -65,6 +73,9 @@ function concerto_hook_scripts() {
 	}
 }
 
+/**
+ * Additional Head Scripts
+ */
 function concerto_hook_scripts_head() {
 	$stage = get_option('concerto_stage');
 	if (get_option('concerto_' . $stage . '_general_scripts_head')) {
@@ -75,6 +86,9 @@ function concerto_hook_scripts_head() {
 	}
 }
 
+/**
+ * Additional Footer Scripts
+ */
 function concerto_hook_scripts_footer() {
 	$stage = get_option('concerto_stage');
 	if (get_option('concerto_' . $stage . '_general_scripts_footer')) {
@@ -211,6 +225,9 @@ function concerto_hook_default_access() {
 
 }
 
+/**
+ * Filter for Nav items
+ */
 function concerto_filter_additional_nav_items($items) {
 	$stage = get_option('concerto_stage');
 	$feed = (get_option('concerto_' . $stage . '_general_syndication_url')) ? get_option('concerto_' . $stage . '_general_syndication_url'): get_bloginfo('rss2_url');
@@ -276,6 +293,9 @@ function concerto_hook_default_content() {
 	require CONCERTO_HTML_DIR . 'content.php';
 }
 
+/**
+ * Default Content
+ */
 function concerto_hook_default_content_main() {
 ?>
 <section id="content">
@@ -286,12 +306,18 @@ function concerto_hook_default_content_main() {
 <?php
 }
 
+/**
+ * Default Sidebar 1
+ */
 function concerto_hook_default_content_sidebar1() {
 	if (!CONCERTO_CONFIG_CUSTOM) {
 		do_action('concerto_hook_sidebar1'); 
 	}
 }
 
+/**
+ * Default Sidebar 2
+ */
 function concerto_hook_default_content_sidebar2() {
 	if (!CONCERTO_CONFIG_CUSTOM) {
 		do_action('concerto_hook_sidebar2'); 
@@ -369,6 +395,11 @@ function concerto_hook_default_footer_attribution() {
 	}
 }
 
+/**
+ * Default Footer
+ *
+ * @revisit
+ */
 function concerto_hook_default_footer() {
 ?>
 <div class="clear"></div>

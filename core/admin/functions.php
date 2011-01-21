@@ -1,5 +1,22 @@
 <?php
+/*!
+ * Concerto - a fresh and new wordpress theme framework for everyone
+ *
+ * http://themeconcert.com/concerto
+ *
+ * @version: 1.0
+ * @package: ConcertoAdmin
+ *
+ * [WARNING]
+ * This is restricted file and should not be modified in any way(unless you know what
+ * you are doing).
+ */
 
+/**
+ * Export Concerto Options
+ *
+ * Creates a JSON file for the selected configuration context
+ */
 function exportConcertoOptions($stage = 'default', $context = null){
 	// Should add a hook somewhere to support custom option exports
 	if (!is_array($context) && $context != null) {
@@ -66,6 +83,11 @@ function exportConcertoOptions($stage = 'default', $context = null){
 	die();
 }
 
+/**
+ * Import Concerto Options
+ *
+ * Reads a JSON file and updates the configurations based on it's values
+ */
 function importConcertoOptions($file = null, $stage = 'default', $context = null) {
 	if (is_readable($file)) {
 		if (!is_array($context)) {
@@ -93,11 +115,21 @@ function importConcertoOptions($file = null, $stage = 'default', $context = null
 	}
 }
 
+/**
+ * Restore Concerto Options
+ *
+ * Restores Default Configuration Options for Concerto depending on the Context
+ */
 function restoreConcertoOptions($stage = 'default', $context = null) {
 	include CONCERTO_LIBS . 'defaults.php';
 	defaultOptions($stage, $context);
 }
 
+/**
+ * Create Stage
+ *
+ * Creates a stage for concerto by name or through a stage archive
+ */
 function createStage($name, $file = null) {
 	// Check if a stage of the same name exists
 	global $stages;
@@ -139,6 +171,11 @@ function createStage($name, $file = null) {
 	return 2; // Stage folder not writable
 }
 
+/**
+ * Repair Stage Folder
+ *
+ * Restores Default Stage files to the default stage folder
+ */
 function repairStageFolder() {
 	createStage('default');
 }

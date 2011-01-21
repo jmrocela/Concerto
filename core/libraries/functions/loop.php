@@ -1,6 +1,19 @@
 <?php
+/*!
+ * Concerto - a fresh and new wordpress theme framework for everyone
+ *
+ * http://themeconcert.com/concerto
+ *
+ * @version: 1.0
+ * @package: LoopAPI
+ *
+ * [WARNING]
+ * This is restricted file and should not be modified in any way(unless you know what
+ * you are doing).
+ */
+ 
 /**
- * Concerto LOOP API
+ * LOOP API
  *
  * This is the base class for calling loops within concerto. Simple extend the class and call it
  * on the loop hook and you can easily customize your loops

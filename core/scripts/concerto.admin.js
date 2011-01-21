@@ -1,3 +1,9 @@
+/*!
+ * Javascript Backend file
+ *
+ * @version: 1.0
+ * @package: scripts
+ */
 function Confirm(options) {
 	var $ = jQuery;
 	var title = (options.title) ? options.title: 'Are you sure';

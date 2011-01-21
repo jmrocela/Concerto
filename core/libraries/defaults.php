@@ -1,5 +1,22 @@
 <?php
+/*!
+ * Concerto - a fresh and new wordpress theme framework for everyone
+ *
+ * http://themeconcert.com/concerto
+ *
+ * @version: 1.0
+ * @package: Concerto
+ *
+ * [WARNING]
+ * This is restricted file and should not be modified in any way(unless you know what
+ * you are doing).
+ */
 
+/**
+ * Default Options
+ *
+ * Method that has all the default values for Installation
+ */
 function defaultOptions($stage = 'default', $context = null, $install  = false) {
 	if (!is_array($context)) {
 		if ($context != null) {

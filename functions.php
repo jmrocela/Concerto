@@ -1,12 +1,16 @@
 <?php
 /*!
- * Concerto 0.9 alpha
+ * Concerto - a fresh and new wordpress theme framework for everyone
+ *
  * http://themeconcert.com/concerto
+ *
+ * @version: 1.0
+ * @package: Concerto
  *
  * [WARNING]
  * Includes and Instantiates libraries needed for the Concerto theme to work properly. It is advised
  * that you steer clear from editing this file as it may cause problems upon future updates. for custom
- * funcitons to your file, please see functions.php under your respective /stage folder.
+ * functions to your stages, please see functions.php under your respective /stage folder.
  */
  
 // We define the Theme constants
@@ -40,8 +44,9 @@ if (is_admin()) {
 
 }
 
+// Install the theme configuration upon first activation
 function concerto_install () {
-	if (get_option('concerto_is_installed') != 1) {
+	if (get_current_theme() == 'Concerto' && get_option('concerto_is_installed') != 1) {
 		require_once CONCERTO_LIBS . 'defaults.php';
 		defaultOptions('default', null, true);
 		update_option('concerto_is_installed', 1);

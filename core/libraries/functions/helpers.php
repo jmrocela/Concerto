@@ -1,5 +1,20 @@
 <?php
+/*!
+ * Concerto - a fresh and new wordpress theme framework for everyone
+ *
+ * http://themeconcert.com/concerto
+ *
+ * @version: 1.0
+ * @package: Concerto
+ *
+ * [WARNING]
+ * This is restricted file and should not be modified in any way(unless you know what
+ * you are doing).
+ */
 
+/**
+ * Build the Concerto Navigation
+ */
 function buildConcertoNavigation() {
 	$stage = get_option('concerto_stage');
 
@@ -17,6 +32,9 @@ function buildConcertoNavigation() {
 	echo $pre . $menu . $post;
 }
 
+/**
+ * Custom Walker Class for Tags
+ */
 class Walker_Tag extends Walker {
 
 	var $tree_type = 'post_tag';
