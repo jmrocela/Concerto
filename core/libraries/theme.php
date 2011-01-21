@@ -1,6 +1,6 @@
 <?php
 /*!
- * Concerto 0.70 alpha
+ * Concerto 0.9 alpha
  * http://themeconcert.com/concerto
  *
  * [WARNING]

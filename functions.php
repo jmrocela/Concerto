@@ -1,6 +1,6 @@
 <?php
 /*!
- * Concerto 0.70 alpha
+ * Concerto 0.9 alpha
  * http://themeconcert.com/concerto
  *
  * [WARNING]
@@ -11,7 +11,7 @@
  
 // We define the Theme constants
 define('_DS', DIRECTORY_SEPARATOR);
-define('CONCERTO_VERSION', '0.70 alpha');
+define('CONCERTO_VERSION', '0.9 alpha');
 define('CONCERTO_ROOT', dirname(__FILE__) . _DS);
 define('CONCERTO_STAGES', CONCERTO_ROOT . 'stages' . _DS);
 define('CONCERTO_CORE', CONCERTO_ROOT . 'core' . _DS);
