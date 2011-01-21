@@ -73,8 +73,6 @@ function admin_design() {
 				file_types : "*.jpg;*.png;*.gif;*.bmp",
 				file_types_description : "Image files only",
 				file_queue_limit : "1",
-				
-				debug: true,
 
 				button_placeholder_id : "spanButtonPlaceholder",
 				button_text: '<span class="changeheader">Change Header</span>',

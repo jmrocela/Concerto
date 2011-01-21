@@ -111,7 +111,7 @@ function admin_tools_box_importconfiguration () {
 					$('#swfupload-control').swfupload({
 						upload_url: ajaxurl + '?action=concerto_upload',
 						flash_url : "<?php bloginfo('url'); ?>/wp-includes/js/swfupload/swfupload.swf",
-						post_params: {concerto_action: "importconfig", _concerto_nonce: "<?php echo wp_create_nonce('CONCERTO_UPLOAD'); ?>"},
+						post_params: {concerto_action: "importconfig", _concerto_nonce: "<?php echo get_option('concerto_upload_nonce'); ?>"},
 						
 						file_post_name: "CONCERTO_UPLOAD",
 						file_size_limit : "2 MB",
@@ -230,7 +230,7 @@ function admin_tools_box_newstage () {
 				$('#swfupload-control2').swfupload({
 					upload_url: ajaxurl + '?action=concerto_upload',
 					flash_url : "<?php bloginfo('url'); ?>/wp-includes/js/swfupload/swfupload.swf",
-					post_params: {concerto_action: "newstage", _concerto_nonce: "<?php echo wp_create_nonce('CONCERTO_UPLOAD'); ?>"},
+					post_params: {concerto_action: "newstage", _concerto_nonce: "<?php echo get_option('concerto_upload_nonce'); ?>"},
 					
 					file_post_name: "CONCERTO_UPLOAD",
 					file_size_limit : "10 MB",
