@@ -16,7 +16,7 @@
  * Build the Concerto Navigation
  */
 function buildConcertoNavigation() {
-	$stage = get_option('concerto_stage');
+	global $stage;
 
 	$container = (CONCERTO_CONFIG_HTML == 5) ? 'nav': 'div';
 	$pre = '<' . $container . ' class="menu"><ul>';

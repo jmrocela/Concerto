@@ -26,6 +26,7 @@ class Concerto {
 	 * Sets up the Theme for use
 	 */
 	public function __construct($mode = false) {
+		global $stage;
 		// We then Setup the Theme to be displayed
 		$stage = get_option('concerto_stage');
 		define('CONCERTO_CONFIG_CUSTOM', ($mode == true) ? true: false); // We are using a Custom Page

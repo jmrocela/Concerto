@@ -44,7 +44,7 @@ function concerto_hook_title() {
  * Homepage Meta
  */
 function concerto_hook_meta() {
-	$stage = get_option('concerto_stage');
+	global $stage;
 	if (is_front_page() && is_home()) {
 		if (get_option('concerto_' . $stage . '_general_homepage_description')) {
 		?>
@@ -63,7 +63,7 @@ function concerto_hook_meta() {
  * Scripts for the Theme
  */
 function concerto_hook_scripts() {
-	$stage = get_option('concerto_stage');
+	global $stage;
 	if (get_option('concerto_' . $stage . '_general_scripts_libraries_jquery') == 1) {
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('concerto-base', get_bloginfo('stylesheet_directory') . '/core/scripts/concerto.js');
@@ -77,7 +77,7 @@ function concerto_hook_scripts() {
  * Additional Head Scripts
  */
 function concerto_hook_scripts_head() {
-	$stage = get_option('concerto_stage');
+	global $stage;
 	if (get_option('concerto_' . $stage . '_general_scripts_head')) {
 		$hasScript = strpos(get_option('concerto_' . $stage . '_general_scripts_head'), '<script');
 		echo ($hasScript === false) ? '<script type="text/javascript">': '';
@@ -90,7 +90,7 @@ function concerto_hook_scripts_head() {
  * Additional Footer Scripts
  */
 function concerto_hook_scripts_footer() {
-	$stage = get_option('concerto_stage');
+	global $stage;
 	if (get_option('concerto_' . $stage . '_general_scripts_footer')) {
 		$hasScript = strpos(get_option('concerto_' . $stage . '_general_scripts_footer'), '<script');
 		echo ($hasScript === false) ? '<script type="text/javascript">': '';
@@ -103,7 +103,7 @@ function concerto_hook_scripts_footer() {
  * Syndication link in the <head> tag
  */
 function concerto_hook_syndication() {
-	$stage = get_option('concerto_stage');
+	global $stage;
 	if (get_option('concerto_' . $stage . '_general_syndication_url')) {
 	?>
 		<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> &raquo; Feed" href="<?php echo get_option('concerto_' . $stage . '_general_syndication_url'); ?>" />
@@ -119,7 +119,7 @@ function concerto_hook_syndication() {
  * Site Favicon
  */
 function concerto_hook_favicon() {
-	$stage = get_option('concerto_stage');
+	global $stage;
 	if (get_option('concerto_' . $stage . '_general_favicon')) {
 	?>
 	<link rel="shortcut icon" href="<?php echo get_option('concerto_general_favicon'); ?>" type="image/x-icon" />
@@ -169,7 +169,7 @@ function concerto_hook_access() {
  * Default Branding Mark up: Site Heading
  */
 function concerto_hook_default_branding_site_title() {
-	$stage = get_option('concerto_stage');
+	global $stage;
 	if (get_option('concerto_' . $stage . '_design_header_mode') == 2 && get_option('concerto_' . $stage . '_design_header_image')) {
 	?>
 		<div id="site-logo">
@@ -197,7 +197,7 @@ function concerto_hook_default_branding_site_title() {
  * Default Branding Mark up: Site Description
  */
 function concerto_hook_default_branding_site_description() {
-	$stage = get_option('concerto_stage');
+	global $stage;
 	if ((!get_option('concerto_' . $stage . '_design_header_image')) || (get_option('concerto_' . $stage . '_design_header_mode') == 1) || (get_option('concerto_' . $stage . '_design_header_mode') == 2 && get_option('concerto_' . $stage . '_design_header_image')) || (get_option('concerto_' . $stage . '_design_header_mode') == 3 && get_option('concerto_' . $stage . '_design_header_image'))) {
 		if (get_option('concerto_' . $stage . '_design_header_description') == 1) {
 		?>
@@ -211,7 +211,7 @@ function concerto_hook_default_branding_site_description() {
  * Default Menu
  */
 function concerto_hook_default_access() {
-	$stage = get_option('concerto_stage');
+	global $stage;
 	$container = (CONCERTO_CONFIG_HTML == 5) ? 'nav': 'div';
 
 	if (get_option('concerto_' . $stage . '_general_menu') == 'default') {
@@ -229,7 +229,7 @@ function concerto_hook_default_access() {
  * Filter for Nav items
  */
 function concerto_filter_additional_nav_items($items) {
-	$stage = get_option('concerto_stage');
+	global $stage;
 	$feed = (get_option('concerto_' . $stage . '_general_syndication_url')) ? get_option('concerto_' . $stage . '_general_syndication_url'): get_bloginfo('rss2_url');
 	
 	if (is_home()) {
@@ -358,7 +358,7 @@ function concerto_hook_default_before_footer() {}
  * Default Footer Copyright
  */
 function concerto_hook_default_footer_copyright() {
-	$stage = get_option('concerto_stage');
+	global $stage;
 	if (get_option('concerto_' . $stage . '_general_footer_copyright') == 1) {
 	?>
 	<div id="site-info">
@@ -380,7 +380,7 @@ function concerto_hook_default_footer_copyright() {
  * Default Footer Attribution
  */
 function concerto_hook_default_footer_attribution() {
-	$stage = get_option('concerto_stage');
+	global $stage;
 	if (get_option('concerto_' . $stage . '_general_footer_attribution') == 1) {
 	?>
 	<div id="site-generator">
@@ -402,7 +402,7 @@ function concerto_hook_default_footer_attribution() {
  * Default Footer HTML5
  */
 function concerto_hook_default_footer_html5() {
-	$stage = get_option('concerto_stage');
+	global $stage;
 	if (get_option('concerto_' . $stage . '_general_footer_html5') == 1 && get_option('concerto_' . $stage . '_design_html_version') == 5) {
 	?>
 	<div id="site-html5"><a href="http://www.w3.org/html/logo/"><img src="<?php bloginfo('stylesheet_directory'); ?>/core/images/html5-badge-h-css3-semantics.png" alt="HTML5 Powered with CSS3 / Styling, and Semantics" title="HTML5 Powered with CSS3 / Styling, and Semantics"/></a></div>

@@ -38,16 +38,16 @@ function admin_design() {
 		<div class="right">
 			<div id="concerto_stage">
 				<?php
-					global $stages;
+					global $stages, $stage;
 					if (!empty($stages->stages)) {
 				?>
 				Active Stage
 				<select name="concerto_stage">
 					<?php
 						$st = $stages->stages;
-						foreach ($st as $stage) {
+						foreach ($st as $sta) {
 							?>
-								<option value="<?php echo strtolower($stage['name']); ?>"><?php echo $stage['name']; ?></option>
+								<option value="<?php echo strtolower($sta['name']); ?>"<?php echo (strtolower($sta['name']) == strtolower($stage)) ? ' selected': ''; ?>><?php echo $sta['name']; ?></option>
 							<?php
 						}
 					?>
@@ -264,7 +264,7 @@ function admin_design() {
  * Markup options for Concerto
  */
 function admin_design_box_markup () {
-	$stage = get_option('concerto_stage');
+	global $stage;
 ?>
 		<div class="box box1column" id="concerto_markup">
 			<h3>Markup</h3>
@@ -283,7 +283,7 @@ function admin_design_box_markup () {
  * Header options for Concerto. Upload images are enabled
  */
 function admin_design_box_header () {
-	$stage = get_option('concerto_stage');
+	global $stage;
 ?>
 		<div class="box box2columns" id="concerto_header_type">
 			<h3>Header</h3>
@@ -320,7 +320,7 @@ function admin_design_box_header () {
  * Layout options for Concerto
  */
 function admin_design_box_layout () {
-	$stage = get_option('concerto_stage');
+	global $stage;
 ?>
 		<div class="box box1column" id="concerto_layout">
 			<h3>Page Layout</h3>
@@ -339,7 +339,7 @@ function admin_design_box_layout () {
  * Fonts, Colors and Border options for Concerto
  */
 function admin_design_box_fontscolorsborders () {
-	$stage = get_option('concerto_stage');
+	global $stage;
 ?>
 		<div class="box box1column" id="concerto_fontscolorsborders">
 			<h3>Fonts, Colors and Borders  <a href="javascript:;" class="content-toggle expand all"></a></h3>
@@ -984,7 +984,7 @@ function admin_design_box_fontscolorsborders () {
  * Column options for Concerto
  */
 function admin_design_box_columns () {
-	$stage = get_option('concerto_stage');
+	global $stage;
 ?>
 		<div class="box box1column" id="concerto_columns">
 			<h3>Columns</h3>
@@ -1033,7 +1033,7 @@ function admin_design_box_columns () {
  * Article options for Concerto
  */
 function admin_design_box_articles () {
-	$stage = get_option('concerto_stage');
+	global $stage;
 ?>
 		<div class="box box1column" id="concerto_articles">
 			<h3>Articles</h3>
@@ -1081,7 +1081,7 @@ function admin_design_box_articles () {
  * Comments options for Concerto
  */
 function admin_design_box_comments () {
-	$stage = get_option('concerto_stage');
+	global $stage;
 ?>
 		<div class="box box1column" id="concerto_comments">
 			<h3>Comments</h3>
@@ -1129,7 +1129,7 @@ function admin_design_box_comments () {
  * Eyecandy options for Concerto
  */
 function admin_design_box_eyecandy () {
-	$stage = get_option('concerto_stage');
+	global $stage;
 ?>
 		<div class="box box1column" id="concerto_eyecandy">
 			<h3>EyeCandy</h3>

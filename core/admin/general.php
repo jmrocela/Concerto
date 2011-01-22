@@ -38,16 +38,16 @@ function admin_general() {
 		<div class="right">
 			<div id="concerto_stage">
 				<?php
-					global $stages;
+					global $stages, $stage;
 					if (!empty($stages->stages)) {
 				?>
 				Active Stage
 				<select name="concerto_stage">
 					<?php
 						$st = $stages->stages;
-						foreach ($st as $stage) {
+						foreach ($st as $sta) {
 							?>
-								<option value="<?php echo strtolower($stage['name']); ?>"><?php echo $stage['name']; ?></option>
+								<option value="<?php echo strtolower($sta['name']); ?>"<?php echo (strtolower($sta['name']) == strtolower($stage)) ? ' selected': ''; ?>><?php echo $sta['name']; ?></option>
 							<?php
 						}
 					?>
@@ -175,7 +175,7 @@ function admin_general() {
  * Navigation options for Concerto
  */
 function admin_general_box_navigation() {
-	$stage = get_option('concerto_stage');
+	global $stage;
 ?>
 	<div class="box box1column" id="concerto_navigation_type">
 		<h3>Navigation</h3>
@@ -242,7 +242,7 @@ function admin_general_box_navigation() {
  * Meta options for Concerto
  */
 function admin_general_box_home_meta() {
-	$stage = get_option('concerto_stage');
+	global $stage;
 ?>
 	<div class="box box1column" id="concerto_home_meta">
 		<h3>Homepage Meta</h3>
@@ -262,7 +262,7 @@ function admin_general_box_home_meta() {
  * Favicon options for Concerto
  */
 function admin_general_box_favicon() {
-	$stage = get_option('concerto_stage');
+	global $stage;
 ?>
 	<div class="box box1column" id="concerto_favicon">
 		<h3>Favicon</h3>
@@ -286,7 +286,7 @@ function admin_general_box_favicon() {
  * Syndication URL options for Concerto
  */
 function admin_general_box_syndication_url() {
-	$stage = get_option('concerto_stage');
+	global $stage;
 ?>
 	<div class="box box1column" id="concerto_syndication_url">
 		<h3>RSS URL</h3>
@@ -304,7 +304,7 @@ function admin_general_box_syndication_url() {
  * Personal options for Concerto
  */
 function admin_general_box_personal() {
-	$stage = get_option('concerto_stage');
+	global $stage;
 ?>
 	<div class="box box1column" id="concerto_personal">
 		<h3>Personal Information</h3>
@@ -332,7 +332,7 @@ function admin_general_box_personal() {
  * Scripts options for Concerto
  */
 function admin_general_box_scripts() {
-	$stage = get_option('concerto_stage');
+	global $stage;
 ?>
 	<div class="box box1column" id="concerto_scripts">
 		<h3>Additional Scripts</h3>
@@ -358,7 +358,7 @@ function admin_general_box_scripts() {
  * Libraries options for Concerto
  */
 function admin_general_box_javascript_libraries() {
-	$stage = get_option('concerto_stage');
+	global $stage;
 ?>
 	<div class="box box1column" id="concerto_javascript_libraries">
 		<h3>Javascript Libraries</h3>
@@ -377,7 +377,7 @@ function admin_general_box_javascript_libraries() {
  * Copyright options for Concerto
  */
 function admin_general_box_copyright() {
-	$stage = get_option('concerto_stage');
+	global $stage;
 ?>
 	<div class="box box1column" id="concerto_copyright">
 		<h3>Copyright</h3>
@@ -388,7 +388,7 @@ function admin_general_box_copyright() {
 			<p><label><input type="checkbox" name="concerto_<?php echo $stage; ?>_general_footer_attribution" value="1" <?php echo (get_option('concerto_' . $stage . '_general_footer_attribution') == 1) ? 'checked ': '';?>/> enable the Attribution line</label></p>
 			<input type="text" class="text" name="concerto_<?php echo $stage; ?>_general_footer_attribution_line" value="<?php echo get_option('concerto_' . $stage . '_general_footer_attribution_line'); ?>" />
 			<?php
-			$stage = get_option('concerto_stage');
+			global $stage;
 			if (get_option('concerto_' . $stage . '_design_html_version') == 5) {
 			?>
 			<p><label><input type="checkbox" name="concerto_<?php echo $stage; ?>_general_footer_html5" value="1" <?php echo (get_option('concerto_' . $stage . '_general_footer_html5') == 1) ? 'checked ': '';?>/> display HTML5 Logo</label></p>
@@ -406,7 +406,7 @@ function admin_general_box_copyright() {
  * Extensions options for Concerto
  */
 function admin_general_box_extensions() {
-	$stage = get_option('concerto_stage');
+	global $stage;
 ?>
 	<div class="box box1column" id="concerto_extensions">
 		<h3>Theme Extensions</h3>

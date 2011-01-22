@@ -68,7 +68,7 @@ function concerto_hook_default_article_title () {
  * Article Meta
  */
 function concerto_hook_default_article_byline () {
-	$stage = get_option('concerto_stage');
+	global $stage;
 	$postedon = 'Posted on';
 	$by = 'by';
 	?>
@@ -93,7 +93,7 @@ function concerto_hook_default_article_byline () {
  * Article Content
  */
 function concerto_hook_default_article_content () {
-	$stage = get_option('concerto_stage');
+	global $stage;
 	if ((is_home() && is_front_page()) && get_option('concerto_' . $stage . '_design_posts_excerpts') == 1) {
 		the_excerpt();
 	} else {
@@ -105,7 +105,7 @@ function concerto_hook_default_article_content () {
  * Article Content
  */
 function concerto_hook_default_article_excerpt () {
-	$stage = get_option('concerto_stage');
+	global $stage;
 	if (get_option('concerto_' . $stage . '_design_archive_display') == 1) {
 		the_excerpt();
 	} else {
@@ -132,7 +132,7 @@ function concerto_hook_default_article_comments () {
  */
 function concerto_hook_default_article_meta () {
 	global $post;
-	$stage = get_option('concerto_stage');
+	global $stage;
 	$postedin = 'Posted in';
 	$tagged = 'Tagged';
 	$comments_text = array('Leave a Comment', '1 Comment', '% Comments', '', 'Comments Off');
@@ -209,7 +209,7 @@ function concerto_fix_comment_number($count) {
  * Markup inside the article, after the utility <div>
  */
 function concerto_hook_default_after_article () {
-	$stage = get_option('concerto_stage');
+	global $stage;
 	if (is_single() && get_option('concerto_' . $stage . '_design_posts_navigation') == 1) {
 	?>
 	<div id="nav-below" class="navigation">
@@ -230,7 +230,7 @@ function concerto_hook_default_after_content () {}
  */
 function concerto_hook_default_article_navigation () {
 	global $wp_query;
-	$stage = get_option('concerto_stage');
+	global $stage;
 	if (!is_single()) {
 		if (get_option('concerto_' . $stage . '_design_paginate') == 1) {
 			echo numbered_page_nav();

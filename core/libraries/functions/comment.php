@@ -32,7 +32,7 @@ function concerto_hook_default_commentlist () {
  * Default Comment Arrangements
  */
 function concerto_hook_default_comments () {
-	$stage = get_option('concerto_stage');
+	global $stage;
 	$index = get_option('concerto_' . $stage . '_design_display_comments_index');
 	$index = ($index) ? $index: array(0,1,2);
 	foreach ($index as $i) {
@@ -61,7 +61,7 @@ function concerto_hook_default_before_comment () {}
  */
 function concerto_hook_default_comment_vcard () {
 	global $comment;
-	$stage = get_option('concerto_stage');
+	global $stage;
 	if (get_option('concerto_' . $stage . '_design_comments_display_avatar') == 1) {
 		echo get_avatar($comment, get_option('concerto_' . $stage . '_design_comments_avatar_size'));
 	}
@@ -75,7 +75,7 @@ function concerto_hook_default_comment_vcard () {
  */
 function concerto_hook_default_comment_metadata () {
 	global $comment;
-	$stage = get_option('concerto_stage');
+	global $stage;
 	if (get_option('concerto_' . $stage . '_design_comments_display_date') == 1 || get_option('concerto_' . $stage . '_design_comments_display_time') == 1) {
 	?>
 	<a href="<?php echo esc_url(get_comment_link($comment->comment_ID)); ?>">
@@ -152,7 +152,7 @@ function concerto_default_comment_pings () {
  * Comment Pingback
  */
 function concerto_hook_default_pinglist () {
-	$stage = get_option('concerto_stage');
+	global $stage;
 	comment_author_link();
 	if (get_option('concerto_' . $stage . '_design_comments_trackback_date') == 1) {
 		echo ' on ' . get_comment_date() . ' ';

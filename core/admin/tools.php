@@ -36,16 +36,16 @@ function admin_tools() {
 		<div class="right">
 			<div id="concerto_stage">
 				<?php
-					global $stages;
+					global $stages, $stage;
 					if (!empty($stages->stages)) {
 				?>
 				Active Stage
 				<select name="concerto_stage" disabled>
 					<?php
 						$st = $stages->stages;
-						foreach ($st as $stage) {
+						foreach ($st as $sta) {
 							?>
-								<option value="<?php echo strtolower($stage['name']); ?>"><?php echo $stage['name']; ?></option>
+								<option value="<?php echo strtolower($sta['name']); ?>"<?php echo (strtolower($sta['name']) == strtolower($stage)) ? ' selected': ''; ?>><?php echo $sta['name']; ?></option>
 							<?php
 						}
 					?>
