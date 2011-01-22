@@ -57,6 +57,7 @@ function defaultOptions($stage = 'default', $context = null, $install  = false) 
 		update_option('concerto_' . $stage . '_general_footer_copyright_line', '');
 		update_option('concerto_' . $stage . '_general_footer_attribution', 1);
 		update_option('concerto_' . $stage . '_general_footer_attribution_line', '');
+		update_option('concerto_' . $stage . '_general_footer_html5', 1);
 	}
 
 	if ($context == null || in_array('design', (array) $context)) {

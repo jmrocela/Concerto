@@ -387,6 +387,14 @@ function admin_general_box_copyright() {
 			<input type="text" class="text" name="concerto_<?php echo $stage; ?>_general_footer_copyright_line" value="<?php echo get_option('concerto_' . $stage . '_general_footer_copyright_line'); ?>" />
 			<p><label><input type="checkbox" name="concerto_<?php echo $stage; ?>_general_footer_attribution" value="1" <?php echo (get_option('concerto_' . $stage . '_general_footer_attribution') == 1) ? 'checked ': '';?>/> enable the Attribution line</label></p>
 			<input type="text" class="text" name="concerto_<?php echo $stage; ?>_general_footer_attribution_line" value="<?php echo get_option('concerto_' . $stage . '_general_footer_attribution_line'); ?>" />
+			<?php
+			$stage = get_option('concerto_stage');
+			if (get_option('concerto_' . $stage . '_design_html_version') == 5) {
+			?>
+			<p><label><input type="checkbox" name="concerto_<?php echo $stage; ?>_general_footer_html5" value="1" <?php echo (get_option('concerto_' . $stage . '_general_footer_html5') == 1) ? 'checked ': '';?>/> display HTML5 Logo</label></p>
+			<?php
+			}
+			?>
 		</div>
 	</div>
 <?php

@@ -355,7 +355,7 @@ function concerto_hook_default_searchform() {
 function concerto_hook_default_before_footer() {}
 
 /**
- * Default Footer Content
+ * Default Footer Copyright
  */
 function concerto_hook_default_footer_copyright() {
 	$stage = get_option('concerto_stage');
@@ -376,6 +376,9 @@ function concerto_hook_default_footer_copyright() {
 	}
 }
 
+/**
+ * Default Footer Attribution
+ */
 function concerto_hook_default_footer_attribution() {
 	$stage = get_option('concerto_stage');
 	if (get_option('concerto_' . $stage . '_general_footer_attribution') == 1) {
@@ -391,6 +394,18 @@ function concerto_hook_default_footer_attribution() {
 		}
 		?>
 	</div>
+	<?php
+	}
+}
+
+/**
+ * Default Footer HTML5
+ */
+function concerto_hook_default_footer_html5() {
+	$stage = get_option('concerto_stage');
+	if (get_option('concerto_' . $stage . '_general_footer_html5') == 1 && get_option('concerto_' . $stage . '_design_html_version') == 5) {
+	?>
+	<div id="site-html5"><a href="http://www.w3.org/html/logo/"><img src="<?php bloginfo('stylesheet_directory'); ?>/core/images/html5-badge-h-css3-semantics.png" alt="HTML5 Powered with CSS3 / Styling, and Semantics" title="HTML5 Powered with CSS3 / Styling, and Semantics"/></a></div>
 	<?php
 	}
 }
