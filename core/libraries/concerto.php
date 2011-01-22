@@ -157,6 +157,8 @@ class ConcertoStages {
 	 */
 	public function __construct() {
 		$this->stages = $this->get();
+		// Load for use
+		$this->load();
 	}
 
 	/**
@@ -183,7 +185,24 @@ class ConcertoStages {
 			}
 		}
 		return $stage;
-		// Throw an Error: STAGE FOLDER IS MISSING
+	}
+
+	/**
+	 * Load
+	 *
+	 * Load the current stage
+	 *
+	 * @return void
+	 */
+	public function load() {
+		$stage = get_option('concerto_stage');
+		$dir = CONCERTO_STAGES . $stage . _DS;
+		if (file_exists($dir . 'ajax.php')) {
+			require_once $dir . 'ajax.php';
+		}
+		if (file_exists($dir . 'functions.php')) {
+			require_once $dir . 'functions.php';
+		}
 	}
 
 }

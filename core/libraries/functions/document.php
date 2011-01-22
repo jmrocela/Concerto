@@ -16,13 +16,22 @@
  * HTML that goes onto the <head> tag
  */
 function concerto_hook_head() {
-?>
+	global $stage;
+	?>
 	<!-- Concerto Theme Styles -->
 	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_url'); ?>" />
-	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/core/html/css.php?v=<?php echo time(); ?>" />
-	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/core/html/fixes.css?v=<?php echo time(); ?>" />
+	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/core/html/css.php?<?php echo time(); ?>" />
+	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/core/html/fixes.css?<?php echo time(); ?>" />
+	<?php
+		$dir = CONCERTO_STAGES . $stage . _DS;
+		if (file_exists($dir . 'style.css')) {
+	?>
+	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/stages/<?php echo $stage; ?>/style.css?<?php echo time(); ?>" />
+	<?php
+		}
+	?>
 	<!-- Concerto Theme Styles -->
-<?php
+	<?php
 }
 
 /**

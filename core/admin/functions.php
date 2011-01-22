@@ -155,6 +155,7 @@ function createStage($name, $file = null) {
 							$zip->close();
 							if ($zip->locateName('options.cfwconf')) { // we read the configuration file from the stage
 								importConcertoOptions($dir . _DS . 'options.cfwconf', strtolower($name));
+								@unlink($dir . _DS . 'options.cfwconf');
 							}
 							return 1;
 						}
