@@ -12,9 +12,6 @@
  * you are doing).
  */
 
-// Notices
-add_action('concerto_admin_notices', 'admin_notices', 20);
-
 // General
 add_action('concerto_admin_general', 'admin_general_box_navigation', 40);
 add_action('concerto_admin_general', 'admin_general_box_home_meta', 60);

@@ -27,8 +27,8 @@ class Concerto {
 	 */
 	public function __construct($mode = false) {
 		global $stage;
-		// We then Setup the Theme to be displayed
 		$stage = get_option('concerto_stage');
+		// We then Setup the Theme to be displayed
 		define('CONCERTO_CONFIG_CUSTOM', ($mode == true) ? true: false); // We are using a Custom Page
 		define('CONCERTO_CONFIG_HTML', (get_option('concerto_' . $stage . '_design_html_version') == 4) ? 4: 5); // Determine the HTML version used
 		define('CONCERTO_CONFIG_LAYOUT', (get_option('concerto_' . $stage . '_design_page_structure') == 'wrapped') ? 'wrapped': 'fullwidth'); // Determine the Layout of the Theme

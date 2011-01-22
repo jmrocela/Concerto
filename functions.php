@@ -15,7 +15,7 @@
  
 // We define the Theme constants
 define('_DS', DIRECTORY_SEPARATOR);
-define('CONCERTO_VERSION', '0.9 alpha');
+define('CONCERTO_VERSION', '1.0');
 define('CONCERTO_ROOT', dirname(__FILE__) . _DS);
 define('CONCERTO_STAGES', CONCERTO_ROOT . 'stages' . _DS);
 define('CONCERTO_CORE', CONCERTO_ROOT . 'core' . _DS);
@@ -46,7 +46,7 @@ if (is_admin()) {
 
 // Install the theme configuration upon first activation
 function concerto_install () {
-	if (get_current_theme() == 'Concerto' && get_option('concerto_is_installed') != 1) {
+	if (get_current_theme() == 'Concerto' && get_option('concerto_is_installed') != 1) {		
 		require_once CONCERTO_LIBS . 'defaults.php';
 		defaultOptions('default', null, true);
 		update_option('concerto_is_installed', 1);

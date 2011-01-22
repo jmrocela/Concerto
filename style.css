@@ -100,7 +100,7 @@ p { margin-bottom: 20px; }
 #footer { padding: 20px 0; font-size: 11px; border-top: 1px solid; border-color: #dddddd; background-color: #fdfdfd; color: #666666; clear: both; }
 #footer #site-info { float: left; }
 #footer #site-generator { float: right; }
-#footer #site-html5 { float: right; margin-left: 10px; margin-top: -10px; }
+#footer #site-html5 {  float: left; margin-top: -10px; margin-right: 10px; }
 #footer #wp-footer { clear: both; }
 
 /**

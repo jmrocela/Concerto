@@ -62,7 +62,6 @@ function admin_general() {
 			</div>
 			<p>
 				You are running <strong>Concerto <?php echo CONCERTO_VERSION; ?></strong>.
-				<?php if (get_option('concerto_need_update') == 1) { ?><em><a href="http://themeconcert.com/members/update/" target="_new">Upgrade your Copy</a></em><?php } ?>
 			</p>
 		</div>
 		<div class="clear"></div>
