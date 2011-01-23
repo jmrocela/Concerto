@@ -197,33 +197,6 @@ function defaultOptions($stage = 'default', $context = null, $install  = false) 
 		update_option('concerto_' . $stage . '_design_glow', 0);
 		update_option('concerto_' . $stage . '_design_engrave', 0);
 	}
-
-	if ($context == null || in_array('seo', (array) $context)) {
-		update_option('concerto_' . $stage . '_extensions_seo_enabled', 1);
-			update_option('concerto_' . $stage . '_seo_enable_canonical', 0);
-			update_option('concerto_' . $stage . '_seo_child_noindex', 0);
-			update_option('concerto_' . $stage . '_seo_child_nofollow', 0);
-			update_option('concerto_' . $stage . '_seo_child_noarchive', 0);
-			update_option('concerto_' . $stage . '_seo_category_noindex', 0);
-			update_option('concerto_' . $stage . '_seo_category_nofollow', 0);
-			update_option('concerto_' . $stage . '_seo_category_noarchive', 0);
-			update_option('concerto_' . $stage . '_seo_tag_noindex', 0);
-			update_option('concerto_' . $stage . '_seo_tag_nofollow', 0);
-			update_option('concerto_' . $stage . '_seo_tag_noarchive', 0);
-			update_option('concerto_' . $stage . '_seo_author_noindex', 0);
-			update_option('concerto_' . $stage . '_seo_author_nofollow', 0);
-			update_option('concerto_' . $stage . '_seo_author_noarchive', 0);
-			update_option('concerto_' . $stage . '_seo_month_noindex', 0);
-			update_option('concerto_' . $stage . '_seo_month_nofollow', 0);
-			update_option('concerto_' . $stage . '_seo_month_noarchive', 0);
-			update_option('concerto_' . $stage . '_seo_day_noindex', 0);
-			update_option('concerto_' . $stage . '_seo_day_nofollow', 0);
-			update_option('concerto_' . $stage . '_seo_day_noarchive', 0);
-			update_option('concerto_' . $stage . '_seo_year_noindex', 0);
-			update_option('concerto_' . $stage . '_seo_year_nofollow', 0);
-			update_option('concerto_' . $stage . '_seo_year_noarchive', 0);
-			
-	}
 	
 	if ($context == null || in_array('personal', (array) $context)) {
 		update_option('concerto_' . $stage . '_personal_twitter', '');

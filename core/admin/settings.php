@@ -167,4 +167,6 @@ register_setting('concerto_design', 'concerto_' . $stage . '_design_comments_tra
 register_setting('concerto_design', 'concerto_' . $stage . '_design_glow');
 register_setting('concerto_design', 'concerto_' . $stage . '_design_engrave');
 
+do_action('concerto_hook_register_settings');
+
 ?>

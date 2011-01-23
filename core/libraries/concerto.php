@@ -26,7 +26,7 @@ class Concerto {
 	 * Sets up the Theme for use
 	 */
 	public function __construct($mode = false) {
-		global $stage;
+		global $stage, $extensions;
 		$stage = get_option('concerto_stage');
 		// We then Setup the Theme to be displayed
 		define('CONCERTO_CONFIG_CUSTOM', ($mode == true) ? true: false); // We are using a Custom Page
@@ -212,8 +212,8 @@ class ConcertoStages {
 
 }
 
-// Make an instance to the Extension and Stage classes
 $extensions = new ConcertoExtensions();
+$extensions->load();
 $stages = new ConcertoStages();
 
 ?>
