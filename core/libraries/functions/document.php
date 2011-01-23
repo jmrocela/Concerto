@@ -153,7 +153,16 @@ function concerto_hook_default_start() {}
 /**
  * Content before the Header area
  */
-function concerto_hook_default_before_header() {}
+function concerto_hook_default_before_header() {
+	global $stage;
+	$container = (CONCERTO_CONFIG_HTML == 5) ? 'nav': 'div';
+
+	if (get_option('concerto_' . $stage . '_general_menu') == 'default' && has_nav_menu('top')) {
+		echo '<div id="menu-top-container">';
+		wp_nav_menu(array('container' => $container, 'show_home' => false, 'theme_location' => 'top', 'depth' => 1, 'fallback_cb' => ''));
+		echo '</div>';
+	} 
+}
 
 /**
  * Default Header Content
@@ -227,6 +236,8 @@ function concerto_hook_default_access() {
 		add_filter('wp_nav_menu_items', 'concerto_filter_additional_nav_items');
 		add_filter('wp_list_pages', 'concerto_filter_additional_nav_items');
 		wp_nav_menu(array('container' => $container, 'show_home' => false, 'theme_location' => 'primary')); //not outputting correct element: DIV should be NAV on HTML5
+		remove_filter('wp_nav_menu_items', 'concerto_filter_additional_nav_items');
+		remove_filter('wp_list_pages', 'concerto_filter_additional_nav_items');
 	} else {
 		add_filter('concerto_filter_access', 'concerto_filter_additional_nav_items');
 		buildConcertoNavigation();
@@ -250,22 +261,6 @@ function concerto_filter_additional_nav_items($items) {
 	$feed = (get_option('concerto_' . $stage . '_general_menu_show_feed') == 1) ? '<li id="feedlink"><a href="' . $feed . '">Subscribe</a></li>': '';
 	$items = $home . $items . $feed;
 	return $items;
-}
-
-/**
- * The Big Banner
- */
-function concerto_hook_default_banner() {
-	#CHECK HTML VERSION
-	if (is_home() && is_front_page()) {
-	?>
-	<section id="banner">
-		<div class="container">
-			<div style="background:#c0c0c0;height:300px;"></div>
-		</div>
-	</section>
-	<?php
-	}
 }
 
 /**
@@ -306,13 +301,14 @@ function concerto_hook_default_content() {
  * Default Content
  */
 function concerto_hook_default_content_main() {
-?>
-<section id="content">
-<?php do_action('concerto_hook_before_content'); ?>
-<?php do_action('concerto_hook_loop'); ?>
-<?php do_action('concerto_hook_after_content'); ?>
-</section>
-<?php
+	$container = (CONCERTO_CONFIG_HTML == 5) ? 'section': 'div';
+	?>
+	<<?php echo $container; ?> id="content">
+	<?php do_action('concerto_hook_before_content'); ?>
+	<?php do_action('concerto_hook_loop'); ?>
+	<?php do_action('concerto_hook_after_content'); ?>
+	</<?php echo $container; ?>>
+	<?php
 }
 
 /**
@@ -361,7 +357,16 @@ function concerto_hook_default_searchform() {
 /**
  * Content before the Footer area
  */
-function concerto_hook_default_before_footer() {}
+function concerto_hook_default_before_footer() {
+	global $stage;
+	$container = (CONCERTO_CONFIG_HTML == 5) ? 'nav': 'div';
+
+	if (get_option('concerto_' . $stage . '_general_menu') == 'default' && has_nav_menu('footer')) {
+		echo '<div id="menu-footer-container">';
+		wp_nav_menu(array('container' => $container, 'show_home' => false, 'theme_location' => 'footer', 'depth' => 1, 'fallback_cb' => ''));
+		echo '</div>';
+	} 
+}
 
 /**
  * Default Footer Copyright

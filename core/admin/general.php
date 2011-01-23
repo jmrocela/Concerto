@@ -429,7 +429,7 @@ function admin_general_box_extensions() {
 						}
 					?>
 					<li>
-						<label><input type="checkbox" name="concerto_extensions_<?php echo $extension['id']; ?>_enabled" value="1" <?php echo (get_option('concerto_extensions_' . $extension['id'] . '_enabled') == 1) ? ' checked': ''; ?>/> <?php echo $extension['name']; ?><?php echo $author; ?></label>
+						<label><input type="checkbox" name="concerto_<?php echo $stage; ?>_extensions_<?php echo $extension['id']; ?>_enabled" value="1" <?php echo (get_option('concerto_' . $stage . '_extensions_' . $extension['id'] . '_enabled') == 1) ? ' checked': ''; ?>/> <?php echo $extension['name']; ?><?php echo $author; ?></label>
 						<p><?php echo $extension['description']; ?></p>
 					</li>
 				<?php

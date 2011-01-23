@@ -14,8 +14,8 @@ if (is_admin()) {
 }
 
 function admin_general_box_site_title() {
-	$stage = get_option('concerto_stage');
-?>
+	global $stage;
+	?>
 	<div class="box box2columns" id="concerto_site_title">
 		<h3>Site Title</h3>
 		<div class="inner">
@@ -23,12 +23,12 @@ function admin_general_box_site_title() {
 			<input type="text" class="text" name="concerto_<?php echo $stage; ?>_general_site_title" value="<?php echo get_option('concerto_' . $stage . '_general_site_title'); ?>" />
 		</div>
 	</div>
-<?php
+	<?php
 }
   
 function admin_general_box_seo() {
-	$stage = get_option('concerto_stage');
-?>
+	global $stage;
+	?>
 	<div class="box box2columns" id="concerto_seo">
 		<h3><abbr title="Search Engine Optimization">SEO</abbr> Options</h3>
 		<div class="inner">
@@ -91,7 +91,6 @@ function admin_general_box_seo() {
 			<p><label><input type="checkbox" name="concerto_<?php echo $stage; ?>_seo_enable_canonical" value="1" <?php echo (get_option('concerto_' . $stage . '_seo_enable_canonical') == 1) ? 'checked ': '';?>/> Support Canonical URLs for your Site</label></p>
 		</div>
 	</div>
-<?php
+	<?php
 }
-  
 ?>

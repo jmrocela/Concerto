@@ -45,6 +45,7 @@ a:hover { text-decoration: none; }
 p { margin-bottom: 20px; }
 
 #header { border-bottom: 1px solid; border-color: #dddddd; background-color: #fdfdfd; }
+#header .container { padding-bottom: 0; }
 
 #branding { padding: 60px 10px 30px; }
 #branding:after { content: ""; clear: both; display: block; }
@@ -55,7 +56,7 @@ p { margin-bottom: 20px; }
 #branding p#site-description { font-size: 14px; color: #666666; }
 
 #access { margin-bottom: -1px; display: block; }
-#access .menu { width: 940px; overflow:hidden; margin: 0 AUTO; padding: 0 10px; }
+#access .menu, #menu-top-container, #menu-footer-container { width: 940px; overflow:hidden; margin: 0 AUTO; padding: 0 10px; }
 #access ul li { float: left; margin-right: 2px; }
 #access ul li a { display: block; padding: 5px 20px; color: #000000; border: 1px solid transparent; background-color: #ffffff; border: 1px solid; border-color: #eeeeee; border-bottom: 1px solid; border-color: #dddddd; text-decoration: none; }
 #access ul li.current_page_item a, #access ul li.current_page_item a:hover, #access ul li.current_page_parent a { border: 1px solid; border-color: #dddddd; border-bottom: 1px solid transparent; }
@@ -63,20 +64,26 @@ p { margin-bottom: 20px; }
 #access ul:after { content: ""; clear: both; display: block; }
 
 #access ul li a.active { border: 1px solid; border-color: #dddddd; }
-#access ul li ul.children { position: absolute; display: none; border: 1px solid; border-color: #dddddd; margin-top: -1px; }
-#access ul li ul.children li { clear: both; margin: 0; width: 100%; }
-#access ul li ul.children li a { display: block; border: 0; padding: 10px 25px; border-top: 1px solid; border-color: #dddddd; }
-#access ul li ul.children li a:hover { border: 0; border-top: 1px solid; border-color: #dddddd; }
-#access ul li ul.children li:first-child a:hover { border-top: 1px solid transparent; }
+#access ul li ul.children, #access ul li ul.sub-menu { position: absolute; display: none; border: 1px solid; border-color: #dddddd; margin-top: -1px; }
+#access ul li ul.children li, #access ul li ul.sub-menu li { clear: both; margin: 0; width: 100%; }
+#access ul li ul.children li a, #access ul li ul.sub-menu li a { display: block; border: 0; padding: 10px 25px; border-top: 1px solid; border-color: #dddddd; }
+#access ul li ul.children li a:hover, #access ul li ul.sub-menu li a:hover { border: 0; border-top: 1px solid; border-color: #dddddd; }
+#access ul li ul.children li:first-child a:hover, #access ul li ul.sub-menu li:first-child a:hover { border-top: 1px solid transparent; }
 
-#access ul li ul.children li:first-child a { border-top: 1px solid transparent; }
-#access ul li ul.children li ul.children { top: 0; display: none; left: 100%; margin-top: 0; width: 100%; }
+#access ul li ul.children li:first-child a, #access ul li ul.sub-menu li:first-child a { border-top: 1px solid transparent; }
+#access ul li ul.children li ul.children, #access ul li ul.sub-menu li ul.sub-menu { display: none; left: 100%; margin-top: -39px; width: 100%; }
 
 #access ul li:hover a { border: 1px solid; border-color: #dddddd; }
-#access ul li:hover ul.children { display: block; }
+#access ul li:hover ul.children, #access ul li:hover ul.sub-menu, #access ul li:hover ul.sub-menu li:hover ul.sub-menu { display: block; }
 
 #access ul li#feedlink { float: right; }
 #access ul li#feedlink a { border: 0; background: url('core/images/feed.png') no-repeat center left scroll; padding-right: 0; padding-left: 18px; }
+
+#menu-footer-container { margin-bottom: 40px;  }
+#menu-top-container ul li, #menu-footer-container ul li { float: left; margin-right: 2px; }
+#menu-top-container ul li a, #menu-footer-container ul li a { display: block; margin: 5px 20px 5px 0; color: #000000; text-decoration: none; }
+#menu-top-container ul li a:hover, #menu-footer-container ul li a:hover { text-decoration: underline; }
+#menu-top-container ul:after, #menu-footer-container ul:after { content: ""; clear: both; display: block; }
 
 .container { width: 960px; margin: 0 AUTO; padding: 10px; }
 #main .container { background-color: #ffffff; padding: 0 10px; }

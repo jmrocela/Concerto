@@ -126,10 +126,11 @@ class ConcertoExtensions {
 	 * @return void
 	 */
 	public function load() {
+		$stage = get_option('concerto_stage');
 		$extensions = $this->extensions;
 			if ($extensions) {
 			foreach ($extensions as $extension) {
-				if (get_option('concerto_extensions_' . $extension['id'] . '_enabled') == 1) {
+				if (get_option('concerto_' . $stage . '_extensions_' . $extension['id'] . '_enabled') == 1) {
 					require_once $extension['path'];
 				}
 			}
@@ -196,6 +197,10 @@ class ConcertoStages {
 	 */
 	public function load() {
 		$stage = get_option('concerto_stage');
+		if (!file_exists(CONCERTO_STAGES . $stage . _DS)) { // revert to default if stage does not exist
+			update_option('concerto_stage', 'default');
+		}
+
 		$dir = CONCERTO_STAGES . $stage . _DS;
 		if (file_exists($dir . 'ajax.php')) {
 			require_once $dir . 'ajax.php';
