@@ -24,7 +24,7 @@ function admin_general() {
 	<?php settings_fields('concerto_general'); ?>
 	<div id="concerto_header">
 		<div class="left">
-			<h2 id="concerto_title" class="left">Concerto</h2>
+			<h2 id="concerto_title" class="left">Conc&#0233;rto</h2>
 			<div class="clear"></div>
 			<div id="concerto_navigation">
 				<ul>

@@ -22,7 +22,7 @@ function admin_support() {
 <div class="wrap concerto">
 	<div id="concerto_header">
 		<div class="left">
-			<h2 id="concerto_title" class="left">Concerto</h2>
+			<h2 id="concerto_title" class="left">Conc&#0233;rto</h2>
 			<div class="clear"></div>
 			<div id="concerto_navigation">
 				<ul>
@@ -88,7 +88,7 @@ function admin_support() {
 function admin_support_box_about() {
 ?>
 	<div class="box box1column" id="concerto_about">
-		<h3>About Concerto</h3>
+		<h3>About Conc&#0233;rto</h3>
 		<div class="inner">
 			<p class="desc">Concerto is a Powerful Theme Framework built on top of the powerful Wordpress Blogging platform. Concerto might be the only Theme you will need the rest of your life. Concerto provides the regular user to customize endlessly and enables the WordPress Developer and Designer great deal of flexibility through hooks and filters.</p>
 			<p class="desc">For a more in-depth explanation of what Concerto has to offer, visit <a href="http://themeconcert.com" target="_blank">Themeconcert</a></p>
