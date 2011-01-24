@@ -125,14 +125,19 @@ class ConcertoExtensions {
 	 *
 	 * @return void
 	 */
-	public function load() {
+	public function load($install = false) {
 		$stage = get_option('concerto_stage');
 		$extensions = $this->extensions;
 			if ($extensions) {
 			foreach ($extensions as $extension) {
-				if (get_option('concerto_' . $stage . '_extensions_' . $extension['id'] . '_enabled') == 1) {
+				if (get_option('concerto_' . $stage . '_extensions_' . $extension['id'] . '_enabled') == 1 || $install) {
 					require_once $extension['path'];
+				} else {
+					add_action('admin_init', create_function('', "register_setting('concerto_general', 'concerto_" . $stage . "_extensions_" . $extension['id'] . "_enabled');"));
 				}
+				if ($install) {
+					add_action('concerto_default_options_install', 'install_seo_settings', 1, 2);
+				}				
 			}
 		}
 	}

@@ -31,6 +31,10 @@ function defaultOptions($stage = 'default', $context = null, $install  = false) 
 	if ($install) {
 		update_option('concerto_version', CONCERTO_VERSION);
 		update_option('concerto_stage', $stage);
+		
+		$extensions = new ConcertoExtensions();
+		$extensions->load(true);
+
 		// Action to run when default options are being installed
 		do_action('concerto_default_options_install', $stage, $context);
 	}

@@ -11,10 +11,9 @@
 if (is_admin()) {
 	add_action('concerto_admin_general', 'admin_general_box_site_title', 20);
 	add_action('concerto_admin_general', 'admin_general_box_seo', 30);
-	add_action('concerto_hook_register_settings', 'register_seo_settings');
-	add_action('concerto_default_options_install', 'install_seo_settings');
 	add_action('add_meta_boxes', 'seo_add_meta_boxes');
 	add_action('save_post', 'seo_save_meta_box');
+	add_action('concerto_hook_register_settings', 'register_seo_settings');
 } else {
 	// We bind everything that can be used in the front end
 	add_filter('concerto_title', 'seo_title');
@@ -159,9 +158,9 @@ function seo_canonical() {
  *
  * Install SEO settings
  */
-function install_seo_settings($stage, $context) {
+function install_seo_settings($stage, $context = null) {
 	update_option('concerto_' . $stage . '_extensions_seo_enabled', 1);
-	update_option('concerto_' . $stage . '_seo_homepage_title', 1);
+	update_option('concerto_' . $stage . '_seo_homepage_title', '');
 	update_option('concerto_' . $stage . '_seo_enable_canonical', 1);
 	update_option('concerto_' . $stage . '_seo_child_noindex', 1);
 	update_option('concerto_' . $stage . '_seo_child_nofollow', 0);
