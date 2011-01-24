@@ -1,10 +1,13 @@
 <?php
- /**
-  * Module Name: SEO
-  * Description: Enables SEO functionality for your Concerto Framework. It is recommended that you always turn this feature on
-  * Version: 1.0
-  */
+/**
+ * Module Name: SEO
+ * Description: Enables SEO functionality for your Concerto Framework. It is recommended that you always turn this feature on
+ * Version: 1.0
+ */
 
+/**
+ * We bind actions by context
+ */
 if (is_admin()) {
 	add_action('concerto_admin_general', 'admin_general_box_site_title', 20);
 	add_action('concerto_admin_general', 'admin_general_box_seo', 30);
@@ -20,6 +23,11 @@ if (is_admin()) {
 	add_action('concerto_hook_head', 'seo_robots');
 }
 
+/**
+ * Title
+ *
+ * SEO method for customizing the title
+ */
 function seo_title ($title) {
 	global $stage, $post;
 	if (have_posts()) {
@@ -32,6 +40,11 @@ function seo_title ($title) {
 	return $title;
 }
 
+/**
+ * Meta
+ *
+ * SEO method for meta keywords and descriptions
+ */
 function seo_meta() {
 	global $post;
 	if (have_posts()) {
@@ -48,6 +61,11 @@ function seo_meta() {
 	}
 }
 
+/**
+ * Robots
+ *
+ * SEO method for displaying robots
+ */
 function seo_robots () {
 	global $stage, $post;
 	$no = array();
@@ -95,6 +113,11 @@ function seo_robots () {
 	}
 }
 
+/**
+ * Canonical
+ *
+ * SEO method for canonical links
+ */
 function seo_canonical() {
 	global $stage, $post;
 	// We remove WP's canonical function first
@@ -131,6 +154,11 @@ function seo_canonical() {
 	}
 }
 
+/**
+ * Install
+ *
+ * Install SEO settings
+ */
 function install_seo_settings($stage, $context) {
 	update_option('concerto_' . $stage . '_extensions_seo_enabled', 1);
 	update_option('concerto_' . $stage . '_seo_homepage_title', 1);
@@ -158,6 +186,11 @@ function install_seo_settings($stage, $context) {
 	update_option('concerto_' . $stage . '_seo_year_noarchive', 0);
 }
 
+/**
+ * Register
+ *
+ * Register SEO settings for admin
+ */
 function register_seo_settings() {
 	global $stage;
 	register_setting('concerto_general', 'concerto_' . $stage . '_extensions_seo_enabled');
@@ -186,11 +219,21 @@ function register_seo_settings() {
 	register_setting('concerto_general', 'concerto_' . $stage . '_seo_year_noarchive');
 }
 
+/**
+ * Add Meta Box
+ *
+ * Add meta box to post and page context
+ */
 function seo_add_meta_boxes() {
 	add_meta_box('concerto_seo', 'Concerto SEO Options', 'seo_meta_box', 'post', 'normal', 'high');
 	add_meta_box('concerto_seo', 'Concerto SEO Options', 'seo_meta_box', 'page', 'normal', 'high');
 }
 
+/**
+ * Save Meta Box
+ *
+ * Save metas from meta box
+ */
 function seo_save_meta_box ($post_id) {
 	if (!wp_verify_nonce($_POST['concerto_seo_meta_box'], plugin_basename(__FILE__))) {
 		return $post_id;
@@ -223,6 +266,11 @@ function seo_save_meta_box ($post_id) {
 	update_post_meta($post->ID, 'concerto_seo_nofollow', $nofollow);
 }
 
+/**
+ * Meta Box
+ *
+ * Meta box for post and page context
+ */
 function seo_meta_box () {
 	global $stage, $post;
 	wp_nonce_field(plugin_basename(__FILE__), 'concerto_seo_meta_box');
@@ -239,6 +287,11 @@ function seo_meta_box () {
 	<?php
 }
 
+/**
+ * Admin site title
+ *
+ * Admin box dashboard site title
+ */
 function admin_general_box_site_title() {
 	global $stage;
 	?>
@@ -251,7 +304,12 @@ function admin_general_box_site_title() {
 	</div>
 	<?php
 }
-  
+
+/**
+ * Admin site box seo
+ *
+ * Admin box dashboard site SEO
+ */
 function admin_general_box_seo() {
 	global $stage;
 	?>
