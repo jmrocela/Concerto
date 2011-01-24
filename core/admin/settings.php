@@ -15,6 +15,10 @@
 global $stage;
 
 register_setting('concerto_general', 'concerto_stage');
+register_setting('concerto_design', 'concerto_stage');
+register_setting('concerto_general', 'concerto_' . $stage . '_custom_css');
+register_setting('concerto_design', 'concerto_' . $stage . '_custom_css');
+
 register_setting('concerto_general', 'concerto_' . $stage . '_general_favicon');
 register_setting('concerto_general', 'concerto_' . $stage . '_general_homepage_description');
 register_setting('concerto_general', 'concerto_' . $stage . '_general_homepage_keywords');

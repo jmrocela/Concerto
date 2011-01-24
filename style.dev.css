@@ -39,7 +39,7 @@ a { color: #245cba; }
 a:hover { text-decoration: none; }
 p { margin-bottom: 20px; }
 
-#header { border-bottom: 1px solid; border-color: #dddddd; background-color: #fdfdfd; }
+#header { background-color: #fdfdfd; }
 #header .container { padding-bottom: 0; }
 
 #branding { padding: 60px 10px 30px; }
@@ -48,7 +48,7 @@ p { margin-bottom: 20px; }
 #branding #site-title a { text-decoration: none; color: #000000; }
 #branding #site-title a:hover { color: #245cba; }
 #branding #site-logo { float: left; margin-right: 10px; }
-#branding p#site-description { font-size: 14px; color: #666666; }
+#branding #site-description { font-size: 14px; color: #666666; }
 
 #access { margin-bottom: -1px; display: block; }
 #access .menu, #menu-top-container, #menu-footer-container { width: 940px; overflow:hidden; margin: 0 AUTO; padding: 0 10px; }
@@ -81,6 +81,7 @@ p { margin-bottom: 20px; }
 #menu-top-container ul:after, #menu-footer-container ul:after { content: ""; clear: both; display: block; }
 
 .container { width: 960px; margin: 0 AUTO; padding: 10px; }
+#main { border-top: 1px solid; border-color: #dddddd; }
 #main .container { background-color: #ffffff; padding: 0 10px; }
 #main .container:after { content: ""; display: block; clear: both; }
 .normal-page #content { display: block; width: 600px; float: left; border-right: 1px solid; border-color: #dddddd; padding:60px 29px 60px 0; }

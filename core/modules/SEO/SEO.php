@@ -234,7 +234,7 @@ function seo_add_meta_boxes() {
  * Save metas from meta box
  */
 function seo_save_meta_box ($post_id) {
-	if (!wp_verify_nonce($_POST['concerto_seo_meta_box'], plugin_basename(__FILE__))) {
+	if (!wp_verify_nonce(@$_POST['concerto_seo_meta_box'], plugin_basename(__FILE__))) {
 		return $post_id;
 	}
 	if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {

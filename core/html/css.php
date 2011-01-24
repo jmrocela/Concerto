@@ -183,11 +183,11 @@ header('Content-type: text/css');
  */
 body{font-family:<?php echo $fonts['body']; ?>;background-color:<?php echo $colors['background']['site']; ?>;color:<?php echo $colors['fonts']['site']; ?>;font-size:<?php echo $sizes['body']; ?>px;line-height:<?php echo $sizes['body'] + 6; ?>px;}
 a,#menu-top-container ul li a,#menu-footer-container ul li a{color:<?php echo $colors['fonts']['link']; ?>;}
-#header{border-bottom:<?php echo $borders['header-bottom']; ?>px solid;border-color:<?php echo $colors['borders']['common']; ?>;background-color:<?php echo $colors['background']['header']; ?><?php echo ($colors['background']['header-image']) ? ";background-image:url('" . $colors['background']['header-image'] . "');background-repeat:no-repeat;background-position:center;background-attachment:scroll": ''; ?>; }
+#header{background-color:<?php echo $colors['background']['header']; ?><?php echo ($colors['background']['header-image']) ? ";background-image:url('" . $colors['background']['header-image'] . "');background-repeat:no-repeat;background-position:center;background-attachment:scroll": ''; ?>; }
 #branding{padding:<?php echo get_option('concerto_' . $stage . '_design_page_padding') + 50; ?>px <?php echo get_option('concerto_' . $stage . '_design_page_padding'); ?>px <?php echo get_option('concerto_' . $stage . '_design_page_padding') + 20; ?>px;}
 #branding #site-title{font-family:<?php echo $fonts['header']; ?>;font-size:<?php echo $sizes['header-title']; ?>px;}
 #branding #site-title a{color:<?php echo $colors['fonts']['header-title']; ?>;}
-#branding p#site-description{font-size:<?php echo $sizes['header-description']; ?>px;color:<?php echo $colors['fonts']['header-description']; ?>;}
+#branding #site-description{font-size:<?php echo $sizes['header-description']; ?>px;color:<?php echo $colors['fonts']['header-description']; ?>;}
 #access{margin-bottom:-<?php echo $borders['menu']; ?>px;}
 #access .menu,#menu-top-container,#menu-footer-container{width:<?php echo $width['container'] - (get_option('concerto_' . $stage . '_design_page_padding') * 2); ?>px;padding:0 <?php echo get_option('concerto_' . $stage . '_design_page_padding'); ?>px;}
 #access ul li a{font-size:<?php echo $sizes['menu']; ?>px;font-family:<?php echo $fonts['menu']; ?>;color:<?php echo $colors['fonts']['menu']; ?>;background-color:<?php echo $colors['background']['menu']; ?>;border:<?php echo $borders['menu']; ?>px solid;border-color:<?php echo $colors['borders']['menu']; ?>;border-bottom:<?php echo $borders['menu']; ?>px solid;border-color:<?php echo $colors['borders']['menu-active']; ?>;}
@@ -200,6 +200,7 @@ a,#menu-top-container ul li a,#menu-footer-container ul li a{color:<?php echo $c
 #access ul li:hover a{border:<?php echo $borders['menu']; ?>px solid;border-color:<?php echo $colors['borders']['menu-hover']; ?>;}
 #access ul li ul.children li ul.children,#access ul li ul.sub-menu li ul.sub-menu{margin-top:-<?php echo $sizes['menu'] + 27; ?>px;}
 .container {width:<?php echo $width['container']; ?>px; margin: 0 AUTO; padding: <?php echo get_option('concerto_' . $stage . '_design_page_padding'); ?>px; }
+#main{border-top:<?php echo $borders['header-bottom']; ?>px solid;border-top-color:<?php echo $colors['borders']['common']; ?>;}
 .normal-page #main {background-color:<?php echo $colors['background']['main']; ?>; }
 .normal-page #main .container {background-color:<?php echo $colors['background']['content']; ?>; }
 .normal-page #content {width:<?php echo $width['content']; ?>px;border-right:<?php echo $borders['container']; ?>px solid;border-color:<?php echo $colors['borders']['common']; ?>;}
@@ -211,7 +212,7 @@ a,#menu-top-container ul li a,#menu-footer-container ul li a{color:<?php echo $c
 .concerto_sidebar_secondary{border-left:<?php echo $borders['container']; ?>px solid;border-color:<?php echo $colors['borders']['common']; ?>;width:<?php echo $width['sidebar2']; ?>px;}
 .wrapped #header, .wrapped #footer{border-width: <?php echo $borders['container']; ?>px;}
 .wrapped #access .menu{width:<?php echo $width['container']; ?>px;}
-.wrapped #main{background-color:<?php echo $colors['background']['content']; ?>;border-left:<?php echo $borders['container']; ?>px solid;border-color:<?php echo $colors['borders']['common']; ?>;border-right:<?php echo $borders['container']; ?>px solid;border-color:<?php echo $colors['borders']['common']; ?>;}
+.wrapped #main{background-color:<?php echo $colors['background']['content']; ?>;border-left:<?php echo $borders['container']; ?>px solid;border-left-color:<?php echo $colors['borders']['common']; ?>;border-right:<?php echo $borders['container']; ?>px solid;border-right-color:<?php echo $colors['borders']['common']; ?>;}
 .post,.page{margin-bottom:<?php echo get_option('concerto_' . $stage . '_design_page_padding') + 20; ?>px;}
 .type-post,.type-page{padding:<?php echo get_option('concerto_' . $stage . '_design_article_padding'); ?>px <?php echo get_option('concerto_' . $stage . '_design_article_padding'); ?>px <?php echo get_option('concerto_' . $stage . '_design_article_padding') + 20; ?>px;}
 .entry-title,.entry-title a{font-family:<?php echo $fonts['content-title']; ?>;font-size:<?php echo $sizes['content-title']; ?>px;color:<?php echo $colors['fonts']['content-title']; ?>;line-height:<?php echo $sizes['content-title'] + 2; ?>px;}
@@ -264,6 +265,13 @@ h3#comments-title,h3#reply-title{color:<?php echo $colors['fonts']['site']; ?>;f
 .column5order .concerto_sidebar_secondary{margin-left:-<?php echo $borders['container']; ?>px;}
 <?php if (get_option('concerto_' . $stage . '_design_glow') == 1) { ?>.wrapped #main {-moz-box-shadow: 0 0 10px rgba(<?php echo implode(',', torgba(blackorwhite($colors['background']['site']))); ?>,0.2);-webkit-box-shadow: 0 0 10px rgba(<?php echo implode(',', torgba(blackorwhite($colors['background']['site']))); ?>,0.2);}<?php } ?>
 <?php if (get_option('concerto_' . $stage . '_design_engrave') == 1) { ?>#main {text-shadow: 0 1px 0 rgba(<?php echo implode(',', torgba(blackorwhite($colors['fonts']['site']))); ?>,0.3);}<?php } ?>
+<?php if (get_option('concerto_' . $stage . '_custom_css') == 1) { ?>
+/* CUSTOM CSS RESET */
+#header, #footer, .normal-page #main, .custom-page #main, .normal-page #main .container, .custom-page #main .container { background: none; border: none; }
+#access, #access ul li a, #access ul li a:hover, #access ul li:hover, #access ul li:hover a, #access ul li.current_page_item a, #access ul li.current_page_item a:hover,
+#access ul li.current_page_parent a, #access ul li a.active, #access ul li ul.children, #access ul li ul.sub-menu, #access ul li a.active, #access ul li ul.children,
+#access ul li ul.sub-menu, .normal-page #content, .custom-page #content, .concerto_sidebar_main, .concerto_sidebar_secondary { background: none; border: none; margin: 0; }
+<?php } ?>
 <?php
 	}
 ?>

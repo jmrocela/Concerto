@@ -31,6 +31,9 @@
 .greentext { color: #39b54a; }
 .level_red { background: #ba2429; }
 
+#usecustom { float: right; color: #ffffff; margin: 8px 10px 0; font-size: 11px; }
+#usecustom:after { display: block; clear: both; content: ""; }
+
 .box { min-width: 298px; background: #f4fbee url('../images/admin-box-background.jpg') repeat top left scroll; font-size: 12px; border: 1px solid #adbaa0; margin: 10px; -moz-box-shadow: 0 5px 5px rgba(0,0,0,0.1); -moz-border-radius: 5px; -webkit-box-shadow: 0 5px 5px rgba(0,0,0,0.1); -webkit-border-radius: 5px; box-shadow: 0 5px 5px rgba(0,0,0,0.1); border-radius: 5px; }
 .box .inner { padding: 10px; }
 .box .inner .text, .box .inner textarea { width: 100%; margin: 0; border: 1px solid #adbaa0; font-size: 16px; font-family: georgia; color: #999999; resize: none; }

@@ -27,7 +27,7 @@ add_action('concerto_hook_start', 'concerto_hook_default_start');
 add_action('concerto_hook_before_header', 'concerto_hook_default_before_header');
 add_action('concerto_hook_header', 'concerto_hook_default_header');
 add_action('concerto_hook_after_header', 'concerto_hook_default_after_header');
-add_action('concerto_hook_after_header', 'concerto_hook_access');
+add_action('concerto_hook_header_content', 'concerto_hook_access');
 
 add_action('concerto_hook_branding', 'concerto_hook_default_branding_site_title');
 add_action('concerto_hook_branding', 'concerto_hook_default_branding_site_description');

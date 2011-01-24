@@ -31,6 +31,7 @@ function defaultOptions($stage = 'default', $context = null, $install  = false) 
 	if ($install) {
 		update_option('concerto_version', CONCERTO_VERSION);
 		update_option('concerto_stage', $stage);
+		update_option('concerto_' . $stage . '_custom_css', 0);
 		
 		$extensions = new ConcertoExtensions();
 		$extensions->load(true);
