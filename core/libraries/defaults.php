@@ -36,7 +36,6 @@ function defaultOptions($stage = 'default', $context = null, $install  = false) 
 	}
 
 	if ($context == null || in_array('general', (array) $context)) {
-		update_option('concerto_' . $stage . '_general_site_title', '');
 		update_option('concerto_' . $stage . '_general_favicon', '');
 		update_option('concerto_' . $stage . '_general_homepage_description', '');
 		update_option('concerto_' . $stage . '_general_homepage_keywords', '');

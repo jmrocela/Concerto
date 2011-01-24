@@ -10,6 +10,8 @@ if (is_admin()) {
 	add_action('concerto_admin_general', 'admin_general_box_seo', 30);
 	add_action('concerto_hook_register_settings', 'register_seo_settings');
 	add_action('concerto_default_options_install', 'install_seo_settings');
+	add_action('add_meta_boxes', 'seo_add_meta_boxes');
+	add_action('save_post', 'seo_save_meta_box');
 } else {
 	// We bind everything that can be used in the front end
 	add_filter('concerto_title', 'seo_title');
@@ -18,19 +20,32 @@ if (is_admin()) {
 	add_action('concerto_hook_head', 'seo_robots');
 }
 
-function seo_title () {
-	global $post;
+function seo_title ($title) {
+	global $stage, $post;
 	if (have_posts()) {
-		if (is_single()) {
-			
-		} else if (is_page()) {
-		
+		if (is_single() || is_page()) {
+			$title = ($t = get_post_meta($post->ID, 'concerto_seo_title', true)) ? $t: $title;
+		} else if (is_front_page() && is_home()) {
+			$title = ($t = get_option('concerto_' . $stage . '_seo_homepage_title')) ? $t: $title;
 		}
 	}
+	return $title;
 }
 
 function seo_meta() {
-
+	global $post;
+	if (have_posts()) {
+		if (is_single() || is_page()) {
+			$description = get_post_meta($post->ID, 'concerto_seo_description', true);
+			$keywords = get_post_meta($post->ID, 'concerto_seo_keywords', true);
+			if ($description) {
+				echo '<meta name="description" content="' . $description . '" />';
+			}
+			if ($keywords) {
+				echo '<meta name="keyword" content="' . $keywords . '" />';
+			}
+		}
+	}
 }
 
 function seo_robots () {
@@ -81,6 +96,11 @@ function seo_robots () {
 }
 
 function seo_canonical() {
+	global $stage, $post;
+	// We remove WP's canonical function first
+	remove_action('wp_head', 'rel_canonical');
+
+	// Do the canonicals
 	if (get_option('concerto_' . $stage . '_seo_enable_canonical') == 1) {
 		$canonical = get_bloginfo('url');
 		if (is_single() || is_page()) {
@@ -113,6 +133,7 @@ function seo_canonical() {
 
 function install_seo_settings($stage, $context) {
 	update_option('concerto_' . $stage . '_extensions_seo_enabled', 1);
+	update_option('concerto_' . $stage . '_seo_homepage_title', 1);
 	update_option('concerto_' . $stage . '_seo_enable_canonical', 1);
 	update_option('concerto_' . $stage . '_seo_child_noindex', 1);
 	update_option('concerto_' . $stage . '_seo_child_nofollow', 0);
@@ -140,6 +161,7 @@ function install_seo_settings($stage, $context) {
 function register_seo_settings() {
 	global $stage;
 	register_setting('concerto_general', 'concerto_' . $stage . '_extensions_seo_enabled');
+	register_setting('concerto_general', 'concerto_' . $stage . '_seo_homepage_title');
 	register_setting('concerto_general', 'concerto_' . $stage . '_seo_enable_canonical');
 	register_setting('concerto_general', 'concerto_' . $stage . '_seo_child_noindex');
 	register_setting('concerto_general', 'concerto_' . $stage . '_seo_child_nofollow');
@@ -164,14 +186,67 @@ function register_seo_settings() {
 	register_setting('concerto_general', 'concerto_' . $stage . '_seo_year_noarchive');
 }
 
+function seo_add_meta_boxes() {
+	add_meta_box('concerto_seo', 'Concerto SEO Options', 'seo_meta_box', 'post', 'normal', 'high');
+	add_meta_box('concerto_seo', 'Concerto SEO Options', 'seo_meta_box', 'page', 'normal', 'high');
+}
+
+function seo_save_meta_box ($post_id) {
+	if (!wp_verify_nonce($_POST['concerto_seo_meta_box'], plugin_basename(__FILE__))) {
+		return $post_id;
+	}
+	if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+		return $post_id;
+	}
+	if ( 'page' == $_POST['post_type'] ) {
+		if (!current_user_can('edit_page', $post_id)) {
+			return $post_id;
+		}
+	} else {
+		if (!current_user_can('edit_post', $post_id)) {
+			return $post_id;
+		}
+	}
+	
+	$post = get_post($post_id);
+	
+	$title = @$_POST['concerto_seo_title'];
+	$description = @$_POST['concerto_seo_description'];
+	$keywords = @$_POST['concerto_seo_keywords'];
+	$noindex = (@$_POST['concerto_seo_noindex'] == 1) ? 1: 0;
+	$nofollow = (@$_POST['concerto_seo_nofollow'] == 1) ? 1: 0;
+
+	update_post_meta($post->ID, 'concerto_seo_title', $title);
+	update_post_meta($post->ID, 'concerto_seo_description', $description);
+	update_post_meta($post->ID, 'concerto_seo_keywords', $keywords);
+	update_post_meta($post->ID, 'concerto_seo_noindex', $noindex);
+	update_post_meta($post->ID, 'concerto_seo_nofollow', $nofollow);
+}
+
+function seo_meta_box () {
+	global $stage, $post;
+	wp_nonce_field(plugin_basename(__FILE__), 'concerto_seo_meta_box');
+	?>
+	<p>Concerto gives you the option to specify SEO options individually through your Posts and Pages. Your settings below will override the global options for Concerto.</p>
+	<p><label><strong>Custom Title</strong><input type="text" value="<?php echo get_post_meta($post->ID, 'concerto_seo_title', true); ?>" name="concerto_seo_title" style="width:99%;" /></label></p>
+	<p><label><strong>Meta Description</strong><textarea style="width:99%;height:4em;" name="concerto_seo_description"><?php echo get_post_meta($post->ID, 'concerto_seo_description', true); ?></textarea></label></p>
+	<p><label><strong>Meta Keywords</strong><input type="text" value="<?php echo get_post_meta($post->ID, 'concerto_seo_keywords', true); ?>" name="concerto_seo_keywords" style="width:99%;" /></label></p>
+	<p><strong>Robots</strong></p>
+	<p>
+		<label><input type="checkbox" value="1" name="concerto_seo_noindex" <?php echo (get_post_meta($post->ID, 'concerto_seo_noindex', true) == 1) ? 'checked ': ''; ?>/> <code>noindex</code></label><br/>
+		<label><input type="checkbox" value="1" name="concerto_seo_nofollow" <?php echo (get_post_meta($post->ID, 'concerto_seo_nofollow', true) == 1) ? 'checked ': ''; ?>/> <code>nofollow</code></label>
+	</p>
+	<?php
+}
+
 function admin_general_box_site_title() {
 	global $stage;
 	?>
 	<div class="box box2columns" id="concerto_site_title">
 		<h3>Site Title</h3>
 		<div class="inner">
-			<p class="desc">If you would rather have Concerto replace the default Wordpress Title for all pages to a more SEO friendlier one.</p>
-			<input type="text" class="text" name="concerto_<?php echo $stage; ?>_general_site_title" value="<?php echo get_option('concerto_' . $stage . '_general_site_title'); ?>" />
+			<p class="desc">If you would rather have Concerto replace the default Wordpress Title for your homepage to a more SEO friendlier one.</p>
+			<input type="text" class="text" name="concerto_<?php echo $stage; ?>_seo_homepage_title" value="<?php echo get_option('concerto_' . $stage . '_seo_homepage_title'); ?>" />
 		</div>
 	</div>
 	<?php
@@ -244,4 +319,5 @@ function admin_general_box_seo() {
 	</div>
 	<?php
 }
+
 ?>
