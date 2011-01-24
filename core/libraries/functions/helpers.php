@@ -21,10 +21,10 @@ function buildConcertoNavigation() {
 	$container = (CONCERTO_CONFIG_HTML == 5) ? 'nav': 'div';
 	$pre = '<' . $container . ' class="menu"><ul>';
 	$post = '</ul></' . $container . '>';
-
-	$pages = (get_option('concerto_' . $stage . '_general_menu_use_pages') == 1) ? wp_list_pages(array('title_li' => '', 'echo' => 0, 'include' => implode(',', get_option('concerto_' . $stage . '_general_menu_pages_items')))): '';
-	$categories = (get_option('concerto_' . $stage . '_general_menu_use_categories') == 1) ? wp_list_categories(array('depth' => 1, 'title_li' => '', 'echo' => 0, 'include' => implode(',', get_option('concerto_' . $stage . '_general_menu_categories_items')))): '';
-	$tags = (get_option('concerto_' . $stage . '_general_menu_use_tags') == 1) ? wp_list_categories(array('taxonomy' => 'post_tag', 'depth' => 1, 'walker' => new Walker_Tag(), 'title_li' => '', 'echo' => 0, 'include' => implode(',', get_option('concerto_' . $stage . '_general_menu_tags_items')))): ''; //there is no way to know if we are at the tag's page
+	
+	$pages = (get_option('concerto_' . $stage . '_general_menu_use_pages') == 1 && get_option('concerto_' . $stage . '_general_menu_pages_items')) ? wp_list_pages(array('title_li' => '', 'echo' => 0, 'include' => implode(',', get_option('concerto_' . $stage . '_general_menu_pages_items')))): '';
+	$categories = (get_option('concerto_' . $stage . '_general_menu_use_categories') == 1 && get_option('concerto_' . $stage . '_general_menu_categories_items')) ? wp_list_categories(array('depth' => 1, 'title_li' => '', 'echo' => 0, 'include' => implode(',', get_option('concerto_' . $stage . '_general_menu_categories_items')))): '';
+	$tags = (get_option('concerto_' . $stage . '_general_menu_use_tags') == 1 && get_option('concerto_' . $stage . '_general_menu_tags_items')) ? wp_list_categories(array('taxonomy' => 'post_tag', 'depth' => 1, 'walker' => new Walker_Tag(), 'title_li' => '', 'echo' => 0, 'include' => implode(',', get_option('concerto_' . $stage . '_general_menu_tags_items')))): '';
 
 	$menu = $pages . str_replace(' current-cat', ' current_page_item current-cat', $categories) . str_replace(' current-tag', ' current_page_item current-tag', $tags);
 

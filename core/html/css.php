@@ -269,8 +269,8 @@ h3#comments-title,h3#reply-title{color:<?php echo $colors['fonts']['site']; ?>;f
 /* CUSTOM CSS RESET */
 #header, #footer, .normal-page #main, .custom-page #main, .normal-page #main .container, .custom-page #main .container { background: none; border: none; }
 #access, #access ul li a, #access ul li a:hover, #access ul li:hover, #access ul li:hover a, #access ul li.current_page_item a, #access ul li.current_page_item a:hover,
-#access ul li.current_page_parent a, #access ul li a.active, #access ul li ul.children, #access ul li ul.sub-menu, #access ul li a.active, #access ul li ul.children,
-#access ul li ul.sub-menu, .normal-page #content, .custom-page #content, .concerto_sidebar_main, .concerto_sidebar_secondary { background: none; border: none; margin: 0; }
+#access ul li.current_page_parent a, #access ul li a.active, #access ul li ul.children, #access ul li ul.sub-menu, #access ul li a.active, .normal-page #content,
+.custom-page #content, .concerto_sidebar_main, .concerto_sidebar_secondary { background: none; border: 0; }
 <?php } ?>
 <?php
 	}
