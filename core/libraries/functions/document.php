@@ -24,7 +24,7 @@ function concerto_hook_head() {
 	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/core/html/fixes.css?<?php echo time(); ?>" />
 	<?php
 		$dir = CONCERTO_STAGES . $stage . _DS;
-		if (file_exists($dir . 'style.css')) {
+		if (file_exists($dir . 'style.css') && get_option('concerto_' . $stage . '_custom_css') == 1) {
 	?>
 	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/stages/<?php echo $stage; ?>/style.css?<?php echo time(); ?>" />
 	<?php
@@ -148,21 +148,21 @@ function concerto_hook_comment_syndication() {
 /**
  * Content right after the opening <body> tag
  */
-function concerto_hook_default_start() {}
-
-/**
- * Content before the Header area
- */
-function concerto_hook_default_before_header() {
+function concerto_hook_default_start() {
 	global $stage;
 	$container = (CONCERTO_CONFIG_HTML == 5) ? 'nav': 'div';
 
 	if (get_option('concerto_' . $stage . '_general_menu') == 'default' && has_nav_menu('top')) {
-		echo '<div id="menu-top-container">';
+		echo '<div id="menu-top-container" class="menu-top">';
 		wp_nav_menu(array('container' => $container, 'show_home' => false, 'theme_location' => 'top', 'depth' => 1, 'fallback_cb' => ''));
 		echo '</div>';
 	} 
 }
+
+/**
+ * Content before the Header area
+ */
+function concerto_hook_default_before_header() {}
 
 /**
  * Default Header Content
@@ -362,7 +362,7 @@ function concerto_hook_default_before_footer() {
 	$container = (CONCERTO_CONFIG_HTML == 5) ? 'nav': 'div';
 
 	if (get_option('concerto_' . $stage . '_general_menu') == 'default' && has_nav_menu('footer')) {
-		echo '<div id="menu-footer-container">';
+		echo '<div id="menu-footer-container" class="menu-footer">';
 		wp_nav_menu(array('container' => $container, 'show_home' => false, 'theme_location' => 'footer', 'depth' => 1, 'fallback_cb' => ''));
 		echo '</div>';
 	} 

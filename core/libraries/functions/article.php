@@ -72,13 +72,13 @@ function concerto_hook_default_article_byline () {
 	$postedon = 'Posted on';
 	$by = 'by';
 	?>
-		<?php if (is_front_page() || (is_single() && get_option('concerto_' . $stage . '_design_bylines_post_published_date') == 1) || (is_page() && get_option('concerto_' . $stage . '_design_bylines_page_published_date') == 1)) { ?>
+		<?php if ((is_front_page() && get_option('concerto_' . $stage . '_design_bylines_post_published_date') == 1) || (is_single() && get_option('concerto_' . $stage . '_design_bylines_post_published_date') == 1) || (is_page() && get_option('concerto_' . $stage . '_design_bylines_page_published_date') == 1)) { ?>
 		<span class="meta-prep meta-prep-author"><?php echo apply_filters('concerto_article_byline_postedon', $postedon); ?></span>
 		<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr(get_the_time()); ?>" rel="bookmark">
 			<span class="entry-date"><?php the_date(); ?></span>
 		</a>
 		<?php } ?>
-		<?php if (is_front_page() || (is_single() && get_option('concerto_' . $stage . '_design_bylines_post_author') == 1) || (is_page() && get_option('concerto_' . $stage . '_design_bylines_page_author') == 1)) { ?>
+		<?php if ((is_front_page() && get_option('concerto_' . $stage . '_design_bylines_post_author') == 1) || (is_single() && get_option('concerto_' . $stage . '_design_bylines_post_author') == 1) || (is_page() && get_option('concerto_' . $stage . '_design_bylines_page_author') == 1)) { ?>
 		<span class="meta-sep"><?php echo apply_filters('concerto_article_byline_by', $by); ?></span>
 		<span class="author vcard">
 			<a class="url fn n" href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>" title="View all posts by <?php the_author(); ?>">
