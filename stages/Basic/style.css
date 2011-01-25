@@ -23,18 +23,18 @@
  * @overrides default styles
  */
 /* global elements */
-.concerto { background: #ffffff; font-family: "Droid Serif", Georgia, Arial;, georgia, arial; color: #333333; }
+.concerto { background: #ffffff; font-family: "Droid Serif", Georgia, Arial; color: #333333; }
 .concerto a { color: #3f4c57; text-decoration: none; }
 .concerto a:hover { color: #39b54a; text-decoration: none; }
 
 /* menu-top */
 .concerto .menu-top { padding: 10px; background: #333333 url('images/menu-top.png') repeat-x top left scroll; border-bottom: 1px solid #000000; }
-.concerto .menu-top a { color: #aaaaaa; text-shadow: 0 -1px 0 #000000; }
+.concerto .menu-top a { font-family: arial; color: #aaaaaa; text-shadow: 0 -1px 0 #000000; }
 .concerto .menu-top a:hover { color: #cccccc; }
 
 /* primary navigation */
 .concerto #access .menu { padding: 10px 0; }
-.concerto #access .menu a { padding:0; margin: 10px 0; margin-right: 20px; font-size: 18px; font-family: "Droid Serif", Georgia, Arial;, georgia, arial; }
+.concerto #access .menu a { padding:0; margin: 10px 0; margin-right: 20px; font-size: 18px; font-family: "Droid Serif", Georgia, Arial; }
 .concerto #access .menu a:hover, .concerto #access .menu .active { color: #39b54a; text-decoration: none; }
 .concerto #access .menu li:last-child a { margin-right: 0; }
 .concerto #access .menu li ul.sub-menu, .concerto #access .menu li ul.children { border: 1px dashed #dddddd; background: #ffffff; }
@@ -44,7 +44,7 @@
 .concerto #header { background: #ffffff url('images/header.png') repeat-x top left scroll; }
 .concerto #branding { padding: 10px 0; text-align: center; }
 .concerto #branding #site-logo { float: none; clear: both; margin: 0 AUTO; }
-.concerto #branding #site-title a { font-size: 60px; font-family: "Droid Serif", Georgia, Arial;, georgia, arial; color: #333333; text-shadow: 0 0 5px rgba(0,0,0,0.1); }
+.concerto #branding #site-title a { font-size: 60px; font-family: "Droid Serif", Georgia, Arial; color: #333333; text-shadow: 0 0 5px rgba(0,0,0,0.1); }
 .concerto #branding #site-title a:hover { color: #39b54a; }
 
 /* container */
@@ -63,8 +63,8 @@
 
 /* content */
 .concerto .type-post, .concerto .type-page { padding: 0; }
-.concerto .entry-title, .concerto .entry-title a { font-family: "Droid Serif", Georgia, Arial;, georgia, arial; font-size: 32px; }
-.concerto .entry-content { font-family: "Droid Serif", Georgia, Arial;, georgia, arial; color: #333333; }
+.concerto .entry-title, .concerto .entry-title a { font-family: "Droid Serif", Georgia, Arial; font-size: 32px; }
+.concerto .entry-content { font-family: "Droid Serif", Georgia, Arial; color: #333333; }
 .concerto .entry-meta, .concerto .entry-meta a { font-style: normal; font-family: arial; font-size: 11px; color: #aaaaaa; }
 .concerto .entry-meta a:hover { text-decoration: underline; }
 .concerto #content .wp-caption { background: #ffffff; -moz-box-shadow: 0 0 5px rgba(0,0,0,0.2); -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.2); box-shadow: 0 0 5px rgba(0,0,0,0.2); -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
@@ -75,9 +75,9 @@
 #content .sticky { border-top: 5px solid #dddddd; border-left: 0; padding: 10px; padding-top: 20px; background: rgba(0,0,0,0.05); }
 
 /* sidebar */
-.concerto .sidebars, .concerto .sidebars ul h2 { font-family: "Droid Serif", Georgia, Arial;, georgia, arial; }
+.concerto .sidebars, .concerto .sidebars ul h2 { font-family: "Droid Serif", Georgia, Arial; }
 .concerto .widget { border: 1px solid #dddddd; padding: 10px; background: #fbfbfb url('images/widget.png') repeat-x top left scroll; text-shadow: 0 -1px 0 #ffffff; }
 
 /* misc */
 .concerto .context-title { padding-left: 0; color: #dddddd; }
-.concerto #content .navigation { font-family: "Droid Serif", Georgia, Arial;, georgia, arial; }
+.concerto #content .navigation { font-family: "Droid Serif", Georgia, Arial; }
