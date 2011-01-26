@@ -20,13 +20,13 @@ function concerto_hook_head() {
 	?>
 	<!-- Concerto Theme Styles -->
 	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_url'); ?>" />
-	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/core/html/css.php?<?php echo time(); ?>" />
-	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/core/html/fixes.css?<?php echo time(); ?>" />
+	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/core/html/css.php?ver=<?php echo CONCERTO_VERSION; ?>" />
+	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/core/html/fixes.css?ver=<?php echo CONCERTO_VERSION; ?>" />
 	<?php
 		$dir = CONCERTO_STAGES . $stage . _DS;
 		if (file_exists($dir . 'style.css') && get_option('concerto_' . $stage . '_custom_css') == 1) {
 	?>
-	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/stages/<?php echo $stage; ?>/style.css?<?php echo time(); ?>" />
+	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/stages/<?php echo $stage; ?>/style.css?ver=<?php echo CONCERTO_VERSION; ?>" />
 	<?php
 		}
 	?>

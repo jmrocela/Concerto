@@ -20,6 +20,10 @@
 function admin_general() {
 ?>
 <div class="wrap concerto">
+
+	<div style="float:right;padding:0 10px;font-weight:bold;"><a href="http://codepassive.zendesk.com/home" target="_new" style="color:red;">Submit Feedback</a></div>
+	<div style="clear:both;"></div>
+	
 	<form method="POST" action="options.php" id="concerto_options">
 	<?php settings_fields('concerto_general'); ?>
 	<div id="concerto_header">

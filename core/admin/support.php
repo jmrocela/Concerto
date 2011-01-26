@@ -20,6 +20,10 @@
 function admin_support() {
 ?>
 <div class="wrap concerto">
+
+	<div style="float:right;padding:0 10px;font-weight:bold;"><a href="http://codepassive.zendesk.com/home" target="_new" style="color:red;">Submit Feedback</a></div>
+	<div style="clear:both;"></div>
+	
 	<div id="concerto_header">
 		<div class="left">
 			<h2 id="concerto_title" class="left">Conc&#0233;rto</h2>
