@@ -21,7 +21,7 @@ function admin_design() {
 ?>
 <div class="wrap concerto">
 
-	<div style="float:right;padding:0 10px;font-weight:bold;"><a href="http://codepassive.zendesk.com/home" target="_new" style="color:red;">Submit Feedback</a></div>
+	<div style="float:right;padding:0 10px;font-weight:bold;"><a href="http://codepassive.zendesk.com/home" target="_new" class="button">Submit Feedback</a></div>
 	<div style="clear:both;"></div>
 	
 	<form method="POST" action="options.php" id="concerto_options">
@@ -51,7 +51,7 @@ function admin_design() {
 						$st = $stages->stages;
 						foreach ($st as $sta) {
 							?>
-								<option value="<?php echo strtolower($sta['name']); ?>"<?php echo (strtolower($sta['name']) == strtolower($stage)) ? ' selected': ''; ?>><?php echo $sta['name']; ?></option>
+								<option value="<?php echo $sta['name']; ?>"<?php echo (strtolower($sta['name']) == strtolower($stage)) ? ' selected': ''; ?>><?php echo $sta['name']; ?></option>
 							<?php
 						}
 					?>
