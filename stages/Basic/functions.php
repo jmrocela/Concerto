@@ -10,4 +10,19 @@
 
 // Add your hooks here
 
+/**
+ * Custom Banner
+ *
+ * custom banner example usage
+ */
+function basic_banner() {
+	if (is_front_page() && is_home()) {
+		?>
+		<div id="concerto_basic_banner"><div class="container"></div></div>
+		<?php
+	}
+}
+add_action('concerto_hook_header_content', 'basic_banner', 20);
+
+
 ?>

@@ -42,7 +42,7 @@
 
 /* header and branding */
 .concerto #header { background: #ffffff url('images/header.png') repeat-x top left scroll; }
-.concerto #branding { padding: 10px 0; text-align: center; }
+.concerto #branding { margin-top: 40px; padding: 10px 0; text-align: center; }
 .concerto #branding #site-logo { float: none; clear: both; margin: 0 AUTO; }
 .concerto #branding #site-title a { font-size: 60px; font-family: "Droid Serif", Georgia, Arial; color: #333333; text-shadow: 0 0 5px rgba(0,0,0,0.1); }
 .concerto #branding #site-title a:hover { color: #39b54a; }
@@ -81,3 +81,5 @@
 /* misc */
 .concerto .context-title { padding-left: 0; color: #dddddd; }
 .concerto #content .navigation { font-family: "Droid Serif", Georgia, Arial; }
+#concerto_basic_banner { margin-bottom: 20px; background: #000000 url('images/banner-basic.jpg') repeat-x top left scroll; }
+#concerto_basic_banner .container { height: 380px; }
