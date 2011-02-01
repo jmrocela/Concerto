@@ -6,11 +6,11 @@
 	<?php do_action('concerto_hook_after_header'); ?>
 </header>
 <?php do_action('concerto_hook_header_content'); ?>
-<div id="main">
+<section id="main">
 	<div class="container">
 		<?php do_action('concerto_hook_content'); ?>
 	</div>
-</div>
+</section>
 <?php do_action('concerto_hook_content_footer'); ?>
 <footer id="footer">
 	<?php do_action('concerto_hook_before_footer'); ?>

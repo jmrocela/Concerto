@@ -243,7 +243,7 @@ function admin_design() {
 			}
 			
 			$('.color').focus(function(){
-				$(this).after('<div id="colorpicker">asd</div>');
+				$(this).after('<div id="colorpicker"></div>');
 				$('#colorpicker').farbtastic($(this));
 				var posX = $(this).innerHeight();
 			});

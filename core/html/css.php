@@ -201,7 +201,7 @@ a:hover{color:<?php echo $colors['fonts']['link-hover']; ?>;}
 #access ul li ul.children li a:hover,#access ul li ul.sub-menu li a:hover{border-top:<?php echo $borders['menu']; ?>px solid;border-color:<?php echo $colors['borders']['menu-active']; ?>;}
 #access ul li:hover a{border:<?php echo $borders['menu']; ?>px solid;border-color:<?php echo $colors['borders']['menu-hover']; ?>;}
 #access ul li ul.children li ul.children,#access ul li ul.sub-menu li ul.sub-menu{margin-top:-<?php echo $sizes['menu'] + 27; ?>px;}
-.container {width:<?php echo $width['container']; ?>px; margin: 0 AUTO; padding: <?php echo get_option('concerto_' . $stage . '_design_page_padding'); ?>px;}
+.container{background-color:<?php echo $colors['background']['container']; ?>;width:<?php echo $width['container']; ?>px; margin: 0 AUTO; padding: <?php echo get_option('concerto_' . $stage . '_design_page_padding'); ?>px;}
 #main{border-top:<?php echo $borders['header-bottom']; ?>px solid;border-top-color:<?php echo $colors['borders']['common']; ?>;}
 .normal-page #main {background-color:<?php echo $colors['background']['main']; ?>;}
 .normal-page #content {width:<?php echo $width['content']; ?>px;border-right:<?php echo $borders['container']; ?>px solid;border-color:<?php echo $colors['borders']['common']; ?>;}
@@ -266,8 +266,8 @@ h3#comments-title,h3#reply-title{color:<?php echo $colors['fonts']['site']; ?>;f
 .column5order.normal-page #content{border-left:<?php echo $borders['container']; ?>px solid;border-color:<?php echo $colors['borders']['common']; ?>;}
 .column5order .concerto_sidebar_main{border-right:<?php echo $borders['container']; ?>px solid;border-color:<?php echo $colors['borders']['common']; ?>;}
 .column5order .concerto_sidebar_secondary{margin-left:-<?php echo $borders['container']; ?>px;}
-<?php if (get_option('concerto_' . $stage . '_design_glow') == 1) { ?>.wrapped #main {-moz-box-shadow: 0 0 10px rgba(<?php echo implode(',', torgba(blackorwhite($colors['background']['site']))); ?>,0.2);-webkit-box-shadow: 0 0 10px rgba(<?php echo implode(',', torgba(blackorwhite($colors['background']['site']))); ?>,0.2);}<?php } ?>
-<?php if (get_option('concerto_' . $stage . '_design_engrave') == 1) { ?>#main {text-shadow: 0 1px 0 rgba(<?php echo implode(',', torgba(blackorwhite($colors['fonts']['site']))); ?>,0.3);}<?php } ?>
+<?php if (get_option('concerto_' . $stage . '_design_glow') == 1) { ?>.wrapped #main {-moz-box-shadow: 0 0 10px rgba(<?php echo implode(',', torgba(blackorwhite($colors['background']['site']))); ?>,0.5);-webkit-box-shadow: 0 0 10px rgba(<?php echo implode(',', torgba(blackorwhite($colors['background']['site']))); ?>,0.5);}<?php } ?>
+<?php if (get_option('concerto_' . $stage . '_design_engrave') == 1) { ?>#main {text-shadow: 0 1px 0 rgba(<?php echo implode(',', torgba(blackorwhite($colors['fonts']['site']))); ?>,0.5);}<?php } ?>
 <?php if (get_option('concerto_' . $stage . '_custom_css') == 1) { ?>
 /* CUSTOM CSS RESET */
 #header, #footer, .normal-page #main, .custom-page #main, .normal-page .container, .custom-page .container { background: none; border: none; }
