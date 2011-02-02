@@ -46,20 +46,25 @@
 .concerto #branding #site-logo { float: none; clear: both; margin: 0 AUTO; }
 .concerto #branding #site-title a { font-size: 60px; font-family: "Droid Serif", Georgia, Arial; color: #333333; text-shadow: 0 0 5px rgba(0,0,0,0.1); }
 .concerto #branding #site-title a:hover { color: #39b54a; }
+.concerto .wrapped #header { background: none; }
 
 /* container */
 .concerto #main .container { border-top: 1px dashed #dddddd; padding: 0; }
+.concerto .wrapped .container { padding: 0; }
 .concerto #main .container #content, .concerto #main .container .sidebars { padding-top: 30px; }
 
 /* footer */
 .concerto #footer { font-size: 14px; background: #222222; color: #cccccc; text-shadow: 0 -1px 0 #000000; }
+.concerto .wrapped #footer { padding: 20px; }
 .concerto .menu-footer { padding-top: 20px; }
+.concerto .wrapped .menu-footer { padding: 0 0 20px; }
 .concerto .menu-footer .menu { border-top: 1px dashed #666666; border-bottom: 1px dashed #666666; }
 .concerto .menu-footer .menu li { padding: 10px 0; }
 .concerto #footer a { color: #ffffff; }
 .concerto #footer a:hover { text-decoration: none; }
 .concerto #footer .menu-footer .menu a { color: #666666; }
 .concerto #footer .menu-footer .menu a:hover { color: #999999; }
+.concerto .wrapped #menu-footer-container .menu { width: 97%; } 
 
 /* content */
 .concerto .type-post, .concerto .type-page { padding: 0; }
@@ -81,5 +86,6 @@
 /* misc */
 .concerto .context-title { padding-left: 0; color: #dddddd; }
 .concerto #content .navigation { font-family: "Droid Serif", Georgia, Arial; }
-#concerto_basic_banner { margin-bottom: 20px; background: #000000 url('images/banner-basic.jpg') repeat-x top left scroll; }
-#concerto_basic_banner .container { height: 380px; }
+.concerto #concerto_basic_banner { margin-bottom: 20px; background: #000000 url('images/banner-basic.jpg') repeat-x top left scroll; }
+.concerto .wrapped #concerto_basic_banner { margin-bottom: 0; }
+.concerto #concerto_basic_banner .container { height: 380px; }
