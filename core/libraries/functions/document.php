@@ -24,7 +24,7 @@ function concerto_hook_head() {
 	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/core/html/fixes.css?ver=<?php echo CONCERTO_VERSION; ?>" />
 	<?php
 		$dir = CONCERTO_STAGES . $stage . _DS;
-		if (file_exists($dir . 'style.css') && get_option('concerto_' . $stage . '_custom_css') == 1) {
+		if (file_exists($dir . 'style.css') && get_option('concerto_custom_css') == 1) {
 	?>
 	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/stages/<?php echo $stage; ?>/style.css?ver=<?php echo CONCERTO_VERSION; ?>" />
 	<?php

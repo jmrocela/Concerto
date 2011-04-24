@@ -71,12 +71,12 @@ function admin_design() {
 		<div class="clear"></div>
 	</div>
 	<?php do_action('concerto_admin_notices'); ?>
-	<?php if (@$_GET['updated'] == 'true') { ?>
+	<?php if (@$_GET['settings-updated'] == 'true') { ?>
 	<div class="concerto_notice level_updated">Your Configuration has been changed and saved. <a href="<?php bloginfo('url'); ?>">See the changes on your site</a></div>
 	<?php } ?>
 	<div id="concerto_context">
 		<input type="submit" value="Save Changes" />
-		<div id="usecustom"><label>use custom CSS for selected stage <input type="checkbox" value="1" name="concerto_<?php echo $stage; ?>_custom_css" <?php echo (get_option('concerto_' . $stage . '_custom_css') == 1) ? 'checked ': ''; ?>/></label></div>
+		<div id="usecustom"><label>use custom CSS for selected stage <input type="checkbox" value="1" name="concerto_custom_css" <?php echo (get_option('concerto_custom_css') == 1) ? 'checked ': ''; ?>/></label></div>
 	</div>
 	<div id="concerto_dashboard">
 		<?php do_action('concerto_admin_design'); ?>
