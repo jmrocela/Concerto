@@ -110,3 +110,6 @@ ul#extensions { border-top: 1px solid #dddddd; padding-top: 10px; margin-top: 10
 #progressbar { position: fixed; bottom: -200px; left: 50%; margin-left: -150px; width: 300px; text-align: center; background: #e9e8e8 url('../../../../../wp-admin/images/fade-butt.png') repeat-x top left scroll; border: 1px solid #cccccc; border-bottom: 0; -moz-border-radius-topright: 10px; -moz-border-radius-topleft: 10px; -webkit-border-top-right-radius: 10px; -webkit-border-top-left-radius: 10px; }
 #progressbar .total { height: 3px; background: #f7f7f7; margin: 10px; z-index: 1000; border: 1px solid #cccccc; -moz-box-shadow: 0 1px 0 #ffffff; -webkit-box-shadow: 0 1px 0 #ffffff; box-shadow: 0 1px 0 #ffffff;}
 #progressbar .done { background: #cadceb; width: 0; height: 3px; }
+
+.font {float:left;padding:5px;border:1px solid #d5d5d5;margin-right:10px;margin-bottom:10px;font-size:11px;background:#fcfcfc;-moz-border-radius:5px;-webkit-border-radius:5px;}
+.font span {float:right;width:18px;height:18px;background:url('../images/admin-content-font-close.jpg') no-repeat center scroll;margin-left:10px;cursor:pointer;}

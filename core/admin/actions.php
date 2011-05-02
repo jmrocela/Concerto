@@ -34,10 +34,14 @@ add_action('concerto_admin_design', 'admin_design_box_comments', 140);
 add_action('concerto_admin_design', 'admin_design_box_eyecandy', 160);
 
 // Tools
-add_action('concerto_admin_tools', 'admin_tools_box_importconfiguration', 20);
-add_action('concerto_admin_tools', 'admin_tools_box_exportconfiguration', 40);
-add_action('concerto_admin_tools', 'admin_tools_box_newstage', 60);
-add_action('concerto_admin_tools', 'admin_tools_box_restoreconfiguration', 80);
+add_action('concerto_admin_tools', 'admin_tools_box_fontmanager', 20);
+add_action('concerto_admin_tools', 'admin_tools_box_importconfiguration', 40);
+add_action('concerto_admin_tools', 'admin_tools_box_exportconfiguration', 60);
+add_action('concerto_admin_tools', 'admin_tools_box_newstage', 80);
+add_action('concerto_admin_tools', 'admin_tools_box_restoreconfiguration', 100);
+
+add_action('wp_ajax_add_font', 'admin_tools_add_font');
+add_action('wp_ajax_remove_font', 'admin_tools_remove_font');
 
 // Support
 add_action('concerto_admin_support', 'admin_support_box_terms_and_agreements', 20);
