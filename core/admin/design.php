@@ -375,11 +375,47 @@ function admin_design_box_fontscolorsborders () {
 						<p class="desc">Global site font styles</p>
 						<p>Global Font Face
 							<select name="concerto_<?php echo $stage; ?>_design_fonts_body">
-								<option value="arial"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'arial') ? ' selected': ''; ?>>Arial</option>
-								<option value="verdana"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'verdana') ? ' selected': ''; ?>>Verdana</option>
-								<option value="trebuchet ms"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'trebuchet ms') ? ' selected': ''; ?>>Trebuchet MS</option>
-								<option value="georgia"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'georgia') ? ' selected': ''; ?>>Georgia</option>
-								<option value="times new roman"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'times new roman') ? ' selected': ''; ?>>Times New Roman</option>
+								<optgroup label="Websafe">
+									<option value="arial"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'arial') ? ' selected': ''; ?>>Arial</option>
+									<option value="verdana"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'verdana') ? ' selected': ''; ?>>Verdana</option>
+									<option value="trebuchet ms"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'trebuchet ms') ? ' selected': ''; ?>>Trebuchet MS</option>
+									<option value="georgia"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'georgia') ? ' selected': ''; ?>>Georgia</option>
+									<option value="times new roman"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'times new roman') ? ' selected': ''; ?>>Times New Roman</option>
+								</optgroup>
+								<optgroup label="Google Fonts">
+									<option value="gf_Droid+Sans"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Droid+Sans') ? ' selected': ''; ?>>Droid Sans</option>
+									<option value="gf_Droid+Sans+Serif"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Droid+Sans+Serif') ? ' selected': ''; ?>>Droid Sans Serif</option>
+									<option value="gf_Allerta"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Allerta') ? ' selected': ''; ?>>Allerta</option>
+									<option value="gf_Chewy"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Chewy') ? ' selected': ''; ?>>Chewy</option>
+									<option value="gf_Ubuntu"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Ubuntu') ? ' selected': ''; ?>>Ubuntu</option>
+									<option value="gf_Copse"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Copse') ? ' selected': ''; ?>>Copse</option>
+									<option value="gf_Puritan"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Puritan') ? ' selected': ''; ?>>Puritan</option>
+									<option value="gf_Amaranth"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Amaranth') ? ' selected': ''; ?>>Amaranth</option>
+									<option value="gf_Neuton"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Neuton') ? ' selected': ''; ?>>Neuton</option>
+									<option value="gf_Merriweather"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Merriweather') ? ' selected': ''; ?>>Merriweather</option>
+									<option value="gf_Molengo"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Molengo') ? ' selected': ''; ?>>Molengo</option>
+									<option value="gf_Old+Standard+TT"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Old+Standard+TT') ? ' selected': ''; ?>>Old Standard TT</option>
+									<option value="gf_Just+Another+Hand"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Just+Another+Hand') ? ' selected': ''; ?>>Just Another Hand</option>
+									<option value="gf_Maiden+Orange"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Maiden+Orange') ? ' selected': ''; ?>>Maiden Orange</option>
+									<option value="gf_Cabin"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Cabin') ? ' selected': ''; ?>>Cabin</option>
+									<option value="gf_Oswald"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Oswald') ? ' selected': ''; ?>>Oswald</option>
+									<option value="gf_Anonymous+Pro"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Anonymous+Pro') ? ' selected': ''; ?>>Anonymous Pro</option>
+									<option value="gf_Smythe"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Smythe') ? ' selected': ''; ?>>Smythe</option>
+								</optgroup>
+								<optgroup label="Custom Fonts">
+									<?php
+										$fonts = get_option('concerto_fonts_custom');
+										if (!empty($fonts)) {
+											foreach ($fonts as $font) {
+									?>
+										<option value="<?php echo $font['slug']; ?>"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == $font['slug']) ? ' selected': ''; ?>><?php echo $font['name']; ?></option>
+									<?php
+											}
+										} else {
+									?>
+										<option disabled>--</option>
+									<?php } ?>
+								</optgroup>
 							</select>
 						</p>
 						
@@ -430,12 +466,48 @@ function admin_design_box_fontscolorsborders () {
 						<p class="desc">Header font styles</p>	
 						<p>Font Face
 							<select name="concerto_<?php echo $stage; ?>_design_fonts_header">
-								<option value="inherit-body"<?php echo (get_option('concerto_' . $stage . '_design_fonts_header') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Body</option>
-								<option value="arial"<?php echo (get_option('concerto_' . $stage . '_design_fonts_header') == 'arial') ? ' selected': ''; ?>>Arial</option>
-								<option value="verdana"<?php echo (get_option('concerto_' . $stage . '_design_fonts_header') == 'verdana') ? ' selected': ''; ?>>Verdana</option>
-								<option value="trebuchet ms"<?php echo (get_option('concerto_' . $stage . '_design_fonts_header') == 'trebuchet ms') ? ' selected': ''; ?>>Trebuchet MS</option>
-								<option value="georgia"<?php echo (get_option('concerto_' . $stage . '_design_fonts_header') == 'georgia') ? ' selected': ''; ?>>Georgia</option>
-								<option value="times new roman"<?php echo (get_option('concerto_' . $stage . '_design_fonts_header') == 'times new roman') ? ' selected': ''; ?>>Times New Roman</option>
+								<optgroup label="Websafe">
+									<option value="inherit-body"<?php echo (get_option('concerto_' . $stage . '_design_fonts_header') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Body</option>
+									<option value="arial"<?php echo (get_option('concerto_' . $stage . '_design_fonts_header') == 'arial') ? ' selected': ''; ?>>Arial</option>
+									<option value="verdana"<?php echo (get_option('concerto_' . $stage . '_design_fonts_header') == 'verdana') ? ' selected': ''; ?>>Verdana</option>
+									<option value="trebuchet ms"<?php echo (get_option('concerto_' . $stage . '_design_fonts_header') == 'trebuchet ms') ? ' selected': ''; ?>>Trebuchet MS</option>
+									<option value="georgia"<?php echo (get_option('concerto_' . $stage . '_design_fonts_header') == 'georgia') ? ' selected': ''; ?>>Georgia</option>
+									<option value="times new roman"<?php echo (get_option('concerto_' . $stage . '_design_fonts_header') == 'times new roman') ? ' selected': ''; ?>>Times New Roman</option>
+								</optgroup>
+								<optgroup label="Google Fonts">
+									<option value="gf_Droid+Sans"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Droid+Sans') ? ' selected': ''; ?>>Droid Sans</option>
+									<option value="gf_Droid+Sans+Serif"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Droid+Sans+Serif') ? ' selected': ''; ?>>Droid Sans Serif</option>
+									<option value="gf_Allerta"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Allerta') ? ' selected': ''; ?>>Allerta</option>
+									<option value="gf_Chewy"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Chewy') ? ' selected': ''; ?>>Chewy</option>
+									<option value="gf_Ubuntu"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Ubuntu') ? ' selected': ''; ?>>Ubuntu</option>
+									<option value="gf_Copse"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Copse') ? ' selected': ''; ?>>Copse</option>
+									<option value="gf_Puritan"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Puritan') ? ' selected': ''; ?>>Puritan</option>
+									<option value="gf_Amaranth"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Amaranth') ? ' selected': ''; ?>>Amaranth</option>
+									<option value="gf_Neuton"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Neuton') ? ' selected': ''; ?>>Neuton</option>
+									<option value="gf_Merriweather"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Merriweather') ? ' selected': ''; ?>>Merriweather</option>
+									<option value="gf_Molengo"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Molengo') ? ' selected': ''; ?>>Molengo</option>
+									<option value="gf_Old+Standard+TT"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Old+Standard+TT') ? ' selected': ''; ?>>Old Standard TT</option>
+									<option value="gf_Just+Another+Hand"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Just+Another+Hand') ? ' selected': ''; ?>>Just Another Hand</option>
+									<option value="gf_Maiden+Orange"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Maiden+Orange') ? ' selected': ''; ?>>Maiden Orange</option>
+									<option value="gf_Cabin"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Cabin') ? ' selected': ''; ?>>Cabin</option>
+									<option value="gf_Oswald"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Oswald') ? ' selected': ''; ?>>Oswald</option>
+									<option value="gf_Anonymous+Pro"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Anonymous+Pro') ? ' selected': ''; ?>>Anonymous Pro</option>
+									<option value="gf_Smythe"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Smythe') ? ' selected': ''; ?>>Smythe</option>
+								</optgroup>
+								<optgroup label="Custom Fonts">
+									<?php
+										$fonts = get_option('concerto_fonts_custom');
+										if (!empty($fonts)) {
+											foreach ($fonts as $font) {
+									?>
+										<option value="<?php echo $font['slug']; ?>"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == $font['slug']) ? ' selected': ''; ?>><?php echo $font['name']; ?></option>
+									<?php
+											}
+										} else {
+									?>
+										<option disabled>--</option>
+									<?php } ?>
+								</optgroup>
 							</select>
 						</p>
 						
@@ -521,12 +593,48 @@ function admin_design_box_fontscolorsborders () {
 						<p class="desc">Navigation font styles</p>
 						<p>Font Face
 							<select name="concerto_<?php echo $stage; ?>_design_fonts_menu">
-								<option value="inherit-body"<?php echo (get_option('concerto_' . $stage . '_design_fonts_menu') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Body</option>
-								<option value="arial"<?php echo (get_option('concerto_' . $stage . '_design_fonts_menu') == 'arial') ? ' selected': ''; ?>>Arial</option>
-								<option value="verdana"<?php echo (get_option('concerto_' . $stage . '_design_fonts_menu') == 'verdana') ? ' selected': ''; ?>>Verdana</option>
-								<option value="trebuchet ms"<?php echo (get_option('concerto_' . $stage . '_design_fonts_menu') == 'trebuchet ms') ? ' selected': ''; ?>>Trebuchet MS</option>
-								<option value="georgia"<?php echo (get_option('concerto_' . $stage . '_design_fonts_menu') == 'georgia') ? ' selected': ''; ?>>Georgia</option>
-								<option value="times new roman"<?php echo (get_option('concerto_' . $stage . '_design_fonts_menu') == 'times new roman') ? ' selected': ''; ?>>Times New Roman</option>
+								<optgroup label="Websafe">
+									<option value="inherit-body"<?php echo (get_option('concerto_' . $stage . '_design_fonts_menu') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Body</option>
+									<option value="arial"<?php echo (get_option('concerto_' . $stage . '_design_fonts_menu') == 'arial') ? ' selected': ''; ?>>Arial</option>
+									<option value="verdana"<?php echo (get_option('concerto_' . $stage . '_design_fonts_menu') == 'verdana') ? ' selected': ''; ?>>Verdana</option>
+									<option value="trebuchet ms"<?php echo (get_option('concerto_' . $stage . '_design_fonts_menu') == 'trebuchet ms') ? ' selected': ''; ?>>Trebuchet MS</option>
+									<option value="georgia"<?php echo (get_option('concerto_' . $stage . '_design_fonts_menu') == 'georgia') ? ' selected': ''; ?>>Georgia</option>
+									<option value="times new roman"<?php echo (get_option('concerto_' . $stage . '_design_fonts_menu') == 'times new roman') ? ' selected': ''; ?>>Times New Roman</option>
+								</optgroup>
+								<optgroup label="Google Fonts">
+									<option value="gf_Droid+Sans"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Droid+Sans') ? ' selected': ''; ?>>Droid Sans</option>
+									<option value="gf_Droid+Sans+Serif"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Droid+Sans+Serif') ? ' selected': ''; ?>>Droid Sans Serif</option>
+									<option value="gf_Allerta"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Allerta') ? ' selected': ''; ?>>Allerta</option>
+									<option value="gf_Chewy"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Chewy') ? ' selected': ''; ?>>Chewy</option>
+									<option value="gf_Ubuntu"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Ubuntu') ? ' selected': ''; ?>>Ubuntu</option>
+									<option value="gf_Copse"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Copse') ? ' selected': ''; ?>>Copse</option>
+									<option value="gf_Puritan"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Puritan') ? ' selected': ''; ?>>Puritan</option>
+									<option value="gf_Amaranth"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Amaranth') ? ' selected': ''; ?>>Amaranth</option>
+									<option value="gf_Neuton"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Neuton') ? ' selected': ''; ?>>Neuton</option>
+									<option value="gf_Merriweather"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Merriweather') ? ' selected': ''; ?>>Merriweather</option>
+									<option value="gf_Molengo"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Molengo') ? ' selected': ''; ?>>Molengo</option>
+									<option value="gf_Old+Standard+TT"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Old+Standard+TT') ? ' selected': ''; ?>>Old Standard TT</option>
+									<option value="gf_Just+Another+Hand"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Just+Another+Hand') ? ' selected': ''; ?>>Just Another Hand</option>
+									<option value="gf_Maiden+Orange"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Maiden+Orange') ? ' selected': ''; ?>>Maiden Orange</option>
+									<option value="gf_Cabin"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Cabin') ? ' selected': ''; ?>>Cabin</option>
+									<option value="gf_Oswald"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Oswald') ? ' selected': ''; ?>>Oswald</option>
+									<option value="gf_Anonymous+Pro"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Anonymous+Pro') ? ' selected': ''; ?>>Anonymous Pro</option>
+									<option value="gf_Smythe"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Smythe') ? ' selected': ''; ?>>Smythe</option>
+								</optgroup>
+								<optgroup label="Custom Fonts">
+									<?php
+										$fonts = get_option('concerto_fonts_custom');
+										if (!empty($fonts)) {
+											foreach ($fonts as $font) {
+									?>
+										<option value="<?php echo $font['slug']; ?>"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == $font['slug']) ? ' selected': ''; ?>><?php echo $font['name']; ?></option>
+									<?php
+											}
+										} else {
+									?>
+										<option disabled>--</option>
+									<?php } ?>
+								</optgroup>
 							</select>
 						</p>
 						
@@ -579,12 +687,48 @@ function admin_design_box_fontscolorsborders () {
 						<p class="desc">Content font styles</p>		
 						<p>Title Font Face
 							<select name="concerto_<?php echo $stage; ?>_design_fonts_content_title">
-								<option value="inherit-body"<?php echo (get_option('concerto_' . $stage . '_design_fonts_content_title') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Body</option>
-								<option value="arial"<?php echo (get_option('concerto_' . $stage . '_design_fonts_content_title') == 'arial') ? ' selected': ''; ?>>Arial</option>
-								<option value="verdana"<?php echo (get_option('concerto_' . $stage . '_design_fonts_content_title') == 'verdana') ? ' selected': ''; ?>>Verdana</option>
-								<option value="trebuchet ms"<?php echo (get_option('concerto_' . $stage . '_design_fonts_content_title') == 'trebuchet ms') ? ' selected': ''; ?>>Trebuchet MS</option>
-								<option value="georgia"<?php echo (get_option('concerto_' . $stage . '_design_fonts_content_title') == 'georgia') ? ' selected': ''; ?>>Georgia</option>
-								<option value="times new roman"<?php echo (get_option('concerto_' . $stage . '_design_fonts_content_title') == 'times new roman') ? ' selected': ''; ?>>Times New Roman</option>
+								<optgroup label="Websafe">
+									<option value="inherit-body"<?php echo (get_option('concerto_' . $stage . '_design_fonts_content_title') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Body</option>
+									<option value="arial"<?php echo (get_option('concerto_' . $stage . '_design_fonts_content_title') == 'arial') ? ' selected': ''; ?>>Arial</option>
+									<option value="verdana"<?php echo (get_option('concerto_' . $stage . '_design_fonts_content_title') == 'verdana') ? ' selected': ''; ?>>Verdana</option>
+									<option value="trebuchet ms"<?php echo (get_option('concerto_' . $stage . '_design_fonts_content_title') == 'trebuchet ms') ? ' selected': ''; ?>>Trebuchet MS</option>
+									<option value="georgia"<?php echo (get_option('concerto_' . $stage . '_design_fonts_content_title') == 'georgia') ? ' selected': ''; ?>>Georgia</option>
+									<option value="times new roman"<?php echo (get_option('concerto_' . $stage . '_design_fonts_content_title') == 'times new roman') ? ' selected': ''; ?>>Times New Roman</option>
+								</optgroup>
+								<optgroup label="Google Fonts">
+									<option value="gf_Droid+Sans"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Droid+Sans') ? ' selected': ''; ?>>Droid Sans</option>
+									<option value="gf_Droid+Sans+Serif"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Droid+Sans+Serif') ? ' selected': ''; ?>>Droid Sans Serif</option>
+									<option value="gf_Allerta"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Allerta') ? ' selected': ''; ?>>Allerta</option>
+									<option value="gf_Chewy"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Chewy') ? ' selected': ''; ?>>Chewy</option>
+									<option value="gf_Ubuntu"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Ubuntu') ? ' selected': ''; ?>>Ubuntu</option>
+									<option value="gf_Copse"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Copse') ? ' selected': ''; ?>>Copse</option>
+									<option value="gf_Puritan"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Puritan') ? ' selected': ''; ?>>Puritan</option>
+									<option value="gf_Amaranth"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Amaranth') ? ' selected': ''; ?>>Amaranth</option>
+									<option value="gf_Neuton"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Neuton') ? ' selected': ''; ?>>Neuton</option>
+									<option value="gf_Merriweather"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Merriweather') ? ' selected': ''; ?>>Merriweather</option>
+									<option value="gf_Molengo"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Molengo') ? ' selected': ''; ?>>Molengo</option>
+									<option value="gf_Old+Standard+TT"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Old+Standard+TT') ? ' selected': ''; ?>>Old Standard TT</option>
+									<option value="gf_Just+Another+Hand"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Just+Another+Hand') ? ' selected': ''; ?>>Just Another Hand</option>
+									<option value="gf_Maiden+Orange"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Maiden+Orange') ? ' selected': ''; ?>>Maiden Orange</option>
+									<option value="gf_Cabin"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Cabin') ? ' selected': ''; ?>>Cabin</option>
+									<option value="gf_Oswald"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Oswald') ? ' selected': ''; ?>>Oswald</option>
+									<option value="gf_Anonymous+Pro"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Anonymous+Pro') ? ' selected': ''; ?>>Anonymous Pro</option>
+									<option value="gf_Smythe"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Smythe') ? ' selected': ''; ?>>Smythe</option>
+								</optgroup>
+								<optgroup label="Custom Fonts">
+									<?php
+										$fonts = get_option('concerto_fonts_custom');
+										if (!empty($fonts)) {
+											foreach ($fonts as $font) {
+									?>
+										<option value="<?php echo $font['slug']; ?>"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == $font['slug']) ? ' selected': ''; ?>><?php echo $font['name']; ?></option>
+									<?php
+											}
+										} else {
+									?>
+										<option disabled>--</option>
+									<?php } ?>
+								</optgroup>
 							</select>
 						</p>
 						
@@ -603,12 +747,48 @@ function admin_design_box_fontscolorsborders () {
 						
 						<p>Font Face
 							<select name="concerto_<?php echo $stage; ?>_design_fonts_content">
-								<option value="inherit-body"<?php echo (get_option('concerto_' . $stage . '_design_fonts_content') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Body</option>
-								<option value="arial"<?php echo (get_option('concerto_' . $stage . '_design_fonts_content') == 'arial') ? ' selected': ''; ?>>Arial</option>
-								<option value="verdana"<?php echo (get_option('concerto_' . $stage . '_design_fonts_content') == 'verdana') ? ' selected': ''; ?>>Verdana</option>
-								<option value="trebuchet ms"<?php echo (get_option('concerto_' . $stage . '_design_fonts_content') == 'trebuchet ms') ? ' selected': ''; ?>>Trebuchet MS</option>
-								<option value="georgia"<?php echo (get_option('concerto_' . $stage . '_design_fonts_content') == 'georgia') ? ' selected': ''; ?>>Georgia</option>
-								<option value="times new roman"<?php echo (get_option('concerto_' . $stage . '_design_fonts_content') == 'times new roman') ? ' selected': ''; ?>>Times New Roman</option>
+								<optgroup label="Websafe">
+									<option value="inherit-body"<?php echo (get_option('concerto_' . $stage . '_design_fonts_content') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Body</option>
+									<option value="arial"<?php echo (get_option('concerto_' . $stage . '_design_fonts_content') == 'arial') ? ' selected': ''; ?>>Arial</option>
+									<option value="verdana"<?php echo (get_option('concerto_' . $stage . '_design_fonts_content') == 'verdana') ? ' selected': ''; ?>>Verdana</option>
+									<option value="trebuchet ms"<?php echo (get_option('concerto_' . $stage . '_design_fonts_content') == 'trebuchet ms') ? ' selected': ''; ?>>Trebuchet MS</option>
+									<option value="georgia"<?php echo (get_option('concerto_' . $stage . '_design_fonts_content') == 'georgia') ? ' selected': ''; ?>>Georgia</option>
+									<option value="times new roman"<?php echo (get_option('concerto_' . $stage . '_design_fonts_content') == 'times new roman') ? ' selected': ''; ?>>Times New Roman</option>
+								</optgroup>
+								<optgroup label="Google Fonts">
+									<option value="gf_Droid+Sans"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Droid+Sans') ? ' selected': ''; ?>>Droid Sans</option>
+									<option value="gf_Droid+Sans+Serif"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Droid+Sans+Serif') ? ' selected': ''; ?>>Droid Sans Serif</option>
+									<option value="gf_Allerta"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Allerta') ? ' selected': ''; ?>>Allerta</option>
+									<option value="gf_Chewy"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Chewy') ? ' selected': ''; ?>>Chewy</option>
+									<option value="gf_Ubuntu"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Ubuntu') ? ' selected': ''; ?>>Ubuntu</option>
+									<option value="gf_Copse"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Copse') ? ' selected': ''; ?>>Copse</option>
+									<option value="gf_Puritan"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Puritan') ? ' selected': ''; ?>>Puritan</option>
+									<option value="gf_Amaranth"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Amaranth') ? ' selected': ''; ?>>Amaranth</option>
+									<option value="gf_Neuton"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Neuton') ? ' selected': ''; ?>>Neuton</option>
+									<option value="gf_Merriweather"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Merriweather') ? ' selected': ''; ?>>Merriweather</option>
+									<option value="gf_Molengo"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Molengo') ? ' selected': ''; ?>>Molengo</option>
+									<option value="gf_Old+Standard+TT"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Old+Standard+TT') ? ' selected': ''; ?>>Old Standard TT</option>
+									<option value="gf_Just+Another+Hand"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Just+Another+Hand') ? ' selected': ''; ?>>Just Another Hand</option>
+									<option value="gf_Maiden+Orange"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Maiden+Orange') ? ' selected': ''; ?>>Maiden Orange</option>
+									<option value="gf_Cabin"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Cabin') ? ' selected': ''; ?>>Cabin</option>
+									<option value="gf_Oswald"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Oswald') ? ' selected': ''; ?>>Oswald</option>
+									<option value="gf_Anonymous+Pro"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Anonymous+Pro') ? ' selected': ''; ?>>Anonymous Pro</option>
+									<option value="gf_Smythe"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Smythe') ? ' selected': ''; ?>>Smythe</option>
+								</optgroup>
+								<optgroup label="Custom Fonts">
+									<?php
+										$fonts = get_option('concerto_fonts_custom');
+										if (!empty($fonts)) {
+											foreach ($fonts as $font) {
+									?>
+										<option value="<?php echo $font['slug']; ?>"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == $font['slug']) ? ' selected': ''; ?>><?php echo $font['name']; ?></option>
+									<?php
+											}
+										} else {
+									?>
+										<option disabled>--</option>
+									<?php } ?>
+								</optgroup>
 							</select>
 						</p>
 						
@@ -646,13 +826,49 @@ function admin_design_box_fontscolorsborders () {
 						<p class="desc">Sidebar font styles</p>
 						<p>Font Face
 							<select name="concerto_<?php echo $stage; ?>_design_fonts_sidebar">
-								<option value="inherit-body"<?php echo (get_option('concerto_' . $stage . '_design_fonts_sidebar') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Body</option>
-								<option value="inherit-content"<?php echo (get_option('concerto_' . $stage . '_design_fonts_sidebar') == 'inherit-content') ? ' selected': ''; ?>>Inherit from Content</option>
-								<option value="arial"<?php echo (get_option('concerto_' . $stage . '_design_fonts_sidebar') == 'arial') ? ' selected': ''; ?>>Arial</option>
-								<option value="verdana"<?php echo (get_option('concerto_' . $stage . '_design_fonts_sidebar') == 'verdana') ? ' selected': ''; ?>>Verdana</option>
-								<option value="trebuchet ms"<?php echo (get_option('concerto_' . $stage . '_design_fonts_sidebar') == 'trebuchet ms') ? ' selected': ''; ?>>Trebuchet MS</option>
-								<option value="georgia"<?php echo (get_option('concerto_' . $stage . '_design_fonts_sidebar') == 'georgia') ? ' selected': ''; ?>>Georgia</option>
-								<option value="times new roman"<?php echo (get_option('concerto_' . $stage . '_design_fonts_sidebar') == 'times new roman') ? ' selected': ''; ?>>Times New Roman</option>
+								<optgroup label="Websafe">
+									<option value="inherit-body"<?php echo (get_option('concerto_' . $stage . '_design_fonts_sidebar') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Body</option>
+									<option value="inherit-content"<?php echo (get_option('concerto_' . $stage . '_design_fonts_sidebar') == 'inherit-content') ? ' selected': ''; ?>>Inherit from Content</option>
+									<option value="arial"<?php echo (get_option('concerto_' . $stage . '_design_fonts_sidebar') == 'arial') ? ' selected': ''; ?>>Arial</option>
+									<option value="verdana"<?php echo (get_option('concerto_' . $stage . '_design_fonts_sidebar') == 'verdana') ? ' selected': ''; ?>>Verdana</option>
+									<option value="trebuchet ms"<?php echo (get_option('concerto_' . $stage . '_design_fonts_sidebar') == 'trebuchet ms') ? ' selected': ''; ?>>Trebuchet MS</option>
+									<option value="georgia"<?php echo (get_option('concerto_' . $stage . '_design_fonts_sidebar') == 'georgia') ? ' selected': ''; ?>>Georgia</option>
+									<option value="times new roman"<?php echo (get_option('concerto_' . $stage . '_design_fonts_sidebar') == 'times new roman') ? ' selected': ''; ?>>Times New Roman</option>
+								</optgroup>
+								<optgroup label="Google Fonts">
+									<option value="gf_Droid+Sans"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Droid+Sans') ? ' selected': ''; ?>>Droid Sans</option>
+									<option value="gf_Droid+Sans+Serif"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Droid+Sans+Serif') ? ' selected': ''; ?>>Droid Sans Serif</option>
+									<option value="gf_Allerta"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Allerta') ? ' selected': ''; ?>>Allerta</option>
+									<option value="gf_Chewy"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Chewy') ? ' selected': ''; ?>>Chewy</option>
+									<option value="gf_Ubuntu"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Ubuntu') ? ' selected': ''; ?>>Ubuntu</option>
+									<option value="gf_Copse"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Copse') ? ' selected': ''; ?>>Copse</option>
+									<option value="gf_Puritan"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Puritan') ? ' selected': ''; ?>>Puritan</option>
+									<option value="gf_Amaranth"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Amaranth') ? ' selected': ''; ?>>Amaranth</option>
+									<option value="gf_Neuton"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Neuton') ? ' selected': ''; ?>>Neuton</option>
+									<option value="gf_Merriweather"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Merriweather') ? ' selected': ''; ?>>Merriweather</option>
+									<option value="gf_Molengo"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Molengo') ? ' selected': ''; ?>>Molengo</option>
+									<option value="gf_Old+Standard+TT"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Old+Standard+TT') ? ' selected': ''; ?>>Old Standard TT</option>
+									<option value="gf_Just+Another+Hand"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Just+Another+Hand') ? ' selected': ''; ?>>Just Another Hand</option>
+									<option value="gf_Maiden+Orange"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Maiden+Orange') ? ' selected': ''; ?>>Maiden Orange</option>
+									<option value="gf_Cabin"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Cabin') ? ' selected': ''; ?>>Cabin</option>
+									<option value="gf_Oswald"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Oswald') ? ' selected': ''; ?>>Oswald</option>
+									<option value="gf_Anonymous+Pro"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Anonymous+Pro') ? ' selected': ''; ?>>Anonymous Pro</option>
+									<option value="gf_Smythe"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Smythe') ? ' selected': ''; ?>>Smythe</option>
+								</optgroup>
+								<optgroup label="Custom Fonts">
+									<?php
+										$fonts = get_option('concerto_fonts_custom');
+										if (!empty($fonts)) {
+											foreach ($fonts as $font) {
+									?>
+										<option value="<?php echo $font['slug']; ?>"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == $font['slug']) ? ' selected': ''; ?>><?php echo $font['name']; ?></option>
+									<?php
+											}
+										} else {
+									?>
+										<option disabled>--</option>
+									<?php } ?>
+								</optgroup>
 							</select>
 						</p>
 						
@@ -913,12 +1129,48 @@ function admin_design_box_fontscolorsborders () {
 						<p class="desc">Footer font styles</p>
 						<p>Font Face
 							<select name="concerto_<?php echo $stage; ?>_design_fonts_footer">
-								<option value="inherit-body"<?php echo (get_option('concerto_' . $stage . '_design_fonts_footer') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Body</option>
-								<option value="arial"<?php echo (get_option('concerto_' . $stage . '_design_fonts_footer') == 'arial') ? ' selected': ''; ?>>Arial</option>
-								<option value="verdana"<?php echo (get_option('concerto_' . $stage . '_design_fonts_footer') == 'verdana') ? ' selected': ''; ?>>Verdana</option>
-								<option value="trebuchet ms"<?php echo (get_option('concerto_' . $stage . '_design_fonts_footer') == 'trebuchet ms') ? ' selected': ''; ?>>Trebuchet MS</option>
-								<option value="georgia"<?php echo (get_option('concerto_' . $stage . '_design_fonts_footer') == 'georgia') ? ' selected': ''; ?>>Georgia</option>
-								<option value="times new roman"<?php echo (get_option('concerto_' . $stage . '_design_fonts_footer') == 'times new roman') ? ' selected': ''; ?>>Times New Roman</option>
+								<optgroup label="Websafe">
+									<option value="inherit-body"<?php echo (get_option('concerto_' . $stage . '_design_fonts_footer') == 'inherit-body') ? ' selected': ''; ?>>Inherit from Body</option>
+									<option value="arial"<?php echo (get_option('concerto_' . $stage . '_design_fonts_footer') == 'arial') ? ' selected': ''; ?>>Arial</option>
+									<option value="verdana"<?php echo (get_option('concerto_' . $stage . '_design_fonts_footer') == 'verdana') ? ' selected': ''; ?>>Verdana</option>
+									<option value="trebuchet ms"<?php echo (get_option('concerto_' . $stage . '_design_fonts_footer') == 'trebuchet ms') ? ' selected': ''; ?>>Trebuchet MS</option>
+									<option value="georgia"<?php echo (get_option('concerto_' . $stage . '_design_fonts_footer') == 'georgia') ? ' selected': ''; ?>>Georgia</option>
+									<option value="times new roman"<?php echo (get_option('concerto_' . $stage . '_design_fonts_footer') == 'times new roman') ? ' selected': ''; ?>>Times New Roman</option>
+								</optgroup>
+								<optgroup label="Google Fonts">
+									<option value="gf_Droid+Sans"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Droid+Sans') ? ' selected': ''; ?>>Droid Sans</option>
+									<option value="gf_Droid+Sans+Serif"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Droid+Sans+Serif') ? ' selected': ''; ?>>Droid Sans Serif</option>
+									<option value="gf_Allerta"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Allerta') ? ' selected': ''; ?>>Allerta</option>
+									<option value="gf_Chewy"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Chewy') ? ' selected': ''; ?>>Chewy</option>
+									<option value="gf_Ubuntu"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Ubuntu') ? ' selected': ''; ?>>Ubuntu</option>
+									<option value="gf_Copse"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Copse') ? ' selected': ''; ?>>Copse</option>
+									<option value="gf_Puritan"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Puritan') ? ' selected': ''; ?>>Puritan</option>
+									<option value="gf_Amaranth"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Amaranth') ? ' selected': ''; ?>>Amaranth</option>
+									<option value="gf_Neuton"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Neuton') ? ' selected': ''; ?>>Neuton</option>
+									<option value="gf_Merriweather"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Merriweather') ? ' selected': ''; ?>>Merriweather</option>
+									<option value="gf_Molengo"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Molengo') ? ' selected': ''; ?>>Molengo</option>
+									<option value="gf_Old+Standard+TT"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Old+Standard+TT') ? ' selected': ''; ?>>Old Standard TT</option>
+									<option value="gf_Just+Another+Hand"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Just+Another+Hand') ? ' selected': ''; ?>>Just Another Hand</option>
+									<option value="gf_Maiden+Orange"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Maiden+Orange') ? ' selected': ''; ?>>Maiden Orange</option>
+									<option value="gf_Cabin"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Cabin') ? ' selected': ''; ?>>Cabin</option>
+									<option value="gf_Oswald"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Oswald') ? ' selected': ''; ?>>Oswald</option>
+									<option value="gf_Anonymous+Pro"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Anonymous+Pro') ? ' selected': ''; ?>>Anonymous Pro</option>
+									<option value="gf_Smythe"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == 'gf_Smythe') ? ' selected': ''; ?>>Smythe</option>
+								</optgroup>
+								<optgroup label="Custom Fonts">
+									<?php
+										$fonts = get_option('concerto_fonts_custom');
+										if (!empty($fonts)) {
+											foreach ($fonts as $font) {
+									?>
+										<option value="<?php echo $font['slug']; ?>"<?php echo (get_option('concerto_' . $stage . '_design_fonts_body') == $font['slug']) ? ' selected': ''; ?>><?php echo $font['name']; ?></option>
+									<?php
+											}
+										} else {
+									?>
+										<option disabled>--</option>
+									<?php } ?>
+								</optgroup>
 							</select>
 						</p>
 						

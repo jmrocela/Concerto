@@ -115,6 +115,136 @@ function admin_tools() {
 }
 
 /**
+ * Tools Box: Fonts Manager
+ *
+ * Add Custom Fonts for your Theme
+ */
+function admin_tools_box_fontmanager() {
+?>
+<div class="box box2columns">
+	<h3>Font Manager</h3>
+	<div class="inner">
+		You can manage your fonts here. Please make sure that you are allowed to use them as this may be a violation of copyright for the font's creators and a violation of Concerto's terms of use.
+		<div class="clear"></div>
+		<div style="float:left;width:290px;background:#f9f9f9;margin:20px 10px 10px;margin-left:0;padding:10px;" id="addfont">
+			<p>Font Name</p>
+			<p><input type="text" value="" name="fontname" id="fontname" class="text" style="width:100%;" /></p>
+			<p>Source URL, CSS or Script</p>
+			<p><textarea value="" name="fontsource" id="fontsource" class="text" style="width:100%;"></textarea></p>
+			<p align="center" style="margin-top:10px;"><input type="submit" value="Add Custom Font" class="button" id="addfont_button" /></p>
+		</div>
+		<div style="float:left;width:250px;margin: 20px 10px;" id="deletefonts">
+			<?php
+				$fonts = get_option('concerto_fonts_custom');
+				if (!empty($fonts)) {
+					foreach ($fonts as $font) {
+			?>
+				<div class="font" id="<?php echo $font['slug']; ?>"><?php echo $font['name']; ?><span></span></div>
+			<?php
+					}
+				} else {
+			?>
+				<p style="text-align:center;font-size:30px;font-weight:bold;margin-top:75px;font-family:arial;color:#e0e0e0;" id="placeholderforfonts">Add a Font</p>
+			<?php } ?>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<script type="text/javascript">
+		jQuery(function($){
+			$('#addfont_button').click(function(){
+				$.post(ajaxurl, {action: 'add_font',name:$('#fontname').val(),source:$('#fontsource').val()}, function(response){
+					if (response == 100) {
+						Alert('That font is already on your library.');
+					} else {
+						if (response) {
+							$('#deletefonts').append('<div class="font" id="' + response['slug'] + '">' + response['name'] + '<span></span></div>');
+							$('#placeholderforfonts').hide();
+							$('#fontname,#fontsource').val('');
+						}
+					}
+				}, 'json');
+			});
+			$('.font span').live('click', function(){
+				var t = this;
+				Confirm({
+					title: 'Remove your Font',
+					message: 'Are you sure you want to remove this font from your library?',
+					ok: function() {
+						$.post(ajaxurl, {action: 'remove_font',slug:$(t).parents('.font').attr('id')}, function(response){
+							$(t).parents('.font').fadeOut(500, function(){
+								$(this).remove();
+								if ($('.font').length <= 0) {
+									$('#placeholderforfonts').show();
+								}
+							});
+						});
+					}
+				});
+				return false;
+			});
+		});
+	</script>
+</div>
+<?php
+}
+
+/**
+ * Tools Box AJAX: Add a font
+ *
+ * Adds font to the custom fonts collection
+ */
+function admin_tools_add_font() {
+	if (@$_POST) {		
+		$fonts = get_option('concerto_fonts_custom');
+		$slug = 'cf_' . sanitize_title($_POST['name']);
+		if (!$fonts[$slug]) {
+		
+			// css file, link, script, @fontface
+			if (preg_match('/@font/i', $_POST['source'])) {
+				$stype = 'fontface';
+			} else if (preg_match('/\<script/i', $_POST['source'])) {
+				$stype = 'script';
+			} else if (preg_match('/\<link/i', $_POST['source'])) {
+				$stype = 'link';
+			} else if (preg_match('/(http|https):\/\//i', $_POST['source'])) {
+				$stype = 'css';
+			}
+		
+			$fonts[$slug] = array(
+				'name' => $_POST['name'],
+				'source' => $_POST['source'],
+				'slug' => $slug,
+				'source-type' => $stype
+			);
+			echo json_encode($fonts[$slug]);
+		} else {
+			echo 100;
+		}
+	}
+	update_option('concerto_fonts_custom', $fonts);
+	die();
+}
+
+/**
+ * Tools Box AJAX: Remove a font
+ *
+ * Removes font to the custom fonts collection
+ */
+function admin_tools_remove_font() {
+	if (@$_POST) {		
+		$fonts = get_option('concerto_fonts_custom');
+		$slug = $_POST['slug'];
+		if ($fonts[$slug]) {
+			unset($fonts[$slug]);
+			echo 1;
+		}
+	}
+	update_option('concerto_fonts_custom', $fonts);
+	die();
+}
+
+/**
  * Tools Box: Import Configuration
  *
  * Import configuration

@@ -32,6 +32,25 @@ function concerto_hook_head() {
 	?>
 	<!-- Concerto Theme Styles -->
 	<?php
+	$fonts = get_option('concerto_fonts_custom');
+	if (!empty($fonts)) {
+		?>
+		<!-- Concerto Custom Fonts -->
+		<?php
+		foreach ($fonts as $font) {
+			if ($font['source-type'] == 'script' || $font['source-type'] == 'link') {
+				echo stripslashes($font['source']) . "\n";
+			}
+			if ($font['source-type'] == 'css') {
+				?>
+				<link rel="stylesheet" type="text/css" media="all" href="<?php echo $font['source']; ?>" />
+				<?php
+			}
+		}
+		?>
+		<!-- Concerto Custom Fonts -->
+		<?php
+	}
 }
 
 /**
