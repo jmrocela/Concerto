@@ -6,6 +6,7 @@
  *
  * @version: 1.0
  * @package: CommentsAPI
+ * @copyright: see LICENSE
  *
  * [WARNING]
  * This is restricted file and should not be modified in any way(unless you know what

@@ -6,6 +6,7 @@
  *
  * @version: 1.0
  * @package: Concerto
+ * @copyright: see LICENSE
  */
 
 // This is where it all begins..

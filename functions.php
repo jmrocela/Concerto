@@ -6,6 +6,7 @@
  *
  * @version: 1.0
  * @package: Concerto
+ * @copyright: see LICENSE
  *
  * [WARNING]
  * Includes and Instantiates libraries needed for the Concerto theme to work properly. It is advised

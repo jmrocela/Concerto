@@ -3,6 +3,7 @@
  *
  * @version: 1.0
  * @package: scripts
+ * @copyright: see LICENSE
  */
 function Confirm(options) {
 	var $ = jQuery;
